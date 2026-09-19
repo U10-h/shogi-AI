@@ -1,5 +1,6 @@
 import {positionAt,moveLabel,scoreLabel,sideName} from './core.js';
 import {positionKey,resolveMove,questionIntent,investigate,explainReport,reportEvidence,branchRoot,reportBranches,lineOutlook,explainPlan} from './coach-analysis.js';
+import {prepareTeaching} from './teaching-lines.js';
 import {LocalTutor} from './tutor.js';
 import {teacherAnswer,teacherComment} from './teacher-analysis.js';
 
@@ -154,7 +155,10 @@ export class Coach {
     const check=()=>{if(id!==this.job)throw new DOMException('相談の解析を中止しました。','AbortError');};
     try{
       if(!this.report||intent==='deeper'||intent==='verify'||reply||time>this.report.time||rigor==='deep'&&this.report.rigor!=='deep'){
-        const report=await this.bridge.run(async hostCheck=>investigate(this.engine,this.root,this.chosen,{time,reply,rigor,onProgress:text=>{$('coach-progress').textContent=text;},check:()=>{hostCheck();check();}}));check();this.report=report;
+        const report=await this.bridge.run(async hostCheck=>{
+          const options={time,reply,rigor,onProgress:text=>{$('coach-progress').textContent=text;},check:()=>{hostCheck();check();}};
+          const result=await investigate(this.engine,this.root,this.chosen,options);return prepareTeaching(this.engine,result,options);
+        });check();this.report=report;
         this.chosen=this.report.chosen;
       }
       this.drawReport();

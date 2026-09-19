@@ -5,6 +5,7 @@ import {teachingEnabled,sameLesson,reviewPlayedMove,teacherComment,teacherAnswer
 import {belongsToGame} from './background-coach.js';
 import {ReadingBoard} from './reading.js';
 import {reviewPast} from './retrospective.js';
+import {prepareTeaching,teachingReady} from './teaching-lines.js';
 
 const $=id=>document.getElementById(id);
 const abort=()=>new DOMException('指導を中止しました。','AbortError');
@@ -144,9 +145,11 @@ export class Teacher {
     if(!restart)this.message('user',moveLabel(positionAt(root.initial,root.moves),played)+' と指しました。');
     $('teacher-question').value='';this.bridge.show();this.bridge.refresh();
     try{
-      const report=cached||await this.bridge.run(async hostCheck=>{
+      const report=teachingReady(cached)?cached:await this.bridge.run(async hostCheck=>{
         const check=()=>{hostCheck();if(id!==this.job||!sameLesson(lesson,this.bridge.game()))throw abort();};check();
-        const r=await reviewPlayedMove(this.engine,root,played,{time:this.bridge.time(),check,onProgress:text=>{check();this.progress=text;this.sync();}});check();return r;
+        const options={time:this.bridge.time(),check,onProgress:text=>{check();this.progress=text;this.sync();}};
+        const r=cached?.verification?cached:await reviewPlayedMove(this.engine,root,played,{...options,rigor:'deep'});
+        return prepareTeaching(this.engine,r,options);
       });
       if(id!==this.job||!sameLesson(lesson,this.bridge.game()))return;
       lesson.report=report;lesson.discussionRoot=structuredClone(root);lesson.discussionReport=report;
@@ -182,12 +185,15 @@ export class Teacher {
         const chosen=reply?r.chosen:found.kind==='move'?found.usi:positionKey(root)===positionKey(r.root)?r.chosen:null;
         r=await this.bridge.run(async hostCheck=>{
           const check=()=>{hostCheck();if(id!==this.job||!sameLesson(l,this.bridge.game()))throw abort();};check();
-          const result=await investigate(this.engine,root,chosen,{time:this.bridge.time(),rigor:['deeper','verify'].includes(intent)?'deep':'standard',reply,check});check();return result;
+          const time=['deeper','verify'].includes(intent)?Math.min(30000,Math.max(this.bridge.time(),r.time||0)*2):this.bridge.time();
+          const options={time,check,onProgress:text=>{check();this.progress=text;this.sync();}};
+          const result=await investigate(this.engine,root,chosen,{...options,rigor:'deep',reply});check();return prepareTeaching(this.engine,result,options);
         });
         if(id!==this.job||!sameLesson(l,this.bridge.game()))return;
         l.discussionRoot=structuredClone(root);l.discussionReport=r;this.bridge.report(r);
       }
       l.discussionBranch=intent==='reply'&&r.assumption?'assumption':intent==='best'?'best':intent==='opportunity'&&r.opportunity?'opportunity':'defense';
+      this.reading.set(r,this.bridge.game().human,this.locked);this.reading.select(l.discussionBranch);
       const options={text:isIntent?text:'',goal,intent:isIntent?'explain':intent,side:this.bridge.game().human,round:l.round||0};
       let answer=teacherAnswer(r,options);l.round=(l.round||0)+1;
       if(positionKey(r.root)!==positionKey(l.root))answer=r.root.moves.length+'手目まで進めた盤面ですね。'+answer;

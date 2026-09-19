@@ -1,5 +1,6 @@
 import {positionAt,checkedPV,handPieceTypes,Square,other,sideName,scoreLabel} from './core.js';
 import {pieceNames} from './coach-analysis.js';
+import {teachingBranches,MIN_TEACHING_PLIES} from './teaching-lines.js';
 
 const spoken=s=>s.replace(/^[☗☖]/,'');
 function inventory(p,side){
@@ -9,7 +10,7 @@ function inventory(p,side){
 }
 // Counts ownership after the entire displayed sequence, including recaptures.
 // Promotion changes strength, but does not falsely count as winning a piece.
-export function readingOutcome(root,branch,side=positionAt(root.initial,root.moves).color,plies=12){
+export function readingOutcome(root,branch,side=positionAt(root.initial,root.moves).color,plies=7){
   const p=positionAt(root.initial,root.moves),before=inventory(p,side),moves=checkedPV(p,branch.pv).slice(0,plies),events=[];
   for(const [i,item]of moves.entries()){
     const m=p.createMoveByUSI(item.usi),actor=p.color,captured=m.capturedPieceType,promoted=m.promote;
@@ -34,21 +35,27 @@ export function readingComparison(r){
 }
 const el=(tag,text,cls)=>{const e=document.createElement(tag);e.textContent=text||'';if(cls)e.className=cls;return e;};
 export class ReadingBoard {
-  constructor(container,onExplore){this.container=container;this.onExplore=onExplore;this.report=null;this.which='defense';this.cursor=6;}
+  constructor(container,onExplore){this.container=container;this.onExplore=onExplore;this.report=null;this.which='defense';this.cursor=MIN_TEACHING_PLIES;}
   set(report,side,locked=false){
     if(this.report===report&&this.side===side&&this.locked===locked)return;
-    if(this.report!==report){this.report=report;this.which='defense';this.cursor=6;}
+    if(this.report!==report){this.report=report;this.which='defense';this.cursor=MIN_TEACHING_PLIES;}
     this.side=side;this.locked=locked;this.draw();
   }
+  select(id){this.which=id;this.cursor=MIN_TEACHING_PLIES;this.draw();}
   draw(){
     const r=this.report;this.container.hidden=!r;if(!r){this.container.replaceChildren();return;}
-    const branches=[['defense','指した手への厳しい応手'],['best','比較する最善候補'],['opportunity','狙いが通る応手の例'],['assumption','自分が想定した応手']].filter(([k])=>r[k]&&(k!=='best'||r.bestMove!==r.chosen));
-    if(!branches.some(([k])=>k===this.which))this.which='defense';
-    const b=r[this.which],length=checkedPV(positionAt(r.root.initial,r.root.moves),b.pv).length;
+    const branches=teachingBranches(r);
+    if(!branches.some(b=>b.id===this.which))this.which=branches[0]?.id;
+    const b=branches.find(b=>b.id===this.which);if(!b)return;
+    const valid=checkedPV(positionAt(r.root.initial,r.root.moves),b.pv),length=valid.length;
     this.cursor=Math.max(0,Math.min(this.cursor,length));const o=readingOutcome(r.root,b,this.side,this.cursor);
-    const section=el('div','','reading-card'),heading=el('h3','読みを盤面で確かめる');
-    const select=el('select');select.setAttribute('aria-label','盤面で見る読み筋');select.disabled=this.locked;
-    for(const [key,title]of branches){const option=el('option',title);option.value=key;select.append(option);}select.value=this.which;select.onchange=()=>{this.which=select.value;this.draw();};
+    const section=el('div','','reading-card'),heading=el('h3','7手先まで、展開を比べる');
+    const choices=el('div','','reading-scenarios');choices.setAttribute('aria-label','比べる展開');
+    for(const [i,branch]of branches.entries()){
+      const button=el('button','','reading-scenario');button.disabled=this.locked;button.setAttribute('aria-pressed',branch.id===this.which?'true':'false');
+      button.append(el('strong',(i+1)+'. '+branch.title),el('span',branch.evidence.moves.slice(0,2).map(m=>m.label).join(' → ')),el('small',Math.min(7,branch.pv.length)+'手先'+(branch.reading?.terminal?'で終局':'')+' · '+sideName(r.side)+'視点 '+scoreLabel(branch.score)));
+      button.onclick=()=>{this.which=branch.id;this.cursor=MIN_TEACHING_PLIES;this.draw();};choices.append(button);
+    }
     const count=el('p',(r.root.moves.length+this.cursor)+'手目の局面 · 読みの'+this.cursor+' / '+length+'手先','micro');
     const board=el('div','','reading-board');board.setAttribute('role','img');board.setAttribute('aria-label',this.cursor+'手先の将棋盤。下側は'+sideName(this.side));
     const white=this.side==='white',files=white?[1,2,3,4,5,6,7,8,9]:[9,8,7,6,5,4,3,2,1],ranks=white?[9,8,7,6,5,4,3,2,1]:[1,2,3,4,5,6,7,8,9];
@@ -60,10 +67,18 @@ export class ReadingBoard {
     const hand=side=>el('p',sideName(side)+'の持ち駒：'+(handPieceTypes.filter(t=>o.position.hand(side).count(t)).map(t=>pieceNames[t]+o.position.hand(side).count(t)).join(' ')||'なし'),'reading-hand');
     const controls=el('div','','reading-controls');
     for(const [label,next,disabled]of [['一手戻る',this.cursor-1,this.cursor===0],['一手進む',this.cursor+1,this.cursor===length],['読みの最後へ',length,this.cursor===length]]){const btn=el('button',label);btn.disabled=this.locked||disabled;btn.onclick=()=>{this.cursor=next;this.draw();};controls.append(btn);}
-    const line=el('p',o.moves.slice(-4).map(m=>m.label).join(' → ')||'候補手を指す前','reading-line');
+    const line=el('div','','reading-move-list');line.setAttribute('aria-label','読み筋の手順');
+    for(const [i,m]of valid.slice(0,Math.max(MIN_TEACHING_PLIES,this.cursor)).entries()){
+      const button=el('button',(i+1)+'. '+m.label);button.disabled=this.locked;button.setAttribute('aria-pressed',this.cursor===i+1?'true':'false');button.onclick=()=>{this.cursor=i+1;this.draw();};line.append(button);
+    }
+    const endNote=b.reading?.terminal?'この手順は'+length+'手先で'+b.reading.terminal+'になります。':length<MIN_TEACHING_PLIES?'7手先までの読みを取得できていません。「7手以上・複数の展開を読み直す」で再確認してください。':'';
+    const lesson=el('p',readingReason(r,b,this.side),'reading-explanation');
     const score=el('p','この読みの評価：'+sideName(r.side)+'視点 '+scoreLabel(b.score)+' · 探索深さ '+(b.depth||b.score.depth||0)+'（表示手数とは別）','micro');
     const open=el('button','この盤面から先生に相談');open.disabled=this.locked;open.onclick=()=>this.onExplore(r,b,this.cursor);
-    section.append(heading,select,count,hand(other(this.side)),frame,hand(this.side),controls,line,el('p',o.balance,'reading-balance'),score,open,el('p','相手がこの順を選んだ場合の例です。途中で違う手を指すこともできます。','micro'));
+    section.append(heading,choices,lesson,count,hand(other(this.side)),frame,hand(this.side),controls,line,el('p',o.balance,'reading-balance'),score);
+    if(endNote)section.append(el('p',endNote,'reading-end-note'));
+    if(r.teaching&&branches.length<2)section.append(el('p','比較できる別の展開を取得できませんでした。','micro'));
+    section.append(open,el('p',b.reading?.segments.length?'短かった読みは、続きの局面から追加解析しています。評価値は元の候補を読んだときの値で、追加手順全体の評価を保証するものではありません。':'相手がこの順を選んだ場合の例です。途中で違う手を指すこともできます。','micro'));
     this.container.replaceChildren(section);
   }
 }

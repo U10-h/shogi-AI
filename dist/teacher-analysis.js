@@ -1,6 +1,7 @@
 import {positionAt,moveLabel,checkedPV,scoreLabel} from './core.js';
 import {investigate,scoreGap,fromChild,lineEvidence,positionKey,pieceNames} from './coach-analysis.js';
 import {readingReason,readingComparison} from './reading.js';
+import {teachingComparison} from './teaching-lines.js';
 
 export const teachingEnabled=game=>game.clockMode==='learning'||game.clockMode==='unlimited';
 export function sameLesson(lesson,game){return !!lesson&&lesson.gameId===game.id&&positionKey(lesson.checkpoint)===positionKey({initial:game.initial,moves:game.moves})&&lesson.result===game.result;}
@@ -13,8 +14,8 @@ export function moveGrade(r){
   if(gap>=200)return 'concern';if(gap>=100)return 'review';
   return b.score< -600?'resilient':'good';
 }
-export async function reviewPlayedMove(engine,root,played,{time=2000,check=()=>{},onProgress=()=>{}}={}){
-  const report=await investigate(engine,root,played,{time,check,onProgress});
+export async function reviewPlayedMove(engine,root,played,{time=2000,rigor='standard',check=()=>{},onProgress=()=>{}}={}){
+  const report=await investigate(engine,root,played,{time,rigor,check,onProgress});
   if(moveGrade(report)==='concern'&&report.bestMove!==played){
     const previous=moveGrade(report),focusedTime=Math.min(30000,time*2),results=[];
     for(const usi of [report.bestMove,played]){
@@ -70,6 +71,7 @@ export function teacherComment(r,{first=false,passive=false,brief=false}={}){
   else if(grade==='resilient')text='厳しい局面ですが、この手で粘る余地はありそうです。'+continuation(r.defense);
   else text='いいですね。相手の応手まで読んでも、今のところ有力な一手です。'+(brief?continuation(r.defense):point+' '+readingComparison(r));
   if(!brief&&!passive&&['concern','review'].includes(grade))text+='\n\n'+readingReason(r)+' '+readingComparison(r);
+  if(!brief&&r.teaching)text+='\n\n'+teachingComparison(r);
   if(first&&!question&&grade==='good')question='次は、どんな狙いで進めたいですか？';
   return {grade,text,question,reply,theme:risk?'相手の応手':point?'駒の働き':'次の一手'};
 }
@@ -90,6 +92,6 @@ function composeAnswer(r,{text='',goal=null,intent='explain',side=r.side,round=0
   const focus=moveGrade(r)==='concern'||moveGrade(r)==='review'?risk:movePoint(r)||hope;
   return lead+(focus||'この手の意味は、相手の応手まで含めて考えると分かりやすくなります。')+'\n\n'+continuation(r.defense)+(reply&&text?' このあとも、考えていた狙いを続けられそうですか？':'');
 }
-export function teacherAnswer(r,options={}){const answer=composeAnswer(r,options);return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}
+export function teacherAnswer(r,options={}){let answer=composeAnswer(r,options);if(r.teaching&&['verify','deeper','compare','best','plan'].includes(options.intent)){const comparison=teachingComparison(r);if(comparison)answer+='\n\n'+comparison;}return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}
 function lineText(branch,n=4){return branch.evidence.moves.slice(0,n).map(m=>m.label).join(' → ');}
 export function teacherEvidence(r,comment){return [{id:'teacher',text:'指した手への講評。'+comment.text+' '+comment.question},{id:'played',text:'指した手の続き '+lineText(r.defense,12)+'。'+readingReason(r)},{id:'alternative',text:'比較する候補 '+lineText(r.best,12)+'。'+readingReason(r,r.best)},{id:'evaluation',text:readingComparison(r)+(comment.grade==='uncertain'?'結論は未確定。':'有限時間の探索による暫定評価。')}];}

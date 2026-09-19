@@ -25,6 +25,7 @@ export function resolveMove(p,text){
   return {kind:'move',usi:matches[0].usi,label:moveLabel(p,matches[0].usi)};
 }
 export function questionIntent(text){
+  if(/[7７七]手|いくつか|複数.*展開|展開.*比較/.test(text))return 'verify';
   if(/[2２二]手(?:進|先)|もう[2２二]手/.test(text))return 'future';
   if(/精読|成立条件|条件を|応手を比較/.test(text))return 'verify';
   if(/もっと|深く|長く|再解析|再検討/.test(text))return 'deeper';
@@ -83,7 +84,7 @@ export function branchRoot(root,branch,plies=2){
   if(checkedPV(p,prefix).length!==plies)throw Error('読み筋の合法性を確認できませんでした。');
   return {initial:root.initial,moves:[...root.moves,...prefix]};
 }
-export function reportBranches(r){return [r.best,r.defense,r.opportunity,r.assumption,r.caution].filter(b=>b&&(b.id!=='best'||r.chosen!==r.bestMove));}
+export function reportBranches(r){return r.teaching?.lines||[r.best,r.defense,r.opportunity,r.assumption,r.caution].filter(b=>b&&(b.id!=='best'||r.chosen!==r.bestMove));}
 
 // Observable events are ingredients for a plan, not a proof that a move is good.
 export function lineOutlook(root,branch,side=positionAt(root.initial,root.moves).color){
@@ -142,6 +143,7 @@ export async function investigate(engine,root,chosen,{time=3000,reply=null,rigor
   let assumption=null;
   if(reply){const q=positionAt(child.initial,child.moves),rm=q.createMoveByUSI(reply);if(!rm||!q.isValidMove(rm))throw Error('想定した相手の応手は、この局面では指せません。');const lineRoot={initial:root.initial,moves:[...child.moves,reply]};const [info]=await query(lineRoot,1,'指定された相手の応手を調べています…');assumption={id:'assumption',title:'あなたが想定した相手の応手',pv:[chosen,reply,...info.pv],score:info,depth:info.depth,evidence:lineEvidence(root,[chosen,reply,...info.pv])};}
   const report={root:structuredClone(root),side:p.color,chosen,bestMove,time,reply,rigor,createdAt:new Date().toISOString(),ranking,best,defense,opportunity,assumption,caution,facts:{best:moveFacts(p,bestMove),chosen:moveFacts(p,chosen)},gap:scoreGap(best.score,defense.score)};
+  report.replyExamples=responses.slice(1,3).map((info,i)=>make('response-'+i,'相手の別の応手',chosen,info));
   if(rigor==='deep')await verifyReport(engine,report,responses,{check,onProgress});
   report.createdAt=new Date().toISOString();
   return report;

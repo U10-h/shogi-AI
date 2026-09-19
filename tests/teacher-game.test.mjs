@@ -51,7 +51,8 @@ test('background analysis never blocks play; a confirmed warning can be opened, 
     assert.equal($('teacher-lesson').hidden,true,'even a warning does not force a modal lesson');
     now+=2000;intervals[0]();assert.equal($('bottom-clock').textContent,'9:51');
     await settle(()=>!$('teacher-check').disabled);const counted=searches.length;
-    await $('teacher-check').click();assert.equal(searches.length,counted,'opening a finished review reuses it');
+    await $('teacher-check').click();assert(searches.length>counted,'opening a short background report now deepens the teaching lines');
+    assert(searches.slice(counted).some(s=>s.options.multipv===5),'foreground teaching widens the candidate search');
     assert.equal(saved().moves.length,2);assert.equal(saved().teacherPending.ply,1);assert.equal($('pause').hidden,true);
     const clocks=saved().clocks;now+=60000;intervals[0]();assert.equal($('bottom-clock').textContent,'9:51');
     await import('../dist/app.js?restore=1');
@@ -59,8 +60,15 @@ test('background analysis never blocks play; a confirmed warning can be opened, 
     await $('teacher-reanalyze').click();await settle(()=>!$('teacher-continue').disabled);
     const previewActual=[...saved().moves],card=$('teacher-reading').firstChild;
     assert.equal(card.querySelectorAll('div').find(n=>n.className==='reading-board').children.length,81,'searched future is visible as a complete board');
-    const previewSelect=card.querySelector('select');previewSelect.value='best';previewSelect.onchange();
+    const scenarios=card.querySelectorAll('div').find(n=>n.className==='reading-scenarios');assert(scenarios.children.length>=2);
+    assert(card.querySelectorAll('div').find(n=>n.className==='reading-move-list').children.length>=7,'all seven moves are visible without stepping first');
+    await scenarios.children[1].click();
     assert.deepEqual(saved().moves,previewActual,'switching displayed continuations does not change the game');
+    const consultSeven=$('teacher-reading').querySelectorAll('button').find(n=>n.textContent==='この盤面から先生に相談');
+    await consultSeven.click();assert.match($('teacher-context').textContent,/検討 7手目/);assert.deepEqual(saved().moves,previewActual);
+    const sevenCount=searches.length;$('teacher-question').value='ここから何を目指す？';await $('teacher-ask').onsubmit({preventDefault(){}});await settle(()=>!$('teacher-continue').disabled);
+    assert.equal(searches[sevenCount].moves.length,7,'the next question searches the displayed seven-ply position');
+    await $('teacher-origin').click();
     const attack=$('teacher-intents').children.find(n=>/攻め/.test(n.textContent));await attack.click();assert.equal($('teacher-intents').hidden,true);
     $('teacher-question').value='相手が3四歩なら？';await $('teacher-ask').onsubmit({preventDefault(){}});await settle(()=>!$('teacher-continue').disabled);
     assert(searches.some(c=>c.moves.join(' ')==='7g7f 3c3d'),'the requested opponent response is fixed before searching');

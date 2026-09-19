@@ -1,16 +1,17 @@
 import {createRequire} from 'node:module';
-import {readFileSync} from 'node:fs';
+import {readFileSync,writeFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {START,positionAt,parseInfo,checkedPV} from '../dist/core.js';
 import {investigate,explainReport,branchRoot,lineOutlook,explainPlan} from '../dist/coach-analysis.js';
 import {reviewPlayedMove,teacherComment,teacherAnswer} from '../dist/teacher-analysis.js';
+import {prepareTeaching,teachingReady} from '../dist/teaching-lines.js';
 const dir=fileURLToPath(new URL('../dist/vendor/yaneuraou/',import.meta.url));
 // The Emscripten data loader expects a browser location, even with preloaded data.
 globalThis.location={pathname:dir};
 const factory=createRequire(import.meta.url)(dir+'yaneuraou.js');
 const data=readFileSync(dir+'yaneuraou.data');
-const timeout=setTimeout(()=>{console.error('Engine smoke timed out');process.exit(1);},25000);
+const timeout=setTimeout(()=>{console.error('Engine smoke timed out');process.exit(1);},45000);
 const engine=await factory({wasmBinary:readFileSync(dir+'yaneuraou.wasm'),getPreloadedPackage:()=>data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength),locateFile:f=>dir+f,mainScriptUrlOrBlob:dir+'yaneuraou.js'});
 const lines=[];const listeners=new Set();engine.addMessageListener(line=>{lines.push(line);for(const fn of listeners)fn(line);});
 function request(command,end){return new Promise(resolve=>{const fn=line=>{if(end(line)){listeners.delete(fn);resolve(line);}};listeners.add(fn);engine.postMessage(command);});}
@@ -59,6 +60,11 @@ try{
   for(const b of [...deep.verification.candidates,...deep.verification.replies])assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
   assert.match(explainReport(deep,'verify'),/読み直しました/);
   console.log('PASS: real NNUE wide candidate search, focused equal-budget review and fixed-reply analysis');
+  const teaching=await prepareTeaching(adapter,deep,{time:1000});
+  assert(teachingReady(teaching));assert(teaching.teaching.lines.length>=3);
+  for(const b of teaching.teaching.lines){assert(b.pv.length>=7||b.reading.terminal);assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);}
+  console.log('PASS: real NNUE teaching compares '+teaching.teaching.lines.length+' scenarios, each with at least seven legal plies or an explicit ending');
+  if(process.env.SHOGI_TEACHING_FIXTURE_PATH)writeFileSync(process.env.SHOGI_TEACHING_FIXTURE_PATH,JSON.stringify(teaching));
   const lesson=await reviewPlayedMove(adapter,{initial:START,moves:[]},'7g7f',{time:250});
   const comment=teacherComment(lesson,{first:true});assert.ok(comment.text.length>30);assert.ok(comment.text.length<300);
   assert.equal(checkedPV(positionAt(START,[]),lesson.defense.pv).length,lesson.defense.pv.length);
