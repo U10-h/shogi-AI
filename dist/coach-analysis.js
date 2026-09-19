@@ -25,8 +25,10 @@ export function resolveMove(p,text){
   return {kind:'move',usi:matches[0].usi,label:moveLabel(p,matches[0].usi)};
 }
 export function questionIntent(text){
+  if(/[2２二]手(?:進|先)|もう[2２二]手/.test(text))return 'future';
   if(/もっと|深く|長く|再解析|再検討/.test(text))return 'deeper';
   if(/相手.{0,12}(?:なら|場合|指|受|応)|応手.{0,10}(?:なら|場合)|(?:なら|場合).{0,8}相手/.test(text)&&moveTokens(text).length)return 'reply';
+  if(/嬉し|うれし|困る|困り|目指|避けたい|方針|理想|何を狙|どうな/.test(text))return 'plan';
   if(/最善|一番|おすすめ/.test(text))return 'best';
   if(/成功|通る|うまく|上手く|罠|無視/.test(text))return 'opportunity';
   if(/咎|とが|反論|反撃|受け|防|失敗|ダメ|だめ/.test(text))return 'defense';
@@ -73,6 +75,47 @@ export function lineEvidence(root,pv,limit=10){
   const delta=material(p,side)-before;
   return {moves:valid,events:events.slice(0,5),materialDelta:delta,summary:valid.length+'手先までの単純な駒の収支は'+(delta>0?'+':'')+delta+'点（歩100点）。これはエンジンの形勢評価とは別の集計です。'};
 }
+// A consultation keeps the complete game history, including repetition rights.
+export function branchRoot(root,branch,plies=2){
+  if(!Number.isInteger(plies)||plies<1||branch.pv.length<plies)throw Error('この読み筋には指定した手数の続きがありません。');
+  const prefix=branch.pv.slice(0,plies),p=positionAt(root.initial,root.moves);
+  if(checkedPV(p,prefix).length!==plies)throw Error('読み筋の合法性を確認できませんでした。');
+  return {initial:root.initial,moves:[...root.moves,...prefix]};
+}
+export function reportBranches(r){return [r.best,r.defense,r.opportunity,r.assumption,r.caution].filter(b=>b&&(b.id!=='best'||r.chosen!==r.bestMove));}
+
+// Observable events are ingredients for a plan, not a proof that a move is good.
+export function lineOutlook(root,branch,side=positionAt(root.initial,root.moves).color){
+  const p=positionAt(root.initial,root.moves),valid=checkedPV(p,branch.pv).slice(0,10);
+  const initial=material(p,side),rays={bishop:rayCount(p,side,'bishop'),rook:rayCount(p,side,'rook')};
+  const hope=[],worry=[];
+  for(let i=0;i<valid.length;i++){
+    const m=p.createMoveByUSI(valid[i].usi),mine=p.color===side,where=(i+1)+'手目の'+valid[i].label;
+    if(m.capturedPieceType)(mine?hope:worry).push({ply:i+1,text:where+'で'+(mine?'相手の':'自分の')+pieceNames[m.capturedPieceType]+(mine?'を取る。':'を取られる。')});
+    if(m.promote)(mine?hope:worry).push({ply:i+1,text:where+'で'+(mine?'自分':'相手')+'の'+pieceNames[m.pieceType]+'が成る。'});
+    p.doMove(m);
+    if(p.checked)(mine?hope:worry).push({ply:i+1,text:where+'で'+(mine?'相手玉':'自玉')+'に王手がかかる。次の受けまで確認したい。'});
+  }
+  const delta=material(p,side)-initial;
+  if(delta)(delta>0?hope:worry).unshift({ply:valid.length,text:'表示した'+valid.length+'手先では、'+sideName(side)+'の単純な駒の収支が'+(delta>0?'+':'')+delta+'点（歩100点）。途中の取り返しも含む。'});
+  for(const [type,name]of[['bishop','角'],['rook','飛車']]){
+    const after=rayCount(p,side,type),before=rays[type];
+    if(after>before)hope.push({ply:valid.length,text:valid.length+'手先では、自分の'+name+'の筋に沿って届く升が'+before+'から'+after+'に増える。駒取りの成立は別途確認が必要。'});
+    if(after<before)worry.push({ply:valid.length,text:valid.length+'手先では、自分の'+name+'の筋に沿って届く升が'+before+'から'+after+'に減る。活動を制限されたのか、目的を果たしたのかを確認したい。'});
+  }
+  return {side,plies:valid.length,hope:hope.slice(0,3),worry:worry.slice(0,3),materialDelta:delta};
+}
+export function explainPlan(r,side=r.side){
+  const lines=[sideName(side)+'の立場で「実現したいこと」と「避けたいこと」を考えます。以下は、その読み筋どおりに進んだ場合に盤面から確認できる材料です。'];
+  for(const b of reportBranches(r)){
+    const outlook=lineOutlook(r.root,b,side);
+    lines.push(b.title+'：'+b.evidence.moves.slice(0,2).map(m=>m.label).join(' → '));
+    lines.push('嬉しい展開の材料：'+(outlook.hope[0]?.text||'この短い手順には、駒得・成り・王手・大駒の筋の拡張の例は見つかりませんでした。何を整えたいか、次の候補を挙げてみましょう。'));
+    lines.push('困る展開の注意点：'+(outlook.worry[0]?.text||'この短い手順には、駒損・相手の成り・自玉への王手・大駒の筋の縮小の例は見つかりませんでした。危険がないとは限りません。気になる応手を指定して確かめましょう。'));
+  }
+  lines.push('駒を取ることや王手をかけること自体が目的ではありません。取り返し、玉の安全、攻めの継続をセットで比べます。', '「この2手の先を相談」で進めたら、①何が実現すれば嬉しいか ②相手に何をされると困るか ③その両方を考えた次の一手、の順に自分の予想を置いてみましょう。');
+  return lines.join('\n\n');
+}
 function terminalInfo(root){const status=statusOf(root.initial,root.moves);if(!status)return null;
   const p=positionAt(root.initial,root.moves);
   if(!legalMoves(p).length)return {rank:1,type:'mate',score:-0,depth:0,bound:false,pv:[],terminal:status};
@@ -92,9 +135,12 @@ export async function investigate(engine,root,chosen,{time=3000,reply=null,onPro
   const defense=make('defense','あなたの候補への最善応手',chosen,responses[0]);
   const alternatives=responses.slice(1).filter(i=>i.type==='cp'&&responses[0].type==='cp'&&!i.bound&&!responses[0].bound&&responses[0].score-i.score>=100);
   const opportunity=alternatives.length?make('opportunity','相手が別の応手を選んだ例',chosen,alternatives.at(-1)):null;
+  // Use the same root MultiPV search for a grounded weaker-candidate example.
+  const weaker=ranking.slice(1).filter(i=>i.pv[0]!==chosen&&scoreGap(ranking[0],i)>=100&&scoreGap(ranking[0],i)!==null).at(-1);
+  const caution=weaker?{id:'caution',title:'評価が低かった別候補の例',pv:weaker.pv,score:weaker,depth:weaker.depth,evidence:lineEvidence(root,weaker.pv)}:null;
   let assumption=null;
   if(reply){const q=positionAt(child.initial,child.moves),rm=q.createMoveByUSI(reply);if(!rm||!q.isValidMove(rm))throw Error('想定した相手の応手は、この局面では指せません。');const lineRoot={initial:root.initial,moves:[...child.moves,reply]};const [info]=await query(lineRoot,1,'指定された相手の応手を調べています…');assumption={id:'assumption',title:'あなたが想定した相手の応手',pv:[chosen,reply,...info.pv],score:info,depth:info.depth,evidence:lineEvidence(root,[chosen,reply,...info.pv])};}
-  return {root:structuredClone(root),side:p.color,chosen,bestMove,time,reply,createdAt:new Date().toISOString(),ranking,best,defense,opportunity,assumption,facts:{best:moveFacts(p,bestMove),chosen:moveFacts(p,chosen)},gap:scoreGap(best.score,defense.score)};
+  return {root:structuredClone(root),side:p.color,chosen,bestMove,time,reply,createdAt:new Date().toISOString(),ranking,best,defense,opportunity,assumption,caution,facts:{best:moveFacts(p,bestMove),chosen:moveFacts(p,chosen)},gap:scoreGap(best.score,defense.score)};
 }
 export function explainReport(report,intent='explain'){
   const r=report,p=positionAt(r.root.initial,r.root.moves),label=moveLabel(p,r.chosen),bestLabel=moveLabel(p,r.bestMove);
@@ -110,9 +156,11 @@ export function explainReport(report,intent='explain'){
   else answer=[label+'について：'+lead,scoreText,...r.facts.chosen,'相手の厳しい応手を含む続きは、'+continuation(r.defense)+'。',...r.defense.evidence.events,r.defense.evidence.summary,'比較する最善候補は'+bestLabel+'。'+r.facts.best.join(' '),'気になる相手の応手や「なぜ？」「もっと深く」を続けて質問できます。'];
   return answer.filter(Boolean).join('\n\n');
 }
-export function reportEvidence(r){
-  const p=positionAt(r.root.initial,r.root.moves),items=[{id:'comparison',text:explainReport(r,'compare').slice(0,500)}];
-  for(const [key,branch]of[['best',r.best],['defense',r.defense],['opportunity',r.opportunity],['assumption',r.assumption]])if(branch){items.push({id:key,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。'+branch.evidence.events.join(' ')+branch.evidence.summary});}
+export function reportEvidence(r,side=r.side){
+  const p=positionAt(r.root.initial,r.root.moves),items=[{id:'position',text:'現在の相談は'+r.root.moves.length+'手目。手番と評価値の視点は'+sideName(r.side)+'。嬉しい・困る展開を考える側は'+sideName(side)+'。手番と考える側が異なる場合は混同しない。'},{id:'comparison',text:explainReport(r,'compare').slice(0,500)}];
+  for(const branch of reportBranches(r)){items.push({id:branch.id,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。'+branch.evidence.events.join(' ')+branch.evidence.summary});
+    const outlook=lineOutlook(r.root,branch,side);items.push({id:branch.id+'_outlook',text:branch.title+'。'+sideName(side)+'から見た条件付きの材料。嬉しい：'+(outlook.hope[0]?.text||'今回の短い読みでは未確認')+' 困る：'+(outlook.worry[0]?.text||'今回の短い読みでは未確認')+'。単独で手の良さ・勝敗を断定できない。'});
+  }
   items.push({id:'working',text:moveLabel(p,r.chosen)+'の働き：'+r.facts.chosen.join(' ')});
   return items;
 }

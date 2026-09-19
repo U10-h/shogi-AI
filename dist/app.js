@@ -64,7 +64,7 @@ $('import-confirm').onclick=async()=>{try{const parsed=parseRecord($('import-tex
 $('engine-retry').onclick=async()=>{await halt();engine.terminate();$('engine-retry').hidden=true;try{await engine.init();notify('エンジンを再読み込みしました。');}catch(e){fail(e);}};
 setInterval(tick,200);setInterval(()=>{if(running)save();},5000);document.addEventListener('visibilitychange',()=>{tick();if(document.hidden&&game.clockMode!=='match')halt();save();});window.addEventListener('pagehide',()=>{tick();save();});
 coach=new Coach({
-  current:()=>structuredClone(current()),time:()=>game.thinkTime,prepare:halt,refresh:render,
+  current:()=>structuredClone(current()),learnerSide:()=>game.human,time:()=>game.thinkTime,prepare:halt,refresh:render,
   cancelPick:()=>{coachPicking=false;selected=null;},
   pick:root=>{mode='study';study={initial:root.initial,moves:[...root.moves],cursor:root.moves.length,external:false};coachPicking=true;selected=null;render();$('board').scrollIntoView({block:'center',behavior:'auto'});},
   showLine:async(root,pv,ply)=>{if(busy)return;await halt();mode='study';study={initial:root.initial,moves:[...root.moves,...pv],cursor:root.moves.length+ply,external:false};selected=null;clearAnalysis();render();$('board').scrollIntoView({block:'center',behavior:'auto'});},

@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {START,positionAt,parseInfo,checkedPV} from '../dist/core.js';
-import {investigate,explainReport} from '../dist/coach-analysis.js';
+import {investigate,explainReport,branchRoot,lineOutlook,explainPlan} from '../dist/coach-analysis.js';
 const dir=fileURLToPath(new URL('../dist/vendor/yaneuraou/',import.meta.url));
 // The Emscripten data loader expects a browser location, even with preloaded data.
 globalThis.location={pathname:dir};
@@ -45,4 +45,12 @@ try{
   assert.ok(report.defense.evidence.moves.length>=2);assert.match(explainReport(report,'defense'),/最善応手/);
   for(const b of [report.best,report.defense,report.opportunity,report.assumption].filter(Boolean))assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
   console.log('PASS: real NNUE candidate assessment, best-move comparison, opponent-response hypothesis and explanation');
+  const advanced=branchRoot(report.root,report.assumption);
+  const continuation=await investigate(adapter,advanced,null,{time:300});
+  assert.equal(continuation.root.moves.length,2);assert.equal(continuation.side,report.side);
+  assert.equal(checkedPV(positionAt(advanced.initial,advanced.moves),continuation.defense.pv).length,continuation.defense.pv.length);
+  const outlook=lineOutlook(advanced,continuation.defense,report.side);
+  assert.ok(outlook.plies>0);assert.match(explainPlan(continuation),/嬉しい展開/);
+  assert.deepEqual(report.root.moves,[]);
+  console.log('PASS: real NNUE follow-up from two plies later, preserved history and evidence-based outlooks');
 }finally{engine.terminate();clearTimeout(timeout);}
