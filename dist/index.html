@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#123e3b"><meta name="description" content="強いAIと指し、候補手とその先の盤面を比較する将棋の練習盤。">
+  <title>中飛車研究室 — 将棋AI</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script>
+</head>
+<body>
+<header class="mast"><div class="brand"><span class="brand-mark" aria-hidden="true">飛</span><div><h1>中飛車研究室</h1><span class="subtitle">指して、読みを深める。</span></div></div><button id="settings-open" class="quiet">対局設定</button></header>
+<main>
+  <section class="play-area" aria-label="将棋盤と対局操作">
+    <div class="mode-strip"><div class="mode-switch" aria-label="操作モード"><button id="play-mode" class="active">対局</button><button id="study-mode">検討</button></div><span id="ply-label">開始局面</span></div>
+    <div class="player-line"><div><span id="top-name">やねうら王</span><span id="top-side" class="side-label">後手</span></div><time id="top-clock">10:00</time></div>
+    <div id="top-hand" class="hand" aria-label="上側の持ち駒"></div>
+    <div class="board-wrap"><div id="file-labels" class="file-labels" aria-hidden="true"></div><div class="board-and-ranks"><div id="board" class="board" role="group" aria-label="将棋盤"></div><div id="rank-labels" class="rank-labels" aria-hidden="true"></div></div></div>
+    <div id="bottom-hand" class="hand" aria-label="下側の持ち駒"></div>
+    <div class="player-line bottom"><div><span id="bottom-name">あなた</span><span id="bottom-side" class="side-label">先手</span></div><time id="bottom-clock">10:00</time></div>
+    <p id="turn-status" class="turn-status" role="status" aria-live="polite">準備ができたら、対局を始めましょう。</p>
+    <div class="main-actions"><button id="start" class="primary">AIと対局を始める</button><button id="pause" hidden>一時停止</button><button id="undo">待った</button><button id="flip" aria-label="盤面を反転する">反転</button><button id="declare" hidden>入玉宣言</button><button id="resign" class="danger-text">投了</button></div>
+    <div id="study-tools" class="study-tools" hidden><button id="study-back">一手戻る</button><button id="study-forward">一手進む</button><button id="save-variation">変化を保存</button><button id="return-game" class="primary">本対局に戻る</button></div>
+  </section>
+  <aside class="workspace">
+    <section class="panel engine-panel"><div class="section-top"><h2>対局エンジン</h2><span id="engine-badge" class="badge">準備前</span></div><p id="engine-status">やねうら王 NNUE KP256</p><div class="inline-setting"><label for="think-time">1手の思考時間</label><select id="think-time"><option value="1000">1秒</option><option value="3000" selected>3秒</option><option value="5000">5秒</option><option value="10000">10秒</option><option value="30000">30秒</option></select></div><p class="micro">端末内で解析します。棋力の段級位換算は未検証です。</p><button id="engine-retry" hidden>エンジンを再読み込み</button></section>
+    <section class="panel analysis-panel"><div class="section-top"><h2>候補手を比べる</h2><button id="analyze" class="accent-button">この局面を解析</button></div><p id="analysis-status" class="muted">自分で考えてから、候補手を開いてみましょう。</p><div id="candidates"></div><div id="variation-view" hidden><p id="variation-title" class="variation-title"></p><div id="variation-moves" class="move-chips"></div></div><div id="guide" class="guide"><span class="eyebrow">考える手がかり</span><p>相手の次の狙いは何でしょうか。攻める手と、備える手を一つずつ考えてみましょう。</p></div><p class="micro">初期版は手順と盤面の変化を表示します。自由な日本語対話は次の開発段階です。</p></section>
+    <section class="panel record-panel"><div class="section-top"><h2>棋譜・保存した変化</h2><span id="save-state" class="micro">自動保存</span></div><div id="record" class="record" aria-label="本対局の棋譜"></div><div id="variations" class="variations"></div><div class="record-actions"><button id="export-kif">棋譜を保存</button><button id="backup">バックアップ</button><button id="import-open">読み込み</button></div><p class="micro">履歴はこのブラウザに保存されます。</p></section>
+  </aside>
+</main>
+<footer><a href="https://github.com/U10-h/shogi-AI" target="_blank" rel="noopener">GitHub</a><span>初期版 0.1</span><a href="./credits.html">エンジン・ライセンス</a></footer>
+<dialog id="settings"><form method="dialog"><div class="section-top"><h2>対局設定</h2><button value="cancel" class="quiet" aria-label="閉じる">閉じる</button></div><label class="field">開始局面<select id="opening"><option value="standard">平手・初期配置</option><option value="gokigen">後手ゴキゲン中飛車の出だし（6手目まで）</option></select></label><label class="field">あなたの手番<select id="human-side"><option value="black">先手</option><option value="white">後手</option></select></label><label class="field">練習モード<select id="clock-mode"><option value="learning">学習：検討中は時計を停止</option><option value="match">実戦：10分切れ負け・助言なし</option><option value="unlimited">時間無制限</option></select></label><p class="muted">新しい対局を始める前に、現在の棋譜を履歴へ保存します。</p><button id="new-game" class="primary" type="button">この設定で新しい対局</button></form></dialog>
+<dialog id="promotion"><h2>成りますか？</h2><div class="dialog-actions"><button id="promote-yes" class="primary">成る</button><button id="promote-no">成らない</button><button id="promote-cancel">取消</button></div></dialog>
+<dialog id="import-dialog"><form method="dialog"><div class="section-top"><h2>棋譜・履歴を読み込む</h2><button class="quiet">閉じる</button></div></form><label class="field">KIF・CSA・USI・SFEN・バックアップJSON<textarea id="import-text" rows="7" placeholder="棋譜や局面を貼り付けてください"></textarea></label><label class="file-label">ファイルを選ぶ<input type="file" id="import-file" accept=".kif,.kifu,.ki2,.csa,.txt,.json"></label><button id="import-confirm" class="primary">検討盤に読み込む</button><p id="import-error" role="alert"></p><h3>過去の対局</h3><div id="history"></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body></html>
