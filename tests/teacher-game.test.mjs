@@ -57,6 +57,10 @@ test('background analysis never blocks play; a confirmed warning can be opened, 
     await import('../dist/app.js?restore=1');
     assert.equal($('start').hidden,true);assert.equal($('teacher-reanalyze').hidden,false,'reload restores a lesson about an earlier move');
     await $('teacher-reanalyze').click();await settle(()=>!$('teacher-continue').disabled);
+    const previewActual=[...saved().moves],card=$('teacher-reading').firstChild;
+    assert.equal(card.querySelectorAll('div').find(n=>n.className==='reading-board').children.length,81,'searched future is visible as a complete board');
+    const previewSelect=card.querySelector('select');previewSelect.value='best';previewSelect.onchange();
+    assert.deepEqual(saved().moves,previewActual,'switching displayed continuations does not change the game');
     const attack=$('teacher-intents').children.find(n=>/攻め/.test(n.textContent));await attack.click();assert.equal($('teacher-intents').hidden,true);
     $('teacher-question').value='相手が3四歩なら？';await $('teacher-ask').onsubmit({preventDefault(){}});await settle(()=>!$('teacher-continue').disabled);
     assert(searches.some(c=>c.moves.join(' ')==='7g7f 3c3d'),'the requested opponent response is fixed before searching');
@@ -68,7 +72,12 @@ test('background analysis never blocks play; a confirmed warning can be opened, 
     await Promise.all([$('teacher-continue').click(),$('teacher-continue').click()]);
     assert.equal(saved().moves.length,2);assert.equal(saved().teacherPending,null);assert.equal(saved().teachingNotes[0].goal,'攻めを続けたい');
     assert.equal(searches.filter(c=>!c.background).length,opponents,'continuing at the human turn does not play the opponent twice');
-    await $('teacher-check').click();await $('teacher-retry').click();assert.equal(saved().moves.length,0);assert(saved().variations.some(v=>v.moves.length===2));
+    const full=saved();await $('undo').click();assert.equal(saved().moves.length,1);assert.equal(saved().redo.moves.length,2);
+    await $('undo').click();assert.equal(saved().moves.length,0);await $('redo').click();await $('redo').click();
+    assert.deepEqual(saved().moves,full.moves);assert.deepEqual(saved().clocks,full.clocks);
+    await $('teacher-scan').click();await settle(()=>!$('teacher-scan').disabled);assert.match($('teacher-scan-status').textContent,/1手目から見直す/);
+    await $('teacher-past-list').firstChild.click();assert.equal(saved().teacherPending.ply,1);
+    await $('teacher-retry').click();assert.equal(saved().moves.length,0);assert(saved().variations.some(v=>v.moves.length===2));
     assert.equal($('pause').hidden,false);assert.equal($('teacher-lesson').hidden,true);
     // Switching games while a coach is reading invalidates all delayed results.
     holdBg=true;await play('7g','7f');await settle(()=>deferred.size>0);

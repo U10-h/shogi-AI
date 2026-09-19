@@ -17,7 +17,36 @@ export function validateGame(g){if(!g||g.version!==1||!['black','white'].include
   g.teachingNotes=Array.isArray(g.teachingNotes)?g.teachingNotes.slice(-40).filter(n=>n&&Number.isInteger(n.ply)&&n.ply>=1&&typeof n.move==='string'&&typeof n.goal==='string'&&typeof n.note==='string').map(n=>({ply:n.ply,move:n.move.slice(0,5),grade:String(n.grade||'').slice(0,20),goal:n.goal.slice(0,160),note:n.note.slice(0,400),action:n.action==='retry'?'retry':'continue'})):[];
   if(!g.teacherPending||!Number.isInteger(g.teacherPending.ply)||g.teacherPending.ply<1||g.teacherPending.ply>g.moves.length||g.teacherPending.move!==g.moves[g.teacherPending.ply-1])g.teacherPending=null;
   g.backgroundCoaching=g.backgroundCoaching!==false;
+  if(g.redo){
+    const r=g.redo,clock=c=>c&&['black','white'].every(s=>Number.isFinite(c[s])&&c[s]>=0);
+    if(!Array.isArray(r.moves)||r.moves.length>2000||r.moves.length<=g.moves.length||!g.moves.every((m,i)=>m===r.moves[i])||!clock(r.clocks)||!Array.isArray(r.clockHistory)||r.clockHistory.length>2000||r.clockHistory.some(c=>c!==null&&!clock(c))||r.result!==null&&typeof r.result!=='string')throw Error('進む手順の保存データが不正です。');
+    positionAt(g.initial,r.moves);
+  }else g.redo=null;
   return g;}
+
+// The active moves remain a legal prefix. Keep the complete future and clocks
+// until a new move actually commits, including across reload / JSON export.
+export function rewindGame(g,target){
+  if(!Number.isInteger(target)||target<0||target>=g.moves.length)return false;
+  g.redo ||= {moves:[...g.moves],clocks:structuredClone(g.clocks),clockHistory:structuredClone(g.clockHistory),result:g.result};
+  g.clocks=structuredClone(g.redo.clockHistory[target]||g.clocks);
+  g.moves=g.moves.slice(0,target);g.clockHistory=g.clockHistory.slice(0,target);g.result=null;g.teacherPending=null;g.assistance++;
+  return true;
+}
+export function forwardGame(g){
+  const r=g.redo;if(!r||!g.moves.every((m,i)=>m===r.moves[i]))return false;
+  const target=g.moves.length+1;if(target>r.moves.length)return false;
+  g.moves=r.moves.slice(0,target);g.clockHistory=structuredClone(r.clockHistory.slice(0,target));
+  g.clocks=structuredClone(target===r.moves.length?r.clocks:r.clockHistory[target]||g.clocks);
+  g.result=target===r.moves.length?r.result:null;g.teacherPending=null;g.assistance++;
+  if(target===r.moves.length)g.redo=null;
+  return true;
+}
+export function forkHistory(g){
+  if(!g.redo)return;
+  g.variations.push({label:'指し直す前の手順 · '+g.redo.moves.length+'手',initial:g.initial,moves:[...g.redo.moves]});
+  g.variations=g.variations.slice(-30);g.redo=null;
+}
 export function exportGame(g){const r=recordAt(g.initial,g.moves);r.first.comment=g.result?'結果: '+g.result:'';return exportKIF(r);}
 export function parseRecord(text){text=text.trim();if(text.length>2_000_000)throw Error('棋譜が大きすぎます。');if(text.startsWith('{')){const parsed=JSON.parse(text);return {game:validateGame(parsed.game||parsed)};}
   if(text.startsWith('position ')){const parts=text.replace(/^position /,'').split(/\s+moves\s+/);const initial=parts[0]==='startpos'?START:parts[0].replace(/^sfen /,'');const moves=parts[1]?parts[1].trim().split(/\s+/):[];positionAt(initial,moves);return {initial,moves};}
