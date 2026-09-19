@@ -2,6 +2,7 @@ import {positionAt,moveLabel,checkedPV,scoreLabel} from './core.js';
 import {investigate,scoreGap,fromChild,lineEvidence,positionKey,pieceNames} from './coach-analysis.js';
 import {readingReason,readingComparison} from './reading.js';
 import {teachingComparison} from './teaching-lines.js';
+import {selectTerms} from './shogi-language.js';
 
 export const teachingEnabled=game=>game.clockMode==='learning'||game.clockMode==='unlimited';
 export function sameLesson(lesson,game){return !!lesson&&lesson.gameId===game.id&&positionKey(lesson.checkpoint)===positionKey({initial:game.initial,moves:game.moves})&&lesson.result===game.result;}
@@ -16,6 +17,9 @@ export function moveGrade(r){
 }
 export async function reviewPlayedMove(engine,root,played,{time=2000,rigor='standard',check=()=>{},onProgress=()=>{}}={}){
   const report=await investigate(engine,root,played,{time,rigor,check,onProgress});
+  // Deep mode already revisited the best and played child at an equal budget.
+  // Repeating that exact request adds no independent confirmation to a cache.
+  if(engine.policy&&report.verification){report.checkedAgain=true;return report;}
   if(moveGrade(report)==='concern'&&report.bestMove!==played){
     const previous=moveGrade(report),focusedTime=Math.min(30000,time*2),results=[];
     for(const usi of [report.bestMove,played]){
@@ -24,7 +28,7 @@ export async function reviewPlayedMove(engine,root,played,{time=2000,rigor='stan
       // Terminal branches were already resolved without querying the engine.
       const old=usi===played?report.defense:report.best;
       if(old.score.terminal){results.push(old);continue;}
-      const result=await engine.search(child.initial,child.moves,{time:focusedTime,multipv:1});check();
+      const result=await engine.search(child.initial,child.moves,{time:focusedTime,multipv:1,fresh:true});check();
       const p=positionAt(child.initial,child.moves),info=result.infos.find(x=>x.rank===1&&x.pv.length&&checkedPV(p,x.pv).length===x.pv.length);
       if(!info)throw Error('手の評価を十分に確認できませんでした。');
       const pv=[usi,...info.pv];results.push({...old,pv,score:fromChild(info),depth:info.depth,evidence:lineEvidence(root,pv)});
@@ -98,6 +102,7 @@ function terminologyAnswer(r,question,side){
   if(/詰めろ|必至|必死/.test(question))return '詰めろは放置すると詰む状態、必至はその詰めろを防げない状態です。今の解析は、この局面がそうだと証明する専用の確認をしていません。王手や評価値だけでは決めず、まず読み筋で玉への迫り方を見てみましょう。';
   if(/攻め/.test(question))return '攻めを考えるなら、相手に受けられたあとも狙いが続くかが大切です。'+readingReason(r,r.defense,side)+'\n\nこの続きで、相手に何を許すと攻めが途切れそうですか？';
   if(/受け/.test(question))return '受けは、相手のどの狙いを防ぐのかを一つ決めると読みやすくなります。'+readingReason(r,r.defense,side)+'\n\nこの手順で、いちばん防いでおきたい手はどれでしょうか？';
+  const term=selectTerms(question)[0];if(term)return term.term+'は、'+term.meaning+'\n\n'+readingReason(r,r.defense,side)+' この順で、その狙いが実現するかを盤面で確かめましょう。';
   return null;
 }
 export function teacherAnswer(r,options={}){const termAnswer=!['verify','deeper','compare','best','reply'].includes(options.intent)&&terminologyAnswer(r,options.question||'',options.side||r.side);let answer=termAnswer||composeAnswer(r,options);if(r.teaching&&['verify','deeper','compare','best','plan'].includes(options.intent)){const comparison=teachingComparison(r);if(comparison)answer+='\n\n'+comparison;}return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}

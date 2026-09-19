@@ -43,7 +43,7 @@ export class BackgroundCoach {
   }
   async search(initial,moves,options,check){
     check();const key=positionKey({initial,moves})+'|'+options.multipv,old=this.cache.get(key);
-    if(old&&old.time>=options.time)return structuredClone(old.result);
+    if(!options.fresh&&old&&old.time>=options.time)return structuredClone(old.result);
     const result=await this.engine.search(initial,moves,options);check();
     const p=positionAt(initial,moves);
     if(result.infos?.length&&result.infos.every(i=>i.pv.length&&checkedPV(p,i.pv).length===i.pv.length)){
@@ -61,7 +61,7 @@ export class BackgroundCoach {
     const check=()=>{if(generation!==this.generation||!this.enabled||!this.valid(task))throw abort();};
     this.status('続きを確かめながら見守っています');
     this.pending=(async()=>{
-      const adapter={search:(initial,moves,options)=>this.search(initial,moves,options,check)};
+      const adapter={policy:this.engine.policy,peek:(initial,moves,options)=>this.engine.peek?.(initial,moves,options),search:(initial,moves,options)=>this.search(initial,moves,options,check)};
       try{
         if(task.kind==='warm')await adapter.search(task.root.initial,task.root.moves,{time:task.time,multipv:3});
         else{

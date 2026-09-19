@@ -25,14 +25,16 @@ export function validateTutorReply(raw,evidence){
   if(typeof data.answer!=='string'||!data.answer.trim()||data.answer.length>2200||!Array.isArray(data.evidence_ids)||!data.evidence_ids.length)throw Error('説明の根拠を確認できませんでした。');
   const ids=new Set(evidence.map(e=>e.id));if(data.evidence_ids.some(id=>!ids.has(id)))throw Error('説明が解析の根拠と一致しませんでした。');
   const cited=evidence.filter(e=>data.evidence_ids.includes(e.id));
-  const source=cited.map(e=>e.text).join('\n');const moves=new Set(moveTokens(source).map(normalizeNotation));
-  if(moveTokens(data.answer).some(move=>!moves.has(normalizeNotation(move))))throw Error('解析していない指し手が説明に含まれたため、補足を表示しませんでした。');
+  const allMoves=text=>[...moveTokens(text),...moveTokens(text.replace(/(?:[1-9][a-i]|[PLNSGBR]\*)[1-9][a-i]\+?/g,''))];
+  const source=cited.map(e=>e.text).join('\n');const moves=new Set(allMoves(source).map(normalizeNotation));
+  if(allMoves(data.answer).some(move=>!moves.has(normalizeNotation(move))))throw Error('解析していない指し手が説明に含まれたため、補足を表示しませんでした。');
   if(/絶対|必勝|必ず勝|確実に勝|詰み確定/.test(data.answer))throw Error('断定の根拠を確認できなかったため、補足を表示しませんでした。');
   for(const sentence of data.answer.split(/[。！？\n]/)){
-    if(/詰めろ|必至|必死|捌け|捌き|手渡し/.test(sentence)&&/(?:です|ました|だ$|成立|成功|有効|好手|勝て|なります)/.test(sentence)&&!/(?:未確認|断定でき|とは限ら|意味|という言葉|とは、|かどうか|証明.*(?:ない|ません)|確認.*必要)/.test(sentence))throw Error('用語をこの局面に当てはめる根拠が足りません。');
+    if(/詰めろ|必至|必死|捌け|捌き|さばけ|手渡し/.test(sentence)&&/(?:です|ました|だ$|成立|成功|有効|好手|勝て|なります)/.test(sentence)&&!/(?:未確認|断定でき|とは限ら|意味|という言葉|とは、|かどうか|証明.*(?:ない|ません)|確認.*必要)/.test(sentence))throw Error('用語をこの局面に当てはめる根拠が足りません。');
   }
-  const numbers=new Set(normalizeNotation(source).match(/-?\d+/g)||[]);
-  if((normalizeNotation(data.answer).match(/-?\d+(?=点)/g)||[]).some(n=>!numbers.has(n)))throw Error('説明の評価値が解析結果と一致しませんでした。');
+  const normalized=normalizeNotation(source),numbers=new Set((normalized.match(/[+-]?\d+(?=点)/g)||[]).map(Number));
+  for(const m of normalized.matchAll(/(?:評価(?:は|値|:|：)?|視点)[^\d+\-]{0,8}([+-]?\d+)/g))numbers.add(Number(m[1]));
+  if((normalizeNotation(data.answer).match(/[+-]?\d+(?=点)/g)||[]).some(n=>!numbers.has(Number(n))))throw Error('説明の評価値が解析結果と一致しませんでした。');
   return {answer:data.answer.trim(),evidence_ids:data.evidence_ids};
 }
 

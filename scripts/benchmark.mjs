@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+import {readFileSync,writeFileSync,existsSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {createNNUE} from './nnue-adapter.mjs';
@@ -24,7 +24,7 @@ try{
     const first=r.ranking.map(i=>i.pv[0]),ref=p.reference.infos.find(i=>i.pv[0]===r.bestMove);
     const row={id:p.id,ms:Math.round(elapsed),calls:calls.length,nodes:calls.reduce((s,c)=>s+c.nodes,0),coherentCalls:calls.filter(c=>c.coherent).length,candidates:r.verification.candidates.length,replies:r.verification.replies.length,rootCandidates:first.length,scenarios:branches.length,minPlies:Math.min(...branches.map(b=>b.pv.length)),best:r.bestMove,referenceMatch:r.bestMove===p.reference.bestmove,referenceGap:ref?.type==='cp'&&p.reference.infos[0]?.type==='cp'?p.reference.infos[0].score-ref.score:null,unstable:r.verification.unstable,depth:r.best.depth,repeatMs:Math.round(performance.now()-repeat),repeatCalls:engine.calls.length-count,trace:calls};rows.push(row);console.log(JSON.stringify({...row,trace:undefined}));
   }
-  const diff=execFileSync('git',['diff','HEAD','--','dist','scripts'],{encoding:'utf8'});
-  const out={label,date:new Date().toISOString(),environment:process.version+' linux WASM, 16 MiB hash, single thread',time,policy:policy.SEARCH_POLICY||null,sourceHash:createHash('sha256').update(diff).digest('hex'),rows};
+  const source=readdirSync(new URL('../dist/',import.meta.url)).filter(n=>n.endsWith('.js')).sort().map(n=>n+'\n'+readFileSync(new URL('../dist/'+n,import.meta.url),'utf8')).join('\n');
+  const out={label,date:new Date().toISOString(),environment:process.version+' linux WASM, 16 MiB hash, single thread',time,policy:policy.SEARCH_POLICY||null,sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),sourceHash:createHash('sha256').update(source).digest('hex'),rows};
   writeFileSync(new URL('../docs/experiments/'+label+'.json',import.meta.url),JSON.stringify(out,null,2));
 }finally{engine.terminate();}

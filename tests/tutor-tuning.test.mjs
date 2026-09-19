@@ -38,3 +38,11 @@ test('Teacher prompt keeps seven-ply reasoning, uncertainty and learner intent',
   assert.match(messages[0].content,/7手先/);assert.match(messages[0].content,/決めつけず/);
   assert.match(messages[0].content,/専用の根拠/);assert.match(messages[1].content,/後手/);
 });
+test('Held-out adversarial replies cannot hide a Japanese move behind USI or turn coordinates into scores',()=>{
+  const evidence=[{id:'defense',text:'7g7f。７六歩 → ３四歩。先手視点の評価 +120。'}];
+  const reply=answer=>JSON.stringify({answer,evidence_ids:['defense']});
+  assert.throws(()=>validateTutorReply(reply('7g7fのあと、２六歩でよいです。'),evidence));
+  assert.throws(()=>validateTutorReply(reply('76点の好手です。'),evidence));
+  assert.throws(()=>validateTutorReply(reply('これでさばけました。'),evidence));
+  assert.doesNotThrow(()=>validateTutorReply(reply('７六歩の評価は120点です。'),evidence));
+});

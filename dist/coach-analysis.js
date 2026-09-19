@@ -1,6 +1,6 @@
 import {positionAt,legalMoves,moveLabel,checkedPV,material,other,sideName,Square,scoreLabel,statusOf} from './core.js';
 import {conceptEvidence} from './shogi-language.js';
-import {candidateFrontier} from './search-policy.js';
+import {candidateFrontier,focusPool} from './search-policy.js';
 
 export const pieceNames={pawn:'歩',lance:'香',knight:'桂',silver:'銀',gold:'金',bishop:'角',rook:'飛',king:'玉',promPawn:'と',promLance:'成香',promKnight:'成桂',promSilver:'成銀',horse:'馬',dragon:'竜'};
 export const positionKey=(root)=>root.initial+'|'+root.moves.join(' ');
@@ -167,7 +167,7 @@ export function compareScores(a,b){
 async function verifyReport(engine,r,seeds,{check,onProgress}){
   const p=positionAt(r.root.initial,r.root.moves),initialBest=r.bestMove;
   const candidates=candidateFrontier(r,engine.policy);
-  const time=Math.min(30000,Math.round(r.time*(engine.policy?.focusPool?engine.policy.focusPool/candidates.length:2)));
+  const pool=focusPool(r,engine.policy),time=Math.min(30000,Math.round(r.time*(pool?pool/candidates.length:2)));
   const candidateChecks=[],replyChecks=[];let searches=0;
   const query=async(root,label,budget=time)=>{
     check();onProgress(label+'（'+budget/1000+'秒）');const terminal=terminalInfo(root);if(terminal)return terminal;
@@ -240,7 +240,8 @@ export function explainReport(report,intent='explain'){
 }
 export function reportEvidence(r,side=r.side){
   const p=positionAt(r.root.initial,r.root.moves),items=[{id:'position',text:'現在の相談は'+r.root.moves.length+'手目。手番と評価値の視点は'+sideName(r.side)+'。嬉しい・困る展開を考える側は'+sideName(side)+'。手番と考える側が異なる場合は混同しない。'},{id:'comparison',text:explainReport(r,'compare').slice(0,500)}];
-  for(const branch of reportBranches(r)){const resultText=sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。この順を選んだ場合の読み。'+branch.evidence.events.slice(0,2).join(' ');items.push({id:branch.id,kind:'line',title:branch.title,moves:branch.evidence.moves.map(x=>x.label),resultText,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+resultText+branch.evidence.summary});
+  const branches=[...reportBranches(r)];if(!branches.some(b=>b.id==='best'))branches.push(r.best);
+  for(const branch of branches){const resultText=sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。この順を選んだ場合の読み。'+branch.evidence.events.slice(0,2).join(' ');items.push({id:branch.id,kind:'line',title:branch.title,moves:branch.evidence.moves.map(x=>x.label),resultText,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+resultText+branch.evidence.summary});
     const outlook=lineOutlook(r.root,branch,side);items.push({id:branch.id+'_outlook',text:branch.title+'。'+sideName(side)+'から見た条件付きの材料。嬉しい：'+(outlook.hope[0]?.text||'今回の短い読みでは未確認')+' 困る：'+(outlook.worry[0]?.text||'今回の短い読みでは未確認')+'。単独で手の良さ・勝敗を断定できない。'});
   }
   items.push({id:'working',text:moveLabel(p,r.chosen)+'の働き：'+r.facts.chosen.join(' ')});
