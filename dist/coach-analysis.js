@@ -26,6 +26,7 @@ export function resolveMove(p,text){
 }
 export function questionIntent(text){
   if(/[2２二]手(?:進|先)|もう[2２二]手/.test(text))return 'future';
+  if(/精読|成立条件|条件を|応手を比較/.test(text))return 'verify';
   if(/もっと|深く|長く|再解析|再検討/.test(text))return 'deeper';
   if(/相手.{0,12}(?:なら|場合|指|受|応)|応手.{0,10}(?:なら|場合)|(?:なら|場合).{0,8}相手/.test(text)&&moveTokens(text).length)return 'reply';
   if(/嬉し|うれし|困る|困り|目指|避けたい|方針|理想|何を狙|どうな/.test(text))return 'plan';
@@ -122,10 +123,10 @@ function terminalInfo(root){const status=statusOf(root.initial,root.moves);if(!s
   return {rank:1,type:'cp',score:0,depth:0,bound:true,pv:[],terminal:status};
 }
 function safeInfos(root,result){const p=positionAt(root.initial,root.moves);return result.infos.filter(i=>i.pv.length&&checkedPV(p,i.pv).length===i.pv.length).sort((a,b)=>a.rank-b.rank);}
-export async function investigate(engine,root,chosen,{time=3000,reply=null,onProgress=()=>{},check=()=>{}}={}){
+export async function investigate(engine,root,chosen,{time=3000,reply=null,rigor='standard',onProgress=()=>{},check=()=>{}}={}){
   const p=positionAt(root.initial,root.moves);if(statusOf(root.initial,root.moves))throw Error('終局した局面です。一手前に戻って相談してください。');
   const query=async(r,n,label)=>{check();onProgress(label);const terminal=terminalInfo(r);if(terminal)return [terminal];const result=await engine.search(r.initial,r.moves,{time,multipv:n});check();const infos=safeInfos(r,result);if(!infos.length)throw Error('十分な読み筋を取得できませんでした。解析時間を増やしてください。');return infos;};
-  const ranking=await query(root,3,'最善候補を調べています…');const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
+  const ranking=await query(root,rigor==='deep'?5:3,'最善候補を調べています…');const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
   const m=p.createMoveByUSI(chosen);if(!m||!p.isValidMove(m))throw Error('この局面では指せない手です。');
   const child={initial:root.initial,moves:[...root.moves,chosen]};
   const responses=await query(child,3,'あなたの候補に対する応手を比べています…');
@@ -140,9 +141,67 @@ export async function investigate(engine,root,chosen,{time=3000,reply=null,onPro
   const caution=weaker?{id:'caution',title:'評価が低かった別候補の例',pv:weaker.pv,score:weaker,depth:weaker.depth,evidence:lineEvidence(root,weaker.pv)}:null;
   let assumption=null;
   if(reply){const q=positionAt(child.initial,child.moves),rm=q.createMoveByUSI(reply);if(!rm||!q.isValidMove(rm))throw Error('想定した相手の応手は、この局面では指せません。');const lineRoot={initial:root.initial,moves:[...child.moves,reply]};const [info]=await query(lineRoot,1,'指定された相手の応手を調べています…');assumption={id:'assumption',title:'あなたが想定した相手の応手',pv:[chosen,reply,...info.pv],score:info,depth:info.depth,evidence:lineEvidence(root,[chosen,reply,...info.pv])};}
-  return {root:structuredClone(root),side:p.color,chosen,bestMove,time,reply,createdAt:new Date().toISOString(),ranking,best,defense,opportunity,assumption,caution,facts:{best:moveFacts(p,bestMove),chosen:moveFacts(p,chosen)},gap:scoreGap(best.score,defense.score)};
+  const report={root:structuredClone(root),side:p.color,chosen,bestMove,time,reply,rigor,createdAt:new Date().toISOString(),ranking,best,defense,opportunity,assumption,caution,facts:{best:moveFacts(p,bestMove),chosen:moveFacts(p,chosen)},gap:scoreGap(best.score,defense.score)};
+  if(rigor==='deep')await verifyReport(engine,report,responses,{check,onProgress});
+  report.createdAt=new Date().toISOString();
+  return report;
+}
+
+// Compare like scores only. Positive mate is better than cp; a longer forced
+// loss is preferable to a shorter one. Bounds and repetition remain unranked.
+export function compareScores(a,b){
+  if(!a||!b||a.bound||b.bound)return null;
+  if(a.type===b.type){if(a.type==='cp')return Math.sign(a.score-b.score);if((a.score>0)===(b.score>0))return a.score>0?Math.sign(b.score-a.score):Math.sign(Math.abs(a.score)-Math.abs(b.score));}
+  const category=x=>x.type==='cp'?0:x.score>0?1:-1;
+  return Math.sign(category(a)-category(b));
+}
+async function verifyReport(engine,r,seeds,{check,onProgress}){
+  const time=Math.min(30000,r.time*2),p=positionAt(r.root.initial,r.root.moves),initialBest=r.bestMove;
+  const candidates=[...new Set([r.bestMove,r.chosen,...r.ranking.slice(0,3).map(x=>x.pv[0])])];
+  const candidateChecks=[],replyChecks=[];let searches=0;
+  const query=async(root,label)=>{
+    check();onProgress(label+'（'+time/1000+'秒）');const terminal=terminalInfo(root);if(terminal)return terminal;
+    const result=await engine.search(root.initial,root.moves,{time,multipv:1});check();searches++;
+    const [info]=safeInfos(root,result);if(!info)throw Error('精読の読み筋を取得できませんでした。');return info;
+  };
+  for(const [i,usi] of candidates.entries()){
+    const child={initial:r.root.initial,moves:[...r.root.moves,usi]},info=await query(child,'候補を一手ずつ精読 '+(i+1)+'/'+candidates.length);
+    const pv=[usi,...info.pv];candidateChecks.push({id:'candidate-'+i,title:moveLabel(p,usi)+'を指した場合',pv,score:fromChild(info),depth:info.depth,evidence:lineEvidence(r.root,pv)});
+  }
+  let best=candidateChecks[0];for(const b of candidateChecks.slice(1))if(compareScores(b.score,best.score)===1)best=b;
+  const chosen=candidateChecks.find(b=>b.pv[0]===r.chosen);
+  r.bestMove=best.pv[0];r.best={...best,id:'best',title:'精読で選んだ最善候補の続き'};r.defense={...chosen,id:'defense',title:'あなたの候補への最善応手（精読）'};
+  r.facts.best=moveFacts(p,r.bestMove);r.gap=scoreGap(best.score,chosen.score);
+  const replies=[...new Set([chosen.pv[1],...seeds.map(i=>i.pv[0])].filter(Boolean))].slice(0,3);
+  if(r.reply&&!replies.includes(r.reply))replies.push(r.reply);
+  for(const [i,reply]of replies.entries()){
+    const root={initial:r.root.initial,moves:[...r.root.moves,r.chosen,reply]},info=await query(root,'相手の応手を固定して再確認 '+(i+1)+'/'+replies.length);
+    const pv=[r.chosen,reply,...info.pv];const b={id:'reply-'+i,title:'相手が'+moveLabel(positionAt(r.root.initial,[...r.root.moves,r.chosen]),reply)+'の場合',pv,score:info,depth:info.depth,evidence:lineEvidence(r.root,pv)};replyChecks.push(b);
+    if(reply===r.reply)r.assumption={...b,id:'assumption',title:'あなたが想定した相手の応手（精読）'};
+  }
+  const exact=replyChecks.filter(b=>b.score.type==='cp'&&!b.score.bound&&!b.score.terminal);
+  const better=exact.filter(b=>scoreGap(b.score,r.defense.score)>=100).sort((a,b)=>b.score.score-a.score.score);
+  r.opportunity=better.length?{...better[0],id:'opportunity',title:'相手の応手で評価が改善する例（再確認）'}:null;
+  const lower=exact.filter(b=>scoreGap(r.defense.score,b.score)>=100);
+  const alternate=candidateChecks.filter(b=>b.pv[0]!==r.chosen&&b.pv[0]!==r.bestMove&&scoreGap(r.best.score,b.score)>=100).sort((a,b)=>a.score.score-b.score.score)[0];
+  r.caution=alternate?{...alternate,id:'caution',title:'精読で評価が低かった別候補'}:null;
+  r.verification={initialBest,bestChanged:initialBest!==r.bestMove,time,searches,candidates:candidateChecks,replies:replyChecks,unstable:lower.length>0,unranked:candidateChecks.some(b=>compareScores(b.score,best.score)===null)};
+}
+export function verificationSummary(r){
+  const v=r.verification;if(!v)return '精読では、複数の候補と相手の応手を追加で読み直します。';
+  const p=positionAt(r.root.initial,r.root.moves),lines=[v.candidates.length+'候補を各'+v.time/1000+'秒で読み直しました。'+(v.bestChanged?'最初の候補 '+moveLabel(p,v.initialBest)+' から '+moveLabel(p,r.bestMove)+' に入れ替わりました。':'最善候補は '+moveLabel(p,r.bestMove)+' のままでした。')];
+  if(v.replies.length){
+    lines.push('相手の'+v.replies.length+'通りの応手も固定して、その先を再確認しました。');
+    for(const b of v.replies)lines.push(b.title+'：'+sideName(r.side)+'視点 '+scoreLabel(b.score)+'。次は '+(b.evidence.moves[2]?.label||'続く合法手なし')+'。');
+  }
+  if(v.unstable)lines.push('応手を固定した追加探索では、さらに評価が下がる結果も出ました。結論が揺れているため、その応手から先を確かめましょう。');
+  if(v.unstable)lines[0]='追加探索で評価が揺れています。'+lines[0];
+  if(v.unranked)lines.push('詰み・終局・境界値を含む候補は、単純な点差で順位を決めていません。');
+  lines.push('確認した候補と応手の範囲での比較です。相手が狙いを許す応手を選ぶとは限りません。');
+  return lines.join('\n\n');
 }
 export function explainReport(report,intent='explain'){
+  if(intent==='verify')return verificationSummary(report);
   const r=report,p=positionAt(r.root.initial,r.root.moves),label=moveLabel(p,r.chosen),bestLabel=moveLabel(p,r.bestMove);
   const lead=assessment(r.best.score,r.defense.score,r.chosen===r.bestMove);
   const scoreText=sideName(r.side)+'から見た評価：最善候補 '+scoreLabel(r.best.score)+'／あなたの候補 '+scoreLabel(r.defense.score)+(r.gap!==null?'。差は約'+Math.round(r.gap)+'点。':'。')+' 異なる探索の比較なので目安です。';
@@ -154,6 +213,7 @@ export function explainReport(report,intent='explain'){
   else if(intent==='reply'&&r.assumption)answer=['想定した応手を固定すると、あなたから見た評価は'+scoreLabel(r.assumption.score)+'です。相手の最善応手の場合は'+scoreLabel(r.defense.score)+'です。',continuation(r.assumption),...r.assumption.evidence.events,r.assumption.evidence.summary];
   else if(intent==='hint')answer=['まず'+(p.checked?'王手をどう解消するか':'相手が'+(r.defense.evidence.moves[1]?.label||'最善の応手')+'と応じた後の、自分の次の一手')+'を考えてみましょう。','駒の得だけでなく、次に王手や駒取りが続くかを確認します。読み筋ボタンを開くと具体的な続きが見られます。'];
   else answer=[label+'について：'+lead,scoreText,...r.facts.chosen,'相手の厳しい応手を含む続きは、'+continuation(r.defense)+'。',...r.defense.evidence.events,r.defense.evidence.summary,'比較する最善候補は'+bestLabel+'。'+r.facts.best.join(' '),'気になる相手の応手や「なぜ？」「もっと深く」を続けて質問できます。'];
+  if(r.verification?.unstable)answer.unshift('応手を固定した追加探索で評価が揺れています。以下の候補比較は暫定です。「読み筋」で再確認した応手を比べましょう。');
   return answer.filter(Boolean).join('\n\n');
 }
 export function reportEvidence(r,side=r.side){
@@ -162,5 +222,6 @@ export function reportEvidence(r,side=r.side){
     const outlook=lineOutlook(r.root,branch,side);items.push({id:branch.id+'_outlook',text:branch.title+'。'+sideName(side)+'から見た条件付きの材料。嬉しい：'+(outlook.hope[0]?.text||'今回の短い読みでは未確認')+' 困る：'+(outlook.worry[0]?.text||'今回の短い読みでは未確認')+'。単独で手の良さ・勝敗を断定できない。'});
   }
   items.push({id:'working',text:moveLabel(p,r.chosen)+'の働き：'+r.facts.chosen.join(' ')});
+  if(r.verification)items.push({id:'verification',text:verificationSummary(r)});
   return items;
 }

@@ -14,6 +14,7 @@ class Node {
  remove(){this.parent.children=this.parent.children.filter(n=>n!==this);}
  querySelectorAll(tag){return this.children.flatMap(n=>[...(n.tag===tag?[n]:[]),...n.querySelectorAll(tag)]);}
  focus(){}
+ setAttribute(name,value){this[name]=value;}
 }
 function fixture(){
  const ids=[...readFileSync(new URL('../dist/index.html',import.meta.url),'utf8').matchAll(/id="([^"]+)"/g)].map(m=>m[1]);
@@ -67,4 +68,11 @@ test('a one-move line never enables the two-ply continuation control',async()=>{
  c.report.defense.pv=c.report.defense.pv.slice(0,1);c.report.defense.evidence.moves=c.report.defense.evidence.moves.slice(0,1);
  c.drawReport();c.controls();const button=f.nodes.get('coach-report').querySelectorAll('button').find(b=>b.textContent==='この2手の先を相談');
  assert.equal(button.disabled,true);await c.ask('2手先では？');assert.match(c.history.at(-1).text,/2手分の続きがありません/);
+});
+test('the report shows one branch at a time while preserving access to the alternatives',async()=>{
+ const f=fixture(),c=f.coach;await c.ask('7g7fはどう？');
+ const box=f.nodes.get('coach-report');assert.equal(box.querySelectorAll('button').filter(b=>b.textContent==='この2手の先を相談').length,1);
+ const select=box.querySelectorAll('select')[0];assert(select.children.length>=2);select.value='best';select.onchange();
+ assert.equal(c.activeBranch,'best');assert.deepEqual(c.root.moves,[]);
+ assert.equal(box.querySelectorAll('button').filter(b=>b.textContent==='この2手の先を相談').length,1);
 });

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {START,positionAt,checkedPV} from '../dist/core.js';
-import {resolveMove,fromChild,scoreGap,investigate,explainReport,questionIntent,branchRoot,lineOutlook,explainPlan,reportEvidence} from '../dist/coach-analysis.js';
+import {resolveMove,fromChild,scoreGap,investigate,explainReport,questionIntent,branchRoot,lineOutlook,explainPlan,reportEvidence,compareScores,verificationSummary} from '../dist/coach-analysis.js';
 import {validateTutorReply,selectTutorEvidence} from '../dist/tutor.js';
 
 test('candidate notation handles Japanese, USI, ambiguity and illegal moves',()=>{
@@ -89,4 +89,29 @@ test('bounded dialogue evidence keeps the position and requested future outlooks
  assert.equal(packed[0].id,'position');assert.equal(packed[1].id,'defense_outlook');
  assert(packed.reduce((n,e)=>n+e.text.length,0)<=1100);
  assert.equal(selectTutorEvidence(evidence,'最善手の理由は？')[1].id,'best');
+});
+test('focused deep searches rerank candidates fairly and expose contradictory reply checks',async()=>{
+ const root={initial:START,moves:[]},calls=[];
+ const engine={async search(initial,moves,options){calls.push({moves:[...moves],options});let infos;
+  if(!moves.length)infos=[info(['2g2f','3c3d'],100),info(['7g7f','3c3d'],80,2),info(['5g5f','3c3d'],0,3)];
+  else if(moves.length===1){const next=moves[0]==='7g7f'?'2g2f':'7g7f';const score={'2g2f':-40,'7g7f':-160,'5g5f':200}[moves[0]];
+   infos=options.multipv===1?[info(['3c3d',next],score)]:[info(['3c3d',next],score),info(['8c8d',next],score-50,2),info(['5c5d',next],score-100,3)];
+  }else{const score={'3c3d':120,'8c8d':-80,'5c5d':380}[moves[1]];infos=[info(['2g2f',moves[1]==='3c3d'?'8c8d':'3c3d'],score)];}
+  return {infos,bestmove:infos[0].pv[0]};}};
+ const r=await investigate(engine,root,'7g7f',{time:200,rigor:'deep'});
+ assert.equal(calls[0].options.multipv,5);assert.equal(r.bestMove,'7g7f');assert.equal(r.best.score.score,160);
+ assert.equal(r.verification.bestChanged,true);assert.equal(r.verification.unstable,true);assert.equal(r.verification.replies.length,3);
+ assert.equal(r.opportunity.pv[1],'5c5d');assert.equal(r.opportunity.score.score,380);
+ const candidateCalls=calls.filter(c=>c.moves.length===1&&c.options.multipv===1);assert.equal(candidateCalls.length,3);assert(candidateCalls.every(c=>c.options.time===400));
+ assert(calls.filter(c=>c.moves.length===2).every(c=>c.options.time===400&&c.options.multipv===1));
+ assert.match(verificationSummary(r),/結論が揺れ/);assert.match(explainReport(r,'verify'),/入れ替わりました/);
+ for(const b of [...r.verification.candidates,...r.verification.replies])assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
+ assert.deepEqual(root.moves,[]);
+});
+test('deep ranking orders mate distances and rejects comparisons with bounds',()=>{
+ const cp=n=>({type:'cp',score:n}),mate=n=>({type:'mate',score:n});
+ assert.equal(compareScores(mate(3),cp(10000)),1);assert.equal(compareScores(mate(-3),cp(-10000)),-1);
+ assert.equal(compareScores(mate(3),mate(7)),1);assert.equal(compareScores(mate(-7),mate(-3)),1);
+ assert.equal(compareScores({...mate(1),terminal:'後手の負け'},cp(100)),1);
+ assert.equal(compareScores({...cp(5),bound:true},cp(0)),null);
 });

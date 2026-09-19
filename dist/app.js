@@ -63,8 +63,16 @@ $('import-file').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(f.
 $('import-confirm').onclick=async()=>{try{const parsed=parseRecord($('import-text').value);const raw=parsed.game?JSON.parse($('import-text').value):null;const restoredHistory=Array.isArray(raw?.history)?raw.history.slice(0,20).map(validateGame):null;await halt();if(parsed.game){archive();game=parsed.game;flipped=game.human==='white';mode='play';study=null;if(restoredHistory){history=restoredHistory;localStorage.setItem(HISTORY,JSON.stringify(history));}}else{mode='study';study={initial:parsed.initial,moves:parsed.moves,cursor:parsed.moves.length,external:true};}clearAnalysis();save();render();$('import-dialog').close();}catch(e){$('import-error').textContent=e.message;}};
 $('engine-retry').onclick=async()=>{await halt();engine.terminate();$('engine-retry').hidden=true;try{await engine.init();notify('エンジンを再読み込みしました。');}catch(e){fail(e);}};
 setInterval(tick,200);setInterval(()=>{if(running)save();},5000);document.addEventListener('visibilitychange',()=>{tick();if(document.hidden&&game.clockMode!=='match')halt();save();});window.addEventListener('pagehide',()=>{tick();save();});
+function showPane(name){
+  for(const key of ['coach','lines','record']){const selected=key===name;$('pane-'+key).hidden=!selected;$('tab-'+key).setAttribute('aria-selected',String(selected));$('tab-'+key).tabIndex=selected?0:-1;}
+}
+for(const [index,name] of ['coach','lines','record'].entries()){
+  $('tab-'+name).onclick=()=>showPane(name);
+  $('tab-'+name).onkeydown=e=>{const names=['coach','lines','record'];let next;if(e.key==='ArrowRight')next=(index+1)%3;else if(e.key==='ArrowLeft')next=(index+2)%3;else if(e.key==='Home')next=0;else if(e.key==='End')next=2;else return;e.preventDefault();showPane(names[next]);$('tab-'+names[next]).focus();};
+}
+$('coach-view-lines').onclick=()=>showPane('lines');$('lines-to-coach').onclick=()=>showPane('coach');
 coach=new Coach({
-  current:()=>structuredClone(current()),learnerSide:()=>game.human,time:()=>game.thinkTime,prepare:halt,refresh:render,
+  current:()=>structuredClone(current()),learnerSide:()=>game.human,time:()=>game.thinkTime,prepare:halt,refresh:render,showPane,
   cancelPick:()=>{coachPicking=false;selected=null;},
   pick:root=>{mode='study';study={initial:root.initial,moves:[...root.moves],cursor:root.moves.length,external:false};coachPicking=true;selected=null;render();$('board').scrollIntoView({block:'center',behavior:'auto'});},
   showLine:async(root,pv,ply)=>{if(busy)return;await halt();mode='study';study={initial:root.initial,moves:[...root.moves,...pv],cursor:root.moves.length+ply,external:false};selected=null;clearAnalysis();render();$('board').scrollIntoView({block:'center',behavior:'auto'});},

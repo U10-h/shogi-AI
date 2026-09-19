@@ -4,7 +4,7 @@ import {moveTokens,normalizeNotation,questionIntent} from './coach-analysis.js';
 // model. Put the current position and the requested branch ahead of other lines.
 export function selectTutorEvidence(evidence,question){
   const intent=questionIntent(question),branch=intent==='reply'?'assumption':intent==='opportunity'?'opportunity':intent==='best'?'best':'defense';
-  const priority=intent==='plan'?['position','defense_outlook','best_outlook','opportunity_outlook','caution_outlook','assumption_outlook','defense']:['position',branch,branch+'_outlook','comparison','working'];
+  const priority=intent==='verify'?['position','verification','defense','working']:intent==='plan'?['position','defense_outlook','best_outlook','opportunity_outlook','caution_outlook','assumption_outlook','defense']:['position',branch,branch+'_outlook','comparison','working'];
   const ordered=[...priority.map(id=>evidence.find(e=>e.id===id)).filter(Boolean),...evidence.filter(e=>!priority.includes(e.id))];
   let budget=1100;const packed=[];
   for(const item of ordered){if(budget<80)break;const text=item.text.slice(0,Math.min(190,budget));packed.push({...item,text});budget-=text.length;}

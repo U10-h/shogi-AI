@@ -53,4 +53,9 @@ try{
   assert.ok(outlook.plies>0);assert.match(explainPlan(continuation),/嬉しい展開/);
   assert.deepEqual(report.root.moves,[]);
   console.log('PASS: real NNUE follow-up from two plies later, preserved history and evidence-based outlooks');
+  const deep=await investigate(adapter,{initial:START,moves:[]},'7g7f',{time:250,rigor:'deep'});
+  assert.equal(deep.rigor,'deep');assert(deep.verification.candidates.length>=2);assert(deep.verification.replies.length>=1);
+  for(const b of [...deep.verification.candidates,...deep.verification.replies])assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
+  assert.match(explainReport(deep,'verify'),/読み直しました/);
+  console.log('PASS: real NNUE wide candidate search, focused equal-budget review and fixed-reply analysis');
 }finally{engine.terminate();clearTimeout(timeout);}
