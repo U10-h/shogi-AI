@@ -8,7 +8,13 @@ export function positionAt(initial,moves){const p=Position.newBySFEN(initial);if
 export function recordAt(initial,moves){const r=new Record(Position.newBySFEN(initial));for(const usi of moves){const m=r.position.createMoveByUSI(usi);if(!m||!r.append(m))throw Error('不正な棋譜: '+usi);}return r;}
 export function moveLabel(p,usi){const m=p.createMoveByUSI(usi);return m?formatMove(p,m):usi;}
 export function legalMoves(p,from){const sources=from!==undefined?[from]:[...p.board.listSquaresByColor(p.color),...handPieceTypes.filter(t=>p.hand(p.color).count(t)>0)];const out=[];for(const source of sources)for(let rank=1;rank<=9;rank++)for(let file=1;file<=9;file++){const m=p.createMove(source,new Square(file,rank));if(!m)continue;if(p.isValidMove(m))out.push(m);const pr=m.withPromote();if(p.isValidMove(pr))out.push(pr);}return out;}
-export function statusOf(initial,moves){const r=recordAt(initial,moves);if(r.repetition){return r.perpetualCheck?sideName(r.perpetualCheck)+'の連続王手の千日手（反則負け）':'千日手・引き分け';}if(!legalMoves(r.position).length)return sideName(r.position.color)+'の負け（指せる手がありません）';return null;}
+export function hasLegalMove(p){
+  const sources=[...p.board.listSquaresByColor(p.color),...handPieceTypes.filter(t=>p.hand(p.color).count(t)>0)];
+  for(const from of sources)for(let rank=1;rank<=9;rank++)for(let file=1;file<=9;file++){const m=p.createMove(from,new Square(file,rank));if(m&&(p.isValidMove(m)||p.isValidMove(m.withPromote())))return true;}
+  return false;
+}
+export function statusOfRecord(r){if(r.repetition){return r.perpetualCheck?sideName(r.perpetualCheck)+'の連続王手の千日手（反則負け）':'千日手・引き分け';}if(!hasLegalMove(r.position))return sideName(r.position.color)+'の負け（指せる手がありません）';return null;}
+export function statusOf(initial,moves){return statusOfRecord(recordAt(initial,moves));}
 export function parseInfo(line){if(!line.startsWith('info ')||!line.includes(' pv '))return null;const pv=line.split(' pv ')[1].trim().split(/\s+/).filter(x=>/^(?:[1-9][a-i]|[PLNSGBR]\*)[1-9][a-i]\+?$/.test(x));const get=k=>{const m=line.match(new RegExp('(?:^| )'+k+' (-?\\d+)'));return m?Number(m[1]):null;};const score=line.match(/score (cp|mate) (-?\d+)/);if(!pv.length||!score)return null;return {rank:get('multipv')||1,depth:get('depth')||0,nodes:get('nodes')||0,time:get('time')||0,type:score[1],score:Number(score[2]),bound:/\b(lowerbound|upperbound)\b/.test(line),pv};}
 export function checkedPV(p,pv){const copy=p.clone(),out=[];for(const usi of pv){const m=copy.createMoveByUSI(usi);if(!m||!copy.isValidMove(m))break;out.push({usi,label:formatMove(copy,m)});copy.doMove(m);}return out;}
 export function scoreLabel(info){if(info.terminal)return info.terminal;if(info.type==='mate')return info.score>0?'詰み手順 +'+info.score:'被詰み '+Math.abs(info.score);return (info.score>0?'+':'')+info.score+(info.bound?'（境界値）':'');}

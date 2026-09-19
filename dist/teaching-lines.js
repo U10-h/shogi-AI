@@ -1,4 +1,4 @@
-import {positionAt,checkedPV,statusOf,sideName} from './core.js';
+import {positionAt,checkedPV,recordAt,statusOfRecord,sideName} from './core.js';
 import {lineEvidence,scoreGap} from './coach-analysis.js';
 
 export const MIN_TEACHING_PLIES=7;
@@ -27,8 +27,10 @@ export async function prepareTeaching(engine,source,{time=source.time||2000,chec
   for(const [index,original]of lines.entries()){
     check();let pv=checkedPV(positionAt(r.root.initial,r.root.moves),original.pv).map(m=>m.usi),terminal=null,unavailable=false;
     const segments=[];
+    const record=recordAt(r.root.initial,r.root.moves);
+    const advance=usi=>{const move=record.position.createMoveByUSI(usi);if(!move||!record.append(move))throw Error('読み筋の合法性を確認できませんでした。');return statusOfRecord(record);};
     // Stop even if a supplied PV legally continues after a repetition result.
-    for(let n=1;n<=pv.length;n++){terminal=statusOf(r.root.initial,[...r.root.moves,...pv.slice(0,n)]);if(terminal){pv=pv.slice(0,n);break;}}
+    for(let n=1;n<=pv.length;n++){terminal=advance(pv[n-1]);if(terminal){pv=pv.slice(0,n);break;}}
     while(pv.length<minimum&&!terminal){
       check();onProgress((index+1)+'つ目の展開を、7手先まで読んでいます…（現在'+pv.length+'手）');
       const root={initial:r.root.initial,moves:[...r.root.moves,...pv]},p=positionAt(root.initial,root.moves);
@@ -37,7 +39,7 @@ export async function prepareTeaching(engine,source,{time=source.time||2000,chec
       if(!info){unavailable=true;break;}
       const from=pv.length;
       for(const item of checkedPV(p,info.pv)){
-        pv.push(item.usi);terminal=statusOf(r.root.initial,[...r.root.moves,...pv]);
+        pv.push(item.usi);terminal=advance(item.usi);
         if(terminal||pv.length>=minimum)break;
       }
       segments.push({from,plies:pv.length-from,depth:info.depth});

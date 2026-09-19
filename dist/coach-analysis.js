@@ -129,7 +129,10 @@ function safeInfos(root,result){const p=positionAt(root.initial,root.moves);retu
 export async function investigate(engine,root,chosen,{time=3000,reply=null,rigor='standard',onProgress=()=>{},check=()=>{}}={}){
   const p=positionAt(root.initial,root.moves);if(statusOf(root.initial,root.moves))throw Error('終局した局面です。一手前に戻って相談してください。');
   const query=async(r,n,label,budget=time)=>{check();onProgress(label);const terminal=terminalInfo(r);if(terminal)return [terminal];const result=await engine.search(r.initial,r.moves,{time:budget,multipv:n});check();const infos=safeInfos(r,result);if(!infos.length)throw Error('十分な読み筋を取得できませんでした。解析時間を増やしてください。');return infos;};
-  const ranking=await query(root,rigor==='deep'?5:3,'最善候補を調べています…',rigor==='deep'&&engine.policy?Math.max(80,Math.round(time*(engine.policy.probeRatio||1))):time);const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
+  const warm=rigor==='deep'&&engine.policy?.reuseWarm?engine.peek?.(root.initial,root.moves,{time,multipv:3}):null;
+  const warmGap=warm?scoreGap(warm.infos[0],warm.infos[1]):null;
+  const reuse=warm&&warmGap!==null&&warmGap>=engine.policy.widenGap;
+  const ranking=reuse?safeInfos(root,warm):await query(root,rigor==='deep'?5:3,'最善候補を調べています…',rigor==='deep'&&engine.policy?Math.max(80,Math.round(time*(engine.policy.probeRatio||1))):time);const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
   const m=p.createMoveByUSI(chosen);if(!m||!p.isValidMove(m))throw Error('この局面では指せない手です。');
   const child={initial:root.initial,moves:[...root.moves,chosen]};
   const responses=await query(child,3,'あなたの候補に対する応手を比べています…');
