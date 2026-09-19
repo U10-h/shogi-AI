@@ -1,3 +1,4 @@
+import {SearchCoordinator,SEARCH_POLICY} from './search-policy.js';
 import {Position,Square,PieceType,handPieceTypes,START,other,sideName,positionAt,legalMoves,moveLabel,statusOf,newGame,validateGame,parseRecord,exportGame,checkedPV,scoreLabel,describeLine,declarationWins,rewindGame,forwardGame,forkHistory} from './core.js';
 import {Engine} from './engine.js';
 import {Coach} from './coach-ui.js';
@@ -12,7 +13,7 @@ let game=newGame(),history=[],mode='play',study=null,flipped=false,selected=null
 try{const saved=localStorage.getItem(KEY);if(saved)game=validateGame(JSON.parse(saved));const h=JSON.parse(localStorage.getItem(HISTORY)||'[]');history=Array.isArray(h)?h.filter(x=>{try{validateGame(x);return true;}catch{return false;}}).slice(0,20):[];}catch{initIssue='保存データを読み込めませんでした。新しい盤面を開きました。';}
 flipped=game.human==='white';
 const engine=new Engine((state,text)=>{ $('engine-badge').textContent=state==='ready'?'使用可能':'読み込み中';$('engine-badge').className='badge '+(state==='ready'?'ready':'');$('engine-status').textContent=text;});
-const coachingEngine=new Engine(()=>{},{hash:16});
+const coachingEngine=new SearchCoordinator(new Engine(()=>{},{hash:16,consideration:SEARCH_POLICY.consideration}));
 function notify(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4500);}
 function save(){game.updatedAt=new Date().toISOString();try{localStorage.setItem(KEY,JSON.stringify(game));$('save-state').textContent='自動保存済み';}catch{$('save-state').textContent='保存できません：バックアップしてください';}}
 function archive(){if(game.moves.length||game.redo){history=[structuredClone(game),...history.filter(x=>x.id!==game.id)].slice(0,20);try{localStorage.setItem(HISTORY,JSON.stringify(history));}catch{notify('履歴の保存に失敗しました。バックアップをご利用ください。');}}}
