@@ -1,4 +1,6 @@
 import {positionAt,legalMoves,moveLabel,checkedPV,material,other,sideName,Square,scoreLabel,statusOf} from './core.js';
+import {conceptEvidence} from './shogi-language.js';
+import {candidateFrontier} from './search-policy.js';
 
 export const pieceNames={pawn:'歩',lance:'香',knight:'桂',silver:'銀',gold:'金',bishop:'角',rook:'飛',king:'玉',promPawn:'と',promLance:'成香',promKnight:'成桂',promSilver:'成銀',horse:'馬',dragon:'竜'};
 export const positionKey=(root)=>root.initial+'|'+root.moves.join(' ');
@@ -126,14 +128,16 @@ function terminalInfo(root){const status=statusOf(root.initial,root.moves);if(!s
 function safeInfos(root,result){const p=positionAt(root.initial,root.moves);return result.infos.filter(i=>i.pv.length&&checkedPV(p,i.pv).length===i.pv.length).sort((a,b)=>a.rank-b.rank);}
 export async function investigate(engine,root,chosen,{time=3000,reply=null,rigor='standard',onProgress=()=>{},check=()=>{}}={}){
   const p=positionAt(root.initial,root.moves);if(statusOf(root.initial,root.moves))throw Error('終局した局面です。一手前に戻って相談してください。');
-  const query=async(r,n,label)=>{check();onProgress(label);const terminal=terminalInfo(r);if(terminal)return [terminal];const result=await engine.search(r.initial,r.moves,{time,multipv:n});check();const infos=safeInfos(r,result);if(!infos.length)throw Error('十分な読み筋を取得できませんでした。解析時間を増やしてください。');return infos;};
-  const ranking=await query(root,rigor==='deep'?5:3,'最善候補を調べています…');const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
+  const query=async(r,n,label,budget=time)=>{check();onProgress(label);const terminal=terminalInfo(r);if(terminal)return [terminal];const result=await engine.search(r.initial,r.moves,{time:budget,multipv:n});check();const infos=safeInfos(r,result);if(!infos.length)throw Error('十分な読み筋を取得できませんでした。解析時間を増やしてください。');return infos;};
+  const ranking=await query(root,rigor==='deep'?5:3,'最善候補を調べています…',rigor==='deep'&&engine.policy?Math.max(80,Math.round(time*(engine.policy.probeRatio||1))):time);const bestMove=ranking[0].pv[0];chosen=chosen||bestMove;
   const m=p.createMoveByUSI(chosen);if(!m||!p.isValidMove(m))throw Error('この局面では指せない手です。');
   const child={initial:root.initial,moves:[...root.moves,chosen]};
   const responses=await query(child,3,'あなたの候補に対する応手を比べています…');
-  const bestResponses=chosen===bestMove?responses:await query({initial:root.initial,moves:[...root.moves,bestMove]},3,'最善候補の続きも同じ時間で確認しています…');
+  const bestResponses=chosen===bestMove?responses:rigor==='deep'&&engine.policy?.efficientDeep?null:await query({initial:root.initial,moves:[...root.moves,bestMove]},3,'最善候補の続きも同じ時間で確認しています…');
   const make=(id,title,first,info)=>({id,title,pv:[first,...info.pv],score:fromChild(info),depth:info.depth,evidence:lineEvidence(root,[first,...info.pv])});
-  const best=make('best','最善候補の続き',bestMove,bestResponses[0]);
+  // Deep review will search this candidate with a focused, equal budget below.
+  // Keep the root PV as a seed instead of paying for a soon-discarded search.
+  const best=bestResponses?make('best','最善候補の続き',bestMove,bestResponses[0]):{id:'best',title:'最善候補の続き',pv:ranking[0].pv,score:ranking[0],depth:ranking[0].depth,evidence:lineEvidence(root,ranking[0].pv)};
   const defense=make('defense','あなたの候補への最善応手',chosen,responses[0]);
   const alternatives=responses.slice(1).filter(i=>i.type==='cp'&&responses[0].type==='cp'&&!i.bound&&!responses[0].bound&&responses[0].score-i.score>=100);
   const opportunity=alternatives.length?make('opportunity','相手が別の応手を選んだ例',chosen,alternatives.at(-1)):null;
@@ -159,7 +163,7 @@ export function compareScores(a,b){
 }
 async function verifyReport(engine,r,seeds,{check,onProgress}){
   const time=Math.min(30000,r.time*2),p=positionAt(r.root.initial,r.root.moves),initialBest=r.bestMove;
-  const candidates=[...new Set([r.bestMove,r.chosen,...r.ranking.slice(0,3).map(x=>x.pv[0])])];
+  const candidates=candidateFrontier(r,engine.policy);
   const candidateChecks=[],replyChecks=[];let searches=0;
   const query=async(root,label)=>{
     check();onProgress(label+'（'+time/1000+'秒）');const terminal=terminalInfo(root);if(terminal)return terminal;
@@ -224,6 +228,7 @@ export function reportEvidence(r,side=r.side){
     const outlook=lineOutlook(r.root,branch,side);items.push({id:branch.id+'_outlook',text:branch.title+'。'+sideName(side)+'から見た条件付きの材料。嬉しい：'+(outlook.hope[0]?.text||'今回の短い読みでは未確認')+' 困る：'+(outlook.worry[0]?.text||'今回の短い読みでは未確認')+'。単独で手の良さ・勝敗を断定できない。'});
   }
   items.push({id:'working',text:moveLabel(p,r.chosen)+'の働き：'+r.facts.chosen.join(' ')});
+  items.push(...conceptEvidence(r.root,r.defense,side));
   if(r.verification)items.push({id:'verification',text:verificationSummary(r)});
   return items;
 }

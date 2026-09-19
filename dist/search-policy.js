@@ -1,6 +1,11 @@
 import {positionAt,checkedPV} from './core.js';
 
-export const SEARCH_POLICY=Object.freeze({revision:3,cacheEntries:48,pvInterval:200,consideration:true});
+export const SEARCH_POLICY=Object.freeze({revision:6,cacheEntries:48,pvInterval:200,consideration:true,efficientDeep:true,probeRatio:0.8,candidateLimit:4,candidateWindow:180});
+export function candidateFrontier(r,policy){
+  if(!policy?.candidateLimit)return [...new Set([r.bestMove,r.chosen,...r.ranking.slice(0,3).map(x=>x.pv[0])])];
+  const first=r.ranking[0],near=r.ranking.filter((x,i)=>i<2||first.bound||x.bound||first.type!=='cp'||x.type!=='cp'||first.score-x.score<=policy.candidateWindow);
+  return [...new Set([r.bestMove,r.chosen,...near.map(x=>x.pv[0])])].slice(0,policy.candidateLimit);
+}
 const keyOf=(initial,moves,multipv)=>JSON.stringify([initial,moves,multipv]);
 // Full history is part of identity: board-only transpositions can change
 // repetition and perpetual-check rights. A stop never enters the cache.

@@ -1,3 +1,4 @@
+import {positionAt,checkedPV,Square} from './core.js';
 // Definitions are authored summaries, not copied lesson text or a book database.
 // Sources and limits of automatic recognition: docs/dialogue-tuning.md.
 export const SHOGI_TERMS=Object.freeze([
@@ -17,11 +18,26 @@ export const SHOGI_TERMS=Object.freeze([
   {term:'突き捨て',meaning:'歩を突き、相手に取らせること。空いた筋などをその後どう使うかが論点。'},
   {term:'遊び駒',meaning:'局面の戦いに十分参加できていない駒。利きの数が少ないだけでは決めない。'}
 ]);
-export function selectTerms(question){
+export function selectTerms(question,evidence=[]){
   const matches=SHOGI_TERMS.filter(x=>question.includes(x.term));
+  if(!matches.length)for(const item of evidence.filter(e=>e.kind==='concept'))for(const term of item.terms||[]){const found=SHOGI_TERMS.find(t=>t.term===term);if(found&&!matches.includes(found))matches.push(found);}
   return matches.slice(0,2);
 }
-export function termInstructions(question){
-  const terms=selectTerms(question);
+export function termInstructions(question,evidence=[]){
+  const terms=selectTerms(question,evidence);
   return terms.length?'用語の説明（局面の証拠ではない）：'+terms.map(x=>x.term+'＝'+x.meaning).join(' ')+' この局面で成立すると断言せず、読み筋と成立条件を結び付ける。':'';
+}
+
+// Conservative, replayed observations. Quietness is never a 手渡し detector,
+// and a check never proves a mating threat, inevitability, or a good attack.
+export function conceptEvidence(root,branch,side=positionAt(root.initial,root.moves).color){
+  const p=positionAt(root.initial,root.moves),items=[];
+  for(const [index,item]of checkedPV(p,branch.pv).slice(0,12).entries()){
+    const m=p.createMoveByUSI(item.usi),own=p.color===side,inCheck=p.checked;
+    p.doMove(m);
+    if(own&&inCheck)items.push({id:'concept_receive_'+index,kind:'concept',terms:['受け'],text:(index+1)+'手目の'+item.label+'は王手を解消する受け。局面全体が安全になったとは限らない。'});
+    if(own&&p.checked)items.push({id:'concept_check_'+index,kind:'concept',terms:['王手','攻め'],text:(index+1)+'手目の'+item.label+'は王手。攻めを考える材料だが、その後の受けと取り返しも読む。'});
+    if(inCheck&&!(m.from instanceof Square))items.push({id:'concept_block_'+index,kind:'concept',terms:['合駒'],text:(index+1)+'手目の'+item.label+'は持ち駒を打って王手を防ぐ合駒。'});
+  }
+  return items.slice(0,3);
 }
