@@ -92,6 +92,14 @@ function composeAnswer(r,{text='',goal=null,intent='explain',side=r.side,round=0
   const focus=moveGrade(r)==='concern'||moveGrade(r)==='review'?risk:movePoint(r)||hope;
   return lead+(focus||'この手の意味は、相手の応手まで含めて考えると分かりやすくなります。')+'\n\n'+continuation(r.defense)+(reply&&text?' このあとも、考えていた狙いを続けられそうですか？':'');
 }
-export function teacherAnswer(r,options={}){let answer=composeAnswer(r,options);if(r.teaching&&['verify','deeper','compare','best','plan'].includes(options.intent)){const comparison=teachingComparison(r);if(comparison)answer+='\n\n'+comparison;}return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}
+function terminologyAnswer(r,question,side){
+  if(/手渡し|手待ち/.test(question))return 'すぐに仕掛けず、相手の出方を見てから動く考え方ですね。ただ、静かな手なら何でも手渡しとして有効なわけではありません。'+readingReason(r,r.defense,side)+'\n\nこの応手を許しても、次に狙っていた形を作れそうですか？';
+  if(/捌き|捌く|さばき|さばく/.test(question))return '捌きは、交換のあとに残った駒が働くかまで見たいところです。'+readingReason(r,r.defense,side)+'\n\n7手先の盤面で、次に使いたい飛車や角を一枚選んでみましょう。';
+  if(/詰めろ|必至|必死/.test(question))return '詰めろは放置すると詰む状態、必至はその詰めろを防げない状態です。今の解析は、この局面がそうだと証明する専用の確認をしていません。王手や評価値だけでは決めず、まず読み筋で玉への迫り方を見てみましょう。';
+  if(/攻め/.test(question))return '攻めを考えるなら、相手に受けられたあとも狙いが続くかが大切です。'+readingReason(r,r.defense,side)+'\n\nこの続きで、相手に何を許すと攻めが途切れそうですか？';
+  if(/受け/.test(question))return '受けは、相手のどの狙いを防ぐのかを一つ決めると読みやすくなります。'+readingReason(r,r.defense,side)+'\n\nこの手順で、いちばん防いでおきたい手はどれでしょうか？';
+  return null;
+}
+export function teacherAnswer(r,options={}){const termAnswer=!['verify','deeper','compare','best','reply'].includes(options.intent)&&terminologyAnswer(r,options.question||'',options.side||r.side);let answer=termAnswer||composeAnswer(r,options);if(r.teaching&&['verify','deeper','compare','best','plan'].includes(options.intent)){const comparison=teachingComparison(r);if(comparison)answer+='\n\n'+comparison;}return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}
 function lineText(branch,n=4){return branch.evidence.moves.slice(0,n).map(m=>m.label).join(' → ');}
 export function teacherEvidence(r,comment){return [{id:'teacher',text:'指した手への講評。'+comment.text+' '+comment.question},{id:'played',text:'指した手の続き '+lineText(r.defense,12)+'。'+readingReason(r)},{id:'alternative',text:'比較する候補 '+lineText(r.best,12)+'。'+readingReason(r,r.best)},{id:'evaluation',text:readingComparison(r)+(comment.grade==='uncertain'?'結論は未確定。':'有限時間の探索による暫定評価。')}];}

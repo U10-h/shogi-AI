@@ -3,12 +3,20 @@ import assert from 'node:assert/strict';
 import {SHOGI_TERMS,selectTerms,termInstructions,conceptEvidence} from '../dist/shogi-language.js';
 import {START} from '../dist/core.js';
 import {tutorMessages} from '../dist/tutor-prompt.js';
+import {selectTutorEvidence} from '../dist/tutor.js';
 test('Terms are selected by the learner question, not dumped into every answer',()=>{
   assert.equal(selectTerms('この局面は手渡しでいい？')[0].term,'手渡し');
   assert.equal(selectTerms('なぜ？').length,0);
   assert(selectTerms('攻めと受けを比較したい').length===2);
   assert(SHOGI_TERMS.length>=12);
   assert.match(termInstructions('手渡し'),/証拠ではない/);
+});
+test('The teaching evidence keeps all seven moves before repetitive commentary',()=>{
+  const moves=['７六歩','３四歩','２六歩','８四歩','２五歩','８五歩','７八金'];
+  const evidence=[{id:'position',text:'先手の局面'},{id:'teacher',text:'長い説明。'.repeat(100)},{id:'defense',kind:'line',title:'厳しい応手',moves,resultText:'先手視点。条件付きの読み。',text:'unused'}];
+  const packed=selectTutorEvidence(evidence,'攻めを考えたい',{style:'teacher'});
+  assert.equal(packed[1].id,'defense');for(const m of moves)assert(packed[1].text.includes(m));
+  assert(packed.reduce((s,e)=>s+e.text.length,0)<=1100);
 });
 test('A quiet move or an exchange is not proof of handover or successful development',()=>{
   assert.deepEqual(conceptEvidence({initial:START,moves:[]},{pv:['1g1f','1c1d']}),[]);

@@ -4,10 +4,19 @@ import {moveTokens,normalizeNotation,questionIntent} from './coach-analysis.js';
 // model. Put the current position and the requested branch ahead of other lines.
 export function selectTutorEvidence(evidence,question,options={}){
   const intent=questionIntent(question),branch=intent==='reply'?'assumption':intent==='opportunity'?'opportunity':intent==='best'?'best':'defense';
-  const priority=options.style==='teacher'?['position','teaching_focus','teacher',branch,'evaluation',branch+'_outlook']:intent==='verify'?['position','verification','defense','working']:intent==='plan'?['position','defense_outlook','best_outlook','opportunity_outlook','caution_outlook','assumption_outlook','defense']:['position',branch,branch+'_outlook','comparison','working'];
+  const concepts=evidence.filter(e=>e.kind==='concept').map(e=>e.id);
+  const priority=options.style==='teacher'?['position',branch,'teaching_focus',...concepts,'evaluation','teacher',branch+'_outlook']:intent==='verify'?['position','defense','verification','working']:intent==='plan'?['position','defense_outlook','best_outlook','defense','opportunity_outlook']:['position',branch,...concepts,branch+'_outlook','comparison','working'];
   const ordered=[...priority.map(id=>evidence.find(e=>e.id===id)).filter(Boolean),...evidence.filter(e=>!priority.includes(e.id))];
   let budget=1100;const packed=[];
-  for(const item of ordered){if(budget<80)break;const text=item.text.slice(0,Math.min(190,budget));packed.push({...item,text});budget-=text.length;}
+  for(const item of ordered){if(budget<80)break;
+    // Keep a complete seven-ply line together; do not truncate a move or its
+    // score into a different claim. Structured fields are authored evidence.
+    const compact=item.kind==='line'?item.title+'：'+item.moves.slice(0,7).join(' → ')+'。'+item.resultText:item.text;
+    const limit=Math.min(item.kind==='line'?300:190,budget);
+    let text=compact;
+    if(text.length>limit){const prefix=text.slice(0,limit),end=prefix.lastIndexOf('。');text=end>=30?prefix.slice(0,end+1):prefix.slice(0,-1)+'…';}
+    packed.push({id:item.id,text,...(item.kind==='concept'?{kind:item.kind,terms:item.terms}:{} )});budget-=text.length;
+  }
   return packed;
 }
 

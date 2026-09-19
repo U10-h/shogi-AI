@@ -194,7 +194,7 @@ export class Teacher {
       }
       l.discussionBranch=intent==='reply'&&r.assumption?'assumption':intent==='best'?'best':intent==='opportunity'&&r.opportunity?'opportunity':'defense';
       this.reading.set(r,this.bridge.game().human,this.locked);this.reading.select(l.discussionBranch);
-      const options={text:isIntent?text:'',goal,intent:isIntent?'explain':intent,side:this.bridge.game().human,round:l.round||0};
+      const options={question:text,text:isIntent?text:'',goal,intent:isIntent?'explain':intent,side:this.bridge.game().human,round:l.round||0};
       let answer=teacherAnswer(r,options);l.round=(l.round||0)+1;
       if(positionKey(r.root)!==positionKey(l.root))answer=r.root.moves.length+'手目まで進めた盤面ですね。'+answer;
       // Show one answer. A language-model response replaces the fallback rather

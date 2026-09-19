@@ -168,7 +168,7 @@ export class Coach {
         $('coach-progress').textContent='相談する読み筋を選んでください。';
         return;
       }
-      let explanation=parsed.kind==='move'&&intent==='explain'?teacherComment(this.report).text:teacherAnswer(this.report,{intent,side:this.learnerSide});
+      let explanation=parsed.kind==='move'&&intent==='explain'?teacherComment(this.report).text:teacherAnswer(this.report,{question,intent,side:this.learnerSide});
       if(this.tutor.ready){
         $('coach-progress').textContent='質問に合わせて、続きを整理しています…';
         try{

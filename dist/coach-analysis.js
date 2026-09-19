@@ -162,12 +162,13 @@ export function compareScores(a,b){
   return Math.sign(category(a)-category(b));
 }
 async function verifyReport(engine,r,seeds,{check,onProgress}){
-  const time=Math.min(30000,r.time*2),p=positionAt(r.root.initial,r.root.moves),initialBest=r.bestMove;
+  const p=positionAt(r.root.initial,r.root.moves),initialBest=r.bestMove;
   const candidates=candidateFrontier(r,engine.policy);
+  const time=Math.min(30000,Math.round(r.time*(engine.policy?.focusPool?engine.policy.focusPool/candidates.length:2)));
   const candidateChecks=[],replyChecks=[];let searches=0;
-  const query=async(root,label)=>{
-    check();onProgress(label+'（'+time/1000+'秒）');const terminal=terminalInfo(root);if(terminal)return terminal;
-    const result=await engine.search(root.initial,root.moves,{time,multipv:1});check();searches++;
+  const query=async(root,label,budget=time)=>{
+    check();onProgress(label+'（'+budget/1000+'秒）');const terminal=terminalInfo(root);if(terminal)return terminal;
+    const result=await engine.search(root.initial,root.moves,{time:budget,multipv:1});check();searches++;
     const [info]=safeInfos(root,result);if(!info)throw Error('精読の読み筋を取得できませんでした。');return info;
   };
   for(const [i,usi] of candidates.entries()){
@@ -181,17 +182,29 @@ async function verifyReport(engine,r,seeds,{check,onProgress}){
   const replies=[...new Set([chosen.pv[1],...seeds.map(i=>i.pv[0])].filter(Boolean))].slice(0,3);
   if(r.reply&&!replies.includes(r.reply))replies.push(r.reply);
   for(const [i,reply]of replies.entries()){
-    const root={initial:r.root.initial,moves:[...r.root.moves,r.chosen,reply]},info=await query(root,'相手の応手を固定して再確認 '+(i+1)+'/'+replies.length);
+    const root={initial:r.root.initial,moves:[...r.root.moves,r.chosen,reply]},info=await query(root,'相手の応手を固定して再確認 '+(i+1)+'/'+replies.length,engine.policy?.replyRatio?Math.min(30000,Math.round(r.time*engine.policy.replyRatio)):time);
     const pv=[r.chosen,reply,...info.pv];const b={id:'reply-'+i,title:'相手が'+moveLabel(positionAt(r.root.initial,[...r.root.moves,r.chosen]),reply)+'の場合',pv,score:info,depth:info.depth,evidence:lineEvidence(r.root,pv)};replyChecks.push(b);
     if(reply===r.reply)r.assumption={...b,id:'assumption',title:'あなたが想定した相手の応手（精読）'};
+  }
+  // Spend the reserve on a concrete disagreement, rather than re-reading every
+  // reply. A remaining disagreement is shown as uncertainty, not hidden.
+  let rechecks=0;
+  if(engine.policy?.recheckContradiction){
+    const suspect=replyChecks.find(b=>scoreGap(r.defense.score,b.score)>=100||b.score.type==='mate'&&compareScores(b.score,r.defense.score)===-1);
+    if(suspect&&!suspect.score.terminal){
+      const root={initial:r.root.initial,moves:[...r.root.moves,...suspect.pv.slice(0,2)]};
+      const info=await query(root,'評価が変わった応手を重点的に確認',Math.min(30000,r.time*2));
+      suspect.pv=[r.chosen,suspect.pv[1],...info.pv];suspect.score=info;suspect.depth=info.depth;suspect.evidence=lineEvidence(r.root,suspect.pv);rechecks++;
+      if(suspect.pv[1]===r.reply)r.assumption={...suspect,id:'assumption',title:'あなたが想定した相手の応手（再確認）'};
+    }
   }
   const exact=replyChecks.filter(b=>b.score.type==='cp'&&!b.score.bound&&!b.score.terminal);
   const better=exact.filter(b=>scoreGap(b.score,r.defense.score)>=100).sort((a,b)=>b.score.score-a.score.score);
   r.opportunity=better.length?{...better[0],id:'opportunity',title:'相手の応手で評価が改善する例（再確認）'}:null;
-  const lower=exact.filter(b=>scoreGap(r.defense.score,b.score)>=100);
+  const lower=replyChecks.filter(b=>scoreGap(r.defense.score,b.score)>=100||b.score.type==='mate'&&compareScores(b.score,r.defense.score)===-1);
   const alternate=candidateChecks.filter(b=>b.pv[0]!==r.chosen&&b.pv[0]!==r.bestMove&&scoreGap(r.best.score,b.score)>=100).sort((a,b)=>a.score.score-b.score.score)[0];
   r.caution=alternate?{...alternate,id:'caution',title:'精読で評価が低かった別候補'}:null;
-  r.verification={initialBest,bestChanged:initialBest!==r.bestMove,time,searches,candidates:candidateChecks,replies:replyChecks,unstable:lower.length>0,unranked:candidateChecks.some(b=>compareScores(b.score,best.score)===null)};
+  r.verification={initialBest,bestChanged:initialBest!==r.bestMove,time,searches,rechecks,candidates:candidateChecks,replies:replyChecks,unstable:lower.length>0,unranked:candidateChecks.some(b=>compareScores(b.score,best.score)===null)};
 }
 export function verificationSummary(r){
   const v=r.verification;if(!v)return '精読では、複数の候補と相手の応手を追加で読み直します。';
@@ -224,7 +237,7 @@ export function explainReport(report,intent='explain'){
 }
 export function reportEvidence(r,side=r.side){
   const p=positionAt(r.root.initial,r.root.moves),items=[{id:'position',text:'現在の相談は'+r.root.moves.length+'手目。手番と評価値の視点は'+sideName(r.side)+'。嬉しい・困る展開を考える側は'+sideName(side)+'。手番と考える側が異なる場合は混同しない。'},{id:'comparison',text:explainReport(r,'compare').slice(0,500)}];
-  for(const branch of reportBranches(r)){items.push({id:branch.id,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。'+branch.evidence.events.join(' ')+branch.evidence.summary});
+  for(const branch of reportBranches(r)){const resultText=sideName(r.side)+'視点の評価 '+scoreLabel(branch.score)+'。この順を選んだ場合の読み。'+branch.evidence.events.slice(0,2).join(' ');items.push({id:branch.id,kind:'line',title:branch.title,moves:branch.evidence.moves.map(x=>x.label),resultText,text:branch.title+'：'+branch.evidence.moves.map(x=>x.label).join(' → ')+'。'+resultText+branch.evidence.summary});
     const outlook=lineOutlook(r.root,branch,side);items.push({id:branch.id+'_outlook',text:branch.title+'。'+sideName(side)+'から見た条件付きの材料。嬉しい：'+(outlook.hope[0]?.text||'今回の短い読みでは未確認')+' 困る：'+(outlook.worry[0]?.text||'今回の短い読みでは未確認')+'。単独で手の良さ・勝敗を断定できない。'});
   }
   items.push({id:'working',text:moveLabel(p,r.chosen)+'の働き：'+r.facts.chosen.join(' ')});
