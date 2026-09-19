@@ -3,6 +3,7 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {START,positionAt,parseInfo,checkedPV} from '../dist/core.js';
+import {investigate,explainReport} from '../dist/coach-analysis.js';
 const dir=fileURLToPath(new URL('../dist/vendor/yaneuraou/',import.meta.url));
 // The Emscripten data loader expects a browser location, even with preloaded data.
 globalThis.location={pathname:dir};
@@ -31,4 +32,17 @@ try{
   const next=await request('go movetime 300',l=>l.startsWith('bestmove '));
   const q=positionAt(START,moves),m=q.createMoveByUSI(next.split(' ')[1]);assert(m&&q.isValidMove(m));
   console.log('PASS: NNUE initialization, legal AI reply, MultiPV 3, legal variations, stop and next search');
+  const adapter={async search(initial,moves,{time,multipv}){
+    const start=lines.length;
+    engine.postMessage('setoption name MultiPV value '+multipv);
+    engine.postMessage('position sfen '+initial+(moves.length?' moves '+moves.join(' '):''));
+    const result=await request('go movetime '+time,l=>l.startsWith('bestmove '));
+    const infos=new Map();for(const line of lines.slice(start)){const value=parseInfo(line);if(value)infos.set(value.rank,value);}
+    return {bestmove:result.split(' ')[1],infos:[...infos.values()]};
+  }};
+  const report=await investigate(adapter,{initial:START,moves:[]},'7g7f',{time:400,reply:'8c8d'});
+  assert.equal(report.chosen,'7g7f');assert.equal(report.assumption.pv[1],'8c8d');
+  assert.ok(report.defense.evidence.moves.length>=2);assert.match(explainReport(report,'defense'),/最善応手/);
+  for(const b of [report.best,report.defense,report.opportunity,report.assumption].filter(Boolean))assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
+  console.log('PASS: real NNUE candidate assessment, best-move comparison, opponent-response hypothesis and explanation');
 }finally{engine.terminate();clearTimeout(timeout);}

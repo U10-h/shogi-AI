@@ -32,3 +32,11 @@ Changes on 2026-09-19: `yaneuraou.js` wraps the evaluation preload IIFE with `if
 To rebuild the upstream distribution, obtain the complete corresponding source above and Emscripten 2.0.21-compatible tools, then run the upstream `npm run prepare` (`cd source && make clean tournament`). Apply the documented preload guard to the generated JavaScript. This project does not claim bit-for-bit reproduction with other compiler versions. `npm run check` verifies the bundled WASM and evaluation data against the recorded Git blob identifiers.
 
 The application's original code is distributed under GPLv3. Third-party MIT notices are preserved. The browser's credits page links to the full corresponding source and source download alongside the engine license.
+
+## Optional local conversation
+
+- WebLLM `@mlc-ai/web-llm@0.2.85`, MLC AI, Apache-2.0. Loaded on demand through `https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm@0.2.85/+esm`. Source and license: https://github.com/mlc-ai/web-llm .
+- Qwen2.5 0.5B / 1.5B Instruct, Qwen team, Apache-2.0. Original model: https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct and https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct .
+- MLC quantized distributions: https://huggingface.co/mlc-ai/Qwen2.5-0.5B-Instruct-q4f16_1-MLC and https://huggingface.co/mlc-ai/Qwen2.5-1.5B-Instruct-q4f16_1-MLC (float32 variants are selected when needed).
+- The application archive does not include these model weights or the WebLLM distribution. They are downloaded by the user's browser only on explicit activation. Runtime support follows the published WebLLM model registry.
+- API references: https://webllm.mlc.ai/docs/user/basic_usage.html and https://webllm.mlc.ai/docs/user/advanced_usage.html .
