@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
 import {START,positionAt,parseInfo,checkedPV} from '../dist/core.js';
 import {investigate,explainReport,branchRoot,lineOutlook,explainPlan} from '../dist/coach-analysis.js';
+import {reviewPlayedMove,teacherComment,teacherAnswer} from '../dist/teacher-analysis.js';
 const dir=fileURLToPath(new URL('../dist/vendor/yaneuraou/',import.meta.url));
 // The Emscripten data loader expects a browser location, even with preloaded data.
 globalThis.location={pathname:dir};
@@ -58,4 +59,9 @@ try{
   for(const b of [...deep.verification.candidates,...deep.verification.replies])assert.equal(checkedPV(positionAt(START,[]),b.pv).length,b.pv.length);
   assert.match(explainReport(deep,'verify'),/読み直しました/);
   console.log('PASS: real NNUE wide candidate search, focused equal-budget review and fixed-reply analysis');
+  const lesson=await reviewPlayedMove(adapter,{initial:START,moves:[]},'7g7f',{time:250});
+  const comment=teacherComment(lesson,{first:true});assert.ok(comment.text.length>30);assert.match(comment.question,/何を狙/);
+  assert.equal(checkedPV(positionAt(START,[]),lesson.defense.pv).length,lesson.defense.pv.length);
+  assert.match(teacherAnswer(lesson,{goal:'develop'}),/駒を働かせたい/);
+  console.log('PASS: real NNUE played-move review, grounded teaching comment and intent response');
 }finally{engine.terminate();clearTimeout(timeout);}

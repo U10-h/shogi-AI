@@ -26,7 +26,7 @@ export class Coach {
     this.controls();
   }
   sync(state){
-    this.allowed=state.allowed;
+    this.allowed=state.allowed;this.externalLock=!!state.locked;
     if(this.gameId!==null&&this.gameId!==state.gameId){this.cancel();this.root=null;this.chosen=null;this.report=null;this.history=[];this.trail=[];this.transition='';this.learnerSide=null;this.setNotes({});$('coach-selection').textContent='候補手：未選択';$('coach-question').value='';$('coach-chat').replaceChildren();$('coach-report').replaceChildren();this.message('assistant','新しい対局です。相談したい局面で候補を選んでください。');}
     this.gameId=state.gameId;
     const different=this.root&&positionKey(this.root)!==positionKey(state.root);
@@ -42,7 +42,7 @@ export class Coach {
     this.controls();
   }
   controls(){
-    const locked=this.working||this.navigating||!this.allowed;
+    const locked=this.working||this.externalLock||this.navigating||!this.allowed;
     for(const id of ['coach-send','coach-pick','coach-current','coach-question','coach-back','coach-hope','coach-worry','coach-compare-plan','coach-rigor'])$(id).disabled=locked||!!this.navigating;
     $('coach-origin').disabled=locked;
     for(const b of document.querySelectorAll('[data-coach-question]'))b.disabled=locked;
@@ -126,7 +126,9 @@ export class Coach {
     this.loading=true;this.controls();$('tutor-status').textContent='対応状況を確認しています…';
     try{await this.tutor.load($('tutor-model').value);}catch(e){$('tutor-status').textContent=e.message;}finally{this.loading=false;this.controls();}
   }
-  async ask(question){if(this.submitting)return;this.submitting=true;try{return await this.askQuestion(question);}finally{this.submitting=false;this.controls();}}
+  async ask(question){
+    if(this.externalLock)return;
+    if($('manual-consultation'))$('manual-consultation').open=true;if(this.submitting)return;this.submitting=true;try{return await this.askQuestion(question);}finally{this.submitting=false;this.controls();}}
   async askQuestion(question){
     if(this.working||this.navigating||!this.allowed)return;if(question.length>800){this.message('assistant','質問は800文字以内でお願いします。');return;}
     if(!this.root)await this.adopt();await this.bridge.prepare();this.bridge.cancelPick();$('coach-picking').hidden=true;this.bridge.showPane?.('coach');

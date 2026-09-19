@@ -2,9 +2,9 @@ import {moveTokens,normalizeNotation,questionIntent} from './coach-analysis.js';
 
 // Leave room for the question, learner forecast and answer in the 4096-token
 // model. Put the current position and the requested branch ahead of other lines.
-export function selectTutorEvidence(evidence,question){
+export function selectTutorEvidence(evidence,question,options={}){
   const intent=questionIntent(question),branch=intent==='reply'?'assumption':intent==='opportunity'?'opportunity':intent==='best'?'best':'defense';
-  const priority=intent==='verify'?['position','verification','defense','working']:intent==='plan'?['position','defense_outlook','best_outlook','opportunity_outlook','caution_outlook','assumption_outlook','defense']:['position',branch,branch+'_outlook','comparison','working'];
+  const priority=options.style==='teacher'?['position','teacher','evaluation',branch,branch+'_outlook','working']:intent==='verify'?['position','verification','defense','working']:intent==='plan'?['position','defense_outlook','best_outlook','opportunity_outlook','caution_outlook','assumption_outlook','defense']:['position',branch,branch+'_outlook','comparison','working'];
   const ordered=[...priority.map(id=>evidence.find(e=>e.id===id)).filter(Boolean),...evidence.filter(e=>!priority.includes(e.id))];
   let budget=1100;const packed=[];
   for(const item of ordered){if(budget<80)break;const text=item.text.slice(0,Math.min(190,budget));packed.push({...item,text});budget-=text.length;}
@@ -36,10 +36,10 @@ export class LocalTutor {
     this.worker.onerror=()=>this.unload('対話モデルを読み込めませんでした。接続とブラウザの対応状況を確認してください。');
     try{await this.request('load',{model},600000);this.ready=true;this.onStatus('日本語対話を使用できます（端末内）');}catch(e){this.unload();throw e;}
   }
-  async answer(question,evidence,history=[],forecast={}){
+  async answer(question,evidence,history=[],forecast={},options={}){
     if(!this.ready)throw Error('対話モデルはまだ読み込まれていません。');
-    const packed=selectTutorEvidence(evidence,question);
-    const raw=await this.request('answer',{question:question.slice(0,300),evidence:packed,history:history.slice(-2).map(x=>({role:x.role,text:x.text.slice(0,100)})),forecast:{hope:(forecast.hope||'').slice(0,120),worry:(forecast.worry||'').slice(0,120)}});
+    const packed=selectTutorEvidence(evidence,question,options);
+    const raw=await this.request('answer',{style:options.style==='teacher'?'teacher':'analysis',question:question.slice(0,300),evidence:packed,history:history.slice(-2).map(x=>({role:x.role,text:x.text.slice(0,100)})),forecast:{hope:(forecast.hope||'').slice(0,120),worry:(forecast.worry||'').slice(0,120)}});
     return validateTutorReply(raw,packed);
   }
   interrupt(){this.worker?.postMessage({type:'interrupt'});}
