@@ -1,5 +1,5 @@
-import {positionAt,moveLabel,checkedPV,legalMoves,scoreLabel} from './core.js';
-import {investigate,scoreGap,fromChild,lineEvidence,lineOutlook,positionKey} from './coach-analysis.js';
+import {positionAt,moveLabel,checkedPV,scoreLabel} from './core.js';
+import {investigate,scoreGap,fromChild,lineEvidence,positionKey,pieceNames} from './coach-analysis.js';
 
 export const teachingEnabled=game=>game.clockMode==='learning'||game.clockMode==='unlimited';
 export function sameLesson(lesson,game){return !!lesson&&lesson.gameId===game.id&&positionKey(lesson.checkpoint)===positionKey({initial:game.initial,moves:game.moves})&&lesson.result===game.result;}
@@ -32,48 +32,68 @@ export async function reviewPlayedMove(engine,root,played,{time=2000,check=()=>{
   }
   return report;
 }
-function usefulFacts(r){return r.facts.chosen.filter(s=>!s.startsWith('この一手だけで'));}
-function lineText(branch,n=4){return branch.evidence.moves.slice(0,n).map(m=>m.label).join(' → ');}
-function observation(r,key){
-  const out=lineOutlook(r.root,r.defense,r.side);
-  return out[key].find(x=>!/単純な駒の収支/.test(x.text))?.text||'';
+const spoken=label=>label.replace(/^[☗☖]/,'');
+const labelAt=(r,usi)=>spoken(moveLabel(positionAt(r.root.initial,r.root.moves),usi));
+function continuation(branch){
+  const moves=branch.evidence.moves;
+  return moves[1]?'相手が'+spoken(moves[1].label)+'なら、'+(moves[2]?spoken(moves[2].label)+'と続ける手があります。':'その局面で次の手を考えましょう。'):'';
 }
-export function teacherComment(r,{first=false,previousGoal='',passive=false}={}){
-  const p=positionAt(r.root.initial,r.root.moves),label=moveLabel(p,r.chosen),grade=moveGrade(r),facts=usefulFacts(r),reply=r.defense.evidence.moves[1]?.label,next=r.defense.evidence.moves[2]?.label;
-  let text;
-  if(passive)text='この局面では、'+moveLabel(p,r.bestMove)+'を候補に考えてみましょう。'+r.facts.best[0];
-  else if(grade==='good'){
-    text=legalMoves(p).length===1?'王手などの制約がある局面で、指せる手を選べています。':label+'は、今回の読みではよい候補です。';
-    text+=facts[0]||'直接駒を取る手ではありませんが、続きまで見てみましょう。';
-    if(reply&&next)text+='相手が'+reply+'なら、'+next+'と続ける読みがあります。';
-  }else if(grade==='concern'){
-    text=label+'は、少し立ち止まって考えたい手です。';
-    const risk=observation(r,'worry');
-    if(reply)text+='相手には'+reply+'という応手があります。';
-    text+=risk?risk+'この展開を許しても、狙いが見合うかを確かめたいです。':'読み直しても他の候補より評価が下がりました。ただ、評価差だけで悪い理由を決めず、狙いと続きの手順を一緒に確かめましょう。';
-  }else if(grade==='review')text=label+'にも狙いはありそうです。ただ、'+(reply?'相手の'+reply+'への備え':'相手の応手')+'をもう少し確かめたいです。'+(observation(r,'worry')||facts[0]||'ほかの候補と比べながら考えましょう。');
-  else if(grade==='resilient')text='今は厳しい局面ですが、'+label+'は抵抗する候補に残せます。'+(reply?'相手の'+reply+'に対して、どう粘るかを見ましょう。':'最後まで続く手を探しましょう。');
-  else text=label+'の良し悪しは、今回の読みではまだ決め切れません。'+(r.reconsidered?'読み直すと最初の判断が変わりました。':'評価が揺れているので、悪い手と決めつけずに確かめたいです。')+(facts[0]||'');
-  const needsQuestion=passive||first||grade!=='good'||facts.length===0;
-  let question='';
-  if(needsQuestion)question=previousGoal?'前には「'+previousGoal.slice(0,50)+'」と話していましたね。この手では、何を実現したかったですか？':'この手では、何を狙っていましたか？';
-  return {grade,text,question,reply,next,theme:observation(r,'worry')?'相手の応手':facts.some(s=>/飛車|角/.test(s))?'大駒の働き':'次の一手'};
+export function movePoint(r,which='chosen'){
+  const p=positionAt(r.root.initial,r.root.moves),m=p.createMoveByUSI(which==='best'?r.bestMove:r.chosen),facts=r.facts[which];
+  if(p.checked)return 'まず王手にきちんと対応できていますね。';
+  if(facts.some(s=>s.startsWith('角の筋')))return '角の利きが広がるのが、この手のよいところです。';
+  if(facts.some(s=>s.startsWith('飛車の筋')))return '飛車の利きが広がり、使える筋が増えますね。';
+  if(m.capturedPieceType)return '相手の'+pieceNames[m.capturedPieceType]+'を取れる手ですね。取り返されるところまで見ておきましょう。';
+  if(m.promote)return pieceNames[m.pieceType]+'を成って、駒の働きを変えられますね。';
+  return '';
+}
+// Choose one concrete event, favoring a major-piece loss over an ordinary pawn
+// exchange. Always describe it as a conditional line, not as a forced outcome.
+function moment(r,branch,mine,side=r.side){
+  const p=positionAt(r.root.initial,r.root.moves),events=[];
+  for(const item of checkedPV(p,branch.pv).slice(0,10)){
+    const m=p.createMoveByUSI(item.usi),own=p.color===side,label=spoken(item.label);
+    if(own===mine&&m.capturedPieceType){
+      const piece=pieceNames[m.capturedPieceType],weight=['rook','bishop','dragon','horse'].includes(m.capturedPieceType)?4:['gold','silver','promPawn'].includes(m.capturedPieceType)?3:1;
+      events.push({weight,text:mine?label+'で相手の'+piece+'を取れる筋があります。':label+'でこちらの'+piece+'を取られる筋があります。'});
+    }
+    p.doMove(m);
+    if(own===mine&&p.checked)events.push({weight:2,text:mine?label+'と王手をかける筋があります。':label+'と王手をかけられる筋が気になります。'});
+  }
+  return events.sort((a,b)=>b.weight-a.weight)[0]?.text||'';
+}
+export function teacherComment(r,{first=false,passive=false}={}){
+  const grade=moveGrade(r),label=labelAt(r,r.chosen),point=movePoint(r),risk=moment(r,r.defense,false),reply=r.defense.evidence.moves[1]?.label;
+  let text,question='';
+  if(passive)text='ここでは'+labelAt(r,r.bestMove)+'を考えてみましょう。'+(movePoint(r,'best')||continuation(r.best));
+  else if(grade==='concern'){
+    text=label+'は、少し気になります。'+(risk?'もう少し先まで読むと、'+risk:reply?'相手の'+spoken(reply)+'への備えを考えておきたいですね。':'ほかの候補と比べると、形勢を損ねている可能性があります。');
+    question='どんな狙いで指しましたか？';
+  }else if(grade==='review'){
+    text=label+'を指したあと、相手の応手を一つ確認しておきたいです。'+(risk||continuation(r.defense));question='この続きは、どう考えていましたか？';
+  }else if(grade==='uncertain')text='この手は、まだ良し悪しを決められません。読みを深めると判断が変わるので、まず相手の応手を一緒に確かめましょう。';
+  else if(grade==='resilient')text='厳しい局面ですが、この手で粘る余地はありそうです。'+continuation(r.defense);
+  else text=(point?'いいですね。'+point:'この手は、今の読みでは大きな問題は見つかっていません。')+(first?continuation(r.defense):'');
+  if(first&&!question&&grade==='good')question='次は、どんな狙いで進めたいですか？';
+  return {grade,text,question,reply,theme:risk?'相手の応手':point?'駒の働き':'次の一手'};
 }
 export const goalLabels={attack:'攻めを続けたい',defend:'受けを固めたい',develop:'駒を働かせたい',unsure:'まだ狙いが曖昧'};
-export function teacherAnswer(r,{text='',goal=null,more=false}={}){
-  const grade=moveGrade(r),risk=observation(r,'worry'),benefit=observation(r,'hope'),facts=usefulFacts(r);
-  const p=positionAt(r.root.initial,r.root.moves),reply=r.defense.evidence.moves[1]?.label,next=r.defense.evidence.moves[2]?.label;
-  let lead=goal==='unsure'?'では、相手の次の一手から一緒に考えましょう。':goal?'「'+goalLabels[goal]+'」を狙ったのですね。':text?'「'+text.slice(0,100)+'」という考えなのですね。':'理由を、盤面の変化で確認しましょう。';
-  let reason;
-  if(goal==='defend')reason=risk?'受けを考えるなら、まずこの変化が気になります。'+risk:(facts.find(s=>/王手を解消|玉に隣接/.test(s))||'今回の短い読みだけで玉の安全を保証はできません。相手の応手まで進め、守りたい駒や升を確認しましょう。');
-  else if(goal==='attack')reason=(benefit||facts.find(s=>/王手|取り|成り|筋/.test(s))||'攻めが続くかどうかは、相手の応手とセットで見ていきましょう。')+(risk?'一方で、'+risk:'');
-  else if(goal==='develop')reason=facts.find(s=>/飛車|角|玉に隣接/.test(s))||'駒の働きは、この一手だけでは判断し切れません。相手の応手の後、次に使いたい駒を決めてみましょう。';
-  else reason=(grade==='concern'||grade==='review'?risk:benefit)||facts[0]||'評価値だけでなく、相手が厳しく応じた手順を確かめましょう。';
-  const lines=[lead,reason];
-  if(reply)lines.push('具体的には '+lineText(r.defense,more?6:3)+' という読みです。'+(next?'相手の'+reply+'のあと、'+next+'まで考えるのが一つの目安です。':''));
-  if(r.chosen!==r.bestMove)lines.push('比べたい別の手は '+moveLabel(p,r.bestMove)+' です。'+r.facts.best[0]+'続きは '+lineText(r.best,3)+'。');
-  if(grade==='uncertain')lines.push('この比較にはまだ揺れがあります。今の説明だけで正解・不正解を決めないでおきましょう。');
-  lines.push(goal==='unsure'&&reply?'相手が'+reply+'と来たら、次に何をしたいですか？ 盤面を進めて考えてみましょう。':'狙いを保つにはどの続きがよいか、盤面で試すか、指し直してみましょう。');
-  return lines.filter(Boolean).join('\n\n');
+function composeAnswer(r,{text='',goal=null,intent='explain',side=r.side,round=0}={}){
+  const risk=moment(r,r.defense,false,side),hope=moment(r,r.defense,true,side),reply=r.defense.evidence.moves[1]?.label;
+  if(intent==='best'||intent==='compare')return '比べるなら、'+labelAt(r,r.bestMove)+'がよさそうです。'+(movePoint(r,'best')||'今読めた範囲では、こちらが有力でした。')+'\n\n'+continuation(r.best);
+  if(intent==='opportunity')return r.opportunity?'相手が'+spoken(r.opportunity.evidence.moves[1].label)+'と応じてくれれば、こちらにとって改善する余地があります。'+(moment(r,r.opportunity,true,side)||continuation(r.opportunity))+'ただ、相手がこの順を選ぶとは限りません。':'今の読みでは、こちらの狙いがうまく通る例はまだ見つかっていません。相手にどんな手を指してほしいと思っていますか？';
+  if(intent==='reply'&&r.assumption)return 'その応手なら、'+(r.assumption.evidence.moves[2]?spoken(r.assumption.evidence.moves[2].label)+'と続ける手があります。':'その先はまだ十分に読めていません。')+(moment(r,r.assumption,false,side)||moment(r,r.assumption,true,side)||'盤面を進めて、次に使いたい駒を考えてみましょう。');
+  if(intent==='defense')return (reply?'相手には'+spoken(reply)+'という応手があります。':'この局面からの応手は、まだ十分に読めていません。')+(risk||'その先で、こちらが何を狙えるかを考えておきたいですね。');
+  if(intent==='plan')return (hope?'この先には、'+hope:'まずは、次に働かせたい駒を一枚決めてみましょう。')+(risk?'一方で、'+risk:'相手がどう動くかも見ながら考えたいですね。')+'\n\nあなたは、どんな形になれば指しやすいと思いますか？';
+  if(intent==='verify'||intent==='deeper')return r.verification?.unstable?'もう少し読んでみましたが、まだ評価が揺れています。相手の応手によって、どこで話が変わるのかを見てみましょう。':(r.verification?.bestChanged?'読み直すと、':'もう少し読んでみても、')+labelAt(r,r.bestMove)+'が有力でした。'+continuation(r.best);
+  if(goal==='attack')return '攻めを続けたいのですね。'+(risk?'それなら、'+risk+'ここまで許しても攻めが続くかを考えたいです。':hope||continuation(r.defense))+'\n\n'+(reply?'相手が'+spoken(reply)+'と来たら、次はどう指すつもりでしたか？':'次に狙いたい手を教えてください。');
+  if(goal==='defend')return '受けを固めたいのですね。'+(risk?'まず、'+risk:continuation(r.defense))+'\n\nどの駒や場所を守ろうと考えていましたか？';
+  if(goal==='develop')return '駒を働かせたいのですね。'+(movePoint(r)||continuation(r.defense))+'\n\n次に使いたい駒は、どれでしょうか？';
+  if(goal==='unsure'||intent==='hint')return 'では、相手の手から考えてみましょう。'+(reply?'相手には'+spoken(reply)+'という応手があります。この手で、何を狙われそうですか？':'この局面で、相手に一番指されると困る手は何でしょうか？');
+  const lead=text?'その狙いと、相手の応手を合わせて考えてみましょう。':round?'さっきの続きを、もう一つだけ見てみましょう。':'';
+  const focus=moveGrade(r)==='concern'||moveGrade(r)==='review'?risk:movePoint(r)||hope;
+  return lead+(focus||'この手の意味は、相手の応手まで含めて考えると分かりやすくなります。')+'\n\n'+continuation(r.defense)+(reply&&text?' このあとも、考えていた狙いを続けられそうですか？':'');
 }
+export function teacherAnswer(r,options={}){const answer=composeAnswer(r,options);return moveGrade(r)==='uncertain'&&!['verify','deeper'].includes(options.intent)?'まだ評価が揺れているので、ここからは仮の見立てです。'+answer:answer;}
+function lineText(branch,n=4){return branch.evidence.moves.slice(0,n).map(m=>m.label).join(' → ');}
 export function teacherEvidence(r,comment){return [{id:'teacher',text:'指した手への講評。'+comment.text+' '+comment.question},{id:'played',text:'指した手の続き '+lineText(r.defense,6)+'。'+r.defense.evidence.events.join(' ')},{id:'alternative',text:'比較する候補 '+lineText(r.best,6)+'。'+r.facts.best.join(' ')},{id:'evaluation',text:'今回の評価 '+scoreLabel(r.defense.score)+'／比較候補 '+scoreLabel(r.best.score)+'。'+(comment.grade==='uncertain'?'結論は未確定。':'有限時間の探索による暫定評価。')}];}

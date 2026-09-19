@@ -60,8 +60,26 @@ try{
   assert.match(explainReport(deep,'verify'),/読み直しました/);
   console.log('PASS: real NNUE wide candidate search, focused equal-budget review and fixed-reply analysis');
   const lesson=await reviewPlayedMove(adapter,{initial:START,moves:[]},'7g7f',{time:250});
-  const comment=teacherComment(lesson,{first:true});assert.ok(comment.text.length>30);assert.match(comment.question,/何を狙/);
+  const comment=teacherComment(lesson,{first:true});assert.ok(comment.text.length>30);assert.ok(comment.text.length<300);
   assert.equal(checkedPV(positionAt(START,[]),lesson.defense.pv).length,lesson.defense.pv.length);
   assert.match(teacherAnswer(lesson,{goal:'develop'}),/駒を働かせたい/);
   console.log('PASS: real NNUE played-move review, grounded teaching comment and intent response');
+  // The browser uses isolated workers. Also verify two real engine instances can
+  // search different histories concurrently without mixing PVs or scores.
+  const observer=await factory({wasmBinary:readFileSync(dir+'yaneuraou.wasm'),getPreloadedPackage:()=>data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength),locateFile:f=>dir+f,mainScriptUrlOrBlob:dir+'yaneuraou.js'});
+  const observerLines=[],observerListeners=new Set();observer.addMessageListener(line=>{observerLines.push(line);for(const fn of observerListeners)fn(line);});
+  const observeRequest=(command,end)=>new Promise(resolve=>{const fn=line=>{if(end(line)){observerListeners.delete(fn);resolve(line);}};observerListeners.add(fn);observer.postMessage(command);});
+  try{
+    await observeRequest('usi',l=>l==='usiok');observer.postMessage('setoption name USI_Hash value 16');observer.postMessage('setoption name Threads value 1');await observeRequest('isready',l=>l==='readyok');observer.postMessage('usinewgame');
+    const observerAdapter={async search(initial,moves,{time,multipv}){
+      const start=observerLines.length;observer.postMessage('setoption name MultiPV value '+multipv);observer.postMessage('position sfen '+initial+(moves.length?' moves '+moves.join(' '):''));
+      const end=await observeRequest('go movetime '+time,l=>l.startsWith('bestmove '));const infos=new Map();for(const line of observerLines.slice(start)){const value=parseInfo(line);if(value)infos.set(value.rank,value);}return {bestmove:end.split(' ')[1],infos:[...infos.values()]};
+    }};
+    const [reply,watched]=await Promise.all([adapter.search(START,['7g7f'],{time:700,multipv:1}),reviewPlayedMove(observerAdapter,{initial:START,moves:[]},'7g7f',{time:200})]);
+    const opponent=positionAt(START,['7g7f']);assert(opponent.isValidMove(opponent.createMoveByUSI(reply.bestmove)));
+    assert.equal(watched.root.moves.length,0);assert.equal(checkedPV(positionAt(START,[]),watched.defense.pv).length,watched.defense.pv.length);
+    console.log('PASS: two real NNUE engines run an opponent turn and background teaching concurrently');
+    console.log('Teacher sample: '+teacherComment(watched).text);
+  }finally{observer.terminate();}
+
 }finally{engine.terminate();clearTimeout(timeout);}

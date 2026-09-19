@@ -1,6 +1,7 @@
 import {positionAt,moveLabel,scoreLabel,sideName} from './core.js';
 import {positionKey,resolveMove,questionIntent,investigate,explainReport,reportEvidence,branchRoot,reportBranches,lineOutlook,explainPlan} from './coach-analysis.js';
 import {LocalTutor} from './tutor.js';
+import {teacherAnswer,teacherComment} from './teacher-analysis.js';
 
 const $=id=>document.getElementById(id);
 function el(tag,text,cls){const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;}
@@ -163,15 +164,15 @@ export class Coach {
         $('coach-progress').textContent='相談する読み筋を選んでください。';
         return;
       }
-      let explanation=intent==='plan'?explainPlan(this.report,this.learnerSide):explainReport(this.report,intent);
-      if(intent==='deeper'&&previous){explanation='各探索を'+time/1000+'秒にして再検討しました。'+(previous.bestMove===this.report.bestMove?'最善候補は変わりませんでした。':'最善候補が変わりました。以前の結論は更新します。')+'\n\n'+explanation;}
-      this.message('assistant',explanation);
+      let explanation=parsed.kind==='move'&&intent==='explain'?teacherComment(this.report).text:teacherAnswer(this.report,{intent,side:this.learnerSide});
       if(this.tutor.ready){
-        $('coach-progress').textContent='質問に合わせて日本語で説明しています…';
-        try{const evidence=reportEvidence(this.report,this.learnerSide);const answer=await this.tutor.answer(question,evidence,this.history.slice(0,-2),notes);check();this.message('assistant','日本語対話の補足：\n'+answer.answer+'\n\n参照：'+answer.evidence_ids.join('、')+'。補足文には誤りがあり得るため、上の解析手順も確認してください。');}
-        catch(e){check();this.message('assistant',e.message+' 将棋エンジンの解析結果は上に残しています。');}
-      }else if(intent==='plan'&&(notes.hope||notes.worry))this.message('assistant','予想はこの相談に残しました。まず、読み筋のどの盤面で予想が実現するか、または崩れるかを比べてください。文章の意味に合わせた補足は「日本語対話を有効にする」で追加できます。予想の正誤を自動で断定するものではありません。');
-      else if(intent==='explain'&&!moveTokensPresent(question))this.message('assistant','この回答は解析結果から組み立てた解説です。質問の細かな意図に合わせた自由な対話は、下の「日本語対話を有効にする」で追加できます。');
+        $('coach-progress').textContent='質問に合わせて、続きを整理しています…';
+        try{
+          const evidence=[{id:'teaching_focus',text:explanation},...reportEvidence(this.report,this.learnerSide)];
+          const answer=await this.tutor.answer(question,evidence,this.history.slice(0,-1),notes,{style:'teacher'});check();explanation=answer.answer;
+        }catch(e){check();}
+      }
+      this.message('assistant',explanation);
       $('coach-progress').textContent=(this.report.verification?'精読済み':'解析済み')+' · '+new Date(this.report.createdAt).toLocaleTimeString('ja-JP');
     }catch(e){$('coach-progress').textContent='';if(sessionGameId===this.gameId)this.message('assistant',e.name==='AbortError'?'解析を中止しました。':e.message);}
     finally{this.working=false;this.controls();this.bridge.refresh();}

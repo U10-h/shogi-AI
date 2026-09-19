@@ -10,10 +10,10 @@ function report(gap=0){
   return {root,side:'black',chosen:'7g7f',bestMove:'2g2f',best:{...defense,pv:['2g2f'],score:{type:'cp',score:20+gap,bound:false},evidence:lineEvidence(root,['2g2f'])},defense,facts:{chosen:moveFacts(positionAt(START,[]),'7g7f'),best:moveFacts(positionAt(START,[]),'2g2f')}};
 }
 test('teacher praises sound candidates and describes a reply, without equating a capture with a good move',()=>{
-  const r=report(),c=teacherComment(r,{first:true});assert.equal(c.grade,'good');assert.match(c.text,/よい候補/);assert.match(c.text,/３四歩/);assert.match(c.question,/何を狙/);
-  r.best.score.score=350;assert.equal(moveGrade(r),'concern');assert.doesNotMatch(teacherComment(r).text,/よい候補/);
+  const r=report(),c=teacherComment(r,{first:true});assert.equal(c.grade,'good');assert.match(c.text,/いいですね/);assert.match(c.text,/３四歩/);assert.match(c.question,/狙い/);
+  r.best.score.score=350;assert.equal(moveGrade(r),'concern');assert.doesNotMatch(teacherComment(r).text,/いいですね/);
   assert.match(teacherAnswer(r,{goal:'attack'}),/攻めを続けたい/);
-  assert.match(teacherAnswer(r,{text:'銀を使いたい'}),/銀を使いたい/);
+  assert.match(teacherAnswer(r,{text:'銀を使いたい'}),/狙いと、相手の応手/);
 });
 test('unstable, bounded and forced losing positions are not marked as careless mistakes',()=>{
   const r=report(400);r.best.score.bound=true;assert.equal(moveGrade(r),'uncertain');r.best.score.bound=false;
