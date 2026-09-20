@@ -1,0 +1,34 @@
+{
+  "description": "Authored validation cases, not Qwen-generated outputs. The baseline is the previous shipped validator.",
+  "evidence": [
+    {"id":"position","text":"先手の局面。"},
+    {"id":"defense","kind":"line","moves":["７六歩","３四歩","２六歩","８四歩","２五歩","８五歩","７八金"],"text":"７六歩 → ３四歩 → ２六歩 → ８四歩 → ２五歩 → ８五歩 → ７八金。先手視点の評価 +120。"},
+    {"id":"best","kind":"line","moves":["２六歩","３四歩","７六歩","８四歩","２五歩","８五歩","７八金"],"text":"２六歩 → ３四歩 → ７六歩 → ８四歩 → ２五歩 → ８五歩 → ７八金。先手視点の評価 +180。"},
+    {"id":"material","text":"駒の収支 +100点。形勢評価とは異なる。"},
+    {"id":"concept","kind":"concept","text":"手渡しの用語説明。７七銀は例文で、今回の読みの証拠ではない。"}
+  ],
+  "cases": [
+    {"id":"same-square-invention","answer":"同銀と取り返せばよいです。","ids":["defense"],"accept":false},
+    {"id":"score-without-points","answer":"評価値は999です。","ids":["defense"],"accept":false},
+    {"id":"sign-flip","answer":"評価は-120です。","ids":["defense"],"accept":false},
+    {"id":"win-percentage","answer":"勝率は95%です。","ids":["defense"],"accept":false},
+    {"id":"win-japanese-ratio","answer":"勝率は九割です。","ids":["defense"],"accept":false},
+    {"id":"qualification-laundering","answer":"詰めろか未確認ですが、必至です。","ids":["defense"],"accept":false},
+    {"id":"reversed-line","answer":"３四歩 → ７六歩と進めます。","ids":["defense"],"accept":false},
+    {"id":"spliced-lines","answer":"７六歩 → ２六歩 → ３四歩と進めます。","ids":["defense","best"],"accept":false},
+    {"id":"wrong-ply","answer":"３手目の３四歩を確認しましょう。","ids":["defense"],"accept":false},
+    {"id":"concept-is-not-position","answer":"７七銀がよいです。","ids":["concept"],"accept":false},
+    {"id":"material-is-not-evaluation","answer":"評価値は100点です。","ids":["defense","material"],"accept":false},
+    {"id":"unsupported-mate","answer":"これは７手詰みです。","ids":["defense"],"accept":false},
+    {"id":"uncited-move","answer":"７六歩を考えましょう。","ids":["position"],"accept":false},
+    {"id":"uncited-score","answer":"評価は180点です。","ids":["defense"],"accept":false},
+    {"id":"grounded-sequence","answer":"７六歩 → ３四歩 → ２六歩と進んだ場合を確認しましょう。","ids":["defense"],"accept":true},
+    {"id":"grounded-ply","answer":"２手目の３四歩への対応を考えましょう。","ids":["defense"],"accept":true},
+    {"id":"qualified-handover","answer":"手渡しが有効かどうかは未確認です。","ids":["defense"],"accept":true},
+    {"id":"term-definition","answer":"手渡しとは、相手の出方を見て方針を選ぶ考え方です。","ids":["concept"],"accept":true},
+    {"id":"root-evaluation","answer":"７六歩の評価は120点です。有限時間の読みなので、続く応手も確認しましょう。","ids":["defense"],"accept":true},
+    {"id":"correct-material","answer":"この順では駒の収支は100点です。形勢全体とは区別して考えましょう。","ids":["defense","material"],"accept":true},
+    {"id":"two-branches","answer":"７六歩 → ３四歩の枝と、２六歩 → ３四歩の枝を比較しましょう。","ids":["defense","best"],"accept":true},
+    {"id":"uncertain-mate","answer":"詰みかどうかは未確認です。","ids":["defense"],"accept":true}
+  ]
+}

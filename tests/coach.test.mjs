@@ -83,10 +83,11 @@ test('language supplement must cite evidence and may not invent moves or scores'
  assert.throws(()=>validateTutorReply('{"answer":"必勝です。","evidence_ids":["best"]}',evidence));
  assert.throws(()=>validateTutorReply('{"answer":"読むべきです。","evidence_ids":["invented"]}',evidence));
 });
-test('bounded dialogue evidence keeps the position and requested future outlooks first',()=>{
+test('bounded dialogue evidence retains the position, compared branches and requested outlooks',()=>{
  const evidence=['comparison','working','best','best_outlook','defense','defense_outlook','position','opportunity_outlook'].map(id=>({id,text:'根拠'.repeat(200)}));
  const packed=selectTutorEvidence(evidence,'嬉しい展開と困る展開は？');
- assert.equal(packed[0].id,'position');assert.equal(packed[1].id,'defense_outlook');
+ assert.equal(packed[0].id,'position');
+ for(const id of ['defense','best','defense_outlook','best_outlook'])assert(packed.some(e=>e.id===id));
  assert(packed.reduce((n,e)=>n+e.text.length,0)<=1100);
  assert.equal(selectTutorEvidence(evidence,'最善手の理由は？')[1].id,'best');
 });
