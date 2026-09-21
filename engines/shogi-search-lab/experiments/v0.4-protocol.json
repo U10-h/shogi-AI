@@ -1,0 +1,282 @@
+{
+  "protocol": "Frozen before v0.4 measurements. Four variants: full, screen, full-probe, probe. 3 repetitions, rotating sequential order; new process and tree each run; same 50,000-node cache, 5M visit budget, no time limit. Depth3 (20 cases), depth4 (2). Prior rule samples selected by fixed indices 12,21,...,75; SFEN treated as new history, so not repetition tests. No tuning on heldout. Trace disabled during timing. Probe cost included in elapsed and visits. No strength inference. Group-label correction after selection: index12 duplicates the existing pin-and-drop fixture; it is a replicate_fixture, not heldout. All 22 conditions and all timing observations are retained; there are 7 heldout random samples, not 8.",
+  "positions": [
+    {
+      "id": "initial",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "gokigen-6",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [
+        "7g7f",
+        "3c3d",
+        "2g2f",
+        "5c5d",
+        "2f2e",
+        "8b5b"
+      ],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "gokigen-20",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [
+        "7g7f",
+        "3c3d",
+        "2g2f",
+        "5c5d",
+        "2f2e",
+        "8b5b",
+        "2e2d",
+        "2c2d",
+        "6i7h",
+        "2b8h+",
+        "7i8h",
+        "5b2b",
+        "B*5f",
+        "7a7b",
+        "5f3d",
+        "4a3b",
+        "P*2c",
+        "2b1b",
+        "2h2d",
+        "3b3c"
+      ],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "gokigen-36",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [
+        "7g7f",
+        "3c3d",
+        "2g2f",
+        "5c5d",
+        "2f2e",
+        "8b5b",
+        "2e2d",
+        "2c2d",
+        "6i7h",
+        "2b8h+",
+        "7i8h",
+        "5b2b",
+        "B*5f",
+        "7a7b",
+        "5f3d",
+        "4a3b",
+        "P*2c",
+        "2b1b",
+        "2h2d",
+        "3b3c",
+        "2c2b+",
+        "1b2b",
+        "2d2b+",
+        "3a2b",
+        "3d1f",
+        "3c3b",
+        "5i6h",
+        "1c1d",
+        "8h7g",
+        "2b3c",
+        "6h7i",
+        "1d1e",
+        "1f2g",
+        "3c4b",
+        "2g3f",
+        "5a6b"
+      ],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "gokigen-52",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [
+        "7g7f",
+        "3c3d",
+        "2g2f",
+        "5c5d",
+        "2f2e",
+        "8b5b",
+        "2e2d",
+        "2c2d",
+        "6i7h",
+        "2b8h+",
+        "7i8h",
+        "5b2b",
+        "B*5f",
+        "7a7b",
+        "5f3d",
+        "4a3b",
+        "P*2c",
+        "2b1b",
+        "2h2d",
+        "3b3c",
+        "2c2b+",
+        "1b2b",
+        "2d2b+",
+        "3a2b",
+        "3d1f",
+        "3c3b",
+        "5i6h",
+        "1c1d",
+        "8h7g",
+        "2b3c",
+        "6h7i",
+        "1d1e",
+        "1f2g",
+        "3c4b",
+        "2g3f",
+        "5a6b",
+        "4i5i",
+        "6b7a",
+        "9g9f",
+        "9c9d",
+        "6g6f",
+        "2a3c",
+        "R*2a",
+        "R*5a",
+        "2a5a+",
+        "6a5a",
+        "R*2a",
+        "R*2b",
+        "2a2b+",
+        "3b2b",
+        "7f7e",
+        "R*2d"
+      ],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "bishop-exchange",
+      "initial": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "pin-and-drop",
+      "initial": "k3r4/9/9/9/9/9/4G4/9/4K4 b P 1",
+      "moves": [],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "promotion",
+      "initial": "4k4/9/P8/9/9/9/9/9/4K4 b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "existing"
+    },
+    {
+      "id": "holdout-pin-and-drop",
+      "initial": "k3r4/9/9/9/9/9/4G4/9/4K4 b P 1",
+      "moves": [],
+      "depth": 3,
+      "group": "replicate_fixture"
+    },
+    {
+      "id": "holdout-random-0-7",
+      "initial": "lnsgkgsnl/2r4b1/1ppppp1pp/p5p2/9/1PP6/P2PPPPPP/1BS2S1R1/LN1GKG1NL w - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-0-16",
+      "initial": "lnsgkgsnl/2r6/1pppp2pp/5pp2/pN7/PPP6/+b2PPPPPP/2SGbS1R1/L3KG1NL b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-0-25",
+      "initial": "lns1kgsnl/1r1g5/1pppp2p1/5pp1p/pN7/PPP6/L2PPPPPP/2SG1SG1R/3+b1KBNL w - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-1-2",
+      "initial": "lnsgk1snl/1r3g1b1/ppppppppp/9/9/3P5/PPP1PPPPP/1B5R1/LNSGKGSNL b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-1-11",
+      "initial": "ln2g1snl/1r1skg1b1/pppp1pppp/4p4/3P5/4PP3/PPP3PPP/1BS3GR1/LN1GK1SNL w - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-1-20",
+      "initial": "ln3gsn1/3skg1bl/prpp1pppp/1p7/3Pp4/4PP2P/PPPK2PP1/1BS3GR1/LNG3SNL b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "holdout-random-1-29",
+      "initial": "ln4sn1/3sk1gbl/prp1gpppp/3p5/1p1PB4/1PP1PP2P/P2K2PPN/2S3G1R/LNG3S1L w P 1",
+      "moves": [],
+      "depth": 3,
+      "group": "heldout"
+    },
+    {
+      "id": "recapture-trap",
+      "initial": "8k/9/4g4/4p4/4R4/9/9/9/K8 b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "tactical"
+    },
+    {
+      "id": "mate-one",
+      "initial": "3lkl3/3p1p3/4G4/4R4/9/9/9/9/K8 b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "tactical"
+    },
+    {
+      "id": "flat-ties",
+      "initial": "4k4/9/9/9/9/9/9/9/4K4 b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "tactical"
+    },
+    {
+      "id": "fewer-than-five",
+      "initial": "8k/9/9/9/9/9/9/9/K8 b - 1",
+      "moves": [],
+      "depth": 3,
+      "group": "tactical"
+    },
+    {
+      "id": "recapture-trap-d4",
+      "initial": "8k/9/4g4/4p4/4R4/9/9/9/K8 b - 1",
+      "moves": [],
+      "depth": 4,
+      "group": "deeper"
+    },
+    {
+      "id": "flat-ties-d4",
+      "initial": "4k4/9/9/9/9/9/9/9/4K4 b - 1",
+      "moves": [],
+      "depth": 4,
+      "group": "deeper"
+    }
+  ]
+}

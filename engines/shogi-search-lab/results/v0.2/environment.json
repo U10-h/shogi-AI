@@ -1,0 +1,23 @@
+{
+  "utc": "2026-09-21T09:04:13.950639+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "source_sha256": {
+    "src/board.cpp": "3d8d739f469e07d61fb6beb1adf017274488add59c657c2ad8a862b74943f417",
+    "src/evaluate.cpp": "c2928932a312d87e961ae478adbda3573acd02154d41d8ad5f99c3c946f9bcd7",
+    "src/lab.hpp": "ad4b7f2159445b83d3d00d7bbbe7b755c5dc4dcf44b8896db0b864b6eda859f5",
+    "src/main.cpp": "e1c6e9527375ec53f4bd4217d755f7e796b51b18f7c9ea5c443416690097b40e",
+    "src/search.cpp": "8542dc0dcd408a99b72a6cead43aa668a3ac1ccc2ba52c75231d284bd2120e86",
+    "src/tests.cpp": "9c58f7a756519ff3461b51dfd072b54e1868f095d0a5b52df02d222ba024b528"
+  },
+  "suite_sha256": "ec53242f6c15f40426946116ef827824a0520ee39ab6c1b1a4d81771fff728b0",
+  "depth": 4,
+  "time_budget_ms": 200,
+  "repeats": 3,
+  "warmups_per_case_mode": 1,
+  "node_budget": 20000000,
+  "trace": false,
+  "sequential_execution": true,
+  "timing": "Search only, includes all completed and aborted iterations and PV ordering. Soft deadline checked at every visited node.",
+  "deeper_timed_reference": "Fixed-depth alpha-beta with capture/promotion ordering; exhaustive verification is reported separately."
+}

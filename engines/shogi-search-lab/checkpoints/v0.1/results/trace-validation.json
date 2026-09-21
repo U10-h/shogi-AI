@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "nodes_with_verified_bounds": 82,
+  "verified_cutoffs": 10,
+  "budget_abort_and_trace_truncation": "passed"
+}

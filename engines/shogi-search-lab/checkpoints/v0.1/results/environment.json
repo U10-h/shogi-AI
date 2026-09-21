@@ -1,0 +1,21 @@
+{
+  "utc": "2026-09-21T07:10:05.331248+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "executable_sha256": "3b01ac9a6ec7e7c3b2b18c2602d485f640c0206b66be2bb212b4155755ff85b9",
+  "suite_sha256": "ec53242f6c15f40426946116ef827824a0520ee39ab6c1b1a4d81771fff728b0",
+  "source_sha256": {
+    "src/board.cpp": "3d8d739f469e07d61fb6beb1adf017274488add59c657c2ad8a862b74943f417",
+    "src/evaluate.cpp": "c2928932a312d87e961ae478adbda3573acd02154d41d8ad5f99c3c946f9bcd7",
+    "src/lab.hpp": "032aaef82aafbd59e24e732f361cfc617088300714d9d7e05b94d184e6f954be",
+    "src/main.cpp": "f3b27fac44ebf705bfb4ed210fc58a928f390f92566e13bf26043a5245da435b",
+    "src/search.cpp": "01646304b2a8002dba3549cc27337dfb8c3b887366bf10603759bfeb24455ddc",
+    "src/tests.cpp": "7a8ddb7ff1358eeb51207f0db8abaec7aeb2ac5d8ba7ebd658331480b0e0684b"
+  },
+  "repeats": 3,
+  "warmups": 1,
+  "trace_enabled": false,
+  "timing": "C++ steady_clock search time; excludes process/board initialization, includes legal generation and material evaluation; sequential processes",
+  "all_scores_match": true,
+  "all_chosen_moves_optimal_at_tested_depth": true
+}

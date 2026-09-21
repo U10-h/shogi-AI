@@ -1,0 +1,999 @@
+{
+  "cases": 22,
+  "repetitions": 3,
+  "runs": 264,
+  "all_top5_equal": true,
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "aggregate": {
+    "full": {
+      "elapsed_ms": 1054.703,
+      "nodes": 154118,
+      "probe_nodes": 0,
+      "probe_ms": 0.0,
+      "root_exclusions": 0,
+      "root_researches": 0,
+      "root_full_searches": 2409,
+      "faster_than_full_cases": 0
+    },
+    "screen": {
+      "elapsed_ms": 379.423,
+      "nodes": 56617,
+      "probe_nodes": 0,
+      "probe_ms": 0.0,
+      "root_exclusions": 1988,
+      "root_researches": 87,
+      "root_full_searches": 421,
+      "faster_than_full_cases": 21
+    },
+    "full-probe": {
+      "elapsed_ms": 1119.785,
+      "nodes": 154914,
+      "probe_nodes": 796,
+      "probe_ms": 1.218,
+      "root_exclusions": 0,
+      "root_researches": 0,
+      "root_full_searches": 2409,
+      "faster_than_full_cases": 14
+    },
+    "probe": {
+      "elapsed_ms": 382.54,
+      "nodes": 66503,
+      "probe_nodes": 796,
+      "probe_ms": 1.057,
+      "root_exclusions": 1926,
+      "root_researches": 149,
+      "root_full_searches": 483,
+      "faster_than_full_cases": 21
+    }
+  },
+  "per_case": [
+    {
+      "id": "initial",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 26.735,
+          "nodes": 3646,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 90
+        },
+        "screen": {
+          "elapsed_ms": 7.88,
+          "nodes": 1525,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 74,
+          "root_researches": 1,
+          "root_full_searches": 16
+        },
+        "full-probe": {
+          "elapsed_ms": 20.52,
+          "nodes": 3676,
+          "probe_nodes": 30,
+          "probe_ms": 0.038,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 90
+        },
+        "probe": {
+          "elapsed_ms": 9.054,
+          "nodes": 1555,
+          "probe_nodes": 30,
+          "probe_ms": 0.036,
+          "root_exclusions": 74,
+          "root_researches": 1,
+          "root_full_searches": 16
+        }
+      }
+    },
+    {
+      "id": "gokigen-6",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 35.19,
+          "nodes": 5906,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 123
+        },
+        "screen": {
+          "elapsed_ms": 14.535,
+          "nodes": 2540,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 102,
+          "root_researches": 6,
+          "root_full_searches": 21
+        },
+        "full-probe": {
+          "elapsed_ms": 34.39,
+          "nodes": 5947,
+          "probe_nodes": 41,
+          "probe_ms": 0.149,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 123
+        },
+        "probe": {
+          "elapsed_ms": 15.953,
+          "nodes": 2990,
+          "probe_nodes": 41,
+          "probe_ms": 0.053,
+          "root_exclusions": 98,
+          "root_researches": 10,
+          "root_full_searches": 25
+        }
+      }
+    },
+    {
+      "id": "gokigen-20",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 71.297,
+          "nodes": 11049,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 117
+        },
+        "screen": {
+          "elapsed_ms": 23.637,
+          "nodes": 3984,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 96,
+          "root_researches": 6,
+          "root_full_searches": 21
+        },
+        "full-probe": {
+          "elapsed_ms": 68.739,
+          "nodes": 11088,
+          "probe_nodes": 39,
+          "probe_ms": 0.065,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 117
+        },
+        "probe": {
+          "elapsed_ms": 27.773,
+          "nodes": 5507,
+          "probe_nodes": 39,
+          "probe_ms": 0.065,
+          "root_exclusions": 89,
+          "root_researches": 13,
+          "root_full_searches": 28
+        }
+      }
+    },
+    {
+      "id": "gokigen-36",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 284.219,
+          "nodes": 39785,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 255
+        },
+        "screen": {
+          "elapsed_ms": 88.185,
+          "nodes": 10583,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 233,
+          "root_researches": 7,
+          "root_full_searches": 22
+        },
+        "full-probe": {
+          "elapsed_ms": 331.417,
+          "nodes": 39870,
+          "probe_nodes": 85,
+          "probe_ms": 0.193,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 255
+        },
+        "probe": {
+          "elapsed_ms": 100.928,
+          "nodes": 15269,
+          "probe_nodes": 85,
+          "probe_ms": 0.168,
+          "root_exclusions": 217,
+          "root_researches": 23,
+          "root_full_searches": 38
+        }
+      }
+    },
+    {
+      "id": "gokigen-52",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 241.331,
+          "nodes": 30863,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 258
+        },
+        "screen": {
+          "elapsed_ms": 74.865,
+          "nodes": 10931,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 228,
+          "root_researches": 15,
+          "root_full_searches": 30
+        },
+        "full-probe": {
+          "elapsed_ms": 275.064,
+          "nodes": 30949,
+          "probe_nodes": 86,
+          "probe_ms": 0.156,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 258
+        },
+        "probe": {
+          "elapsed_ms": 63.584,
+          "nodes": 10533,
+          "probe_nodes": 86,
+          "probe_ms": 0.146,
+          "root_exclusions": 228,
+          "root_researches": 15,
+          "root_full_searches": 30
+        }
+      }
+    },
+    {
+      "id": "bishop-exchange",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 153.081,
+          "nodes": 21301,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "screen": {
+          "elapsed_ms": 62.666,
+          "nodes": 7785,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 212,
+          "root_researches": 4,
+          "root_full_searches": 19
+        },
+        "full-probe": {
+          "elapsed_ms": 156.963,
+          "nodes": 21378,
+          "probe_nodes": 77,
+          "probe_ms": 0.128,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "probe": {
+          "elapsed_ms": 53.977,
+          "nodes": 9660,
+          "probe_nodes": 77,
+          "probe_ms": 0.119,
+          "root_exclusions": 195,
+          "root_researches": 21,
+          "root_full_searches": 36
+        }
+      }
+    },
+    {
+      "id": "pin-and-drop",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 25.422,
+          "nodes": 4645,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "screen": {
+          "elapsed_ms": 7.943,
+          "nodes": 1556,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 208,
+          "root_researches": 8,
+          "root_full_searches": 23
+        },
+        "full-probe": {
+          "elapsed_ms": 24.9,
+          "nodes": 4722,
+          "probe_nodes": 77,
+          "probe_ms": 0.086,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "probe": {
+          "elapsed_ms": 7.397,
+          "nodes": 1630,
+          "probe_nodes": 77,
+          "probe_ms": 0.071,
+          "root_exclusions": 208,
+          "root_researches": 8,
+          "root_full_searches": 23
+        }
+      }
+    },
+    {
+      "id": "promotion",
+      "group": "existing",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 0.755,
+          "nodes": 181,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 21
+        },
+        "screen": {
+          "elapsed_ms": 0.702,
+          "nodes": 172,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 5,
+          "root_researches": 1,
+          "root_full_searches": 16
+        },
+        "full-probe": {
+          "elapsed_ms": 0.797,
+          "nodes": 188,
+          "probe_nodes": 7,
+          "probe_ms": 0.006,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 21
+        },
+        "probe": {
+          "elapsed_ms": 0.751,
+          "nodes": 179,
+          "probe_nodes": 7,
+          "probe_ms": 0.006,
+          "root_exclusions": 5,
+          "root_researches": 1,
+          "root_full_searches": 16
+        }
+      }
+    },
+    {
+      "id": "holdout-pin-and-drop",
+      "group": "replicate_fixture",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 21.466,
+          "nodes": 4645,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "screen": {
+          "elapsed_ms": 8.369,
+          "nodes": 1556,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 208,
+          "root_researches": 8,
+          "root_full_searches": 23
+        },
+        "full-probe": {
+          "elapsed_ms": 21.166,
+          "nodes": 4722,
+          "probe_nodes": 77,
+          "probe_ms": 0.071,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 231
+        },
+        "probe": {
+          "elapsed_ms": 7.479,
+          "nodes": 1630,
+          "probe_nodes": 77,
+          "probe_ms": 0.07,
+          "root_exclusions": 208,
+          "root_researches": 8,
+          "root_full_searches": 23
+        }
+      }
+    },
+    {
+      "id": "holdout-random-0-7",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 36.645,
+          "nodes": 5396,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 120
+        },
+        "screen": {
+          "elapsed_ms": 14.27,
+          "nodes": 2390,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 100,
+          "root_researches": 5,
+          "root_full_searches": 20
+        },
+        "full-probe": {
+          "elapsed_ms": 33.175,
+          "nodes": 5436,
+          "probe_nodes": 40,
+          "probe_ms": 0.051,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 120
+        },
+        "probe": {
+          "elapsed_ms": 16.853,
+          "nodes": 2890,
+          "probe_nodes": 40,
+          "probe_ms": 0.052,
+          "root_exclusions": 94,
+          "root_researches": 11,
+          "root_full_searches": 26
+        }
+      }
+    },
+    {
+      "id": "holdout-random-0-16",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 29.972,
+          "nodes": 4796,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 87
+        },
+        "screen": {
+          "elapsed_ms": 10.853,
+          "nodes": 1647,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 69,
+          "root_researches": 3,
+          "root_full_searches": 18
+        },
+        "full-probe": {
+          "elapsed_ms": 27.583,
+          "nodes": 4825,
+          "probe_nodes": 29,
+          "probe_ms": 0.041,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 87
+        },
+        "probe": {
+          "elapsed_ms": 12.632,
+          "nodes": 1923,
+          "probe_nodes": 29,
+          "probe_ms": 0.041,
+          "root_exclusions": 67,
+          "root_researches": 5,
+          "root_full_searches": 20
+        }
+      }
+    },
+    {
+      "id": "holdout-random-0-25",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 36.116,
+          "nodes": 4529,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 114
+        },
+        "screen": {
+          "elapsed_ms": 16.483,
+          "nodes": 2665,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 96,
+          "root_researches": 3,
+          "root_full_searches": 18
+        },
+        "full-probe": {
+          "elapsed_ms": 29.351,
+          "nodes": 4567,
+          "probe_nodes": 38,
+          "probe_ms": 0.046,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 114
+        },
+        "probe": {
+          "elapsed_ms": 15.571,
+          "nodes": 2920,
+          "probe_nodes": 38,
+          "probe_ms": 0.046,
+          "root_exclusions": 90,
+          "root_researches": 9,
+          "root_full_searches": 24
+        }
+      }
+    },
+    {
+      "id": "holdout-random-1-2",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 19.455,
+          "nodes": 3346,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 90
+        },
+        "screen": {
+          "elapsed_ms": 7.607,
+          "nodes": 1396,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 75,
+          "root_researches": 0,
+          "root_full_searches": 15
+        },
+        "full-probe": {
+          "elapsed_ms": 21.86,
+          "nodes": 3376,
+          "probe_nodes": 30,
+          "probe_ms": 0.038,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 90
+        },
+        "probe": {
+          "elapsed_ms": 7.596,
+          "nodes": 1426,
+          "probe_nodes": 30,
+          "probe_ms": 0.036,
+          "root_exclusions": 75,
+          "root_researches": 0,
+          "root_full_searches": 15
+        }
+      }
+    },
+    {
+      "id": "holdout-random-1-11",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 13.632,
+          "nodes": 2404,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 72
+        },
+        "screen": {
+          "elapsed_ms": 6.301,
+          "nodes": 1093,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 57,
+          "root_researches": 0,
+          "root_full_searches": 15
+        },
+        "full-probe": {
+          "elapsed_ms": 13.299,
+          "nodes": 2428,
+          "probe_nodes": 24,
+          "probe_ms": 0.028,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 72
+        },
+        "probe": {
+          "elapsed_ms": 6.314,
+          "nodes": 1117,
+          "probe_nodes": 24,
+          "probe_ms": 0.028,
+          "root_exclusions": 57,
+          "root_researches": 0,
+          "root_full_searches": 15
+        }
+      }
+    },
+    {
+      "id": "holdout-random-1-20",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 12.548,
+          "nodes": 2419,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 75
+        },
+        "screen": {
+          "elapsed_ms": 6.585,
+          "nodes": 1146,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 59,
+          "root_researches": 1,
+          "root_full_searches": 16
+        },
+        "full-probe": {
+          "elapsed_ms": 12.095,
+          "nodes": 2444,
+          "probe_nodes": 25,
+          "probe_ms": 0.031,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 75
+        },
+        "probe": {
+          "elapsed_ms": 5.772,
+          "nodes": 1171,
+          "probe_nodes": 25,
+          "probe_ms": 0.03,
+          "root_exclusions": 59,
+          "root_researches": 1,
+          "root_full_searches": 16
+        }
+      }
+    },
+    {
+      "id": "holdout-random-1-29",
+      "group": "heldout",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 20.737,
+          "nodes": 3892,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 75
+        },
+        "screen": {
+          "elapsed_ms": 9.648,
+          "nodes": 1729,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 57,
+          "root_researches": 3,
+          "root_full_searches": 18
+        },
+        "full-probe": {
+          "elapsed_ms": 20.244,
+          "nodes": 3917,
+          "probe_nodes": 25,
+          "probe_ms": 0.035,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 75
+        },
+        "probe": {
+          "elapsed_ms": 11.327,
+          "nodes": 2118,
+          "probe_nodes": 25,
+          "probe_ms": 0.034,
+          "root_exclusions": 53,
+          "root_researches": 7,
+          "root_full_searches": 22
+        }
+      }
+    },
+    {
+      "id": "recapture-trap",
+      "group": "tactical",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 4.002,
+          "nodes": 769,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 48
+        },
+        "screen": {
+          "elapsed_ms": 2.623,
+          "nodes": 550,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 31,
+          "root_researches": 2,
+          "root_full_searches": 17
+        },
+        "full-probe": {
+          "elapsed_ms": 3.754,
+          "nodes": 785,
+          "probe_nodes": 16,
+          "probe_ms": 0.014,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 48
+        },
+        "probe": {
+          "elapsed_ms": 2.829,
+          "nodes": 566,
+          "probe_nodes": 16,
+          "probe_ms": 0.014,
+          "root_exclusions": 31,
+          "root_researches": 2,
+          "root_full_searches": 17
+        }
+      }
+    },
+    {
+      "id": "mate-one",
+      "group": "tactical",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 3.58,
+          "nodes": 736,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 63
+        },
+        "screen": {
+          "elapsed_ms": 3.507,
+          "nodes": 720,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 41,
+          "root_researches": 7,
+          "root_full_searches": 22
+        },
+        "full-probe": {
+          "elapsed_ms": 4.306,
+          "nodes": 757,
+          "probe_nodes": 21,
+          "probe_ms": 0.016,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 63
+        },
+        "probe": {
+          "elapsed_ms": 3.485,
+          "nodes": 741,
+          "probe_nodes": 21,
+          "probe_ms": 0.016,
+          "root_exclusions": 41,
+          "root_researches": 7,
+          "root_full_searches": 22
+        }
+      }
+    },
+    {
+      "id": "flat-ties",
+      "group": "tactical",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 0.737,
+          "nodes": 122,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 15
+        },
+        "screen": {
+          "elapsed_ms": 0.622,
+          "nodes": 122,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 15
+        },
+        "full-probe": {
+          "elapsed_ms": 0.608,
+          "nodes": 127,
+          "probe_nodes": 5,
+          "probe_ms": 0.004,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 15
+        },
+        "probe": {
+          "elapsed_ms": 0.725,
+          "nodes": 127,
+          "probe_nodes": 5,
+          "probe_ms": 0.004,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 15
+        }
+      }
+    },
+    {
+      "id": "fewer-than-five",
+      "group": "tactical",
+      "depth": 3,
+      "variants": {
+        "full": {
+          "elapsed_ms": 0.284,
+          "nodes": 54,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 9
+        },
+        "screen": {
+          "elapsed_ms": 0.254,
+          "nodes": 54,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 9
+        },
+        "full-probe": {
+          "elapsed_ms": 0.261,
+          "nodes": 57,
+          "probe_nodes": 3,
+          "probe_ms": 0.003,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 9
+        },
+        "probe": {
+          "elapsed_ms": 0.527,
+          "nodes": 57,
+          "probe_nodes": 3,
+          "probe_ms": 0.003,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 9
+        }
+      }
+    },
+    {
+      "id": "recapture-trap-d4",
+      "group": "deeper",
+      "depth": 4,
+      "variants": {
+        "full": {
+          "elapsed_ms": 16.021,
+          "nodes": 3228,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 64
+        },
+        "screen": {
+          "elapsed_ms": 10.257,
+          "nodes": 2067,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 37,
+          "root_researches": 7,
+          "root_full_searches": 27
+        },
+        "full-probe": {
+          "elapsed_ms": 17.542,
+          "nodes": 3244,
+          "probe_nodes": 16,
+          "probe_ms": 0.015,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 64
+        },
+        "probe": {
+          "elapsed_ms": 10.539,
+          "nodes": 2083,
+          "probe_nodes": 16,
+          "probe_ms": 0.015,
+          "root_exclusions": 37,
+          "root_researches": 7,
+          "root_full_searches": 27
+        }
+      }
+    },
+    {
+      "id": "flat-ties-d4",
+      "group": "deeper",
+      "depth": 4,
+      "variants": {
+        "full": {
+          "elapsed_ms": 1.478,
+          "nodes": 406,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 20
+        },
+        "screen": {
+          "elapsed_ms": 1.631,
+          "nodes": 406,
+          "probe_nodes": 0,
+          "probe_ms": 0.0,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 20
+        },
+        "full-probe": {
+          "elapsed_ms": 1.751,
+          "nodes": 411,
+          "probe_nodes": 5,
+          "probe_ms": 0.004,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 20
+        },
+        "probe": {
+          "elapsed_ms": 1.474,
+          "nodes": 411,
+          "probe_nodes": 5,
+          "probe_ms": 0.004,
+          "root_exclusions": 0,
+          "root_researches": 0,
+          "root_full_searches": 20
+        }
+      }
+    }
+  ],
+  "group_label_note": "Index12 is a duplicate fixture, relabeled replicate_fixture. No timing or result values changed."
+}

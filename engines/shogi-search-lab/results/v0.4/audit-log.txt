@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "certificates": 4150,
+  "proven_exclusions": 3914,
+  "pv_endpoints": 216,
+  "detailed_trace_events": 1708,
+  "retained_candidates": [
+    {
+      "rank": 1,
+      "move": "7g7f",
+      "warm_nodes": 1788,
+      "cold_nodes": 4492
+    },
+    {
+      "rank": 2,
+      "move": "1g1f",
+      "warm_nodes": 1591,
+      "cold_nodes": 3858
+    },
+    {
+      "rank": 3,
+      "move": "1i1h",
+      "warm_nodes": 1491,
+      "cold_nodes": 3466
+    },
+    {
+      "rank": 4,
+      "move": "2g2f",
+      "warm_nodes": 1542,
+      "cold_nodes": 3736
+    },
+    {
+      "rank": 5,
+      "move": "2h1h",
+      "warm_nodes": 1525,
+      "cold_nodes": 3646
+    }
+  ],
+  "shadow_pruning": {
+    "fewest_replies_keep5": {
+      "cases": 22,
+      "cases_losing_best_value": 5,
+      "cases_missing_top5": 16
+    },
+    "depth1_keep5": {
+      "cases": 22,
+      "cases_losing_best_value": 3,
+      "cases_missing_top5": 17
+    },
+    "depth1_margin200": {
+      "cases": 22,
+      "cases_losing_best_value": 0,
+      "cases_missing_top5": 1
+    }
+  }
+}

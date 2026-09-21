@@ -1,0 +1,4063 @@
+[
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 114339,
+    "leaves": 100115,
+    "terminals": 0,
+    "cutoffs": 10486,
+    "skipped_siblings": 305669,
+    "elapsed_ms": 200.497,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.228,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.233,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.699,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 8656,
+        "elapsed_ms": 15.896,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 126257,
+    "leaves": 110268,
+    "terminals": 0,
+    "cutoffs": 11931,
+    "skipped_siblings": 360760,
+    "elapsed_ms": 200.364,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.153,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.234,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.781,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 3091,
+        "elapsed_ms": 7.107,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 129232,
+    "leaves": 112942,
+    "terminals": 0,
+    "cutoffs": 12131,
+    "skipped_siblings": 366939,
+    "elapsed_ms": 200.401,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.141,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.199,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.576,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 3091,
+        "elapsed_ms": 6.721,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 126950,
+    "leaves": 110608,
+    "terminals": 0,
+    "cutoffs": 12313,
+    "skipped_siblings": 366068,
+    "elapsed_ms": 200.359,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.113,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.224,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.596,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 8656,
+        "elapsed_ms": 15.869,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 131372,
+    "leaves": 114545,
+    "terminals": 0,
+    "cutoffs": 12647,
+    "skipped_siblings": 376245,
+    "elapsed_ms": 200.371,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.157,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.2,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.617,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 8656,
+        "elapsed_ms": 16.305,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "initial",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "7g7f",
+    "nodes": 95457,
+    "leaves": 82904,
+    "terminals": 0,
+    "cutoffs": 9546,
+    "skipped_siblings": 291853,
+    "elapsed_ms": 200.412,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "7g7f",
+      "1a1b",
+      "1g1f",
+      "1c1d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 31,
+        "elapsed_ms": 0.141,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 90,
+        "elapsed_ms": 0.202,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 1060,
+        "elapsed_ms": 1.581,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "7g7f",
+          "4c4d",
+          "8h4d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 3091,
+        "elapsed_ms": 7.286,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "7g7f",
+          "1a1b",
+          "1g1f",
+          "1c1d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "8h2b+",
+    "nodes": 64226,
+    "leaves": 57514,
+    "terminals": 0,
+    "cutoffs": 4957,
+    "skipped_siblings": 402022,
+    "elapsed_ms": 200.58,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "1g1f",
+      "1a1b"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.124,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.354,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 2.975,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 19.387,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "8h2b+",
+    "nodes": 73626,
+    "leaves": 63101,
+    "terminals": 0,
+    "cutoffs": 8647,
+    "skipped_siblings": 656565,
+    "elapsed_ms": 200.393,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "B*1e",
+      "2c2d",
+      "2e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.273,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.675,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 3.61,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 22.929,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 200,
+        "nodes": 59722,
+        "elapsed_ms": 134.226,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "B*1e",
+          "2c2d",
+          "2e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "8h2b+",
+    "nodes": 70691,
+    "leaves": 61588,
+    "terminals": 0,
+    "cutoffs": 7255,
+    "skipped_siblings": 558904,
+    "elapsed_ms": 200.415,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "B*1e",
+      "2c2d",
+      "2e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.135,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.41,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 8.162,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 23.609,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 200,
+        "nodes": 59722,
+        "elapsed_ms": 142.687,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "B*1e",
+          "2c2d",
+          "2e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "8h2b+",
+    "nodes": 88655,
+    "leaves": 79534,
+    "terminals": 0,
+    "cutoffs": 6985,
+    "skipped_siblings": 512187,
+    "elapsed_ms": 200.435,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "B*1e",
+      "2c2d",
+      "2e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.106,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.379,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 2.936,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 19.245,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 200,
+        "nodes": 59722,
+        "elapsed_ms": 131.771,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "B*1e",
+          "2c2d",
+          "2e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "8h2b+",
+    "nodes": 83967,
+    "leaves": 75263,
+    "terminals": 0,
+    "cutoffs": 6626,
+    "skipped_siblings": 490937,
+    "elapsed_ms": 200.401,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "B*1e",
+      "2c2d",
+      "2e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.149,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.361,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 3.03,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 19.976,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 200,
+        "nodes": 59722,
+        "elapsed_ms": 136.081,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "B*1e",
+          "2c2d",
+          "2e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-6",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "8h2b+",
+    "nodes": 73117,
+    "leaves": 62814,
+    "terminals": 0,
+    "cutoffs": 8431,
+    "skipped_siblings": 641269,
+    "elapsed_ms": 200.454,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "8h2b+",
+      "3a2b",
+      "B*1e",
+      "2c2d",
+      "2e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 1800,
+        "nodes": 42,
+        "elapsed_ms": 0.138,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8h2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 114,
+        "elapsed_ms": 0.371,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "8h2b+",
+          "3a2b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 0,
+        "nodes": 1598,
+        "elapsed_ms": 2.985,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 4198,
+        "elapsed_ms": 20.585,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 200,
+        "nodes": 59722,
+        "elapsed_ms": 137.015,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "8h2b+",
+          "3a2b",
+          "B*1e",
+          "2c2d",
+          "2e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 57274,
+    "leaves": 48584,
+    "terminals": 0,
+    "cutoffs": 7355,
+    "skipped_siblings": 706096,
+    "elapsed_ms": 200.461,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.163,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 0.637,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 3.778,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12199,
+        "elapsed_ms": 47.191,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 45341,
+    "leaves": 37411,
+    "terminals": 0,
+    "cutoffs": 6953,
+    "skipped_siblings": 654438,
+    "elapsed_ms": 200.896,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.131,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 3.819,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 3.778,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12107,
+        "elapsed_ms": 66.425,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 64423,
+    "leaves": 55321,
+    "terminals": 0,
+    "cutoffs": 7537,
+    "skipped_siblings": 728951,
+    "elapsed_ms": 200.391,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.125,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 0.656,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 4.446,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12107,
+        "elapsed_ms": 44.677,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 53887,
+    "leaves": 45416,
+    "terminals": 0,
+    "cutoffs": 7246,
+    "skipped_siblings": 692201,
+    "elapsed_ms": 200.492,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.141,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 0.733,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 4.406,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12199,
+        "elapsed_ms": 51.945,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 59354,
+    "leaves": 50528,
+    "terminals": 0,
+    "cutoffs": 7423,
+    "skipped_siblings": 714780,
+    "elapsed_ms": 200.395,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.16,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 0.641,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 5.662,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12199,
+        "elapsed_ms": 44.579,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-20",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -1350,
+    "bestmove": "2c2b+",
+    "nodes": 46441,
+    "leaves": 38452,
+    "terminals": 0,
+    "cutoffs": 6983,
+    "skipped_siblings": 658237,
+    "elapsed_ms": 200.367,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "2c2b+",
+      "B*9e",
+      "5i4h",
+      "3c2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 650,
+        "nodes": 40,
+        "elapsed_ms": 0.121,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "2c2b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1350,
+        "nodes": 155,
+        "elapsed_ms": 0.648,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "2c2b+",
+          "3c2d"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 650,
+        "nodes": 1600,
+        "elapsed_ms": 4.38,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1350,
+        "nodes": 12107,
+        "elapsed_ms": 59.09,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "2c2b+",
+          "B*9e",
+          "5i4h",
+          "3c2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 81381,
+    "leaves": 77219,
+    "terminals": 0,
+    "cutoffs": 3428,
+    "skipped_siblings": 338958,
+    "elapsed_ms": 200.427,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.282,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 2.263,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 16.791,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 68954,
+    "leaves": 64731,
+    "terminals": 0,
+    "cutoffs": 3507,
+    "skipped_siblings": 342233,
+    "elapsed_ms": 200.36,
+    "pv_priority_nodes": 6,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.231,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 2.592,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 19.335,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 89982,
+    "leaves": 84628,
+    "terminals": 0,
+    "cutoffs": 4466,
+    "skipped_siblings": 439952,
+    "elapsed_ms": 200.392,
+    "pv_priority_nodes": 6,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.283,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 2.014,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 15.475,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 82503,
+    "leaves": 78310,
+    "terminals": 0,
+    "cutoffs": 3451,
+    "skipped_siblings": 341767,
+    "elapsed_ms": 200.439,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.302,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 1.963,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 16.1,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 84170,
+    "leaves": 79947,
+    "terminals": 0,
+    "cutoffs": 3469,
+    "skipped_siblings": 343915,
+    "elapsed_ms": 200.364,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.228,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 3.759,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 22.455,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-36",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 1100,
+    "bestmove": "R*4a",
+    "nodes": 83132,
+    "leaves": 78244,
+    "terminals": 0,
+    "cutoffs": 4053,
+    "skipped_siblings": 396674,
+    "elapsed_ms": 200.373,
+    "pv_priority_nodes": 6,
+    "pv": [
+      "R*4a",
+      "4b5a",
+      "4a5a+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 86,
+        "elapsed_ms": 0.313,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 200,
+        "nodes": 312,
+        "elapsed_ms": 2.092,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "3f5d",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 1100,
+        "nodes": 6505,
+        "elapsed_ms": 21.078,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "R*4a",
+          "4b5a",
+          "4a5a+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "3f1h",
+    "nodes": 62956,
+    "leaves": 56284,
+    "terminals": 1,
+    "cutoffs": 5971,
+    "skipped_siblings": 654867,
+    "elapsed_ms": 200.382,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "3f1h",
+      "1a1b",
+      "1h5d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.3,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 4.257,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6619,
+        "elapsed_ms": 18.669,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f1h",
+          "1a1b",
+          "1h5d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "P*2e",
+    "nodes": 37403,
+    "leaves": 31546,
+    "terminals": 1,
+    "cutoffs": 5424,
+    "skipped_siblings": 621309,
+    "elapsed_ms": 200.375,
+    "pv_priority_nodes": 6,
+    "pv": [
+      "P*2e",
+      "2d1d",
+      "3f5d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.222,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 2.073,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6179,
+        "elapsed_ms": 17.189,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "P*2e",
+          "2d1d",
+          "3f5d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": -450,
+    "bestmove": "P*2h",
+    "nodes": 48283,
+    "leaves": 40350,
+    "terminals": 3,
+    "cutoffs": 7344,
+    "skipped_siblings": 858499,
+    "elapsed_ms": 200.348,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "P*2h",
+      "P*2f",
+      "1g1f",
+      "2f2g+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.242,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 1.824,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6179,
+        "elapsed_ms": 14.205,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "P*2e",
+          "2d1d",
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -450,
+        "nodes": 40888,
+        "elapsed_ms": 181.085,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "P*2h",
+          "P*2f",
+          "1g1f",
+          "2f2g+"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "3f1h",
+    "nodes": 53907,
+    "leaves": 48030,
+    "terminals": 1,
+    "cutoffs": 5287,
+    "skipped_siblings": 593175,
+    "elapsed_ms": 200.363,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "3f1h",
+      "1a1b",
+      "1h5d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.32,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 2.164,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6619,
+        "elapsed_ms": 19.499,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f1h",
+          "1a1b",
+          "1h5d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "3f1h",
+    "nodes": 59709,
+    "leaves": 53279,
+    "terminals": 1,
+    "cutoffs": 5761,
+    "skipped_siblings": 636089,
+    "elapsed_ms": 200.419,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "3f1h",
+      "1a1b",
+      "1h5d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.233,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 1.848,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6619,
+        "elapsed_ms": 23.057,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f1h",
+          "1a1b",
+          "1h5d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "gokigen-52",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "P*2e",
+    "nodes": 46972,
+    "leaves": 39551,
+    "terminals": 1,
+    "cutoffs": 6849,
+    "skipped_siblings": 801800,
+    "elapsed_ms": 200.416,
+    "pv_priority_nodes": 6,
+    "pv": [
+      "P*2e",
+      "2d1d",
+      "3f5d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 200,
+        "nodes": 87,
+        "elapsed_ms": 0.216,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3f5d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -200,
+        "nodes": 465,
+        "elapsed_ms": 1.923,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*2e",
+          "3c2e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6179,
+        "elapsed_ms": 14.697,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "P*2e",
+          "2d1d",
+          "3f5d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "B*1e",
+    "nodes": 78536,
+    "leaves": 71354,
+    "terminals": 0,
+    "cutoffs": 6124,
+    "skipped_siblings": 317290,
+    "elapsed_ms": 200.467,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "B*1e",
+      "2c2d",
+      "1e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.258,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 4.752,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 14.993,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "B*1e",
+    "nodes": 79568,
+    "leaves": 64793,
+    "terminals": 0,
+    "cutoffs": 13674,
+    "skipped_siblings": 690369,
+    "elapsed_ms": 200.384,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "B*1e",
+      "2a3c",
+      "1e2f",
+      "1a1b"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.198,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 1.229,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 13.945,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 18074,
+        "elapsed_ms": 63.262,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "B*1e",
+          "2a3c",
+          "1e2f",
+          "1a1b"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "B*1e",
+    "nodes": 72750,
+    "leaves": 58254,
+    "terminals": 0,
+    "cutoffs": 13486,
+    "skipped_siblings": 680234,
+    "elapsed_ms": 200.37,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "B*1e",
+      "2a3c",
+      "1e2f",
+      "1a1b"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.221,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 2.051,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 17.461,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 18074,
+        "elapsed_ms": 63.434,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "B*1e",
+          "2a3c",
+          "1e2f",
+          "1a1b"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "B*1e",
+    "nodes": 94973,
+    "leaves": 86325,
+    "terminals": 0,
+    "cutoffs": 7381,
+    "skipped_siblings": 383068,
+    "elapsed_ms": 200.389,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "B*1e",
+      "2c2d",
+      "1e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.182,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 1.028,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 17.078,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "time_limit",
+    "score": 200,
+    "bestmove": "B*1e",
+    "nodes": 85762,
+    "leaves": 77869,
+    "terminals": 0,
+    "cutoffs": 6744,
+    "skipped_siblings": 349410,
+    "elapsed_ms": 200.368,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "B*1e",
+      "2c2d",
+      "1e2d"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.214,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 1.024,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 13.033,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "bishop-exchange",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "time_limit",
+    "score": 0,
+    "bestmove": "B*1e",
+    "nodes": 83119,
+    "leaves": 67433,
+    "terminals": 0,
+    "cutoffs": 14541,
+    "skipped_siblings": 724974,
+    "elapsed_ms": 200.455,
+    "pv_priority_nodes": 10,
+    "pv": [
+      "B*1e",
+      "2a3c",
+      "1e2f",
+      "1a1b"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 0,
+        "nodes": 78,
+        "elapsed_ms": 0.228,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "1g1f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 0,
+        "nodes": 229,
+        "elapsed_ms": 0.917,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "1g1f",
+          "1a1b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 200,
+        "nodes": 6284,
+        "elapsed_ms": 12.589,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "B*1e",
+          "2c2d",
+          "1e2d"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 0,
+        "nodes": 18074,
+        "elapsed_ms": 59.51,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "B*1e",
+          "2a3c",
+          "1e2f",
+          "1a1b"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 79792,
+    "leaves": 59737,
+    "terminals": 0,
+    "cutoffs": 16710,
+    "skipped_siblings": 913754,
+    "elapsed_ms": 200.362,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.177,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.308,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 909,
+        "elapsed_ms": 1.673,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3748,
+        "elapsed_ms": 9.681,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 16360,
+        "elapsed_ms": 42.4,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 81076,
+    "leaves": 60429,
+    "terminals": 16,
+    "cutoffs": 17063,
+    "skipped_siblings": 934046,
+    "elapsed_ms": 200.379,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.202,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.459,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 901,
+        "elapsed_ms": 1.435,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3541,
+        "elapsed_ms": 8.499,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 15823,
+        "elapsed_ms": 39.108,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 79053,
+    "leaves": 59107,
+    "terminals": 16,
+    "cutoffs": 16532,
+    "skipped_siblings": 892454,
+    "elapsed_ms": 200.393,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.168,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.303,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 901,
+        "elapsed_ms": 1.905,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3541,
+        "elapsed_ms": 9.211,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 15823,
+        "elapsed_ms": 38.74,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 72886,
+    "leaves": 53567,
+    "terminals": 0,
+    "cutoffs": 16123,
+    "skipped_siblings": 867647,
+    "elapsed_ms": 200.378,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.357,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.319,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 909,
+        "elapsed_ms": 1.568,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3748,
+        "elapsed_ms": 9.498,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 16360,
+        "elapsed_ms": 51.847,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 79655,
+    "leaves": 59654,
+    "terminals": 0,
+    "cutoffs": 16670,
+    "skipped_siblings": 912808,
+    "elapsed_ms": 200.697,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.162,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.288,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 909,
+        "elapsed_ms": 1.473,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3748,
+        "elapsed_ms": 8.865,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 16360,
+        "elapsed_ms": 42.159,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "pin-and-drop",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 5,
+    "stop_reason": "time_limit",
+    "score": -550,
+    "bestmove": "5g5h",
+    "nodes": 69663,
+    "leaves": 51300,
+    "terminals": 16,
+    "cutoffs": 15294,
+    "skipped_siblings": 808762,
+    "elapsed_ms": 200.409,
+    "pv_priority_nodes": 15,
+    "pv": [
+      "5g5h",
+      "5a1a",
+      "5h4g",
+      "1a1g+",
+      "4g3f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -350,
+        "nodes": 78,
+        "elapsed_ms": 0.151,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5g5f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -550,
+        "nodes": 179,
+        "elapsed_ms": 0.351,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "P*5b",
+          "5a5b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -350,
+        "nodes": 901,
+        "elapsed_ms": 1.389,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -550,
+        "nodes": 3541,
+        "elapsed_ms": 9.46,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": -550,
+        "nodes": 15823,
+        "elapsed_ms": 60.062,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "5g5h",
+          "5a1a",
+          "5h4g",
+          "1a1g+",
+          "4g3f"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_plain",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 18.506,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.073,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.018,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.096,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.147,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 0.673,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.266,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 4.905,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 11.324,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_pv",
+    "repeat": 1,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 20.784,
+    "pv_priority_nodes": 28,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.06,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.037,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.149,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.18,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 0.574,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.443,
+        "pv_priority_nodes": 5,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 6.34,
+        "pv_priority_nodes": 6,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 11.998,
+        "pv_priority_nodes": 7,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_pv",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 25.971,
+    "pv_priority_nodes": 28,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.065,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.034,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.08,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.159,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 0.683,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.288,
+        "pv_priority_nodes": 5,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 6.279,
+        "pv_priority_nodes": 6,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 17.378,
+        "pv_priority_nodes": 7,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_plain",
+    "repeat": 2,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 18.989,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.104,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.019,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.098,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.144,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 0.575,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.32,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 5.249,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 11.476,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_plain",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": false,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 35.926,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.09,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.019,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.096,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.142,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 1.481,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.256,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 11.51,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 19.291,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  },
+  {
+    "experiment": "time_200ms",
+    "position": "promotion",
+    "mode": "id_pv",
+    "repeat": 3,
+    "algorithm": "ordered",
+    "depth": 8,
+    "complete": true,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 8,
+    "stop_reason": "depth_limit",
+    "score": 550,
+    "bestmove": "9c9b+",
+    "nodes": 22467,
+    "leaves": 13253,
+    "terminals": 0,
+    "cutoffs": 7509,
+    "skipped_siblings": 34175,
+    "elapsed_ms": 19.386,
+    "pv_priority_nodes": 28,
+    "pv": [
+      "9c9b+",
+      "5a4a",
+      "5i4h",
+      "4a3a",
+      "4h3g",
+      "3a2a",
+      "3g2f",
+      "2a1a"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 550,
+        "nodes": 8,
+        "elapsed_ms": 0.108,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "9c9b+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": 550,
+        "nodes": 19,
+        "elapsed_ms": 0.018,
+        "pv_priority_nodes": 1,
+        "pv": [
+          "9c9b+",
+          "5a4a"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": 550,
+        "nodes": 82,
+        "elapsed_ms": 0.112,
+        "pv_priority_nodes": 2,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": 550,
+        "nodes": 174,
+        "elapsed_ms": 0.142,
+        "pv_priority_nodes": 3,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a"
+        ]
+      },
+      {
+        "depth": 5,
+        "score": 550,
+        "nodes": 736,
+        "elapsed_ms": 0.593,
+        "pv_priority_nodes": 4,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g"
+        ]
+      },
+      {
+        "depth": 6,
+        "score": 550,
+        "nodes": 1488,
+        "elapsed_ms": 1.264,
+        "pv_priority_nodes": 5,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a"
+        ]
+      },
+      {
+        "depth": 7,
+        "score": 550,
+        "nodes": 6682,
+        "elapsed_ms": 5.334,
+        "pv_priority_nodes": 6,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f"
+        ]
+      },
+      {
+        "depth": 8,
+        "score": 550,
+        "nodes": 13278,
+        "elapsed_ms": 11.81,
+        "pv_priority_nodes": 7,
+        "pv": [
+          "9c9b+",
+          "5a4a",
+          "5i4h",
+          "4a3a",
+          "4h3g",
+          "3a2a",
+          "3g2f",
+          "2a1a"
+        ]
+      }
+    ]
+  }
+]

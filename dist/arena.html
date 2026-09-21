@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+ <meta name="theme-color" content="#123e3b"><meta name="description" content="自作将棋AIとやねうら王の実対局を、盤面・棋譜・読み筋で観戦。双方1手3秒。">
+ <title>AI対局観戦 — 中飛車研究室</title><link rel="icon" href="./icon.svg"><link rel="stylesheet" href="./arena.css"><script type="module" src="./arena.js"></script>
+</head>
+<body>
+ <header class="mast"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">飛</span><span>中飛車研究室</span></a><a class="back-link" href="./index.html">練習盤へ</a></header>
+ <main>
+  <div class="arena-heading"><div><p class="eyebrow">AI MATCH ROOM</p><h1>自作AI × やねうら王</h1></div><div class="heading-actions"><span class="record-badge">実対局の記録</span><button id="quick-play" disabled>▶ 再生</button></div></div>
+  <div class="match-strip"><label>対局 <select id="game-select" disabled><option>読み込み中</option></select></label><p>平手 <span>／</span> 双方1手3秒 <span>／</span> 先読みなし</p></div>
+  <p id="error" class="error" role="alert" hidden></p>
+  <div class="arena-layout">
+   <section class="board-panel" aria-label="観戦盤">
+    <div class="player-row" id="top-player"></div><div class="hand-row"><span class="hand-title">持ち駒</span><div id="top-hand" class="hand"></div></div>
+    <div class="board-wrap"><div id="files" class="files" aria-hidden="true"></div><div class="board-with-ranks"><div id="board" class="board" role="grid" aria-label="将棋盤"></div><div id="ranks" class="ranks" aria-hidden="true"></div></div></div>
+    <div class="hand-row bottom-hand"><span class="hand-title">持ち駒</span><div id="bottom-hand" class="hand"></div></div><div class="player-row" id="bottom-player"></div>
+    <div class="position-caption"><span id="position-label" role="status" aria-live="polite">開始局面</span><button id="flip" class="text-button">盤面反転</button></div>
+    <div id="variation-bar" class="variation-bar" hidden><strong id="variation-label"></strong><div class="variation-controls"><button id="pv-back" aria-label="読みを一手戻す">←</button><button id="pv-next" aria-label="読みを一手進める">→</button><button id="return-record">実対局に戻る</button></div></div>
+    <div class="playback">
+     <div class="progress-label"><span id="ply-count">0手目</span><span id="total-plies"></span></div>
+     <input id="timeline" type="range" min="0" max="0" value="0" aria-label="棋譜の手数" disabled>
+     <div class="transport"><button id="first" aria-label="開始局面へ" title="開始局面へ">|←</button><button id="previous" aria-label="一手戻る">←</button><button id="play" class="primary" disabled>▶ 観戦を再生</button><button id="next" aria-label="一手進む">→</button><button id="last" aria-label="最終局面へ" title="最終局面へ">→|</button></div>
+     <div class="playback-options"><label>再生間隔 <select id="speed"><option value="3000">3秒 / 手</option><option value="1000">1秒 / 手</option><option value="500">0.5秒 / 手</option><option value="actual">実際の思考時間</option></select></label><span>← → キーでも移動</span></div>
+    </div>
+    <div id="result" class="result" role="status" hidden></div>
+   </section>
+   <aside class="side-panel">
+    <section class="reading-section" aria-labelledby="reading-heading"><div class="section-heading"><h2 id="reading-heading">この手の読み</h2><span id="reading-engine" class="small-tag"></span></div><p id="reading-move" class="reading-move">初期局面から観戦できます。</p><div id="metrics" class="metrics"></div><p id="score-note" class="muted"></p><div id="candidates" class="candidates"></div><p id="reading-note" class="muted">再生すると、指した時点の評価と読み筋を表示します。</p></section>
+    <section class="record-section" aria-labelledby="record-heading"><div class="section-heading"><h2 id="record-heading">棋譜</h2><button id="download" class="text-button" disabled>棋譜を保存</button></div><div class="record-head"><span>手数・指し手</span><span>思考時間</span></div><ol id="move-list" class="move-list" aria-label="指し手一覧"></ol></section>
+   </aside>
+  </div>
+  <details class="conditions"><summary>対局条件・エンジンについて</summary><div class="conditions-body"><p>実行環境で2つのエンジンを対局させた記録です。このページは棋譜の再生用で、ページを開いている間に新しい対局を計算するものではありません。再生間隔を変えても、対局時の思考時間は変わりません。</p><dl><dt>自作AI</dt><dd>Shogi Search Lab v0.4。C++の自作探索＋駒得評価。上位5候補・探索済み部分木を保持。標準の5位境界による選別を使用。</dd><dt>対戦相手</dt><dd>やねうら王 NNUE KP256 6.03（WASM 0.1.2）。2019年の軽量評価関数。最新の大会版ではありません。</dd><dt>思考時間</dt><dd>双方3,000msの時間予算。早く詰みを発見した場合などは3秒未満で着手します。表示値は通信・処理の付随時間を含む実測です。厳密な切れ負け判定は行いません。</dd><dt>設定</dt><dd>各1スレッド、定跡なし、相手番の先読みなし。自作AIは最大8手・保持50,000ノード、やねうら王はHash 32MiB・MultiPV 1。自作AIの同点は元の実装どおりUSI文字列順。先後を入れ替えて2局。</dd><dt>終局</dt><dd>詰み、合法手なし、投了、千日手、連続王手の千日手で終了。入玉宣言は双方無効。256手で打ち切り。全着手と読み筋を独立した将棋ルール実装でも検査しています。</dd><dt>比較の範囲</dt><dd>C++とWASMの実行方式、評価関数、候補数が異なります。この2局は現在の動作を見る試験で、勝率や段級位を推定するものではありません。各エンジンの評価値を共通の形勢値として結びません。</dd></dl><p><a href="./arena-data.json" download>対局データ JSON</a> · <a href="./shogi-ai-source.zip" download>ソース・実行スクリプト</a> · <a href="./credits.html">エンジンとライセンス</a> · <a href="https://github.com/yaneurao/YaneuraOu">やねうら王 公式</a></p></div></details>
+ </main>
+</body></html>

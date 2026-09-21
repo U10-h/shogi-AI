@@ -1,0 +1,29 @@
+{
+  "games": [
+    {
+      "id": "game-1",
+      "plies": 76,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "game-2",
+      "plies": 79,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    }
+  ],
+  "moves": 155,
+  "pvLines": 444,
+  "pvMoves": 2220,
+  "sourceHashes": true,
+  "passed": true
+}

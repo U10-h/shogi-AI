@@ -1,0 +1,309 @@
+{
+  "status": "passed",
+  "full_reference_iterations_depth_1_to_3": 48,
+  "deeper_exhaustive_reference": {
+    "case": "initial",
+    "depth": 4,
+    "exhaustive_nodes": 746132,
+    "iterative_nodes": 4272,
+    "score": 0
+  },
+  "checks": [
+    {
+      "case": "initial",
+      "pv_order": false,
+      "depth": 3,
+      "score": 200,
+      "nodes": 1181
+    },
+    {
+      "case": "initial",
+      "pv_order": true,
+      "depth": 3,
+      "score": 200,
+      "nodes": 1181
+    },
+    {
+      "case": "gokigen-6",
+      "pv_order": false,
+      "depth": 3,
+      "score": 0,
+      "nodes": 1754
+    },
+    {
+      "case": "gokigen-6",
+      "pv_order": true,
+      "depth": 3,
+      "score": 0,
+      "nodes": 1754
+    },
+    {
+      "case": "gokigen-20",
+      "pv_order": false,
+      "depth": 3,
+      "score": 650,
+      "nodes": 1795
+    },
+    {
+      "case": "gokigen-20",
+      "pv_order": true,
+      "depth": 3,
+      "score": 650,
+      "nodes": 1795
+    },
+    {
+      "case": "gokigen-36",
+      "pv_order": false,
+      "depth": 3,
+      "score": 1100,
+      "nodes": 6903
+    },
+    {
+      "case": "gokigen-36",
+      "pv_order": true,
+      "depth": 3,
+      "score": 1100,
+      "nodes": 6903
+    },
+    {
+      "case": "gokigen-52",
+      "pv_order": false,
+      "depth": 3,
+      "score": 200,
+      "nodes": 7171
+    },
+    {
+      "case": "gokigen-52",
+      "pv_order": true,
+      "depth": 3,
+      "score": 200,
+      "nodes": 6731
+    },
+    {
+      "case": "bishop-exchange",
+      "pv_order": false,
+      "depth": 3,
+      "score": 200,
+      "nodes": 6591
+    },
+    {
+      "case": "bishop-exchange",
+      "pv_order": true,
+      "depth": 3,
+      "score": 200,
+      "nodes": 6591
+    },
+    {
+      "case": "pin-and-drop",
+      "pv_order": false,
+      "depth": 3,
+      "score": -350,
+      "nodes": 1166
+    },
+    {
+      "case": "pin-and-drop",
+      "pv_order": true,
+      "depth": 3,
+      "score": -350,
+      "nodes": 1158
+    },
+    {
+      "case": "promotion",
+      "pv_order": false,
+      "depth": 3,
+      "score": 550,
+      "nodes": 109
+    },
+    {
+      "case": "promotion",
+      "pv_order": true,
+      "depth": 3,
+      "score": 550,
+      "nodes": 109
+    },
+    {
+      "case": "initial",
+      "depth": 4,
+      "exhaustive_nodes": 746132,
+      "iterative_nodes": 4272,
+      "score": 0
+    }
+  ],
+  "interruptions": [
+    {
+      "algorithm": "ordered",
+      "depth": 8,
+      "complete": false,
+      "iterative": true,
+      "pv_order": true,
+      "has_result": false,
+      "completed_depth": -1,
+      "stop_reason": "node_limit",
+      "score": null,
+      "bestmove": null,
+      "nodes": 1,
+      "leaves": 0,
+      "terminals": 0,
+      "cutoffs": 0,
+      "skipped_siblings": 0,
+      "elapsed_ms": 0.424,
+      "pv_priority_nodes": 0,
+      "pv": [],
+      "iterations": []
+    },
+    {
+      "algorithm": "ordered",
+      "depth": 8,
+      "complete": false,
+      "iterative": true,
+      "pv_order": true,
+      "has_result": true,
+      "completed_depth": 1,
+      "stop_reason": "node_limit",
+      "score": 0,
+      "bestmove": "1g1f",
+      "nodes": 31,
+      "leaves": 30,
+      "terminals": 0,
+      "cutoffs": 0,
+      "skipped_siblings": 0,
+      "elapsed_ms": 0.443,
+      "pv_priority_nodes": 0,
+      "pv": [
+        "1g1f"
+      ],
+      "iterations": [
+        {
+          "depth": 1,
+          "score": 0,
+          "nodes": 31,
+          "elapsed_ms": 0.136,
+          "pv_priority_nodes": 0,
+          "pv": [
+            "1g1f"
+          ]
+        }
+      ]
+    },
+    {
+      "algorithm": "ordered",
+      "depth": 8,
+      "complete": false,
+      "iterative": true,
+      "pv_order": true,
+      "has_result": true,
+      "completed_depth": 1,
+      "stop_reason": "node_limit",
+      "score": 0,
+      "bestmove": "1g1f",
+      "nodes": 36,
+      "leaves": 33,
+      "terminals": 0,
+      "cutoffs": 0,
+      "skipped_siblings": 0,
+      "elapsed_ms": 0.819,
+      "pv_priority_nodes": 1,
+      "pv": [
+        "1g1f"
+      ],
+      "iterations": [
+        {
+          "depth": 1,
+          "score": 0,
+          "nodes": 31,
+          "elapsed_ms": 0.127,
+          "pv_priority_nodes": 0,
+          "pv": [
+            "1g1f"
+          ]
+        }
+      ]
+    }
+  ],
+  "recapture_example": {
+    "case": {
+      "initial": "8k/9/4g4/4p4/4R4/9/9/9/K8 b - 1",
+      "moves": []
+    },
+    "result": {
+      "algorithm": "ordered",
+      "depth": 2,
+      "complete": true,
+      "iterative": true,
+      "pv_order": true,
+      "has_result": true,
+      "completed_depth": 2,
+      "stop_reason": "depth_limit",
+      "score": 350,
+      "bestmove": "5e1e",
+      "nodes": 59,
+      "leaves": 41,
+      "terminals": 0,
+      "cutoffs": 14,
+      "skipped_siblings": 110,
+      "elapsed_ms": 0.169,
+      "pv_priority_nodes": 1,
+      "pv": [
+        "5e1e",
+        "1a2a"
+      ],
+      "iterations": [
+        {
+          "depth": 1,
+          "score": 550,
+          "nodes": 17,
+          "elapsed_ms": 0.08,
+          "pv_priority_nodes": 0,
+          "pv": [
+            "5e5d"
+          ]
+        },
+        {
+          "depth": 2,
+          "score": 350,
+          "nodes": 42,
+          "elapsed_ms": 0.087,
+          "pv_priority_nodes": 1,
+          "pv": [
+            "5e1e",
+            "1a2a"
+          ]
+        }
+      ]
+    },
+    "punished_capture": {
+      "algorithm": "minimax",
+      "depth": 1,
+      "complete": true,
+      "iterative": false,
+      "pv_order": true,
+      "has_result": true,
+      "completed_depth": 1,
+      "stop_reason": "depth_limit",
+      "score": 1450,
+      "bestmove": "5c5d",
+      "nodes": 10,
+      "leaves": 9,
+      "terminals": 0,
+      "cutoffs": 0,
+      "skipped_siblings": 0,
+      "elapsed_ms": 0.097,
+      "pv_priority_nodes": 0,
+      "pv": [
+        "5c5d"
+      ],
+      "iterations": [
+        {
+          "depth": 1,
+          "score": 1450,
+          "nodes": 10,
+          "elapsed_ms": 0.095,
+          "pv_priority_nodes": 0,
+          "pv": [
+            "5c5d"
+          ]
+        }
+      ]
+    }
+  }
+}

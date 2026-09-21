@@ -1,0 +1,44 @@
+--- a/position.cpp
++++ b/position.cpp
+@@ -1144,7 +1144,9 @@
+ 	ASSERT_LV3(&new_st != st);
+ 
+ 	// 探索ノード数 ≒do_move()の呼び出し回数のインクリメント。
++	#if !defined(LAB_RULES_ONLY)
+ 	thisThread->nodes.fetch_add(1, std::memory_order_relaxed);
++#endif
+ 
+ 	//std::cout << *this << m << std::endl;
+ 
+@@ -1235,7 +1237,9 @@
+ 		// なるべく早い段階でのTTに対するprefetch
+ 		// 駒打ちのときはこの時点でTT entryのアドレスが確定できる
+ 		const Key key = k + h;
+-		prefetch(TT.first_entry(key));
++		#if !defined(LAB_RULES_ONLY)
++	prefetch(TT.first_entry(key));
++#endif
+ #if defined(USE_EVAL_HASH)
+ 		Eval::prefetch_evalhash(key);
+ #endif
+@@ -1400,7 +1404,9 @@
+ 
+ 		// 駒打ちでないときはprefetchはこの時点まで延期される。
+ 		const Key key = k + h;
+-		prefetch(TT.first_entry(key));
++		#if !defined(LAB_RULES_ONLY)
++	prefetch(TT.first_entry(key));
++#endif
+ #if defined(USE_EVAL_HASH)
+ 		Eval::prefetch_evalhash(key);
+ #endif
+@@ -1756,7 +1762,9 @@
+ 	// CPUによっては有効なので一応やっておく。
+ 
+ 	const Key key = st->key();
++	#if !defined(LAB_RULES_ONLY)
+ 	prefetch(TT.first_entry(key));
++#endif
+ 
+ 	// これは、さっきアクセスしたところのはずなので意味がない。
+ 	//  Eval::prefetch_evalhash(key);

@@ -1,0 +1,110 @@
+{
+  "note": "Excerpt: IDs refer to full recursive-example.jsonl; not a standalone complete proof tree.",
+  "events": [
+    {
+      "event_id": 342,
+      "parent_id": 0,
+      "kind": "root_iteration",
+      "depth": 3,
+      "sfen": "8k/9/4g4/4p4/4R4/9/9/9/K8 b - 1",
+      "history_positions": 1
+    },
+    {
+      "event_id": 421,
+      "parent_id": 343,
+      "kind": "root_exact",
+      "cause_id": 420,
+      "depth": 3,
+      "move": "5e1e",
+      "score": 550
+    },
+    {
+      "event_id": 530,
+      "parent_id": 422,
+      "kind": "root_exact",
+      "cause_id": 529,
+      "depth": 3,
+      "move": "5e2e",
+      "score": 550
+    },
+    {
+      "event_id": 925,
+      "parent_id": 805,
+      "kind": "root_exact",
+      "cause_id": 924,
+      "depth": 3,
+      "move": "5e3e",
+      "score": 550
+    },
+    {
+      "event_id": 1046,
+      "parent_id": 926,
+      "kind": "root_exact",
+      "cause_id": 1045,
+      "depth": 3,
+      "move": "5e4e",
+      "score": 550
+    },
+    {
+      "event_id": 1182,
+      "parent_id": 1047,
+      "kind": "root_exact",
+      "cause_id": 1181,
+      "depth": 3,
+      "move": "5e5f",
+      "score": 550
+    },
+    {
+      "event_id": 1183,
+      "parent_id": 342,
+      "kind": "root_candidate",
+      "move": "5e5g",
+      "probe_cause_id": 73
+    },
+    {
+      "event_id": 1236,
+      "parent_id": 1184,
+      "kind": "search_result",
+      "score": -550,
+      "bound": "lower",
+      "origin": "searched"
+    },
+    {
+      "event_id": 1237,
+      "parent_id": 1183,
+      "kind": "top5_certificate",
+      "cause_id": 1236,
+      "threshold": 551,
+      "candidate_bound_value": 550,
+      "child_bound": "lower",
+      "excluded": true,
+      "witnesses": [
+        {
+          "move": "5e1e",
+          "score": 550,
+          "cause_id": 421
+        },
+        {
+          "move": "5e2e",
+          "score": 550,
+          "cause_id": 530
+        },
+        {
+          "move": "5e3e",
+          "score": 550,
+          "cause_id": 925
+        },
+        {
+          "move": "5e4e",
+          "score": 550,
+          "cause_id": 1046
+        },
+        {
+          "move": "5e5f",
+          "score": 550,
+          "cause_id": 1182
+        }
+      ]
+    }
+  ]
+}
