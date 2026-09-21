@@ -1,0 +1,10 @@
+{
+  "verified": true,
+  "directory": "/workspace/sites/shogi-ai/dist/vendor/yaneuraou",
+  "sha256": {
+    "yaneuraou.js": "c786f85cd5db19b7c7cc3cb66219deb896ba786455b5e1f90e2f83bd370c3644",
+    "yaneuraou.worker.js": "c4448fbfa3fabd2060704f2b1fa5aaa014066331ee93ce7a79aefdd358b04029",
+    "yaneuraou.wasm": "ba9bd600d048e9b3e43eec8a155883815a5620f4adf61f659faa1b7c0dd65f1b",
+    "yaneuraou.data": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9"
+  }
+}

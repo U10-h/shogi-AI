@@ -27,7 +27,7 @@ Original Git blob SHA-1 identifiers:
 | yaneuraou.wasm | 0a630de6b2d6e0e96f7ca3adc20b011691543c1c |
 | yaneuraou.data | b8ac99947ddef4b5ff100a96754c148c00e034b0 |
 
-Changes on 2026-09-19: `yaneuraou.js` wraps the evaluation preload IIFE with `if(!A.ENVIRONMENT_IS_PTHREAD)` so only the main engine worker loads evaluation data. Pthreads share memory and do not need separate data loading. The other three distribution files are unchanged. `package.json` sets CommonJS solely for the Node integration check; classic browser scripts do not use that metadata. The application sets Threads=1 and USI_Hash=32 through USI.
+Changes on 2026-09-19: `yaneuraou.js` wraps the evaluation preload IIFE with `if(!A.ENVIRONMENT_IS_PTHREAD)` so only the main engine worker loads evaluation data. Pthreads share memory and do not need separate data loading. The WASM and evaluation data are unchanged. The worker JavaScript has one additional trailing newline; removing only that newline recovers the recorded original Git blob hash. `package.json` sets CommonJS solely for the Node integration check; classic browser scripts do not use that metadata. The application sets Threads=1 and USI_Hash=32 through USI.
 
 To rebuild the upstream distribution, obtain the complete corresponding source above and Emscripten 2.0.21-compatible tools, then run the upstream `npm run prepare` (`cd source && make clean tournament`). Apply the documented preload guard to the generated JavaScript. This project does not claim bit-for-bit reproduction with other compiler versions. `npm run check` verifies the bundled WASM and evaluation data against the recorded Git blob identifiers.
 

@@ -21,7 +21,7 @@ function resultText(g){
 }
 function player(container,side,p){
  const el=$(container);el.replaceChildren();const identity=node('div','player-identity');identity.append(node('span','side-symbol',side==='black'?'▲':'△'));
- const name=node('div','player-name',engineName(side));name.append(node('span','player-version',(side==='black'?'先手':'後手')+' · '+(side===game().labSide?'v0.4 / 自作探索':'NNUE KP256 6.03')));identity.append(name);
+ const name=node('div','player-name',engineName(side));name.append(node('span','player-version',(side==='black'?'先手':'後手')+' · '+(side===game().labSide?'v'+(game().labVersion||'0.4')+' / '+(game().preset||'上位5候補'):'NNUE KP256 6.03')));identity.append(name);
  const state=node('span','player-state'+(p.color===side?' active':''),p.color===side?(variation?'読みの手番':index===game().moves.length&&game().status==='finished'?'終局':'次の手番'):'');el.append(identity,state);
 }
 function hand(container,p,side){
@@ -43,7 +43,7 @@ function preview(row,pv,step,candidateIndex){stop();variation={row,pv,step,candi
 function renderReading(){
  const row=game().moves[index-1],a=row?.analysis;$('candidates').replaceChildren();$('metrics').replaceChildren();
  if(!row){$('reading-engine').textContent='';$('reading-move').textContent='初期局面から観戦できます。';$('score-note').textContent='';$('reading-note').textContent='再生すると、指した時点の評価と読み筋を表示します。';return;}
- $('reading-engine').textContent=row.engine==='lab'?'自作AI v0.4':'やねうら王';$('reading-move').textContent=row.ply+'手目 '+row.label;
+ $('reading-engine').textContent=row.engine==='lab'?'自作AI v'+(game().labVersion||'0.4'):'やねうら王';$('reading-move').textContent=row.ply+'手目 '+row.label;
  for(const [label,value]of [['実際の思考時間',fmtMs(row.wallMs)],['完了した深さ',(a?.depth??'—')+'手'],['評価',scoreText(a)]]){const n=node('div','metric');n.append(node('span','',label),node('strong','',value));$('metrics').append(n);}
  $('score-note').textContent=(row.side==='black'?'先手':'後手')+'（'+engineName(row.side,true)+'）から見た着手前の評価。'+(row.engine==='lab'?'駒得中心の評価です。':'NNUEの評価です。')+(a?.bound?' * は境界値。':'');
  const root=Position.newBySFEN(row.beforeSfen);
@@ -51,15 +51,21 @@ function renderReading(){
   const wrap=node('div','candidate'),head=node('div','candidate-head');head.append(node('strong','',c.rank+'. '+moveLabel(root,c.move)),node('span','',scoreText({...a,type:row.engine==='lab'?(Math.abs(c.score)>=99000?'lab-mate':'cp'):a.type},c.score)));
   const line=node('div','candidate-line');for(const [i,m]of checkedPV(root,c.pv).entries()){const button=node('button','pv-chip'+(variation?.candidateIndex===ci&&variation.step===i+1?' selected':''),m.label);button.setAttribute('aria-label','候補'+c.rank+'の'+(i+1)+'手先 '+m.label+'を盤面で見る');button.onclick=()=>preview(row,c.pv,i+1,ci);line.append(button);}wrap.append(head,line);$('candidates').append(wrap);
  }
- $('reading-note').textContent=row.engine==='lab'?'3秒内に順位を確定できた上位'+(a?.candidates?.length||0)+'候補。手順を押すと、その読みを盤面で確認できます。':'実際に指した手の読み筋。手順を押すと盤面で確認できます。';
+ $('reading-note').textContent=row.engine==='lab'?(game().labVersion==='0.5'?'3秒の予算で最後に完了した反復の1候補。':'3秒内に順位を確定できた上位'+(a?.candidates?.length||0)+'候補。')+'手順を押すと、その読みを盤面で確認できます。':'実際に指した手の読み筋。手順を押すと盤面で確認できます。';
 }
 function renderList(){
  const list=$('move-list');list.replaceChildren();const start=node('li');const startButton=node('button','move-row'+(index===0?' current':''),'開始局面');startButton.onclick=()=>go(0);start.append(startButton);list.append(start);
  game().moves.forEach((row,i)=>{const li=node('li'),b=node('button','move-row'+(index===i+1?' current':index<i+1?' future':''));b.setAttribute('aria-label',row.ply+'手目 '+row.label+' '+fmtMs(row.wallMs));if(index===i+1)b.setAttribute('aria-current','step');const label=node('span','move-name');label.append(node('span','move-num',row.ply),node('span','',row.label));b.append(label,node('span','move-time',fmtMs(row.wallMs)));b.onclick=()=>go(i+1);li.append(b);list.append(li);});
  const current=list.querySelector('.current');if(current){list.scrollTop=Math.max(0,current.offsetTop-list.offsetTop-list.clientHeight/2);}
 }
+function renderReview(){
+ const el=$('review-points');el.replaceChildren();
+ $('review-summary').textContent=data.review?.summary||'';
+ for(const note of game().review||[]){const b=node('button','review-jump',note.ply+'手目 · '+note.title);b.onclick=()=>go(note.ply);el.append(b);}
+ $('review-detail').textContent=game().reviewNote||'過去の対局です。今回の4局とは探索設定・候補数が異なります。';
+}
 function render(){
- if(!game())return;renderBoard();renderReading();renderList();$('ply-count').textContent=index+'手目';$('total-plies').textContent='全'+game().moves.length+'手';$('timeline').max=game().moves.length;$('timeline').value=index;
+ if(!game())return;renderBoard();renderReading();renderList();renderReview();$('ply-count').textContent=index+'手目';$('total-plies').textContent='全'+game().moves.length+'手';$('timeline').max=game().moves.length;$('timeline').value=index;
  $('first').disabled=$('previous').disabled=index===0;$('next').disabled=$('last').disabled=index===game().moves.length;
  $('play').textContent=playing?'Ⅱ 一時停止':index===game().moves.length?'↻ 最初から再生':'▶ 観戦を再生';$('quick-play').textContent=playing?'Ⅱ 停止':'▶ 再生';
  $('result').hidden=index!==game().moves.length||!!variation||game().status!=='finished';if(!$('result').hidden){const r=resultText(game());$('result').replaceChildren(node('strong','',r.title),node('span','',r.description));}
@@ -85,7 +91,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden&&playing){s
 window.addEventListener('pagehide',stop);
 try{
  const r=await fetch('./arena-data.json',{cache:'no-store'});if(!r.ok)throw Error('対局データを読み込めませんでした。');data=await r.json();if(data.schema!==1||!data.games?.length)throw Error('対局データがまだありません。');
- $('game-select').replaceChildren(...data.games.map((g,i)=>{const o=node('option','','第'+(i+1)+'局 · 自作AIが'+(g.labSide==='black'?'先手':'後手'));o.value=i;return o;}));
+ $('game-select').replaceChildren(...data.games.map((g,i)=>{const o=node('option','','v'+(g.labVersion||'0.4')+' '+(g.preset||'上位5候補')+' · 自作AIが'+(g.labSide==='black'?'先手':'後手'));o.value=i;return o;}));
  for(const id of ['game-select','timeline','play','download','quick-play'])$(id).disabled=false;render();
  if(data.status==='error')throw Error('対局の記録が途中で停止しています。完了済みの手まで表示しています。');
 }catch(e){$('error').textContent=e.message+' ページを再読み込みしてください。';$('error').hidden=false;}
