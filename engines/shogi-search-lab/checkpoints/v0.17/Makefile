@@ -1,8 +1,8 @@
 CXX ?= g++
-CPPFLAGS := -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DUSE_SEE -DUSE_PIECE_VALUE -DNO_SSE -DASSERT_LV=1
+CPPFLAGS := -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1
 CXXFLAGS ?= -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections
 LDFLAGS := -Wl,--gc-sections -pthread
-RULES := bitboard.cpp position.cpp movegen.cpp types.cpp eval/evaluate.cpp eval/evaluate_bona_piece.cpp
+RULES := bitboard.cpp position.cpp movegen.cpp types.cpp eval/evaluate.cpp
 SOURCES := src/main.cpp src/board.cpp src/evaluate.cpp src/positional.cpp src/nnue.cpp src/search.cpp src/tests.cpp src/session.cpp src/session_cli.cpp src/session_tests.cpp src/advanced.cpp src/advanced_tests.cpp src/advanced_usi.cpp $(addprefix vendor/yaneuraou/,$(RULES))
 OBJECTS := $(patsubst %.cpp,build/%.o,$(SOURCES))
 .PHONY: all clean test

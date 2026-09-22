@@ -54,8 +54,6 @@ int main(int argc, char** argv) {
                     "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
                     "  --leaf-trace PATH (opt-in qsearch entry/return observations)\n"
                     "  --policy-model PATH --policy-scale 0..16 (quiet move ordering)\n"
-                    "  --features ...,qcache,qguard (adaptive: cached qsearch / guarded SEE)\n"
-                    "  --qguard-audit (expensive unpruned counterfactuals; not a speed test)\n"
                     "  --policy-dump (stdin SFEN, output legal moves and sparse policy features)\n"
                     "  --prune-policy off|collect|direct|guarded|verified|staticcheck|efficient\n"
                     "  --prune-model PATH [--prune-probability 0..1) --prune-log PATH --prune-audit]\n"
@@ -85,7 +83,6 @@ int main(int argc, char** argv) {
             else if (arg == "--policy-scale") advanced_options.policy_scale = int(number(value()));
             else if (arg == "--policy-mode") advanced_options.policy_mode = value();
             else if (arg == "--root-scheduler") advanced_options.root_scheduler = value();
-            else if (arg == "--qguard-audit") advanced_options.qguard_audit = true;
             else if (arg == "--policy-dump") policy_dump = true;
             else if (arg == "--prune-policy") advanced_options.prune_policy = value();
             else if (arg == "--prune-model") advanced_options.prune_model = value();

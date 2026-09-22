@@ -139,7 +139,7 @@ int advanced_selftest() {
     }
     // Every exposed heuristic is executed in a bounded real search and unwinds.
     for(auto f:advanced_features()) {
-        if(f=="probcut"||f=="multiprobcut"||f=="qcache"||f=="qguard")continue;
+        if(f=="probcut"||f=="multiprobcut")continue;
         AdvancedOptions h;set_advanced_preset(h,"tactical");h.features.insert(f);h.limits.depth=5;h.limits.max_nodes=3000;
         auto r=advanced_search(start,h);require(r.base.nodes<=3000&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"heuristic budget and restoration "+f);
     }
@@ -174,26 +174,6 @@ int advanced_selftest() {
         require(advanced_search(repeat,a).base.score==0,"root scheduler repetition");
         require(advanced_search(perpetual,a).base.score==-mate,"root scheduler perpetual check");
         require(advanced_search(matepos,a).base.score==-mate,"root scheduler terminal mate");
-    }
-    // Cache values are keyed by full paths, preserving repetition history.
-    for(auto features:{"tt,qsearch,qcache","tt,qsearch,qguard","tt,qsearch,qcache,qguard"}) {
-        AdvancedOptions a;a.driver="adaptive";set_advanced_features(a,features);a.limits.max_nodes=12000;
-        require(advanced_search(repeat,a).base.score==0,"q optimizations preserve fourfold repetition");
-        require(advanced_search(perpetual,a).base.score==-mate,"q optimizations preserve perpetual-check loss");
-        require(advanced_search(matepos,a).base.score==-mate,"q optimizations preserve terminal mate");
-        for(size_t cap:{size_t(1),size_t(10000)}) {
-            a.tt_capacity=cap;auto actual=advanced_search(start,a);
-            require(actual.base.nodes==a.limits.max_nodes&&actual.base.stop_reason=="node_limit","q cache/pruning share global budget");
-            require(start.pos.sfen()==SFEN_HIRATE&&start.history.size()==1,"q cache/pruning abort restores board");
-            if(a.features.count("qcache"))require(actual.stats["qtt_entries"]<=cap,"q cache honors capacity");
-            Board replay;for(auto m:actual.base.has_result?actual.base.pv:actual.fallback_pv){auto legal=replay.legal_moves();require(std::find(legal.begin(),legal.end(),m)!=legal.end(),"cached/pruned PV legal");replay.play_input(usi(m));}
-        }
-    }
-    for(const auto& sfen:std::vector<std::string>{SFEN_HIRATE,move_cases[2],move_cases[6]}) {
-        Board board(sfen);AdvancedOptions a;a.driver="adaptive";set_advanced_features(a,"tt,qsearch");a.limits.max_nodes=30000;
-        const auto reference=advanced_search(board,a);a.features.insert("qcache");const auto cached=advanced_search(board,a);
-        require(!reference.base.iterations.empty()&&!cached.base.iterations.empty(),"q cache comparison completes first iteration");
-        require(reference.base.iterations[0].score==cached.base.iterations[0].score,"unpruned complete first-iteration qtree score invariant");
     }
     std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
 }

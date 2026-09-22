@@ -16,7 +16,7 @@
 namespace lab {
 std::set<std::string> advanced_features() {
     return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
-        "qsearch","qcache","qguard","see-order","see-prune","delta","futility","reverse-futility",
+        "qsearch","see-order","see-prune","delta","futility","reverse-futility",
         "razoring","null","adaptive-null","verified-null","lmr","history-lmr","check-extension",
         "recapture-extension","singular","multicut","probcut","multiprobcut"};
 }
@@ -105,8 +105,6 @@ class Worker {
         bool etc = false;
         bool mate_distance = false;
         bool qsearch = false;
-        bool qcache = false;
-        bool qguard = false;
         bool see_order = false;
         bool see_prune = false;
         bool delta = false;
@@ -127,7 +125,6 @@ class Worker {
     } f;
     double start;
     std::unordered_map<Key,Entry,KeyHash> tt;
-    std::unordered_map<uint64_t,Entry> qtt;
     // Hashes guide ordering only. Value-cache identities are collision-free path IDs.
     std::unordered_map<uint64_t,Move> hash_moves;
     std::unordered_map<std::pair<uint64_t,int>,uint64_t,PathHash> paths;
@@ -289,38 +286,17 @@ class Worker {
           <<",\"isolated\":"<<isolated<<",\"reason\":"<<quote(reason)<<",\"score\":"<<(has_score?std::to_string(score):"null")
           <<",\"pv\":"<<line_json(pv)<<",\"sfen\":"<<quote(b.pos.sfen())<<"}\n";
     }
-    Value qsearch(int a,int beta,int ply,int left,uint64_t parent=0,Move incoming=MOVE_NONE,uint64_t path=0) {
+    Value qsearch(int a,int beta,int ply,int left,uint64_t parent=0,Move incoming=MOVE_NONE) {
         tick();++r.stats["qnodes"];
         r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
         const uint64_t node=r.base.nodes;
         const int original_a=a;
-        const bool use_cache=f.qcache&&cacheable(path);
         auto finish=[&](Value v,const char* reason) {
-            if(use_cache&&(qtt.size()<o.tt_capacity||qtt.count(path))) {
-                const int flag=v.score<=original_a?-1:v.score>=beta?1:0;
-                auto it=qtt.find(path);
-                // Keep an exact value when a later bound is weaker.
-                if(it==qtt.end()||it->second.flag!=0||flag==0) {
-                    qtt[path]={local_score(v.score,ply),flag,v.pv.empty()?MOVE_NONE:v.pv.front(),v.pv};
-                    ++r.stats["qtt_stores"];
-                }
-            }
             ++r.stats["qreturn_count"];r.stats["qreturn_ply_sum"]+=ply;
             ++r.stats["qreturn_ply_"+std::to_string(ply)];
             leaf_event("qreturn",node,parent,incoming,ply,left,original_a,beta,reason,true,v.score,v.pv);return v;
         };
         if(!null_level)if(auto rep=b.repetition_score(ply))return finish({*rep,{}},"repetition");
-        if(use_cache) {
-            ++r.stats["qtt_probes"];const auto it=qtt.find(path);
-            if(it!=qtt.end()) {
-                ++r.stats["qtt_hits"];const auto& e=it->second;const int score=root_score(e.score,ply);
-                if(e.flag==0||(e.flag>0&&score>=beta)||(e.flag<0&&score<=a)) {
-                    ++r.stats["qtt_cutoffs"];
-                    // Do not overwrite a cached bound as if it were a new search.
-                    return {score,e.pv};
-                }
-            }
-        }
         const bool checked=b.pos.in_check();
         // A legal king move certifies non-terminal status without materializing
         // the move list. If the witness fails, keep the exact eager fallback.
@@ -351,30 +327,6 @@ class Worker {
         for(Move m:ordered) {
             const int index=move_index++;
             const bool checkmove=b.pos.gives_check(m);
-            if(f.qguard&&!isolated&&!null_level&&!checked&&!checkmove&&!is_drop(m)&&!is_promote(m)
-                &&b.pos.piece_on(to_sq(m))!=NO_PIECE&&type_of(b.pos.piece_on(from_sq(m)))!=KING
-                &&(incoming==MOVE_NONE||to_sq(incoming)!=to_sq(m))) {
-                auto distance=[](Square x,Square y){return std::max(std::abs(int(x)/9-int(y)/9),std::abs(int(x)%9-int(y)%9));};
-                if(distance(to_sq(m),b.pos.king_square(BLACK))>2&&distance(to_sq(m),b.pos.king_square(WHITE))>2) {
-                    ++r.stats["qguard_probes"];
-                    // A material-exchange heuristic, not a safe minimax bound.
-                    // Eligibility depends on the position/path, not window or move rank.
-                    if(!b.pos.see_ge(m,::Value(0))) {
-                        ++r.stats["qguard_prunes"];
-                        if(o.qguard_audit) {
-                            const auto before=r.base.nodes;Value reference;
-                            {struct Guard{int& n;Guard(int& x):n(x){++n;}~Guard(){--n;}} guard(isolated);
-                             PlayedMove played(b,m);reference=qsearch(-beta,-a,ply+1,left-1,node,m);}
-                            ++r.stats["qguard_audits"];r.stats["qguard_audit_nodes"]+=r.base.nodes-before;
-                            if(-reference.score>a)++r.stats["qguard_missed_alpha"];
-                            if(trace.is_open()&&events++<o.limits.trace_limit)
-                                trace<<"{\"event\":\"qguard_audit\",\"sfen\":"<<quote(b.pos.sfen())<<",\"move\":"<<quote(usi(m))
-                                  <<",\"alpha\":"<<a<<",\"score\":"<<-reference.score<<",\"pv\":"<<line_json(reference.pv)<<"}\n";
-                        }
-                        continue;
-                    }
-                }
-            }
             if(!checked&&!checkmove&&!isolated) {
                 if(f.delta&&stand+gain(m)+200<a){++r.stats["delta_prunes"];continue;}
                 if(f.see_prune&&see(m)<0){++r.stats["see_prunes"];continue;}
@@ -425,8 +377,7 @@ class Worker {
                 }
             }
             const uint64_t before=r.base.nodes;
-            const auto qpath=use_cache?child_path(path,m):0;
-            Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m,qpath);}
+            Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m);}
             if(consider)prune_row("observed",parent_sfen,m,a,stand,left,index,x,-c.score,r.base.nodes-before,guarded);
             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
             if(f.capture_history&&tactical(m))captures_searched.push_back(m);
@@ -620,7 +571,7 @@ class Worker {
     // priority scores, NOT calibrated probabilities. No fixed top-k exclusion.
     Value adaptive(int effort,int a,int beta,int ply,uint64_t path,Move prev) {
         r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
-        if(effort<=0)return qsearch(a,beta,ply,0,0,prev,path);
+        if(effort<=0)return qsearch(a,beta,ply,0,0,prev);
         tick();++r.stats["adaptive_nodes"];
         if(ply>=max_ply-1)throw Stop{"ply_limit"};
         if(auto rep=b.repetition_score(ply))return {*rep,{}};
@@ -897,7 +848,6 @@ public:
         f.etc=o.features.count("etc")!=0;
         f.mate_distance=o.features.count("mate-distance")!=0;
         f.qsearch=o.features.count("qsearch")!=0;
-        f.qcache=on("qcache");f.qguard=on("qguard");
         f.see_order=o.features.count("see-order")!=0;
         f.see_prune=o.features.count("see-prune")!=0;
         f.delta=o.features.count("delta")!=0;
@@ -954,15 +904,11 @@ public:
         if(o.driver=="adaptive") {
             if(o.multipv!=1||!f.qsearch||prune_enabled)throw std::invalid_argument("Adaptive requires MultiPV=1, qsearch, no learned pruning");
             for(const auto& x:o.features)if(x!="tt"&&x!="history"&&x!="capture-history"&&x!="killer"&&x!="counter"&&x!="mate-distance")
-                if(x!="qsearch"&&x!="qcache"&&x!="qguard")throw std::invalid_argument("Unsupported adaptive feature: "+x);
+                if(x!="qsearch")throw std::invalid_argument("Unsupported adaptive feature: "+x);
             r.selective=true;
         }
-        if((on("qcache")||on("qguard"))&&o.driver!="adaptive")throw std::invalid_argument("qcache/qguard require adaptive driver");
-        if(on("qcache")&&!f.tt)throw std::invalid_argument("qcache requires history-safe tt paths");
-        if(o.qguard_audit&&!on("qguard"))throw std::invalid_argument("qguard audit requires qguard");
         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
         if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
-        if(on("qguard"))r.leaf_policy+="+guarded_see";
         if(o.root_scheduler!="off")r.leaf_policy+="+root_slices_"+o.root_scheduler;
         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
@@ -1016,7 +962,6 @@ public:
         }
         for(const auto& item:eval.stats())r.stats[item.first]=item.second;
         r.base.elapsed_ms=now()-start;r.stats["tt_entries"]=tt.size();r.stats["history_paths"]=paths.size();
-        if(on("qcache"))r.stats["qtt_entries"]=qtt.size();
         if(prune_log.is_open())prune_log.flush();
         return r;
     }

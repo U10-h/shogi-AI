@@ -48,3 +48,7 @@ The suite is frozen before timing and is not a representative strength-rating da
 - The 454432 parameters of the feature transformer and first dense layer are frozen and are not included in these head files. Export requires the exact externally obtained base model and verifies its SHA-256.
 - Labels are locally generated outputs of that same pinned YaneuraOu teacher. They are not human game annotations or an independent test of the teacher's strength.
 - Training, selection, limitations, and provenance are described in `models/v0.10/MODEL_CARD.md` and `REPORT-v0.10.md`.
+
+## v0.18 static exchange helper
+
+The main build additionally enables the pinned upstream `Position::see_ge` and compiles `eval/evaluate_bona_piece.cpp` with `USE_SEE` / `USE_PIECE_VALUE`. This supplies the original material-exchange tables (pawn 90), not an upstream search algorithm. The optional `qguard` uses the zero threshold as a heuristic and protects checks, promotions, recaptures, kings and captures within two squares of either king. The NNUE value model is unchanged.
