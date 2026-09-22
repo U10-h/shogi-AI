@@ -1,0 +1,151 @@
+{
+  "development": [
+    {
+      "variant": "root",
+      "roots": 20,
+      "meanNodes": 217121.05,
+      "meanIteration": 3.85,
+      "meanEntries": 0,
+      "meanPaths": 100970.35,
+      "fullCacheRoots": 0,
+      "stores": 0,
+      "oneNodeStores": 0,
+      "cutoffs": 0,
+      "savedWorkEstimate": 0,
+      "cheapRejected": 0,
+      "fullRejected": 0
+    },
+    {
+      "variant": "legacy",
+      "roots": 20,
+      "meanNodes": 175074.2,
+      "meanIteration": 3.75,
+      "meanEntries": 100000,
+      "meanPaths": 153729.6,
+      "fullCacheRoots": 20,
+      "stores": 2008346,
+      "oneNodeStores": 1572064,
+      "cutoffs": 263940,
+      "savedWorkEstimate": 254084,
+      "cheapRejected": 0,
+      "fullRejected": 1013398
+    },
+    {
+      "variant": "all8",
+      "roots": 20,
+      "meanNodes": 177503.35,
+      "meanIteration": 3.75,
+      "meanEntries": 7719.8,
+      "meanPaths": 154043.8,
+      "fullCacheRoots": 0,
+      "stores": 157248,
+      "oneNodeStores": 0,
+      "cutoffs": 7839,
+      "savedWorkEstimate": 188422,
+      "cheapRejected": 3175638,
+      "fullRejected": 0
+    },
+    {
+      "variant": "all32",
+      "roots": 20,
+      "meanNodes": 187986.9,
+      "meanIteration": 3.75,
+      "meanEntries": 1166.75,
+      "meanPaths": 159655.45,
+      "fullCacheRoots": 0,
+      "stores": 24094,
+      "oneNodeStores": 0,
+      "cutoffs": 1231,
+      "savedWorkEstimate": 113163,
+      "cheapRejected": 3510551,
+      "fullRejected": 0
+    },
+    {
+      "variant": "entry1",
+      "roots": 20,
+      "meanNodes": 203334.9,
+      "meanIteration": 3.8,
+      "meanEntries": 80168.8,
+      "meanPaths": 93210.75,
+      "fullCacheRoots": 7,
+      "stores": 1606735,
+      "oneNodeStores": 1413519,
+      "cutoffs": 167640,
+      "savedWorkEstimate": 80770,
+      "cheapRejected": 0,
+      "fullRejected": 178478
+    },
+    {
+      "variant": "entry8",
+      "roots": 20,
+      "meanNodes": 209007.8,
+      "meanIteration": 3.8,
+      "meanEntries": 3451.9,
+      "meanPaths": 95104.75,
+      "fullCacheRoots": 0,
+      "stores": 69961,
+      "oneNodeStores": 0,
+      "cutoffs": 2109,
+      "savedWorkEstimate": 78473,
+      "cheapRejected": 1921327,
+      "fullRejected": 0
+    }
+  ],
+  "exactOptimization": {
+    "pairs": 24,
+    "nodeBudget": 200000,
+    "ratios": [
+      {
+        "id": 0,
+        "oldMedianMs": 394.82,
+        "newMedianMs": 316.06,
+        "ratio": 0.8005166911503977
+      },
+      {
+        "id": 1,
+        "oldMedianMs": 536.839,
+        "newMedianMs": 524.36,
+        "ratio": 0.976754669463284
+      },
+      {
+        "id": 2,
+        "oldMedianMs": 424.323,
+        "newMedianMs": 458.049,
+        "ratio": 1.0794819041154968
+      },
+      {
+        "id": 3,
+        "oldMedianMs": 380.495,
+        "newMedianMs": 371.297,
+        "ratio": 0.9758262263630272
+      },
+      {
+        "id": 4,
+        "oldMedianMs": 480.386,
+        "newMedianMs": 529.354,
+        "ratio": 1.1019346941834276
+      },
+      {
+        "id": 5,
+        "oldMedianMs": 483.273,
+        "newMedianMs": 456.525,
+        "ratio": 0.9446524014376966
+      },
+      {
+        "id": 6,
+        "oldMedianMs": 484.676,
+        "newMedianMs": 429.158,
+        "ratio": 0.8854533750381699
+      },
+      {
+        "id": 7,
+        "oldMedianMs": 503.829,
+        "newMedianMs": 455.068,
+        "ratio": 0.9032191477664048
+      }
+    ],
+    "ratioOfMedianSums": 0.9596680728756201,
+    "note": "Whole-build timing with cache disabled, not causal attribution of each changed instruction. Three repeats, eight roots; single environment."
+  },
+  "sourceCommit": "6260f708db6a0e7ce40d059cbded47432b82945b"
+}

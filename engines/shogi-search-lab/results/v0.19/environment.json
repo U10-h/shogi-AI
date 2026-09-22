@@ -1,0 +1,27 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpuMax": "800000 100000",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "node": "v24.19.0",
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "timingCPU": 7,
+  "matchCPUs": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "diagnosticCPU": 6,
+  "collectionCPU": 5,
+  "oldCommit": "00e7c5de859fcbf8af46446ec96e8eef3af8d4d7"
+}

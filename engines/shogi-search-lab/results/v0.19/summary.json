@@ -1,0 +1,395 @@
+{
+  "quality": [
+    {
+      "variant": "base",
+      "ms": 1000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 36.166666666666664,
+      "meanPV": 6.166666666666667,
+      "meanSelectiveDepth": 23,
+      "meanIteration": 4.083333333333333,
+      "meanNodes": 381137.8333333333,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 0
+    },
+    {
+      "variant": "base",
+      "ms": 3000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 2.5,
+      "meanPV": 7.083333333333333,
+      "meanSelectiveDepth": 24.916666666666668,
+      "meanIteration": 4.833333333333333,
+      "meanNodes": 1116957.25,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 35048.583333333336
+    },
+    {
+      "variant": "base",
+      "ms": 5000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 2.5,
+      "meanPV": 7.583333333333333,
+      "meanSelectiveDepth": 25.5,
+      "meanIteration": 5.083333333333333,
+      "meanNodes": 1850760.5,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 161907.66666666666
+    },
+    {
+      "variant": "entry1",
+      "ms": 1000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 36.166666666666664,
+      "meanPV": 5.833333333333333,
+      "meanSelectiveDepth": 22.416666666666668,
+      "meanIteration": 4,
+      "meanNodes": 345154,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 14322.333333333334,
+      "meanPathCapacityMisses": 0
+    },
+    {
+      "variant": "entry1",
+      "ms": 3000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 2.5,
+      "meanPV": 7.083333333333333,
+      "meanSelectiveDepth": 25,
+      "meanIteration": 4.833333333333333,
+      "meanNodes": 1092096.1666666667,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 42710.916666666664,
+      "meanPathCapacityMisses": 26058.666666666668
+    },
+    {
+      "variant": "entry1",
+      "ms": 5000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 2.5,
+      "meanPV": 7.583333333333333,
+      "meanSelectiveDepth": 25.583333333333332,
+      "meanIteration": 5.083333333333333,
+      "meanNodes": 1836979.3333333333,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 51977.416666666664,
+      "meanPathCapacityMisses": 162069.08333333334
+    }
+  ],
+  "pairedQuality": [
+    {
+      "ms": 1000,
+      "meanDelta": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    },
+    {
+      "ms": 3000,
+      "meanDelta": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    },
+    {
+      "ms": 5000,
+      "meanDelta": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    }
+  ],
+  "timeComparisons": [
+    {
+      "variant": "base",
+      "fromMs": 1000,
+      "toMs": 3000,
+      "roots": 12,
+      "meanGapChange": -33.666666666666664,
+      "better": 1,
+      "equal": 11,
+      "worse": 0
+    },
+    {
+      "variant": "base",
+      "fromMs": 3000,
+      "toMs": 5000,
+      "roots": 12,
+      "meanGapChange": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0
+    },
+    {
+      "variant": "entry1",
+      "fromMs": 1000,
+      "toMs": 3000,
+      "roots": 12,
+      "meanGapChange": -33.666666666666664,
+      "better": 1,
+      "equal": 11,
+      "worse": 0
+    },
+    {
+      "variant": "entry1",
+      "fromMs": 3000,
+      "toMs": 5000,
+      "roots": 12,
+      "meanGapChange": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0
+    }
+  ],
+  "games": [
+    {
+      "id": "black-3000-base",
+      "variant": "base",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 86,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 35,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.1608372093024,
+      "meanOurWallMs": 3153.1908639999992,
+      "meanOpponentWallMs": 1786.7652392093028
+    },
+    {
+      "id": "black-3000-entry1",
+      "variant": "entry1",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 80,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 25,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3001.335825,
+      "meanOurWallMs": 3151.138232349998,
+      "meanOpponentWallMs": 1755.5019852749997
+    },
+    {
+      "id": "black-5000-base",
+      "variant": "base",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 106,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 49,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5000.212150943396,
+      "meanOurWallMs": 5174.166021207546,
+      "meanOpponentWallMs": 1714.6751680943416
+    },
+    {
+      "id": "black-5000-entry1",
+      "variant": "entry1",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 96,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 43,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5000.1438125,
+      "meanOurWallMs": 5185.341140833336,
+      "meanOpponentWallMs": 1795.772165229167
+    },
+    {
+      "id": "white-3000-base",
+      "variant": "base",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 115,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 68,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.174,
+      "meanOurWallMs": 3152.9683515087713,
+      "meanOpponentWallMs": 1767.2417116379308
+    },
+    {
+      "id": "white-3000-entry1",
+      "variant": "entry1",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 143,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 68,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.2315774647886,
+      "meanOurWallMs": 3175.2190259436597,
+      "meanOpponentWallMs": 1920.52312579167
+    },
+    {
+      "id": "white-5000-base",
+      "variant": "base",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 115,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 54,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5000.133561403509,
+      "meanOurWallMs": 5166.502577333333,
+      "meanOpponentWallMs": 1832.2324740344857
+    },
+    {
+      "id": "white-5000-entry1",
+      "variant": "entry1",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 129,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 72,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5001.0129531249995,
+      "meanOurWallMs": 5195.041646640616,
+      "meanOpponentWallMs": 1830.3315571692292
+    }
+  ],
+  "matches": [
+    {
+      "variant": "base",
+      "ms": 3000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 100.5,
+      "meanFirst500Ply": 51.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "base",
+      "ms": 5000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 110.5,
+      "meanFirst500Ply": 51.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "entry1",
+      "ms": 3000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 111.5,
+      "meanFirst500Ply": 46.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "entry1",
+      "ms": 5000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 112.5,
+      "meanFirst500Ply": 57.5,
+      "firstIterationFailures": 0
+    }
+  ],
+  "fallback": [
+    {
+      "variant": "root",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 542201.3333333334
+    },
+    {
+      "variant": "legacy",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 380219.6666666667
+    },
+    {
+      "variant": "all8",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 363237.3333333333
+    },
+    {
+      "variant": "all32",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 383053.8333333333
+    },
+    {
+      "variant": "entry1",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 556245.8333333334
+    },
+    {
+      "variant": "entry8",
+      "completed": 1,
+      "roots": 6,
+      "meanNodes": 556189
+    }
+  ],
+  "notes": [
+    "12 roots from four newly seeded teacher trajectories. Training overlap not fully ruled out.",
+    "One timing run per root/variant/budget; same pair rotates execution order.",
+    "No Elo or statistical strength claim. Four trajectory clusters too few for a stable generalization interval.",
+    "Total plies and sustained 500cp disadvantage are different observations; no certified defeat threshold."
+  ]
+}

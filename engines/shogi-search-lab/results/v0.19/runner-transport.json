@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-22T14:02:22.598401+00:00",
+  "event": "One exec tool transport disconnect; next call recovered. Existing games still update files; not restarted or replayed.",
+  "observedPlies": {
+    "white-3000-base": 115,
+    "white-5000-entry1": 41,
+    "black-5000-base": 59,
+    "black-3000-entry1": 80,
+    "white-3000-entry1": 102,
+    "white-5000-base": 115,
+    "black-5000-entry1": 96,
+    "black-3000-base": 86
+  }
+}

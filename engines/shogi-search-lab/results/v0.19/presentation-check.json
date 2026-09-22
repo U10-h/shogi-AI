@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-22T14:10:17.158922+00:00",
+  "embeddedJavaScriptSyntax": "passed: node --check",
+  "chartVisualReview": "passed: overview.png labels, legend and data checked",
+  "browserInteractionTested": false,
+  "games": 8
+}

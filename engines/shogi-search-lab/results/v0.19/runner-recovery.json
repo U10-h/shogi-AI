@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-22T14:04:16.859175+00:00",
+  "reason": "Exec server transport disconnected; old session handles reject and files stopped updating beyond engine watchdog. Resume saved moves with fresh/reset engines as before.",
+  "games": [
+    {
+      "id": "white-5000-entry1",
+      "plies": 46,
+      "staleSeconds": 95.54917502403259
+    },
+    {
+      "id": "black-5000-base",
+      "plies": 64,
+      "staleSeconds": 98.80297827720642
+    },
+    {
+      "id": "white-3000-entry1",
+      "plies": 109,
+      "staleSeconds": 97.62827563285828
+    }
+  ]
+}

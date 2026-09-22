@@ -1,0 +1,15 @@
+{"id":"white-5000-base","ply":1,"move":"2g2f"}
+{"id":"white-5000-base","ply":21,"move":"4i3h"}
+{"id":"white-5000-base","ply":41,"move":"7g7f"}
+{"id":"white-5000-base","ply":61,"move":"8i7g"}
+{"id":"white-5000-base","ply":81,"move":"7f8g"}
+{"id":"white-5000-base","ply":101,"move":"7d6b+"}
+{"id":"white-5000-base","plies":115,"result":{"reason":"checkmate","winner":"black"}}
+{"id":"white-5000-entry1","ply":1,"move":"2g2f"}
+{"id":"white-5000-entry1","ply":21,"move":"3g3f"}
+{"id":"white-5000-entry1","ply":41,"move":"6f6e"}
+{"id":"white-5000-entry1","ply":61,"move":"8h7h"}
+{"id":"white-5000-entry1","ply":81,"move":"6g7f"}
+{"id":"white-5000-entry1","ply":101,"move":"8e8d"}
+{"id":"white-5000-entry1","ply":121,"move":"N*8e"}
+{"id":"white-5000-entry1","plies":129,"result":{"reason":"checkmate","winner":"black"}}

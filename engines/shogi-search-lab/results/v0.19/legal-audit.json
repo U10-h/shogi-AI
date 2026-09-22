@@ -1,0 +1,1 @@
+{"passed":true,"gameCount":8,"gameMoves":870,"searches":661,"pvMoves":6806,"teacherPVs":48,"trajectoryMoves":256,"independentRules":"Pinned MIT tsshogi; all recorded moves/PVs and KIF round trips; C++ also verifies terminal state."}

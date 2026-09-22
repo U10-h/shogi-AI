@@ -8,15 +8,18 @@ R=Path(__file__).resolve().parents[1];D=Path(os.environ.get('V19_RESULTS',R/'res
 s=json.loads((D/'summary.json').read_text());rows=list(csv.DictReader((D/'quality.csv').open()))
 plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False})
 fig,ax=plt.subplots(1,3,figsize=(14,4.4),layout='constrained')
-colors={'base':'#21618c','entry1':'#cb6d32'};labels={'base':'v0.18 baseline','entry1':'v0.19 entry cache'}
-for name in ['base','entry1']:
+selected=json.loads((D/'selection.json').read_text())['selected']
+colors={'base':'#21618c',selected:'#cb6d32'};labels={'base':'v0.18 baseline',selected:'v0.19 '+selected}
+for name in ['base',selected]:
  qs=sorted([r for r in s['quality'] if r['variant']==name],key=lambda r:r['ms'])
- ax[0].plot([r['ms']/1000 for r in qs],[r['meanGap'] for r in qs],'o-',color=colors[name],label=labels[name],linewidth=2)
+ ax[0].plot([r['ms']/1000 for r in qs],[r['meanGap'] for r in qs],'o-' if name=='base' else 's--',color=colors[name],label=labels[name],linewidth=2)
 ax[0].set(xlabel='Search budget per move (s)',ylabel='Mean teacher candidate gap (cp)',title='A. Choice quality vs search time',xticks=[1,3,5],ylim=(0,None));ax[0].legend(fontsize=8)
-for root in sorted({r['base'] for r in rows}):
- rs=sorted([r for r in rows if r['base']==root and r['variant']=='base'],key=lambda r:int(r['ms']))
- ax[1].plot([int(r['ms'])/1000 for r in rs],[float(r['teacherGap']) for r in rs],'o-',alpha=.5,linewidth=1)
-ax[1].set(xlabel='Search budget per move (s)',ylabel='Teacher candidate gap (cp)',title='B. Individual roots, baseline',xticks=[1,3,5],ylim=(0,None))
+metrics=json.loads((D/'implementation-metrics.json').read_text())
+dev=[x for x in metrics['development'] if x['variant']!='root']
+ax[1].barh([x['variant'] for x in dev],[x['meanEntries'] for x in dev],color='#718d99')
+ax[1].set(xlabel='Mean cached entries (20 known roots)',title='B. Cache occupancy at 500ms',xlim=(0,115000))
+ax[1].invert_yaxis()
+for i,x in enumerate(dev):ax[1].text(x['meanEntries']+1200,i,f"{x['meanEntries']:,.0f}",va='center',fontsize=8)
 for index,g in enumerate(s['games']):
  ax[2].barh(index,g['totalPlies'],color=colors[g['variant']],alpha=.8)
  if g['firstSustained500Ply'] is not None:ax[2].plot(g['firstSustained500Ply'],index,'|',color='black',markersize=13,markeredgewidth=2)

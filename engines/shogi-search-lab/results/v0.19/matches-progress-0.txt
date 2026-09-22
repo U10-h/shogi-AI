@@ -1,0 +1,11 @@
+{"id":"black-3000-entry1","ply":1,"move":"2g2f"}
+{"id":"black-3000-entry1","ply":21,"move":"7g2b+"}
+{"id":"black-3000-entry1","ply":41,"move":"2a4c"}
+{"id":"black-3000-entry1","ply":61,"move":"5f5c+"}
+{"id":"black-3000-entry1","plies":80,"result":{"reason":"checkmate","winner":"white"}}
+{"id":"black-3000-base","ply":1,"move":"2g2f"}
+{"id":"black-3000-base","ply":21,"move":"4i3h"}
+{"id":"black-3000-base","ply":41,"move":"P*3f"}
+{"id":"black-3000-base","ply":61,"move":"R*4h"}
+{"id":"black-3000-base","ply":81,"move":"7g6f"}
+{"id":"black-3000-base","plies":86,"result":{"reason":"checkmate","winner":"white"}}
