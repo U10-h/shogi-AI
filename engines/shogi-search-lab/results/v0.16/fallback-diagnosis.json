@@ -1,0 +1,68 @@
+{
+  "stops": {
+    "time_limit": 787,
+    "depth_limit": 8
+  },
+  "fallbacks": [
+    {
+      "id": "1-black-blend",
+      "ply": 77,
+      "source": "completed_root_child",
+      "completed_root_moves": 7,
+      "nodes": 602256,
+      "seldepth": 28,
+      "stop": "time_limit",
+      "usi": "6a6b"
+    },
+    {
+      "id": "1-black-blend",
+      "ply": 79,
+      "source": "completed_root_child",
+      "completed_root_moves": 40,
+      "nodes": 592578,
+      "seldepth": 27,
+      "stop": "time_limit",
+      "usi": "5b4c+"
+    },
+    {
+      "id": "1-black-blend",
+      "ply": 81,
+      "source": "completed_root_child",
+      "completed_root_moves": 48,
+      "nodes": 622608,
+      "seldepth": 32,
+      "stop": "time_limit",
+      "usi": "S*5c"
+    },
+    {
+      "id": "1-black-blend",
+      "ply": 83,
+      "source": "completed_root_child",
+      "completed_root_moves": 24,
+      "nodes": 591952,
+      "seldepth": 32,
+      "stop": "time_limit",
+      "usi": "5c6b+"
+    },
+    {
+      "id": "1-black-blend",
+      "ply": 85,
+      "source": "completed_root_child",
+      "completed_root_moves": 17,
+      "nodes": 553011,
+      "seldepth": 32,
+      "stop": "time_limit",
+      "usi": "6b7b"
+    },
+    {
+      "id": "1-black-blend",
+      "ply": 87,
+      "source": "completed_root_child",
+      "completed_root_moves": 10,
+      "nodes": 536247,
+      "seldepth": 38,
+      "stop": "time_limit",
+      "usi": "4c4d"
+    }
+  ]
+}
