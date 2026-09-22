@@ -195,24 +195,6 @@ int advanced_selftest() {
         require(!reference.base.iterations.empty()&&!cached.base.iterations.empty(),"q cache comparison completes first iteration");
         require(reference.base.iterations[0].score==cached.base.iterations[0].score,"unpruned complete first-iteration qtree score invariant");
     }
-    for(auto scope:{"all","entry"})for(uint64_t threshold:{uint64_t(1),uint64_t(8),uint64_t(32),uint64_t(1000000)}) {
-        AdvancedOptions a;a.driver="adaptive";set_advanced_features(a,"tt,qsearch,qcache");
-        a.qcache_scope=scope;a.qcache_min_nodes=threshold;a.limits.max_nodes=30000;
-        require(advanced_search(repeat,a).base.score==0,"cost cache repetition history");
-        require(advanced_search(perpetual,a).base.score==-mate,"cost cache perpetual-check history");
-        require(advanced_search(matepos,a).base.score==-mate,"cost cache mate");
-        auto actual=advanced_search(start,a);
-        require(actual.base.nodes==a.limits.max_nodes&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"cost cache interrupted restore and budget");
-        require(actual.stats["qtt_entries"]<=a.tt_capacity,"cost cache capacity");
-        if(threshold>1)require(actual.stats["qtt_store_1"]==0,"cost cache excludes single-node returns");
-        if(threshold>=8)require(actual.stats["qtt_store_2_7"]==0,"cost cache admission threshold");
-        if(threshold>30000)require(actual.stats["qtt_entries"]==0,"cost cache cannot save incomplete or too-cheap tree");
-        Board replay;for(auto m:actual.base.pv){auto legal=replay.legal_moves();require(std::find(legal.begin(),legal.end(),m)!=legal.end(),"cost cache PV legal");replay.play_input(usi(m));}
-        a.features.erase("qcache");auto expected=advanced_search(start,a);
-        require(!actual.base.iterations.empty()&&!expected.base.iterations.empty()&&actual.base.iterations[0].score==expected.base.iterations[0].score,"cost cache first complete qtree score invariant");
-        a.features.insert("qcache");a.tt_capacity=1;actual=advanced_search(start,a);
-        require(actual.stats["qtt_entries"]<=1&&actual.stats["history_paths"]<=4,"cost cache tiny capacity safe fallback");
-    }
     std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
 }
 }

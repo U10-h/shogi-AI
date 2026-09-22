@@ -28,8 +28,6 @@ struct AdvancedOptions {
     std::string policy_mode = "quiet"; // quiet (v0.14), all, cost (learned edge effort)
     std::string root_scheduler = "off"; // off, roundrobin, puct, halving, reliability
     bool qguard_audit = false; // Counterfactual unpruned searches; excluded from timing.
-    uint64_t qcache_min_nodes = 1; // Admit only completed subtrees costing at least this many visited nodes.
-    std::string qcache_scope = "all"; // all (v0.18), entry (no path allocation inside qsearch).
     // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
     std::string leaf_trace_path;
     // Experimental learned q-move pruning. Labels are alpha-threshold outcomes,

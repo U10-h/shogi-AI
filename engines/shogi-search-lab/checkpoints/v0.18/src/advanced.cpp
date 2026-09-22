@@ -46,7 +46,6 @@ struct Key {
 struct KeyHash {size_t operator()(const Key& k) const {return std::hash<uint64_t>{}(k.path*257+uint64_t(k.depth*9+k.extensions));}};
 struct PathHash {size_t operator()(const std::pair<uint64_t,int>& p) const {return std::hash<uint64_t>{}(p.first*65537+uint64_t(p.second));}};
 struct Entry {int score, flag; Move move; std::vector<Move> pv;};
-struct QEntry {Entry value; uint64_t work;};
 struct ProbModel {int deep, shallow; double slope, intercept, sigma, z;};
 // Freeze all priorities at node entry, then emit exactly the eager sort order.
 // Child searches may update histories, but cannot reorder this node's tail.
@@ -128,8 +127,7 @@ class Worker {
     } f;
     double start;
     std::unordered_map<Key,Entry,KeyHash> tt;
-    std::unordered_map<uint64_t,QEntry> qtt;
-    std::array<uint64_t,max_ply> qreturn_by_ply{};
+    std::unordered_map<uint64_t,Entry> qtt;
     // Hashes guide ordering only. Value-cache identities are collision-free path IDs.
     std::unordered_map<uint64_t,Move> hash_moves;
     std::unordered_map<std::pair<uint64_t,int>,uint64_t,PathHash> paths;
@@ -298,33 +296,26 @@ class Worker {
         const int original_a=a;
         const bool use_cache=f.qcache&&cacheable(path);
         auto finish=[&](Value v,const char* reason) {
-            const uint64_t work=r.base.nodes-node+1;
-            if(use_cache&&work<o.qcache_min_nodes)++r.stats["qtt_rejected_cheap"];
-            else if(use_cache) {
+            if(use_cache&&(qtt.size()<o.tt_capacity||qtt.count(path))) {
                 const int flag=v.score<=original_a?-1:v.score>=beta?1:0;
                 auto it=qtt.find(path);
                 // Keep an exact value when a later bound is weaker.
-                if(it==qtt.end()&&qtt.size()>=o.tt_capacity)++r.stats["qtt_rejected_full"];
-                else if(it==qtt.end()||it->second.value.flag!=0||flag==0) {
-                    qtt[path]={{local_score(v.score,ply),flag,v.pv.empty()?MOVE_NONE:v.pv.front(),v.pv},work};
+                if(it==qtt.end()||it->second.flag!=0||flag==0) {
+                    qtt[path]={local_score(v.score,ply),flag,v.pv.empty()?MOVE_NONE:v.pv.front(),v.pv};
                     ++r.stats["qtt_stores"];
-                    r.stats["qtt_stored_work"]+=work;
-                    ++r.stats[work==1?"qtt_store_1":work<8?"qtt_store_2_7":work<32?"qtt_store_8_31":"qtt_store_32_plus"];
                 }
             }
             ++r.stats["qreturn_count"];r.stats["qreturn_ply_sum"]+=ply;
-            ++qreturn_by_ply[ply];
+            ++r.stats["qreturn_ply_"+std::to_string(ply)];
             leaf_event("qreturn",node,parent,incoming,ply,left,original_a,beta,reason,true,v.score,v.pv);return v;
         };
         if(!null_level)if(auto rep=b.repetition_score(ply))return finish({*rep,{}},"repetition");
         if(use_cache) {
             ++r.stats["qtt_probes"];const auto it=qtt.find(path);
             if(it!=qtt.end()) {
-                ++r.stats["qtt_hits"];const auto& e=it->second.value;const int score=root_score(e.score,ply);
+                ++r.stats["qtt_hits"];const auto& e=it->second;const int score=root_score(e.score,ply);
                 if(e.flag==0||(e.flag>0&&score>=beta)||(e.flag<0&&score<=a)) {
                     ++r.stats["qtt_cutoffs"];
-                    // Observed cost of the saved search, not a measured counterfactual.
-                    r.stats["qtt_saved_work_estimate"]+=it->second.work-1;
                     // Do not overwrite a cached bound as if it were a new search.
                     return {score,e.pv};
                 }
@@ -434,7 +425,7 @@ class Worker {
                 }
             }
             const uint64_t before=r.base.nodes;
-            const auto qpath=use_cache&&o.qcache_scope=="all"?child_path(path,m):0;
+            const auto qpath=use_cache?child_path(path,m):0;
             Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m,qpath);}
             if(consider)prune_row("observed",parent_sfen,m,a,stand,left,index,x,-c.score,r.base.nodes-before,guarded);
             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
@@ -968,8 +959,6 @@ public:
         }
         if((on("qcache")||on("qguard"))&&o.driver!="adaptive")throw std::invalid_argument("qcache/qguard require adaptive driver");
         if(on("qcache")&&!f.tt)throw std::invalid_argument("qcache requires history-safe tt paths");
-        if(!o.qcache_min_nodes)throw std::invalid_argument("qcache-min-nodes must be positive");
-        if(o.qcache_scope!="all"&&o.qcache_scope!="entry")throw std::invalid_argument("qcache-scope must be all|entry");
         if(o.qguard_audit&&!on("qguard"))throw std::invalid_argument("qguard audit requires qguard");
         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
         if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
@@ -1026,7 +1015,6 @@ public:
             }
         }
         for(const auto& item:eval.stats())r.stats[item.first]=item.second;
-        for(int ply=0;ply<max_ply;++ply)if(qreturn_by_ply[ply])r.stats["qreturn_ply_"+std::to_string(ply)]=qreturn_by_ply[ply];
         r.base.elapsed_ms=now()-start;r.stats["tt_entries"]=tt.size();r.stats["history_paths"]=paths.size();
         if(on("qcache"))r.stats["qtt_entries"]=qtt.size();
         if(prune_log.is_open())prune_log.flush();
@@ -1048,7 +1036,6 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     out<<"],\"iteration_unit\":"<<quote(o.driver=="adaptive"?"effort_steps_4":"plies")<<",\"evaluation_head\":"<<quote(o.evaluation_head);
     out<<",\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
        <<",\"policy_mode\":"<<quote(o.policy_mode)<<",\"root_scheduler\":"<<quote(o.root_scheduler)
-       <<",\"qcache_min_nodes\":"<<o.qcache_min_nodes<<",\"qcache_scope\":"<<quote(o.qcache_scope)
        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
        <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
        <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
