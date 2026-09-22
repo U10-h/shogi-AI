@@ -1,0 +1,29 @@
+{
+  "symptom": "5 initial JSONL logs had incomplete final records; root cause not established",
+  "files": {
+    "086": {
+      "initial_invalid_line_zero_based": 6551,
+      "initial_bytes": 2174010
+    },
+    "106": {
+      "initial_invalid_line_zero_based": 5657,
+      "initial_bytes": 1936751
+    },
+    "144": {
+      "initial_invalid_line_zero_based": 5983,
+      "initial_bytes": 2034178
+    },
+    "163": {
+      "initial_invalid_line_zero_based": 5123,
+      "initial_bytes": 1747856
+    },
+    "184": {
+      "initial_invalid_line_zero_based": 3853,
+      "initial_bytes": 1287859
+    }
+  },
+  "action": "explicit flush and failbit/badbit exceptions; recollect all five; parse every final line and reconcile eligible versus unfinished children",
+  "final_validation": "data-audit.json",
+  "initial_fragments_retained": false,
+  "initial_search_metadata_retained": true
+}

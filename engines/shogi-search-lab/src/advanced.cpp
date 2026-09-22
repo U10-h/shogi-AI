@@ -1,5 +1,6 @@
 #include "advanced.hpp"
 #include "positional.hpp"
+#include "policy.hpp"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -14,7 +15,7 @@
 
 namespace lab {
 std::set<std::string> advanced_features() {
-    return {"tt","history","killer","counter","iid","etc","mate-distance",
+    return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
         "qsearch","see-order","see-prune","delta","futility","reverse-futility",
         "razoring","null","adaptive-null","verified-null","lmr","check-extension",
         "recapture-extension","singular","multicut","probcut","multiprobcut"};
@@ -56,9 +57,11 @@ int root_score(int s,int ply) {return s>90000?s-ply:s< -90000?s+ply:s;}
 class Worker {
     Board& b; const AdvancedOptions& o;
     Evaluator eval;
+    MovePolicy policy;
     struct Flags {
         bool tt = false;
         bool history = false;
+        bool capture_history = false;
         bool killer = false;
         bool counter = false;
         bool iid = false;
@@ -89,6 +92,7 @@ class Worker {
     std::unordered_map<std::pair<uint64_t,int>,uint64_t,PathHash> paths;
     uint64_t next_path=1;
     std::array<std::array<int,65536>,2> history{};
+    std::array<std::array<int,16*81*16>,2> capture_history{};
     std::array<std::array<Move,2>,max_ply> killers{};
     std::array<std::array<Move,65536>,2> counters{};
     int null_level=0, isolated=0;
@@ -96,6 +100,14 @@ class Worker {
     std::vector<ProbModel> models;
     std::ofstream trace;
     std::ofstream leaf_trace;
+    static constexpr int prune_dim=17;
+    std::ofstream prune_log;
+    std::array<double,prune_dim> prune_weights{},prune_low{},prune_high{};
+    std::array<double,prune_dim> prune_cost_weights{};
+    double prune_threshold=0,prune_logit=-1e100;
+    double prune_cost_logit=1e100;
+    bool learned=false,prune_enabled=false;
+    uint64_t prune_events=0;
     uint64_t leaf_events=0;
     int iteration_depth=0;
     Move current_root_move=MOVE_NONE;
@@ -127,6 +139,18 @@ class Worker {
     }
     bool cacheable(uint64_t path) const {return f.tt&&path&&!isolated&&!null_level;}
     bool tactical(Move m) const {return is_promote(m)||b.pos.piece_on(to_sq(m))!=NO_PIECE;}
+    int capture_key(Move m) const {
+        const int pt=is_drop(m)?int(move_dropped_piece(m)):int(type_of(b.pos.piece_on(from_sq(m))));
+        return (pt*81+int(to_sq(m)))*16+int(type_of(b.pos.piece_on(to_sq(m))));
+    }
+    void learn_captures(Move best,const std::vector<Move>& searched,int depth) {
+        if(!f.capture_history||isolated||null_level||!tactical(best))return;
+        const int bonus=std::min(1600,128+64*depth*depth);
+        auto update=[&](Move m,int delta){auto& v=capture_history[b.pos.side_to_move()][capture_key(m)];v+=delta-v*std::abs(delta)/16384;};
+        update(best,bonus);
+        for(Move m:searched)if(m!=best&&tactical(m))update(m,-bonus/2);
+        ++r.stats["capture_history_updates"];
+    }
     int gain(Move m) const {
         Piece p=b.pos.piece_on(to_sq(m));
         int v=p==NO_PIECE?0:piece_value(type_of(p))+piece_value(raw_type_of(p));
@@ -135,6 +159,32 @@ class Worker {
             v+=piece_value(PieceType(int(pt)+8))-piece_value(pt);
         }
         return v;
+    }
+    std::array<double,prune_dim> prune_features(Move m,Move incoming,int a,int stand,int left,int index,int count) const {
+        const auto side=b.pos.side_to_move();
+        const int captured=type_of(b.pos.piece_on(to_sq(m))),attacker=type_of(b.pos.piece_on(from_sq(m)));
+        const int target=int(to_sq(m)),king=int(b.pos.king_square(~side));
+        const int distance=std::max(std::abs(target/9-king/9),std::abs(target%9-king%9));
+        double own=0,enemy=0;
+        for(int p=1;p<=7;++p){own+=hand_count(b.pos.hand_of(side),PieceType(p))*piece_value(PieceType(p))*.9;enemy+=hand_count(b.pos.hand_of(~side),PieceType(p))*piece_value(PieceType(p))*.9;}
+        double margin=(a-stand-gain(m)*.9)/900.0;
+        return {1.,std::clamp((a-stand)/900.,-8.,8.),std::clamp(margin,-8.,8.),gain(m)*.9/1800.,
+          piece_value(PieceType(attacker))*.9/900.,left/6.,std::min(index,16)/16.,std::min(count,16)/16.,
+          incoming!=MOVE_NONE&&to_sq(incoming)==to_sq(m)?1.:0.,distance<=2?1.:0.,
+          std::min(enemy/3600.,4.),std::min(own/3600.,4.),std::min(std::abs(stand)/3600.,4.),
+          std::clamp(margin,0.,8.),raw_type_of(Piece(captured))==BISHOP||raw_type_of(Piece(captured))==ROOK?1.:0.,
+          attacker==KING?1.:0.,captured==PAWN?1.:0.};
+    }
+    void prune_row(const char* event,const std::string& sfen,Move m,int a,int stand,int left,int index,
+                   const std::array<double,prune_dim>& x,int score,uint64_t cost,bool guarded) {
+        if(!prune_log.is_open())return;
+        if(prune_events++>=o.limits.trace_limit){++r.stats["prune_log_omitted"];return;}
+        prune_log<<"{\"event\":"<<quote(event)<<",\"sfen\":"<<quote(sfen)<<",\"move\":"<<quote(usi(m))
+          <<",\"alpha\":"<<a<<",\"stand\":"<<stand<<",\"qleft\":"<<left<<",\"index\":"<<index
+          <<",\"parent_score_bound\":"<<score<<",\"improves\":"<<(score>a?1:0)<<",\"cost\":"<<cost
+          <<",\"guarded\":"<<(guarded?"true":"false")<<",\"x\":[";
+        for(int i=0;i<prune_dim;++i){if(i)prune_log<<',';prune_log<<std::setprecision(12)<<x[i];}
+        prune_log<<"]}\n";
     }
     // A bounded, legal same-square exchange search; not an exact shogi oracle.
     // Includes hand gains, demotion, optional promotion and pinned/king legality.
@@ -164,6 +214,11 @@ class Worker {
             if(tactical(m))score+=10000000;
             if(f.see_order&&tactical(m))score+=int64_t(see(m))*10000;
             if(f.history&&!tactical(m))score+=history[side][pack(m)];
+            if(f.capture_history&&tactical(m))score+=4*capture_history[side][capture_key(m)];
+            if(!o.policy_model.empty()&&o.policy_scale&&!tactical(m)) {
+                score+=int64_t(o.policy_scale)*policy.score(b,m);
+                ++r.stats["policy_moves_scored"];
+            }
             if(f.killer&&ply<max_ply&&!tactical(m)) {
                 if(m==killers[ply][0])score+=3000000;
                 else if(m==killers[ply][1])score+=2000000;
@@ -222,15 +277,65 @@ class Worker {
             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
         }
         moves=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+        int move_index=0;bool learned_cut=false;std::vector<Move> captures_searched;
         for(Move m:moves) {
+            const int index=move_index++;
             const bool checkmove=b.pos.gives_check(m);
             if(!checked&&!checkmove&&!isolated) {
                 if(f.delta&&stand+gain(m)+200<a){++r.stats["delta_prunes"];continue;}
                 if(f.see_prune&&see(m)<0){++r.stats["see_prunes"];continue;}
             }
+            const bool eligible=prune_enabled&&!checked&&!checkmove&&!isolated&&!null_level&&
+              !is_drop(m)&&!is_promote(m)&&b.pos.piece_on(to_sq(m))!=NO_PIECE&&
+              beta-a==1&&std::abs(a)<8000&&std::abs(stand)<8000;
+            // Cheap protected-move checks precede hand/king feature construction.
+            const bool consider=eligible&&(o.prune_policy=="collect"||o.prune_policy=="direct"||
+              (!learned_cut&&index>=2&&left>=3&&(incoming==MOVE_NONE||to_sq(incoming)!=to_sq(m))&&
+               type_of(b.pos.piece_on(from_sq(m)))!=KING&&a-stand>=gain(m)*.9));
+            std::array<double,prune_dim> x{};bool guarded=false;
+            std::string parent_sfen;
+            if(consider){
+                ++r.stats["learned_eligible"];
+                x=prune_features(m,incoming,a,stand,left,index,int(moves.size()));
+                guarded=index>=2&&left>=3&&x[8]==0&&x[9]==0&&x[15]==0&&x[2]>=0&&!learned_cut;
+                if(prune_log.is_open())parent_sfen=b.pos.sfen();
+                if(guarded)++r.stats["learned_guard_eligible"];
+                double logit=0;bool in_domain=true;
+                for(int j=0;j<prune_dim;++j){logit+=x[j]*prune_weights[j];if(x[j]<prune_low[j]-1e-9||x[j]>prune_high[j]+1e-9)in_domain=false;}
+                bool skip=learned&&prune_threshold>0&&logit<=prune_logit;
+                if(o.prune_policy!="direct")skip=skip&&guarded&&in_domain;
+                if(skip&&o.prune_policy=="efficient"){
+                    double cost_logit=0;for(int j=0;j<prune_dim;++j)cost_logit+=x[j]*prune_cost_weights[j];
+                    skip=cost_logit>=prune_cost_logit;
+                }
+                if(skip&&(o.prune_policy=="verified"||o.prune_policy=="staticcheck")) {
+                    ++r.stats["learned_verifications"];const uint64_t before=r.base.nodes;
+                    // A shallow bound is evidence only, not a proof at the original q depth.
+                    const int threshold=a-90;Value shallow;
+                    {struct Guard{int& n;Guard(int& x):n(x){++n;}~Guard(){--n;}} guard(isolated);
+                     PlayedMove move(b,m);shallow=qsearch(-threshold-1,-threshold,ply+1,o.prune_policy=="staticcheck"?0:1,node,m);}
+                    r.stats["learned_verification_nodes"]+=r.base.nodes-before;
+                    skip=-shallow.score<=threshold;
+                    if(!skip)++r.stats["learned_verification_rejects"];
+                }
+                if(skip){
+                    if(o.prune_audit){
+                        const uint64_t before=r.base.nodes;Value reference;
+                        {struct Guard{int& n;Guard(int& x):n(x){++n;}~Guard(){--n;}} guard(isolated);
+                         PlayedMove move(b,m);reference=qsearch(-beta,-a,ply+1,left-1,node,m);}
+                        ++r.stats["learned_audits"];r.stats["learned_audit_nodes"]+=r.base.nodes-before;
+                        if(-reference.score>a)++r.stats["learned_false_prunes"];
+                        prune_row("audit",parent_sfen,m,a,stand,left,index,x,-reference.score,r.base.nodes-before,guarded);
+                    }
+                    ++r.stats["learned_prunes"];learned_cut=true;continue;
+                }
+            }
+            const uint64_t before=r.base.nodes;
             Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m);}
+            if(consider)prune_row("observed",parent_sfen,m,a,stand,left,index,x,-c.score,r.base.nodes-before,guarded);
             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
-            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;return finish(best,"child_beta_cutoff");}
+            if(f.capture_history&&tactical(m))captures_searched.push_back(m);
+            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;learn_captures(m,captures_searched,std::max(1,left));return finish(best,"child_beta_cutoff");}
         }
         return finish(best,best.pv.empty()?"stand_pat_selected":"child_selected");
     }
@@ -350,7 +455,7 @@ class Worker {
             for(Move m:moves)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
             if(unique){singular=preferred;++r.stats["singular_confirmed"];}
         }
-        Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched;
+        Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched,captures_searched;
         const Color side=b.pos.side_to_move();
         for(Move m:moves) {
             const bool noise=tactical(m),gives=b.pos.gives_check(m);
@@ -387,8 +492,10 @@ class Worker {
             }
             a=std::max(a,best.score);
             if(!noise)quiet_searched.push_back(m);
+            else if(f.capture_history)captures_searched.push_back(m);
             if(a>=beta) {
                 ++r.base.cutoffs;r.base.skipped_siblings+=moves.size()-index-1;
+                learn_captures(m,captures_searched,d);
                 if(!noise&&!isolated) {
                     if(f.killer){if(killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}++r.stats["killer_updates"];}
                     if(f.history) {
@@ -493,9 +600,11 @@ class Worker {
     }
 public:
     AdvancedResult r;
-    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model) {
+    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model),policy(o.policy_model) {
+        if(o.policy_scale<0||o.policy_scale>16)throw std::invalid_argument("Policy scale must be 0..16");
         f.tt=o.features.count("tt")!=0;
         f.history=o.features.count("history")!=0;
+        f.capture_history=o.features.count("capture-history")!=0;
         f.killer=o.features.count("killer")!=0;
         f.counter=o.features.count("counter")!=0;
         f.iid=o.features.count("iid")!=0;
@@ -525,6 +634,31 @@ public:
         if(o.limits.depth<0||o.limits.depth>16||!o.limits.max_nodes||o.limits.time_ms>3600000||o.multipv<1||o.multipv>5||o.qdepth<0||o.qdepth>16||o.extension_budget<0||o.extension_budget>8||o.tt_capacity<1||o.tt_capacity>1000000||o.aspiration<1||o.aspiration>10000)throw std::invalid_argument("Invalid advanced limits");
         const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","multicut","probcut","multiprobcut"};
         for(auto& f:selective)if(on(f))r.selective=true;
+        const std::set<std::string> prune_policies={"off","collect","direct","guarded","verified","staticcheck","efficient"};
+        if(!prune_policies.count(o.prune_policy))throw std::invalid_argument("Unknown learned prune policy");
+        prune_enabled=o.prune_policy!="off";learned=prune_enabled&&o.prune_policy!="collect";
+        if(!std::isfinite(o.prune_probability)||(o.prune_probability!=-1&&(o.prune_probability<0||o.prune_probability>=1)))throw std::invalid_argument("Prune probability must be -1 or [0,1)");
+        if(prune_enabled){
+            if(o.evaluation!="nnue"||!f.qsearch||o.qdepth!=6||r.selective||o.driver!="pvs")throw std::invalid_argument("Learned pruning requires nnue, PVS, qdepth 6 and nonselective features");
+            if(learned){
+                std::ifstream input(o.prune_model);std::string header;
+                if(!std::getline(input,header)||(header!="shogi-lab-alpha-risk-v1 nnue_raw90 qdepth6 dim17"&&header!="shogi-lab-alpha-risk-v2 nnue_raw90 qdepth6 dim17"))throw std::invalid_argument("Invalid learned prune model header");
+                if(!(input>>prune_threshold)||!std::isfinite(prune_threshold)||prune_threshold<0||prune_threshold>=1)throw std::invalid_argument("Invalid prune calibration");
+                for(auto* row:{&prune_weights,&prune_low,&prune_high})for(double& v:*row)if(!(input>>v)||!std::isfinite(v))throw std::invalid_argument("Invalid prune coefficients");
+                if(header.find("-v2 ")!=std::string::npos){
+                    double cost_threshold;
+                    if(!(input>>cost_threshold)||!std::isfinite(cost_threshold)||cost_threshold<=0||cost_threshold>=1)throw std::invalid_argument("Invalid cost calibration");
+                    prune_cost_logit=std::log(cost_threshold/(1-cost_threshold));
+                    for(double& v:prune_cost_weights)if(!(input>>v)||!std::isfinite(v))throw std::invalid_argument("Invalid cost coefficients");
+                }else if(o.prune_policy=="efficient")throw std::invalid_argument("Efficient policy needs v2 cost model");
+                std::string excess;if(input>>excess)throw std::invalid_argument("Trailing prune coefficients");
+                for(int i=0;i<prune_dim;++i)if(prune_low[i]>prune_high[i])throw std::invalid_argument("Invalid prune domain");
+                if(o.prune_probability>=0)prune_threshold=o.prune_probability;
+                prune_logit=prune_threshold>0?std::log(prune_threshold/(1-prune_threshold)):-1e100;
+                r.selective=true;
+            }
+        }else if(o.prune_audit||!o.prune_log_path.empty()||!o.prune_model.empty()||o.prune_probability!=-1)throw std::invalid_argument("Prune options require an active policy");
+        if(o.prune_audit&&!learned)throw std::invalid_argument("Audit requires a learned prune policy");
         if(o.driver=="rps"||o.driver=="erps"){
             r.selective=true;
             for(auto& f:o.features)if(f!="qsearch"&&f!="see-order")throw std::invalid_argument("RPS/ERPS use only qsearch and see-order features; pass --features explicitly");
@@ -550,6 +684,7 @@ public:
         }
         if(!o.limits.trace_path.empty()){trace.open(o.limits.trace_path);if(!trace)throw std::runtime_error("Cannot open advanced trace");}
         if(!o.leaf_trace_path.empty()){leaf_trace.open(o.leaf_trace_path);if(!leaf_trace)throw std::runtime_error("Cannot open leaf trace");}
+        if(!o.prune_log_path.empty()){prune_log.exceptions(std::ios::badbit|std::ios::failbit);prune_log.open(o.prune_log_path);}
     }
     AdvancedResult run() {
         start=now();
@@ -578,6 +713,7 @@ public:
         }
         for(const auto& item:eval.stats())r.stats[item.first]=item.second;
         r.base.elapsed_ms=now()-start;r.stats["tt_entries"]=tt.size();r.stats["history_paths"]=paths.size();
+        if(prune_log.is_open())prune_log.flush();
         return r;
     }
 };
@@ -593,7 +729,10 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
         <<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
-    out<<"],\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
+    out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
+       <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
+       <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
+       <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
     out<<"},\"candidates\":[";comma=false;for(auto& c:r.candidates){if(comma)out<<',';out<<"{\"score\":"<<c.score<<",\"pv\":"<<line_json(c.pv)<<'}';comma=true;}
     out<<"],\"fallback_move\":"<<(r.fallback_pv.empty()?"null":quote(usi(r.fallback_pv.front())))
        <<",\"fallback_pv\":"<<line_json(r.fallback_pv)<<",\"fallback_source\":"<<quote(r.fallback_source)

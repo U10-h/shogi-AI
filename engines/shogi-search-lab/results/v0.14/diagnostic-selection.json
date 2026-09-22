@@ -1,0 +1,56 @@
+{
+  "posthoc": true,
+  "criterion": "worst offline policy plus capture versus base at1s on final test; diagnosis only, not model tuning",
+  "root": {
+    "game": 5,
+    "offset": 23,
+    "ply": 27,
+    "prefix": [
+      "7g7f",
+      "3c3d",
+      "2h6h",
+      "8c8d",
+      "3g3f",
+      "5a4b",
+      "3i4h",
+      "2b8h+",
+      "6h8h",
+      "B*2h",
+      "4i3i",
+      "2h1i",
+      "B*7g",
+      "4b3b",
+      "2i3g",
+      "9c9d",
+      "3i2i",
+      "1i3g+",
+      "4h3g",
+      "3a2b",
+      "3g2f",
+      "8d8e",
+      "2i3h",
+      "2b3c",
+      "3f3e",
+      "3d3e",
+      "2f3e"
+    ],
+    "sfen": "lnsg1g1nl/1r4k2/2ppppspp/p8/1p4S2/2P6/PPBPPP1PP/1R4G2/LNSGK4 w BPnlp 1",
+    "teacherOriginal": {
+      "type": "cp",
+      "score": -77,
+      "depth": 6,
+      "nodes": 3904,
+      "time": 5,
+      "rank": 1,
+      "bound": false,
+      "pv": [
+        "4a4b",
+        "P*3d",
+        "3c2b",
+        "7i7h"
+      ]
+    }
+  },
+  "id": 5,
+  "deltaGapCp": 1245
+}

@@ -1,0 +1,1506 @@
+{
+  "development": {
+    "{'nodes': 12000} allCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 73.39200000000001,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 83.095125,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy4": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 91.62466666666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy16": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 89.89883333333334,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "lmr": {
+        "roots": 24,
+        "meanGapCp": 42.125,
+        "meanCompletedDepth": 3.5416666666666665,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 79.068625,
+        "meanDeltaGapCp": -61.25,
+        "delta95CI": [
+          -176.66666666666666,
+          2.7916666666666665
+        ],
+        "improved": 3,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 4
+      },
+      "policy4lmr": {
+        "roots": 24,
+        "meanGapCp": 54.125,
+        "meanCompletedDepth": 3.625,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 85.37275,
+        "meanDeltaGapCp": -49.25,
+        "delta95CI": [
+          -158.0,
+          7.5
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 12000} normalCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 73.39200000000001,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 83.095125,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy4": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 91.62466666666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy16": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 89.89883333333334,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "lmr": {
+        "roots": 24,
+        "meanGapCp": 42.125,
+        "meanCompletedDepth": 3.5416666666666665,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 79.068625,
+        "meanDeltaGapCp": -61.25,
+        "delta95CI": [
+          -176.66666666666666,
+          2.7916666666666665
+        ],
+        "improved": 3,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 4
+      },
+      "policy4lmr": {
+        "roots": 24,
+        "meanGapCp": 54.125,
+        "meanCompletedDepth": 3.625,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 85.37275,
+        "meanDeltaGapCp": -49.25,
+        "delta95CI": [
+          -158.0,
+          7.5
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 48000} allCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.8333333333333335,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 319.48033333333336,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 365.38979166666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy4": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 345.0809166666666,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy16": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 356.0927083333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "lmr": {
+        "roots": 24,
+        "meanGapCp": 46.625,
+        "meanCompletedDepth": 4.666666666666667,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 297.3233333333333,
+        "meanDeltaGapCp": -1.9583333333333333,
+        "delta95CI": [
+          -25.916666666666668,
+          15.875
+        ],
+        "improved": 2,
+        "equal": 20,
+        "worse": 2,
+        "moveChanges": 4
+      },
+      "policy4lmr": {
+        "roots": 24,
+        "meanGapCp": 55.958333333333336,
+        "meanCompletedDepth": 4.708333333333333,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 348.5434166666667,
+        "meanDeltaGapCp": 7.375,
+        "delta95CI": [
+          -0.8333333333333334,
+          20.458333333333332
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 48000} normalCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.8333333333333335,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 319.48033333333336,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 365.38979166666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy4": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 345.0809166666666,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy16": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.875,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 356.0927083333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "lmr": {
+        "roots": 24,
+        "meanGapCp": 46.625,
+        "meanCompletedDepth": 4.666666666666667,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 297.3233333333333,
+        "meanDeltaGapCp": -1.9583333333333333,
+        "delta95CI": [
+          -25.916666666666668,
+          15.875
+        ],
+        "improved": 2,
+        "equal": 20,
+        "worse": 2,
+        "moveChanges": 4
+      },
+      "policy4lmr": {
+        "roots": 24,
+        "meanGapCp": 55.958333333333336,
+        "meanCompletedDepth": 4.708333333333333,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 348.5434166666667,
+        "meanDeltaGapCp": 7.375,
+        "delta95CI": [
+          -0.8333333333333334,
+          20.458333333333332
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    }
+  },
+  "development-history": {
+    "{'nodes': 12000} allCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 79.13866666666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 24,
+        "meanGapCp": 77.625,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 77.463125,
+        "meanDeltaGapCp": -25.75,
+        "delta95CI": [
+          -77.25,
+          0.0
+        ],
+        "improved": 1,
+        "equal": 23,
+        "worse": 0,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.2083333333333335,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 95.41545833333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capturelmr": {
+        "roots": 24,
+        "meanGapCp": 42.125,
+        "meanCompletedDepth": 3.6666666666666665,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 82.98462500000001,
+        "meanDeltaGapCp": -61.25,
+        "delta95CI": [
+          -176.66666666666666,
+          2.7916666666666665
+        ],
+        "improved": 3,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 4
+      },
+      "policy1capturelmr": {
+        "roots": 24,
+        "meanGapCp": 54.125,
+        "meanCompletedDepth": 3.625,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 91.88545833333332,
+        "meanDeltaGapCp": -49.25,
+        "delta95CI": [
+          -158.0,
+          7.5
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 12000} normalCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 79.13866666666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 24,
+        "meanGapCp": 77.625,
+        "meanCompletedDepth": 3.125,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 77.463125,
+        "meanDeltaGapCp": -25.75,
+        "delta95CI": [
+          -77.25,
+          0.0
+        ],
+        "improved": 1,
+        "equal": 23,
+        "worse": 0,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 24,
+        "meanGapCp": 103.375,
+        "meanCompletedDepth": 3.2083333333333335,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 95.41545833333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capturelmr": {
+        "roots": 24,
+        "meanGapCp": 42.125,
+        "meanCompletedDepth": 3.6666666666666665,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 82.98462500000001,
+        "meanDeltaGapCp": -61.25,
+        "delta95CI": [
+          -176.66666666666666,
+          2.7916666666666665
+        ],
+        "improved": 3,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 4
+      },
+      "policy1capturelmr": {
+        "roots": 24,
+        "meanGapCp": 54.125,
+        "meanCompletedDepth": 3.625,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 91.88545833333332,
+        "meanDeltaGapCp": -49.25,
+        "delta95CI": [
+          -158.0,
+          7.5
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 48000} allCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.8333333333333335,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 325.50120833333335,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.9166666666666665,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 333.2359166666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1capture": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.9166666666666665,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 389.4984166666666,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capturelmr": {
+        "roots": 24,
+        "meanGapCp": 46.625,
+        "meanCompletedDepth": 4.791666666666667,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 329.47470833333335,
+        "meanDeltaGapCp": -1.9583333333333333,
+        "delta95CI": [
+          -25.916666666666668,
+          15.875
+        ],
+        "improved": 2,
+        "equal": 20,
+        "worse": 2,
+        "moveChanges": 4
+      },
+      "policy1capturelmr": {
+        "roots": 24,
+        "meanGapCp": 54.833333333333336,
+        "meanCompletedDepth": 4.833333333333333,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 384.91900000000004,
+        "meanDeltaGapCp": 6.25,
+        "delta95CI": [
+          -0.8333333333333334,
+          18.208333333333332
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 48000} normalCp": {
+      "base": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.8333333333333335,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 325.50120833333335,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.9166666666666665,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 333.2359166666667,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1capture": {
+        "roots": 24,
+        "meanGapCp": 48.583333333333336,
+        "meanCompletedDepth": 3.9166666666666665,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 389.4984166666666,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 24,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capturelmr": {
+        "roots": 24,
+        "meanGapCp": 46.625,
+        "meanCompletedDepth": 4.791666666666667,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 329.47470833333335,
+        "meanDeltaGapCp": -1.9583333333333333,
+        "delta95CI": [
+          -25.916666666666668,
+          15.875
+        ],
+        "improved": 2,
+        "equal": 20,
+        "worse": 2,
+        "moveChanges": 4
+      },
+      "policy1capturelmr": {
+        "roots": 24,
+        "meanGapCp": 54.833333333333336,
+        "meanCompletedDepth": 4.833333333333333,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 384.91900000000004,
+        "meanDeltaGapCp": 6.25,
+        "delta95CI": [
+          -0.8333333333333334,
+          18.208333333333332
+        ],
+        "improved": 1,
+        "equal": 21,
+        "worse": 2,
+        "moveChanges": 3
+      }
+    }
+  },
+  "quality": {
+    "{'ms': 1000} allCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 80.66666666666667,
+        "meanCompletedDepth": 4.428571428571429,
+        "meanNodes": 141734.85714285713,
+        "fallbacks": 0,
+        "meanMs": 1000.5653333333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 78.42857142857143,
+        "meanCompletedDepth": 4.523809523809524,
+        "meanNodes": 140242.47619047618,
+        "fallbacks": 0,
+        "meanMs": 1000.6123333333331,
+        "meanDeltaGapCp": -2.238095238095238,
+        "delta95CI": [
+          -6.714285714285714,
+          0.0
+        ],
+        "improved": 1,
+        "equal": 20,
+        "worse": 0,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 135.23809523809524,
+        "meanCompletedDepth": 4.428571428571429,
+        "meanNodes": 128625.66666666667,
+        "fallbacks": 0,
+        "meanMs": 1000.8424761904763,
+        "meanDeltaGapCp": 54.57142857142857,
+        "delta95CI": [
+          -11.571428571428571,
+          177.85714285714286
+        ],
+        "improved": 2,
+        "equal": 18,
+        "worse": 1,
+        "moveChanges": 3
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 57.0,
+        "meanCompletedDepth": 5.523809523809524,
+        "meanNodes": 143263.19047619047,
+        "fallbacks": 0,
+        "meanMs": 1000.744,
+        "meanDeltaGapCp": -23.666666666666668,
+        "delta95CI": [
+          -75.09880952380954,
+          13.524999999999983
+        ],
+        "improved": 5,
+        "equal": 14,
+        "worse": 2,
+        "moveChanges": 7
+      }
+    },
+    "{'ms': 1000} normalCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 80.66666666666667,
+        "meanCompletedDepth": 4.428571428571429,
+        "meanNodes": 141734.85714285713,
+        "fallbacks": 0,
+        "meanMs": 1000.5653333333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 78.42857142857143,
+        "meanCompletedDepth": 4.523809523809524,
+        "meanNodes": 140242.47619047618,
+        "fallbacks": 0,
+        "meanMs": 1000.6123333333331,
+        "meanDeltaGapCp": -2.238095238095238,
+        "delta95CI": [
+          -6.714285714285714,
+          0.0
+        ],
+        "improved": 1,
+        "equal": 20,
+        "worse": 0,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 135.23809523809524,
+        "meanCompletedDepth": 4.428571428571429,
+        "meanNodes": 128625.66666666667,
+        "fallbacks": 0,
+        "meanMs": 1000.8424761904763,
+        "meanDeltaGapCp": 54.57142857142857,
+        "delta95CI": [
+          -11.571428571428571,
+          177.85714285714286
+        ],
+        "improved": 2,
+        "equal": 18,
+        "worse": 1,
+        "moveChanges": 3
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 57.0,
+        "meanCompletedDepth": 5.523809523809524,
+        "meanNodes": 143263.19047619047,
+        "fallbacks": 0,
+        "meanMs": 1000.744,
+        "meanDeltaGapCp": -23.666666666666668,
+        "delta95CI": [
+          -75.09880952380954,
+          13.524999999999983
+        ],
+        "improved": 5,
+        "equal": 14,
+        "worse": 2,
+        "moveChanges": 7
+      }
+    },
+    "{'nodes': 12000} allCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 161.23809523809524,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 76.9447619047619,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 161.23809523809524,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 76.95933333333335,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 161.71428571428572,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 86.34647619047618,
+        "meanDeltaGapCp": 0.47619047619047616,
+        "delta95CI": [
+          0.0,
+          1.4285714285714286
+        ],
+        "improved": 0,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 1
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 151.23809523809524,
+        "meanCompletedDepth": 3.3333333333333335,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 74.85585714285715,
+        "meanDeltaGapCp": -10.0,
+        "delta95CI": [
+          -23.666666666666668,
+          0.0
+        ],
+        "improved": 3,
+        "equal": 18,
+        "worse": 0,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 12000} normalCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 161.23809523809524,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 76.9447619047619,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 161.23809523809524,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 76.95933333333335,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 161.71428571428572,
+        "meanCompletedDepth": 3.0952380952380953,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 86.34647619047618,
+        "meanDeltaGapCp": 0.47619047619047616,
+        "delta95CI": [
+          0.0,
+          1.4285714285714286
+        ],
+        "improved": 0,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 1
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 151.23809523809524,
+        "meanCompletedDepth": 3.3333333333333335,
+        "meanNodes": 12000.0,
+        "fallbacks": 0,
+        "meanMs": 74.85585714285715,
+        "meanDeltaGapCp": -10.0,
+        "delta95CI": [
+          -23.666666666666668,
+          0.0
+        ],
+        "improved": 3,
+        "equal": 18,
+        "worse": 0,
+        "moveChanges": 3
+      }
+    },
+    "{'nodes': 48000} allCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 156.66666666666666,
+        "meanCompletedDepth": 3.761904761904762,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 301.1003333333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 157.95238095238096,
+        "meanCompletedDepth": 3.8095238095238093,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 332.81566666666663,
+        "meanDeltaGapCp": 1.2857142857142858,
+        "delta95CI": [
+          0.0,
+          3.857142857142857
+        ],
+        "improved": 0,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 131.71428571428572,
+        "meanCompletedDepth": 3.857142857142857,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 396.947,
+        "meanDeltaGapCp": -24.952380952380953,
+        "delta95CI": [
+          -74.0,
+          2.5714285714285716
+        ],
+        "improved": 2,
+        "equal": 18,
+        "worse": 1,
+        "moveChanges": 3
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 93.52380952380952,
+        "meanCompletedDepth": 4.619047619047619,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 338.4344285714286,
+        "meanDeltaGapCp": -63.142857142857146,
+        "delta95CI": [
+          -195.00833333333333,
+          11.620238095238077
+        ],
+        "improved": 4,
+        "equal": 14,
+        "worse": 3,
+        "moveChanges": 7
+      }
+    },
+    "{'nodes': 48000} normalCp": {
+      "base": {
+        "roots": 21,
+        "meanGapCp": 156.66666666666666,
+        "meanCompletedDepth": 3.761904761904762,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 301.1003333333333,
+        "meanDeltaGapCp": 0.0,
+        "delta95CI": [
+          0.0,
+          0.0
+        ],
+        "improved": 0,
+        "equal": 21,
+        "worse": 0,
+        "moveChanges": 0
+      },
+      "capture": {
+        "roots": 21,
+        "meanGapCp": 157.95238095238096,
+        "meanCompletedDepth": 3.8095238095238093,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 332.81566666666663,
+        "meanDeltaGapCp": 1.2857142857142858,
+        "delta95CI": [
+          0.0,
+          3.857142857142857
+        ],
+        "improved": 0,
+        "equal": 20,
+        "worse": 1,
+        "moveChanges": 1
+      },
+      "policy1capture": {
+        "roots": 21,
+        "meanGapCp": 131.71428571428572,
+        "meanCompletedDepth": 3.857142857142857,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 396.947,
+        "meanDeltaGapCp": -24.952380952380953,
+        "delta95CI": [
+          -74.0,
+          2.5714285714285716
+        ],
+        "improved": 2,
+        "equal": 18,
+        "worse": 1,
+        "moveChanges": 3
+      },
+      "capturelmr": {
+        "roots": 21,
+        "meanGapCp": 93.52380952380952,
+        "meanCompletedDepth": 4.619047619047619,
+        "meanNodes": 48000.0,
+        "fallbacks": 0,
+        "meanMs": 338.4344285714286,
+        "meanDeltaGapCp": -63.142857142857146,
+        "delta95CI": [
+          -195.00833333333333,
+          11.620238095238077
+        ],
+        "improved": 4,
+        "equal": 14,
+        "worse": 3,
+        "moveChanges": 7
+      }
+    }
+  },
+  "devfixed": {
+    "base": {
+      "completedRoots": 24,
+      "nodeRatio": 1.0,
+      "timeRatio": 1.0,
+      "timeRatio95CI": [
+        1.0,
+        1.0
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "lmr": {
+      "completedRoots": 24,
+      "nodeRatio": 0.7626125003574682,
+      "timeRatio": 0.8140392113523431,
+      "timeRatio95CI": [
+        0.6526235053905971,
+        0.8954489959508706
+      ],
+      "scoreChanges": 6,
+      "moveChanges": 6
+    },
+    "policy1": {
+      "completedRoots": 24,
+      "nodeRatio": 0.9789073319797204,
+      "timeRatio": 1.055449008664666,
+      "timeRatio95CI": [
+        0.8753108908419318,
+        1.1606519338920223
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "policy16": {
+      "completedRoots": 24,
+      "nodeRatio": 0.980247327159006,
+      "timeRatio": 1.041136608987586,
+      "timeRatio95CI": [
+        0.831601455809963,
+        1.1630081345695915
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "policy4": {
+      "completedRoots": 24,
+      "nodeRatio": 0.9802187297009114,
+      "timeRatio": 1.0279246447675743,
+      "timeRatio95CI": [
+        0.7634563139585351,
+        1.212399522069817
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "policy4lmr": {
+      "completedRoots": 24,
+      "nodeRatio": 0.7521131478856266,
+      "timeRatio": 0.8174901176448393,
+      "timeRatio95CI": [
+        0.49522278253094804,
+        1.0376442642752752
+      ],
+      "scoreChanges": 4,
+      "moveChanges": 4
+    }
+  },
+  "devfixed-history": {
+    "base": {
+      "completedRoots": 24,
+      "nodeRatio": 1.0,
+      "timeRatio": 1.0,
+      "timeRatio95CI": [
+        1.0,
+        1.0
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "capture": {
+      "completedRoots": 24,
+      "nodeRatio": 0.7693043055515837,
+      "timeRatio": 0.7534972764744702,
+      "timeRatio95CI": [
+        0.6452981787604635,
+        1.0020258857419895
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "capturelmr": {
+      "completedRoots": 24,
+      "nodeRatio": 0.5550889176679181,
+      "timeRatio": 0.5977033178907295,
+      "timeRatio95CI": [
+        0.39093343511592055,
+        0.7460391518417081
+      ],
+      "scoreChanges": 6,
+      "moveChanges": 6
+    },
+    "policy1capture": {
+      "completedRoots": 24,
+      "nodeRatio": 0.6856281431670459,
+      "timeRatio": 0.67511212419432,
+      "timeRatio95CI": [
+        0.4863910429588451,
+        0.9484460210565919
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "policy1capturelmr": {
+      "completedRoots": 24,
+      "nodeRatio": 0.5201795920368335,
+      "timeRatio": 0.5052558013492504,
+      "timeRatio95CI": [
+        0.32091524656592946,
+        0.6531961299101919
+      ],
+      "scoreChanges": 4,
+      "moveChanges": 4
+    }
+  },
+  "fixed": {
+    "base": {
+      "completedRoots": 21,
+      "nodeRatio": 1.0,
+      "timeRatio": 1.0,
+      "timeRatio95CI": [
+        1.0,
+        1.0
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "capture": {
+      "completedRoots": 21,
+      "nodeRatio": 0.9355141301754615,
+      "timeRatio": 0.9121513578814937,
+      "timeRatio95CI": [
+        0.82225905777064,
+        1.0227769103668152
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 0
+    },
+    "capturelmr": {
+      "completedRoots": 21,
+      "nodeRatio": 0.7043941267052726,
+      "timeRatio": 0.7038962314318484,
+      "timeRatio95CI": [
+        0.6177982162137828,
+        0.7772772835208493
+      ],
+      "scoreChanges": 4,
+      "moveChanges": 4
+    },
+    "policy1capture": {
+      "completedRoots": 21,
+      "nodeRatio": 0.7299054373522459,
+      "timeRatio": 0.7784986501785247,
+      "timeRatio95CI": [
+        0.6880593086463531,
+        0.9078693287097379
+      ],
+      "scoreChanges": 0,
+      "moveChanges": 2
+    }
+  },
+  "matches": {
+    "policy1capture": {
+      "wins": 10,
+      "losses": 6,
+      "draws": 0,
+      "unresolved": 0,
+      "moves": 1334,
+      "pairs": {
+        "3": [
+          1,
+          0
+        ],
+        "4": [
+          1,
+          1
+        ],
+        "2": [
+          1,
+          0
+        ],
+        "0": [
+          0,
+          0
+        ],
+        "8": [
+          1,
+          0
+        ],
+        "1": [
+          1,
+          1
+        ],
+        "6": [
+          1,
+          1
+        ],
+        "5": [
+          0,
+          1
+        ]
+      },
+      "starts": 8,
+      "scoreRateWithUnresolvedHalf": 0.625,
+      "score95CI": [
+        0.375,
+        0.875
+      ]
+    },
+    "capturelmr": {
+      "wins": 11,
+      "losses": 5,
+      "draws": 0,
+      "unresolved": 0,
+      "moves": 1377,
+      "pairs": {
+        "6": [
+          1,
+          1
+        ],
+        "0": [
+          0,
+          1
+        ],
+        "5": [
+          0,
+          1
+        ],
+        "8": [
+          1,
+          1
+        ],
+        "2": [
+          0,
+          1
+        ],
+        "3": [
+          1,
+          1
+        ],
+        "1": [
+          1,
+          0
+        ],
+        "4": [
+          0,
+          1
+        ]
+      },
+      "starts": 8,
+      "scoreRateWithUnresolvedHalf": 0.6875,
+      "score95CI": [
+        0.5625,
+        0.875
+      ]
+    },
+    "capture": {
+      "wins": 13,
+      "losses": 3,
+      "draws": 0,
+      "unresolved": 0,
+      "moves": 1239,
+      "pairs": {
+        "4": [
+          1,
+          1
+        ],
+        "2": [
+          0,
+          1
+        ],
+        "6": [
+          1,
+          1
+        ],
+        "1": [
+          1,
+          1
+        ],
+        "3": [
+          1,
+          1
+        ],
+        "0": [
+          0,
+          1
+        ],
+        "5": [
+          0,
+          1
+        ],
+        "8": [
+          1,
+          1
+        ]
+      },
+      "starts": 8,
+      "scoreRateWithUnresolvedHalf": 0.8125,
+      "score95CI": [
+        0.625,
+        0.9375
+      ]
+    }
+  }
+}

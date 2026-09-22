@@ -1,0 +1,191 @@
+{
+  "root": {
+    "sfen": "l3kg1nl/1r2g1s2/2n1s1bp1/p1p1ppp1p/1pPp3P1/1B1P2P1P/PP1GPP3/3S3R1/LN1GK1SNL b - 1",
+    "prefix": [
+      "2g2f",
+      "3c3d",
+      "7g7f",
+      "8c8d",
+      "6g6f",
+      "3a3b",
+      "6i7h",
+      "6a5b",
+      "8h7g",
+      "7a6b",
+      "1g1f",
+      "7c7d",
+      "4i5h",
+      "5c5d",
+      "2f2e",
+      "2b3c",
+      "7i6h",
+      "1c1d",
+      "5h6g",
+      "8a7c",
+      "7h7i",
+      "4c4d",
+      "7i6i",
+      "6c6d",
+      "7g9e",
+      "9c9d",
+      "9e8f",
+      "6b5c",
+      "3g3f",
+      "6d6e",
+      "7f7e",
+      "8d8e"
+    ],
+    "ply": 32,
+    "game": 57,
+    "split": "train",
+    "id": 112
+  },
+  "analysis": {
+    "algorithm": "advanced",
+    "depth": 16,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "node_limit",
+    "score": -999,
+    "bestmove": "8f7g",
+    "nodes": 24000,
+    "leaves": 626,
+    "terminals": 0,
+    "cutoffs": 3996,
+    "skipped_siblings": 145356,
+    "elapsed_ms": 393.347,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "8f7g",
+      "7d7e",
+      "6i7h",
+      "5c6d",
+      "6f6e",
+      "7c6e"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -794,
+        "nodes": 116,
+        "elapsed_ms": 2.365,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7e7d",
+          "8e8f",
+          "7d7c+"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -794,
+        "nodes": 248,
+        "elapsed_ms": 3.166,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7e7d",
+          "8e8f",
+          "7d7c+"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -794,
+        "nodes": 1490,
+        "elapsed_ms": 9.558,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "7e7d",
+          "8e8f",
+          "7d7c+"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -999,
+        "nodes": 15729,
+        "elapsed_ms": 248.859,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8f7g",
+          "7d7e",
+          "6i7h",
+          "5c6d",
+          "6f6e",
+          "7c6e"
+        ]
+      }
+    ],
+    "engine": "research-v0.9",
+    "evaluation": "nnue",
+    "score_unit": "yaneuraou_raw_pawn90",
+    "evaluation_model": "/workspace/scratch/ebe259f952a0/work/opponent/yaneuraou.data",
+    "eager_evaluation": false,
+    "compact_ordering": true,
+    "direct_qmoves": true,
+    "driver": "pvs",
+    "selective": false,
+    "defer_qmoves": true,
+    "leaf_policy": "bounded_quiescence",
+    "features": [
+      "counter",
+      "history",
+      "killer",
+      "mate-distance",
+      "qsearch",
+      "tt"
+    ],
+    "prune_policy": "collect",
+    "prune_model": "",
+    "prune_probability_override": -1,
+    "prune_audit": false,
+    "stats": {
+      "counter_updates": 44,
+      "history_paths": 9145,
+      "history_updates": 44,
+      "integer_order_keys": 174962,
+      "killer_updates": 44,
+      "learned_eligible": 8481,
+      "learned_guard_eligible": 1852,
+      "nnue_cache_hits": 92,
+      "nnue_calls": 20598,
+      "nnue_refreshes": 1,
+      "nnue_updates": 20505,
+      "pvs_probes": 964,
+      "pvs_researches": 15,
+      "q_avoided_generations": 16012,
+      "q_deferred_nodes": 20581,
+      "q_full_generations": 396,
+      "q_generated_moves": 16817,
+      "q_tactical_generations": 4585,
+      "qnodes": 20993,
+      "qstand_cutoffs": 15396,
+      "tt_cutoffs": 128,
+      "tt_entries": 2832,
+      "tt_hits": 170,
+      "tt_probes": 3007
+    },
+    "candidates": [
+      {
+        "score": -999,
+        "pv": [
+          "8f7g",
+          "7d7e",
+          "6i7h",
+          "5c6d",
+          "6f6e",
+          "7c6e"
+        ]
+      }
+    ],
+    "fallback_move": null,
+    "fallback_pv": [],
+    "fallback_source": "",
+    "fallback_partial_score": null,
+    "completed_root_moves": 35
+  },
+  "logging_parity": false
+}

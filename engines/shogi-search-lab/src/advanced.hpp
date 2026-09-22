@@ -21,8 +21,17 @@ struct AdvancedOptions {
     bool compact_ordering = true;
     bool direct_qmoves = true;
     bool defer_qmoves = true;
+    std::string policy_model; // Quiet move ordering only; no evaluation/pruning.
+    int policy_scale = 1; // 0 is an exact disabled control, 1..16 mixes with history.
     // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
     std::string leaf_trace_path;
+    // Experimental learned q-move pruning. Labels are alpha-threshold outcomes,
+    // never unqualified exact values. No policy is enabled by default.
+    std::string prune_policy = "off"; // off, collect, direct, guarded, verified, staticcheck, efficient
+    std::string prune_model;
+    std::string prune_log_path;
+    double prune_probability = -1; // -1 uses the calibrated model threshold.
+    bool prune_audit = false; // Expensive counterfactuals, excluded from speed tests.
 };
 struct AdvancedLine {int score = 0; std::vector<Move> pv;};
 struct AdvancedResult {

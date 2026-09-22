@@ -1,0 +1,42 @@
+{
+  "guarded": {
+    "roots": 32,
+    "nodes_excluding_audit": 631950,
+    "prunes": 22303,
+    "false_prunes": 226,
+    "changed_moves": 1,
+    "changed_scores": 1
+  },
+  "base": {
+    "roots": 32,
+    "nodes_excluding_audit": 578418,
+    "prunes": 0,
+    "false_prunes": 0,
+    "changed_moves": 0,
+    "changed_scores": 0
+  },
+  "delta": {
+    "roots": 32,
+    "nodes_excluding_audit": 221643,
+    "prunes": 0,
+    "false_prunes": 0,
+    "changed_moves": 14,
+    "changed_scores": 21
+  },
+  "direct": {
+    "roots": 32,
+    "nodes_excluding_audit": 451929,
+    "prunes": 121272,
+    "false_prunes": 881,
+    "changed_moves": 2,
+    "changed_scores": 6
+  },
+  "verified": {
+    "roots": 32,
+    "nodes_excluding_audit": 579852,
+    "prunes": 18887,
+    "false_prunes": 0,
+    "changed_moves": 0,
+    "changed_scores": 0
+  }
+}

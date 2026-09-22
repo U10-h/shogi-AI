@@ -1,0 +1,12 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "hashes": {
+    "src/advanced.cpp": "6da77dcc5612eb44d5a01aa3144af1bd800f88ecfacaddc16dfb9adcafa3bc69",
+    "src/advanced.hpp": "76ce5ca82a9f9e2b197cdda2f8a7335eace293c14c7e26bf3d14b88b51b73880",
+    "src/main.cpp": "ec1fe084046504cb233fb2901b8a4b85c234f92b004f980bbe77e53a5f2b1e1c",
+    "src/policy.hpp": "7927c8e78b8448120bf595391e08ecb3ad82ac7684d331a7efa8c45aa712976e",
+    "scripts/policy_v14.mjs": "153247f86ecc2956ee2210e301a875650095bd82da7e71d06cbfb15bfdbb3574",
+    "scripts/train_policy_v14.py": "d0f5af3f4fa905824461e7e9464fa233192a399a27189e35404a72b76bcb731f",
+    "models/v0.14/quiet-policy.txt": "7c9e524031570b00dd57b11be112451e1fa0cf369d6056524ae55177cb10e6b6"
+  }
+}

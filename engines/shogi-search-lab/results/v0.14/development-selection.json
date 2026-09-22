@@ -1,0 +1,9 @@
+{
+  "policy": "capture",
+  "offline": "policy1capture",
+  "selective": "capturelmr",
+  "reason": "Development: capture history preserves completed depth3 values and reduces work; adding offline policy further reduces completed fixed-depth work but did not improve node-budget choices; capture+LMR improves depth and 12k teacher gap, while offline+LMR is worse. Freeze all three to separate these effects on new trajectories.",
+  "developmentOnly": true,
+  "finalOutcomesOpened": false,
+  "multipleComparisons": "Exploratory comparison of three candidates; no corrected significance or Elo claim"
+}

@@ -2,6 +2,7 @@
 #include "session.hpp"
 #include "advanced.hpp"
 #include "positional.hpp"
+#include "policy.hpp"
 #include <algorithm>
 #include <iostream>
 #include <iomanip>
@@ -13,6 +14,7 @@ int main(int argc, char** argv) {
         lab::AdvancedOptions advanced_options;
         bool advanced = false, advanced_tests = false, usi_mode = false;
         bool eval_batch=false,nnue_features=false;
+        bool policy_dump=false;
         std::string sfen = SFEN_HIRATE, moves;
         bool legal = false, tests = false;
         bool session = false, session_tests = false;
@@ -47,6 +49,11 @@ int main(int argc, char** argv) {
                     "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
                     "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
+                    "  --leaf-trace PATH (opt-in qsearch entry/return observations)\n"
+                    "  --policy-model PATH --policy-scale 0..16 (quiet move ordering)\n"
+                    "  --policy-dump (stdin SFEN, output legal moves and sparse policy features)\n"
+                    "  --prune-policy off|collect|direct|guarded|verified|staticcheck|efficient\n"
+                    "  --prune-model PATH [--prune-probability 0..1) --prune-log PATH --prune-audit]\n"
                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
                 return 0;
             } else if (arg == "--sfen") sfen = value();
@@ -69,6 +76,14 @@ int main(int argc, char** argv) {
             } else if (arg == "--max-nodes") options.max_nodes = number(value());
             else if (arg == "--trace") options.trace_path = value();
             else if (arg == "--leaf-trace") advanced_options.leaf_trace_path = value();
+            else if (arg == "--policy-model") advanced_options.policy_model = value();
+            else if (arg == "--policy-scale") advanced_options.policy_scale = int(number(value()));
+            else if (arg == "--policy-dump") policy_dump = true;
+            else if (arg == "--prune-policy") advanced_options.prune_policy = value();
+            else if (arg == "--prune-model") advanced_options.prune_model = value();
+            else if (arg == "--prune-log") advanced_options.prune_log_path = value();
+            else if (arg == "--prune-probability") advanced_options.prune_probability = std::stod(value());
+            else if (arg == "--prune-audit") advanced_options.prune_audit = true;
             else if (arg == "--trace-root-only") options.trace_search = false;
             else if (arg == "--trace-limit") options.trace_limit = number(value());
             else if (arg == "--legal") legal = true;
@@ -115,6 +130,23 @@ int main(int argc, char** argv) {
         Bitboards::init();
         Position::init();
         advanced_options.limits=options;
+        if(policy_dump) {
+            lab::MovePolicy policy(advanced_options.policy_model);std::string input;
+            while(std::getline(std::cin,input)) {
+                lab::Board b(input);std::cout<<"{\"sfen\":"<<lab::quote(b.pos.sfen())<<",\"moves\":[";
+                bool first=true;for(Move m:b.legal_moves()) {
+                    if(!first)std::cout<<',';
+                    first=false;
+                    std::cout<<"{\"move\":"<<lab::quote(lab::usi(m))<<",\"quiet\":"
+                        <<(!is_promote(m)&&b.pos.piece_on(to_sq(m))==NO_PIECE?"true":"false")
+                        <<",\"score\":"<<policy.score(b,m)<<",\"ids\":[";
+                    auto ids=lab::policy_features(b,m);for(size_t i=0;i<ids.size();++i){if(i)std::cout<<',';std::cout<<ids[i];}
+                    std::cout<<"]}";
+                }
+                std::cout<<"]}"<<std::endl;
+            }
+            return 0;
+        }
         if(nnue_features&&(!eval_batch||advanced_options.evaluation.rfind("nnue",0)!=0))throw std::invalid_argument("--nnue-features requires --eval-batch --eval nnue");
         if(eval_batch){
             std::cout<<std::setprecision(17);

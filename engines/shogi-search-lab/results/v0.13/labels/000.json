@@ -1,0 +1,165 @@
+{
+  "root": {
+    "sfen": "l3kg1nl/1r1sg4/n3p1sp1/ppppbpp1p/9/PS1P1PP1P/1P2P2P1/L1G2SG2/1N1RK2NL b Bp 1",
+    "prefix": [
+      "7g7f",
+      "3c3d",
+      "1g1f",
+      "1c1d",
+      "9i9h",
+      "2b3c",
+      "2h6h",
+      "3a3b",
+      "8h3c+",
+      "3b3c",
+      "9g9f",
+      "B*5d",
+      "4i3h",
+      "5d7f",
+      "7i8h",
+      "7a6b",
+      "4g4f",
+      "4c4d",
+      "6i7h",
+      "6a5b",
+      "3i4h",
+      "9c9d",
+      "6h6i",
+      "7f5d",
+      "8h7g",
+      "6c6d",
+      "6g6f",
+      "8a9c",
+      "7g8f",
+      "7c7d",
+      "3g3f",
+      "8c8d"
+    ],
+    "ply": 32,
+    "game": 0,
+    "split": "train",
+    "id": 0
+  },
+  "analysis": {
+    "algorithm": "advanced",
+    "depth": 16,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 3,
+    "stop_reason": "node_limit",
+    "score": -23,
+    "bestmove": "4h4g",
+    "nodes": 24000,
+    "leaves": 34,
+    "terminals": 0,
+    "cutoffs": 6167,
+    "skipped_siblings": 184900,
+    "elapsed_ms": 296.712,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "4h4g",
+      "5a4b",
+      "9f9e"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": 47,
+        "nodes": 197,
+        "elapsed_ms": 4.116,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "4h4g"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -105,
+        "nodes": 464,
+        "elapsed_ms": 8.186,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "4h4g",
+          "5a4b"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -23,
+        "nodes": 5347,
+        "elapsed_ms": 64.423,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "4h4g",
+          "5a4b",
+          "9f9e"
+        ]
+      }
+    ],
+    "engine": "research-v0.9",
+    "evaluation": "nnue",
+    "score_unit": "yaneuraou_raw_pawn90",
+    "evaluation_model": "/workspace/scratch/ebe259f952a0/work/opponent/yaneuraou.data",
+    "eager_evaluation": false,
+    "compact_ordering": true,
+    "direct_qmoves": true,
+    "driver": "pvs",
+    "selective": false,
+    "defer_qmoves": true,
+    "leaf_policy": "bounded_quiescence",
+    "features": [
+      "counter",
+      "history",
+      "killer",
+      "mate-distance",
+      "qsearch",
+      "tt"
+    ],
+    "prune_policy": "collect",
+    "prune_model": "",
+    "prune_probability_override": -1,
+    "prune_audit": false,
+    "stats": {
+      "counter_updates": 539,
+      "history_paths": 11502,
+      "history_updates": 539,
+      "integer_order_keys": 213059,
+      "killer_updates": 539,
+      "learned_eligible": 5444,
+      "learned_guard_eligible": 261,
+      "nnue_cache_hits": 398,
+      "nnue_calls": 18912,
+      "nnue_refreshes": 1,
+      "nnue_updates": 18513,
+      "pvs_probes": 622,
+      "pvs_researches": 19,
+      "q_avoided_generations": 11617,
+      "q_deferred_nodes": 18905,
+      "q_full_generations": 1499,
+      "q_generated_moves": 13049,
+      "q_tactical_generations": 7294,
+      "qnodes": 20410,
+      "qstand_cutoffs": 11584,
+      "tt_entries": 3586,
+      "tt_probes": 3590
+    },
+    "candidates": [
+      {
+        "score": -23,
+        "pv": [
+          "4h4g",
+          "5a4b",
+          "9f9e"
+        ]
+      }
+    ],
+    "fallback_move": null,
+    "fallback_pv": [],
+    "fallback_source": "",
+    "fallback_partial_score": null,
+    "completed_root_moves": 80
+  },
+  "logging_parity": true
+}

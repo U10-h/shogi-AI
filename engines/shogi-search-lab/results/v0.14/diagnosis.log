@@ -1,0 +1,12 @@
+base 4 3c2b -324 84002 True
+capture 4 3c2b -324 84140 True
+policy1capture 4 6a5b -324 64375 True
+base 5 3c2b -254 523464 True
+capture 5 3c2b -254 560572 True
+policy1capture 5 6a5b -254 404272 True
+6a5b 3 -324 14495 True
+6a5b 4 -254 104774 True
+3c2b 3 -324 15645 True
+3c2b 4 -254 93467 True
+P*3d 3 -468 7689 True
+P*3d 4 -447 42442 True

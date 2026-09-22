@@ -1,0 +1,14 @@
+{
+  "version": "v0.14",
+  "hypothesis": "Cheap supervised quiet-move policy improves ordering without learned pruning; then evaluate conservative LMR separately.",
+  "training": "v0.10 games train only; quiet teacher top-3 soft labels, game split and mirror dedup",
+  "validation": "v0.10 validation games, no duplicated training parent SFEN or mirror",
+  "development": "v0.13 roots: all are explicitly reused development data, never presented as a new test",
+  "final": "new seed 2026092114, 24 trajectories, model/options frozen before test; shared opening families",
+  "evaluations": [
+    "fixed depth equality/time",
+    "equal node and fixed time choice quality",
+    "paired color matches"
+  ],
+  "environment": "Linux-6.18.44-x86_64-with-glibc2.39"
+}

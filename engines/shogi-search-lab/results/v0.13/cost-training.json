@@ -1,0 +1,340 @@
+{
+  "trigger": "initial development: static verification zero errors but no node savings; guarded errors grew under changed tree distribution",
+  "target": "reference child cost >=4",
+  "selection": "maximum calibration sum(max(cost-1,0)) subject to false<=0.5%, >=100 candidates and >=8 games",
+  "train_costly_rate": 0.13659192939941314,
+  "history": [
+    {
+      "epoch": 0,
+      "loss": 0.31047295204021563
+    },
+    {
+      "epoch": 1,
+      "loss": 0.2806092804577413
+    },
+    {
+      "epoch": 2,
+      "loss": 0.2716298778183561
+    },
+    {
+      "epoch": 3,
+      "loss": 0.2695467932388226
+    },
+    {
+      "epoch": 4,
+      "loss": 0.269393705948561
+    },
+    {
+      "epoch": 5,
+      "loss": 0.2693926705279058
+    },
+    {
+      "epoch": 6,
+      "loss": 0.26939267047494775
+    },
+    {
+      "epoch": 7,
+      "loss": 0.26939267047494775
+    }
+  ],
+  "grid": [
+    {
+      "risk_threshold": 0.001,
+      "cost_threshold": 0.02,
+      "n": 1215,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 15,
+      "reference_nodes_minus_one": 49
+    },
+    {
+      "risk_threshold": 0.001,
+      "cost_threshold": 0.05,
+      "n": 231,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 13,
+      "reference_nodes_minus_one": 49
+    },
+    {
+      "risk_threshold": 0.001,
+      "cost_threshold": 0.1,
+      "n": 59,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 7,
+      "reference_nodes_minus_one": 40
+    },
+    {
+      "risk_threshold": 0.001,
+      "cost_threshold": 0.2,
+      "n": 6,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 2,
+      "reference_nodes_minus_one": 32
+    },
+    {
+      "risk_threshold": 0.001,
+      "cost_threshold": 0.4,
+      "n": 0,
+      "false_cuts": 0,
+      "false_rate": null,
+      "games": 0,
+      "reference_nodes_minus_one": 0
+    },
+    {
+      "risk_threshold": 0.0025,
+      "cost_threshold": 0.02,
+      "n": 3207,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 16,
+      "reference_nodes_minus_one": 611
+    },
+    {
+      "risk_threshold": 0.0025,
+      "cost_threshold": 0.05,
+      "n": 893,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 16,
+      "reference_nodes_minus_one": 489
+    },
+    {
+      "risk_threshold": 0.0025,
+      "cost_threshold": 0.1,
+      "n": 287,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 12,
+      "reference_nodes_minus_one": 443
+    },
+    {
+      "risk_threshold": 0.0025,
+      "cost_threshold": 0.2,
+      "n": 62,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 7,
+      "reference_nodes_minus_one": 347
+    },
+    {
+      "risk_threshold": 0.0025,
+      "cost_threshold": 0.4,
+      "n": 1,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 1,
+      "reference_nodes_minus_one": 0
+    },
+    {
+      "risk_threshold": 0.005,
+      "cost_threshold": 0.02,
+      "n": 5335,
+      "false_cuts": 3,
+      "false_rate": 0.0005623242736644799,
+      "games": 16,
+      "reference_nodes_minus_one": 1149
+    },
+    {
+      "risk_threshold": 0.005,
+      "cost_threshold": 0.05,
+      "n": 1976,
+      "false_cuts": 1,
+      "false_rate": 0.0005060728744939271,
+      "games": 16,
+      "reference_nodes_minus_one": 961
+    },
+    {
+      "risk_threshold": 0.005,
+      "cost_threshold": 0.1,
+      "n": 789,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 14,
+      "reference_nodes_minus_one": 781
+    },
+    {
+      "risk_threshold": 0.005,
+      "cost_threshold": 0.2,
+      "n": 254,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 11,
+      "reference_nodes_minus_one": 631
+    },
+    {
+      "risk_threshold": 0.005,
+      "cost_threshold": 0.4,
+      "n": 9,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 4,
+      "reference_nodes_minus_one": 124
+    },
+    {
+      "risk_threshold": 0.01,
+      "cost_threshold": 0.02,
+      "n": 8310,
+      "false_cuts": 16,
+      "false_rate": 0.0019253910950661852,
+      "games": 16,
+      "reference_nodes_minus_one": 3238
+    },
+    {
+      "risk_threshold": 0.01,
+      "cost_threshold": 0.05,
+      "n": 3876,
+      "false_cuts": 14,
+      "false_rate": 0.003611971104231166,
+      "games": 16,
+      "reference_nodes_minus_one": 2981
+    },
+    {
+      "risk_threshold": 0.01,
+      "cost_threshold": 0.1,
+      "n": 1678,
+      "false_cuts": 8,
+      "false_rate": 0.004767580452920143,
+      "games": 16,
+      "reference_nodes_minus_one": 2498
+    },
+    {
+      "risk_threshold": 0.01,
+      "cost_threshold": 0.2,
+      "n": 555,
+      "false_cuts": 2,
+      "false_rate": 0.0036036036036036037,
+      "games": 15,
+      "reference_nodes_minus_one": 1819
+    },
+    {
+      "risk_threshold": 0.01,
+      "cost_threshold": 0.4,
+      "n": 39,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 6,
+      "reference_nodes_minus_one": 386
+    },
+    {
+      "risk_threshold": 0.02,
+      "cost_threshold": 0.02,
+      "n": 11518,
+      "false_cuts": 63,
+      "false_rate": 0.005469699600625108,
+      "games": 16,
+      "reference_nodes_minus_one": 7128
+    },
+    {
+      "risk_threshold": 0.02,
+      "cost_threshold": 0.05,
+      "n": 6547,
+      "false_cuts": 61,
+      "false_rate": 0.009317244539483733,
+      "games": 16,
+      "reference_nodes_minus_one": 6822
+    },
+    {
+      "risk_threshold": 0.02,
+      "cost_threshold": 0.1,
+      "n": 3383,
+      "false_cuts": 45,
+      "false_rate": 0.013301803133313627,
+      "games": 16,
+      "reference_nodes_minus_one": 5786
+    },
+    {
+      "risk_threshold": 0.02,
+      "cost_threshold": 0.2,
+      "n": 1106,
+      "false_cuts": 18,
+      "false_rate": 0.0162748643761302,
+      "games": 16,
+      "reference_nodes_minus_one": 3687
+    },
+    {
+      "risk_threshold": 0.02,
+      "cost_threshold": 0.4,
+      "n": 130,
+      "false_cuts": 0,
+      "false_rate": 0.0,
+      "games": 11,
+      "reference_nodes_minus_one": 1020
+    },
+    {
+      "risk_threshold": 0.05,
+      "cost_threshold": 0.02,
+      "n": 14802,
+      "false_cuts": 172,
+      "false_rate": 0.011620051344412918,
+      "games": 16,
+      "reference_nodes_minus_one": 14208
+    },
+    {
+      "risk_threshold": 0.05,
+      "cost_threshold": 0.05,
+      "n": 9660,
+      "false_cuts": 170,
+      "false_rate": 0.017598343685300208,
+      "games": 16,
+      "reference_nodes_minus_one": 13890
+    },
+    {
+      "risk_threshold": 0.05,
+      "cost_threshold": 0.1,
+      "n": 5762,
+      "false_cuts": 128,
+      "false_rate": 0.02221450885109337,
+      "games": 16,
+      "reference_nodes_minus_one": 12408
+    },
+    {
+      "risk_threshold": 0.05,
+      "cost_threshold": 0.2,
+      "n": 2127,
+      "false_cuts": 49,
+      "false_rate": 0.0230371415138693,
+      "games": 16,
+      "reference_nodes_minus_one": 8029
+    },
+    {
+      "risk_threshold": 0.05,
+      "cost_threshold": 0.4,
+      "n": 325,
+      "false_cuts": 9,
+      "false_rate": 0.027692307692307693,
+      "games": 14,
+      "reference_nodes_minus_one": 2762
+    }
+  ],
+  "selected": {
+    "risk_threshold": 0.01,
+    "cost_threshold": 0.02,
+    "n": 8310,
+    "false_cuts": 16,
+    "false_rate": 0.0019253910950661852,
+    "games": 16,
+    "reference_nodes_minus_one": 3238
+  },
+  "weights": [
+    -3.3455608456872366,
+    0.726611176319808,
+    -0.476371676377561,
+    0.6014866247491044,
+    -0.25106420346725633,
+    1.6924604753523933,
+    -1.4305426451435899,
+    3.6044724389307365,
+    -0.11095018533619132,
+    0.37162326245480715,
+    -1.4890502724289936,
+    0.47791548462148875,
+    2.174286771683921,
+    -2.3161347530050285,
+    -1.5957468114996893,
+    -0.00945235084019545,
+    -0.34285297723750197
+  ]
+}

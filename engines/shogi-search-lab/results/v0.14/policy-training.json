@@ -1,0 +1,91 @@
+{
+  "selected": {
+    "penalty": 0.001,
+    "iterations": 96,
+    "converged": true,
+    "train": {
+      "crossEntropy": 3.4896631122378583,
+      "topInTeacherQuietSet": 0.2577840858688903,
+      "teacherBestMeanRank": 14.445400514503682,
+      "teacherBestMRR": 0.2700243132223487
+    },
+    "validation": {
+      "crossEntropy": 3.619660323384167,
+      "topInTeacherQuietSet": 0.21873860736419978,
+      "teacherBestMeanRank": 16.92344148742253,
+      "teacherBestMRR": 0.22834181741415024
+    },
+    "path": "models/v0.14/quiet-policy-l2-0.001.txt",
+    "sha256": "7c9e524031570b00dd57b11be112451e1fa0cf369d6056524ae55177cb10e6b6"
+  },
+  "trials": [
+    {
+      "penalty": 0.001,
+      "iterations": 96,
+      "converged": true,
+      "train": {
+        "crossEntropy": 3.4896631122378583,
+        "topInTeacherQuietSet": 0.2577840858688903,
+        "teacherBestMeanRank": 14.445400514503682,
+        "teacherBestMRR": 0.2700243132223487
+      },
+      "validation": {
+        "crossEntropy": 3.619660323384167,
+        "topInTeacherQuietSet": 0.21873860736419978,
+        "teacherBestMeanRank": 16.92344148742253,
+        "teacherBestMRR": 0.22834181741415024
+      },
+      "path": "models/v0.14/quiet-policy-l2-0.001.txt",
+      "sha256": "7c9e524031570b00dd57b11be112451e1fa0cf369d6056524ae55177cb10e6b6"
+    },
+    {
+      "penalty": 0.01,
+      "iterations": 34,
+      "converged": true,
+      "train": {
+        "crossEntropy": 3.74094419719743,
+        "topInTeacherQuietSet": 0.2101481415772199,
+        "teacherBestMeanRank": 18.222567195954937,
+        "teacherBestMRR": 0.22677469326631425
+      },
+      "validation": {
+        "crossEntropy": 3.781294531762029,
+        "topInTeacherQuietSet": 0.1881152023332118,
+        "teacherBestMeanRank": 19.28909952606635,
+        "teacherBestMRR": 0.20400941502089648
+      },
+      "path": "models/v0.14/quiet-policy-l2-0.01.txt",
+      "sha256": "98dc7971dfd62e3623b70dd4880415754baee61154abb75cd065468e51b7758b"
+    },
+    {
+      "penalty": 0.1,
+      "iterations": 12,
+      "converged": true,
+      "train": {
+        "crossEntropy": 3.974828719140016,
+        "topInTeacherQuietSet": 0.1692539696620243,
+        "teacherBestMeanRank": 23.415239953872085,
+        "teacherBestMRR": 0.18290364233868175
+      },
+      "validation": {
+        "crossEntropy": 3.988511699091467,
+        "topInTeacherQuietSet": 0.16368939117754283,
+        "teacherBestMeanRank": 23.827196500182282,
+        "teacherBestMRR": 0.17129020208097842
+      },
+      "path": "models/v0.14/quiet-policy-l2-0.1.txt",
+      "sha256": "e9ce0d0564bb6690114cc74ba251243ee645641fb10066dbfc784e67f72afab6"
+    }
+  ],
+  "zeroControl": {
+    "crossEntropy": 4.153450494914902,
+    "topInTeacherQuietSet": 0.06671527524608094,
+    "teacherBestMeanRank": 31.55778344877871,
+    "teacherBestMRR": 0.10361543992165041
+  },
+  "trainRows": 11273,
+  "target": "soft teacher top-3 quiet candidates, temperature100cp, all other quiet moves have zero target mass, not a value estimate",
+  "scale": 1024,
+  "weights": 25392,
+  "active": 9213
+}

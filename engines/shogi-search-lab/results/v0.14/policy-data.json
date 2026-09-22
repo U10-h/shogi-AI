@@ -1,0 +1,16 @@
+{
+  "train": {
+    "games": 128,
+    "duplicates": 8,
+    "positions": 11273,
+    "moves": 848469,
+    "labelledGames": 128
+  },
+  "validation": {
+    "games": 32,
+    "duplicates": 14,
+    "positions": 2743,
+    "moves": 206936,
+    "labelledGames": 32
+  }
+}

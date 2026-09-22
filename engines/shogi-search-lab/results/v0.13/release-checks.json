@@ -1,0 +1,12 @@
+{
+  "quality_searches": 384,
+  "fixed_searches": 576,
+  "audits": 96,
+  "matches": 32,
+  "kif_files": 32,
+  "frozen_signatures_match": true,
+  "audited_vs_normal_result_and_node_cost_match": true,
+  "png_visually_checked": true,
+  "default_pruning": "off",
+  "promotion": "rejected: no speed or strength improvement established"
+}

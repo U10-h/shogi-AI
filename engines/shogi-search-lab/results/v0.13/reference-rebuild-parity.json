@@ -1,0 +1,16 @@
+{
+  "roots": [
+    0,
+    127
+  ],
+  "equal_fields": [
+    "score",
+    "pv",
+    "nodes",
+    "has_result",
+    "completed_depth",
+    "stop_reason",
+    "bestmove",
+    "fallback_move"
+  ]
+}

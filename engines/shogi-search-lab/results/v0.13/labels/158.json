@@ -1,0 +1,192 @@
+{
+  "root": {
+    "sfen": "lnsg3nl/3k2r2/2ppg1sp1/p3ppp2/3+B4p/1PP5P/Pb1PPPPP1/1S1RG1K2/LN3GSNL w P 1",
+    "prefix": [
+      "7g7f",
+      "3c3d",
+      "2h6h",
+      "1c1d",
+      "1g1f",
+      "8b3b",
+      "8h2b+",
+      "3a2b",
+      "5i4h",
+      "9c9d",
+      "6i5i",
+      "4a5b",
+      "5i5h",
+      "5a6b",
+      "4h3h",
+      "4c4d",
+      "B*6e",
+      "5c5d",
+      "6e8c+",
+      "5b5c",
+      "8c5f",
+      "2b3c",
+      "8g8f",
+      "B*8g",
+      "5f6e",
+      "1d1e",
+      "7i8h"
+    ],
+    "ply": 27,
+    "game": 144,
+    "split": "development",
+    "id": 158
+  },
+  "analysis": {
+    "algorithm": "advanced",
+    "depth": 16,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "node_limit",
+    "score": -2292,
+    "bestmove": "5c6d",
+    "nodes": 24000,
+    "leaves": 12,
+    "terminals": 0,
+    "cutoffs": 4594,
+    "skipped_siblings": 263548,
+    "elapsed_ms": 396.002,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "5c6d",
+      "6e6f",
+      "6d5e",
+      "6f5e",
+      "5d5e",
+      "8h8g",
+      "1e1f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -671,
+        "nodes": 212,
+        "elapsed_ms": 5.755,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "6c6d",
+          "8h8g",
+          "6d6e",
+          "1f1e"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -671,
+        "nodes": 184,
+        "elapsed_ms": 2.991,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "6c6d",
+          "8h8g",
+          "6d6e",
+          "1f1e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -885,
+        "nodes": 2170,
+        "elapsed_ms": 29.263,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "6c6d",
+          "6e6f",
+          "6d6e",
+          "6f6e"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -2292,
+        "nodes": 10303,
+        "elapsed_ms": 150.203,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "5c6d",
+          "6e6f",
+          "6d5e",
+          "6f5e",
+          "5d5e",
+          "8h8g",
+          "1e1f"
+        ]
+      }
+    ],
+    "engine": "research-v0.9",
+    "evaluation": "nnue",
+    "score_unit": "yaneuraou_raw_pawn90",
+    "evaluation_model": "/workspace/scratch/ebe259f952a0/work/opponent/yaneuraou.data",
+    "eager_evaluation": false,
+    "compact_ordering": true,
+    "direct_qmoves": true,
+    "driver": "pvs",
+    "selective": false,
+    "defer_qmoves": true,
+    "leaf_policy": "bounded_quiescence",
+    "features": [
+      "counter",
+      "history",
+      "killer",
+      "mate-distance",
+      "qsearch",
+      "tt"
+    ],
+    "prune_policy": "collect",
+    "prune_model": "",
+    "prune_probability_override": -1,
+    "prune_audit": false,
+    "stats": {
+      "counter_updates": 109,
+      "history_paths": 12584,
+      "history_updates": 109,
+      "integer_order_keys": 289556,
+      "killer_updates": 109,
+      "learned_eligible": 6078,
+      "learned_guard_eligible": 393,
+      "nnue_cache_hits": 177,
+      "nnue_calls": 19601,
+      "nnue_refreshes": 1,
+      "nnue_updates": 19423,
+      "pvs_probes": 990,
+      "pvs_researches": 12,
+      "q_avoided_generations": 14583,
+      "q_deferred_nodes": 19588,
+      "q_full_generations": 338,
+      "q_generated_moves": 9096,
+      "q_tactical_generations": 5017,
+      "qnodes": 19938,
+      "qstand_cutoffs": 14571,
+      "tt_cutoffs": 128,
+      "tt_entries": 3917,
+      "tt_hits": 140,
+      "tt_probes": 4062
+    },
+    "candidates": [
+      {
+        "score": -2292,
+        "pv": [
+          "5c6d",
+          "6e6f",
+          "6d5e",
+          "6f5e",
+          "5d5e",
+          "8h8g",
+          "1e1f"
+        ]
+      }
+    ],
+    "fallback_move": null,
+    "fallback_pv": [],
+    "fallback_source": "",
+    "fallback_partial_score": null,
+    "completed_root_moves": 44
+  },
+  "logging_parity": false
+}
