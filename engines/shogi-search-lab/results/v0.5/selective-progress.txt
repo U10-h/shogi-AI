@@ -1,0 +1,12 @@
+selective 1 / 12 initial
+selective 2 / 12 gokigen-6
+selective 3 / 12 gokigen-20
+selective 4 / 12 gokigen-36
+selective 5 / 12 gokigen-52
+selective 6 / 12 bishop-exchange
+selective 7 / 12 pin-and-drop
+selective 8 / 12 promotion
+selective 9 / 12 recapture-trap
+selective 10 / 12 mate-one
+selective 11 / 12 flat-ties
+selective 12 / 12 fewer-than-five

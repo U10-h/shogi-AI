@@ -1,0 +1,6 @@
+timed 1 / 6 initial
+timed 2 / 6 gokigen-6
+timed 3 / 6 gokigen-20
+timed 4 / 6 gokigen-36
+timed 5 / 6 gokigen-52
+timed 6 / 6 bishop-exchange

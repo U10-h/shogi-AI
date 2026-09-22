@@ -1,4 +1,74 @@
-# Shogi Search Lab — 境界を伝えて上位5候補を保持する
+# Shogi Search Lab — 探索研究と対やねうら王の実験
+
+## 最新の対局実験（v0.6）
+
+やねうら王NNUE KP256 6.03と双方1手3秒で4局を対戦し、0勝4敗でした。12件の局面で4設定も比較しましたが、枝刈り追加による手の質の改善は確認できませんでした。
+
+- [対局結果・敗因診断・再現方法](REPORT-v0.6.md)
+- [改善文献8件と実装の優先順位](RESEARCH-v0.6.md)
+- `results/v0.6/`：全棋譜・通信ログ・48探索の比較・独立検証結果
+
+探索本体はv0.5、評価は駒得のままです。v0.6は対局・診断環境の追加を指します。
+
+## 探索手法の実装（v0.5）
+
+チェス・将棋・オセロ・チェッカー・LOAなどの先行研究21件から、探索機構をC++17の将棋エンジンへ移植した実験版です。8つの探索ドライバ、24の機能スイッチ、比較実験、ProbCutの係数学習、USI接続を追加しました。
+
+- [研究21件・出典・実装との差分](RESEARCH-v0.5.md)
+- [実測結果・見落とし・再現方法](REPORT-v0.5.md)
+- `results/v0.5/`：未加工の探索結果、比較表、選択手の再評価、検証ログ
+
+探索の改善を調べるため、評価関数は従来の駒得評価を共通にしています。原著エンジン全体の再現や、対局による棋力向上の証明ではありません。
+
+## 新しい探索を使う
+
+```bash
+make -j2
+make test
+
+# 同じ葉評価の結果を維持する探索。深さ8を目標に3秒まで反復深化
+./build/shogi-lab --advanced --preset exact --depth 8 --iterative --time-ms 3000 --max-nodes 10000000
+
+# 静止探索あり、上位5手
+./build/shogi-lab --advanced --preset tactical --multipv 5 --depth 6 --iterative --time-ms 3000 --max-nodes 10000000
+
+# 選択的な枝刈りを組み合わせた実験設定
+./build/shogi-lab --advanced --preset selective --depth 8 --iterative --time-ms 3000 --max-nodes 10000000
+
+# MTD(f)。枝刈りを増やさず零窓の反復方式を変更
+./build/shogi-lab --advanced --preset exact --driver mtdf --depth 4 --iterative
+
+# 個別の機能だけを指定。--features は追加ではなく全機能集合の置換
+./build/shogi-lab --advanced --features tt,history,killer,counter,mate-distance,futility --depth 4 --iterative
+
+# 本実験で推定した固定駒得評価向けモデルを使うProbCut
+./build/shogi-lab --advanced --features tt,history,killer,counter,mate-distance,probcut --probcut-model experiments/probcut-v0.5.txt --depth 4 --iterative
+
+# 将棋の実現確率探索の試作。通常のdepthと読みの範囲が異なる
+./build/shogi-lab --advanced --driver erps --features qsearch --depth 6 --iterative --time-ms 3000 --max-nodes 10000000
+
+# USI対応GUIから利用する際の起動コマンド
+./build/shogi-lab --usi --preset tactical
+```
+
+| プリセット | 内容 | 値の扱い |
+|---|---|---|
+| `baseline` | 通常のαβ | 固定深さ・駒得評価 |
+| `exact` | PVS、履歴対応キャッシュ、history、killer、counter、詰み距離境界 | 同じ深さと葉評価のminimaxと照合 |
+| `tactical` | exact＋静止探索 | 静止探索を含む別の葉評価 |
+| `selective` | tactical＋LMR、検証付きnull、futility、王手延長 | 推測的な枝刈りあり。実験用 |
+
+ドライバは `ab,pvs,aspiration,mtdf,sss,dual,rps,erps`。
+機能は `tt,history,killer,counter,iid,etc,mate-distance,qsearch,see-order,see-prune,delta,futility,reverse-futility,razoring,null,adaptive-null,verified-null,lmr,check-extension,recapture-extension,singular,multicut,probcut,multiprobcut`。
+すべてを同時投入する前提ではありません。MTD系と選択的枝刈りなど、検証していない組合せは明示的に拒否します。
+
+`--depth` は新探索では0〜16、従来探索では0〜8。`--tt-entries` は値キャッシュの件数上限（既定10万）、`--qdepth` は非王手の静止探索上限（既定6）、`--extensions` は1経路の延長予算（既定2）です。いずれも全体のノード・時間予算に従います。`complete:false` は目標の反復が終わっていないことを示し、返す候補は最後に完了した反復のものです。`leaf_policy` と `selective` を確認して比較してください。
+
+USIは `position`, `go`, `stop`, `isready`, `setoption Preset/MultiPV` と複数PVの出力に対応します。相手番の先読みと専用詰将棋ソルバはありません。時間配分は簡易版で、外部GUIとの対局実績は未測定です。GUI用の実行ファイルに引数を設定できない場合は `--usi` を付ける起動スクリプトを用意してください。
+
+新探索のMultiPVは1回の検索内で上位5候補まで返します。以下の従来モードは、着手後にも部分木を引き継ぐ用途で引き続き使えます。新しい枝刈り群と従来の保持木を混在させる処理は実装していません。
+
+## 従来の継続モード（v0.4）
 
 C++17で探索・駒得評価を自作し、合法手生成に固定版YaneuraOuを使う将棋研究用エンジンです。
 **各分析局面で上位5手を保持し、その手が指されたら該当する部分木を新しい根にして探索を続けます。**
@@ -138,7 +208,7 @@ bash scripts/sanitize.sh
 
 比較では、継続探索と同じ棋譜・同じ深さから新しく読み直す場合の上位5候補を照合します。
 C++ではさらに各候補を全幅探索と比較し、5順位すべての引継ぎ、詰みの距離、千日手、時間切れ、容量制限、候補外の着手を検査します。
-最新結果は [REPORT-v0.4.md](REPORT-v0.4.md) と `results/v0.4/`。以前の自作コードは `checkpoints/` に残しています。
+継続モードの結果は [REPORT-v0.4.md](REPORT-v0.4.md) と `results/v0.4/`。以前の自作コードは `checkpoints/` に残しています。
 時間測定はビルド・テストと並行しないでください。`scripts/benchmark_session.py`はv0.3の継続実験用です。
 
 因果ログは継続モードの`--trace PATH`で記録できます。`--trace-root-only`なら根の判断と試行だけ、
@@ -164,7 +234,7 @@ C++ではさらに各候補を全幅探索と比較し、5順位すべての引�
 探索結果の再利用は**同じ経路・同じ残り深さ**に限ります。浅い結果を深い探索の確定値に流用しません。
 境界値はαβの打切り条件を満たすときだけ利用します。詰みの評価はノード基準で保存し、根が変わったら距離を補正します。
 
-駒得だけの評価と固定深さの限界は残っています。静止探索、学習済み評価、入玉宣言、対局GUI、プロセスをまたぐ探索木の保存は未実装です。
+駒得だけの評価の限界は残っています。静止探索はv0.5の新探索で利用できます。学習済み評価、入玉宣言、対局GUI、プロセスをまたぐ探索木の保存は未実装です。
 この変更はC++研究エンジンに対するものです。
 
 研究コードはGPL-3.0-or-later。[LICENSE](LICENSE)、[THIRD_PARTY.md](THIRD_PARTY.md)を参照してください。

@@ -1,5 +1,6 @@
 #include "lab.hpp"
 #include "session.hpp"
+#include "advanced.hpp"
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>
@@ -7,6 +8,8 @@
 int main(int argc, char** argv) {
     try {
         lab::Options options;
+        lab::AdvancedOptions advanced_options;
+        bool advanced = false, advanced_tests = false, usi_mode = false;
         std::string sfen = SFEN_HIRATE, moves;
         bool legal = false, tests = false;
         bool session = false, session_tests = false;
@@ -32,6 +35,10 @@ int main(int argc, char** argv) {
                     "  --session [--tree-nodes 32..200000] | --session-selftest\n"
                     "  --root-policy full|screen|full-probe|probe (session; default screen)\n"
                     "  --trace-root-only (session root decisions without recursive events)\n"
+                    "  --advanced --preset baseline|exact|tactical|selective\n"
+                    "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
+                    "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
+                    "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
                 return 0;
             } else if (arg == "--sfen") sfen = value();
@@ -44,7 +51,7 @@ int main(int argc, char** argv) {
                 else throw std::invalid_argument("Unknown algorithm: " + a);
             } else if (arg == "--depth") {
                 const auto n = number(value());
-                if (n > 8) throw std::invalid_argument("Depth must be <= 8");
+                if (n > 16) throw std::invalid_argument("Depth must be <= 16 (legacy search <= 8)");
                 options.depth = static_cast<int>(n);
             } else if (arg == "--iterative") options.iterative = true;
             else if (arg == "--no-pv-order") options.pv_order = false;
@@ -59,6 +66,21 @@ int main(int argc, char** argv) {
             else if (arg == "--selftest") tests = true;
             else if (arg == "--session") session = true;
             else if (arg == "--session-selftest") session_tests = true;
+            else if (arg == "--advanced") advanced = true;
+            else if (arg == "--advanced-selftest") advanced_tests = true;
+            else if (arg == "--usi") usi_mode = true;
+            else if (arg == "--preset") {advanced = true;lab::set_advanced_preset(advanced_options,value());}
+            else if (arg == "--features") {advanced = true;lab::set_advanced_features(advanced_options,value());}
+            else if (arg == "--driver") {advanced = true;advanced_options.driver=value();}
+            else if (arg == "--probcut-model") advanced_options.probcut_model=value();
+            else if (arg == "--tt-entries") advanced_options.tt_capacity=number(value());
+            else if (arg == "--multipv" || arg == "--qdepth" || arg == "--extensions" || arg == "--aspiration") {
+                auto n=number(value());if(n>10000)throw std::invalid_argument("Advanced option out of range");
+                if(arg=="--multipv")advanced_options.multipv=int(n);
+                else if(arg=="--qdepth")advanced_options.qdepth=int(n);
+                else if(arg=="--extensions")advanced_options.extension_budget=int(n);
+                else advanced_options.aspiration=int(n);
+            }
             else if (arg == "--root-policy") {
                 const auto policy = value();
                 if (policy != "full" && policy != "screen" && policy != "probe" && policy != "full-probe")
@@ -75,6 +97,10 @@ int main(int argc, char** argv) {
         }
         Bitboards::init();
         Position::init();
+        advanced_options.limits=options;
+        if(advanced_tests)return lab::advanced_selftest();
+        if(usi_mode)return lab::advanced_usi(advanced_options);
+        if(session&&advanced)throw std::invalid_argument("Legacy retained-tree session cannot mix advanced policies; use --advanced or --usi");
         if (tests) return lab::selftest();
         if (session_tests) return lab::session_selftest();
         if (session) return lab::session_cli(sfen, moves, options, tree_capacity);
@@ -84,12 +110,16 @@ int main(int argc, char** argv) {
             std::vector<std::string> list;
             for (Move m : board.legal_moves()) list.push_back(lab::usi(m));
             std::sort(list.begin(), list.end());
-            std::cout << "{\"sfen\":" << lab::quote(board.pos.sfen()) << ",\"material_score\":" << lab::evaluate(board) << ",\"moves\":[";
+            const auto repetition=board.repetition_score(0);
+            std::cout << "{\"sfen\":" << lab::quote(board.pos.sfen()) << ",\"material_score\":" << lab::evaluate(board)
+                      << ",\"in_check\":" << (board.pos.in_check()?"true":"false")
+                      << ",\"repetition_score\":" << (repetition?std::to_string(*repetition):"null") << ",\"moves\":[";
             for (size_t i = 0; i < list.size(); ++i) {if (i) std::cout << ','; std::cout << lab::quote(list[i]);}
             std::cout << "]}\n";
         } else if (perft_depth >= 0) {
             std::cout << "{\"depth\":" << perft_depth << ",\"perft\":" << lab::perft(board, perft_depth) << "}\n";
         } else {
+            if(advanced){auto result=lab::advanced_search(board,advanced_options);std::cout<<lab::advanced_json(result,advanced_options)<<'\n';return result.base.complete?0:3;}
             auto result = lab::search(board, options);
             std::cout << lab::result_json(result, options) << '\n';
             return result.complete ? 0 : 3;

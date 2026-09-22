@@ -1,0 +1,14 @@
+{
+  "imports": [
+    {
+      "version": "v0.6",
+      "source_archive": "shogi-search-lab.zip",
+      "source_sha256": "d25f7e3477e816f69b44b2f2b43e0c90a816792b2a7d3f8bdfe0b8115ef24320",
+      "source_bytes": 1592962,
+      "file_count": 435,
+      "manifest_verified": true,
+      "previous_commit": "5f6e8ba2056e08fae826cc72f5c40370a13eb931",
+      "note": "Imported an actual saved snapshot; commit date is the import date, not the original experiment date."
+    }
+  ]
+}

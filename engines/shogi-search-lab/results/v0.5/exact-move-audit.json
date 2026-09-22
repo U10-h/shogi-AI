@@ -1,0 +1,7702 @@
+{
+  "checked": 855,
+  "mismatches": 0,
+  "unique_child_searches": 22,
+  "rows": [
+    {
+      "position": "initial",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "history",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "history",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "history",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "initial",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "7g7f",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "history",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "8i7g",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "history",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "8i7g",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "history",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "8i7g",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-6",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "8h2b+",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "history",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "history",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "history",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-20",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "2c2b+",
+      "score": 650,
+      "child_minimax_score": 650,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "history",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "history",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-36",
+      "variant": "history",
+      "repeat": 2,
+      "move": "R*4a",
+      "score": 1100,
+      "child_minimax_score": 1100,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "history",
+      "repeat": 0,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "history",
+      "repeat": 1,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "P*2e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "history",
+      "repeat": 2,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "gokigen-52",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "3f1h",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "history",
+      "repeat": 0,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "history",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "history",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "bishop-exchange",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "B*1e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "P*5f",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "history",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "P*5f",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "history",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "P*5f",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "history",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "pin-and-drop",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "5g5h",
+      "score": -350,
+      "child_minimax_score": -350,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "history",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "history",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "history",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "promotion",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "9c9b+",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "history",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "history",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "history",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-7",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "2b8h+",
+      "score": 2700,
+      "child_minimax_score": 2700,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "history",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "history",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "history",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-16",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "9i9g",
+      "score": 500,
+      "child_minimax_score": 500,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "history",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "history",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "history",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-0-25",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "6i6h",
+      "score": 2200,
+      "child_minimax_score": 2200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "history",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "history",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "history",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-2",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "1g1f",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "history",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "history",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "history",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-11",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "3c3d",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "history",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "history",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "history",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-20",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "5f5e",
+      "score": 200,
+      "child_minimax_score": 200,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "history",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "history",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "history",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "holdout-random-1-29",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "8e8f",
+      "score": 250,
+      "child_minimax_score": 250,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "history",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "history",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "history",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "recapture-trap",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "5e1e",
+      "score": 550,
+      "child_minimax_score": 550,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "history",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "history",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "history",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "mate-one",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "5c4c",
+      "score": 99999,
+      "child_minimax_score": 99999,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "history",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "history",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "history",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "flat-ties",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "5i4h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "tt",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "history",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "killer",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "counter",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "exact",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "aspiration",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "mtdf",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "sss",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "dual",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "iid",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "etc",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "see-order",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "legacy",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "ab",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "pvs",
+      "repeat": 0,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "history",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "killer",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "counter",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "exact",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "aspiration",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "mtdf",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "sss",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "dual",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "iid",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "etc",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "see-order",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "legacy",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "ab",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "pvs",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "tt",
+      "repeat": 1,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "killer",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "counter",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "exact",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "aspiration",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "mtdf",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "sss",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "dual",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "iid",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "etc",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "see-order",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "legacy",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "ab",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "pvs",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "tt",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    },
+    {
+      "position": "fewer-than-five",
+      "variant": "history",
+      "repeat": 2,
+      "move": "9i8h",
+      "score": 0,
+      "child_minimax_score": 0,
+      "match": true
+    }
+  ]
+}

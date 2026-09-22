@@ -67,6 +67,7 @@ struct Options {
     bool pv_order = true;
     uint64_t time_ms = 0; // Zero means no wall-clock budget.
     std::function<double()> clock_ms; // Optional monotonic clock for deterministic tests.
+    std::function<bool()> stop_requested; // Advanced USI interruption.
     bool top5_screen = true; // Session: same-depth null-window certificates.
     bool reply_probe = false; // Session: root-only ordering experiment, never a cutoff.
     bool trace_search = true; // False records only root decisions/probes.
