@@ -71,7 +71,7 @@ Evaluator::Evaluator(const std::string& mode,const std::string& model,const std:
     }
     if(!head.empty())throw std::invalid_argument("Evaluation head requires nnue-blend25 or nnue-clipped");
     if(mode=="nnue-tempo40"){nnue_=std::make_unique<Nnue>(model,"nnue");return;}
-    if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
+    if(mode=="nnue-cache"||mode=="nnue-fused"||mode=="nnue-fast"||mode=="nnue-fast-verify"||mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
         nnue_=std::make_unique<Nnue>(model,mode);return;
     }
     if(mode!="material"&&mode!="positional"&&mode!="learned")throw std::invalid_argument("Eval must be material|positional|learned|nnue|nnue-full|nnue-verify");

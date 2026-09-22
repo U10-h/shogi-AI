@@ -14,6 +14,10 @@ struct AdvancedOptions {
     int qdepth = 6;
     int extension_budget = 2;
     int aspiration = 80;
+    int eval_scale = 100; // Experiment: scale static evaluation, never mate scores.
+    int correction_gain = 100; // 0 is an ablation: same learning/TT policy, zero applied correction.
+    int qsee_margin = 90; // Pawn90 units; negative exchanges below -margin may be pruned.
+    bool qsee_audit = false; // Counterfactual diagnostic, excluded from speed tests.
     std::string probcut_model;
     std::string evaluation = "material";
     std::string evaluation_model;

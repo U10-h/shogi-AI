@@ -16,7 +16,7 @@
 namespace lab {
 std::set<std::string> advanced_features() {
     return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
-        "qsearch","qcache","qguard","see-order","see-prune","delta","futility","reverse-futility",
+        "qsearch","qcache","qguard","qsee","continuation","correction","see-order","see-prune","delta","futility","reverse-futility",
         "razoring","null","adaptive-null","verified-null","lmr","history-lmr","check-extension",
         "recapture-extension","singular","multicut","probcut","multiprobcut"};
 }
@@ -108,6 +108,7 @@ class Worker {
         bool qsearch = false;
         bool qcache = false;
         bool qguard = false;
+        bool qsee = false, continuation = false, correction = false;
         bool see_order = false;
         bool see_prune = false;
         bool delta = false;
@@ -138,7 +139,47 @@ class Worker {
     std::array<std::array<int,16*81*16>,2> capture_history{};
     std::array<std::array<Move,2>,max_ply> killers{};
     std::array<std::array<Move,65536>,2> counters{};
+    std::array<std::array<int,131072>,2> continuation{};
+    std::array<std::array<int,16384>,2> correction{};
     int null_level=0, isolated=0;
+    size_t continuation_key(Move previous,Move current) const {
+        uint32_t x=uint32_t(pack(previous))*65537u+uint32_t(pack(current));
+        x^=x>>16;x*=0x7feb352du;x^=x>>15;return x&131071;
+    }
+    size_t correction_key() const {
+        // Pawn placement + all hands. Hash collisions share heuristic estimates,
+        // never exact search bounds. Include hands because shogi has drops.
+        uint64_t h=1469598103934665603ULL;
+        const auto& s=b.history.back();
+        for(int sq=0;sq<81;++sq)if(s.squares[sq]&&raw_type_of(Piece(s.squares[sq]))==PAWN){h^=uint64_t(s.squares[sq])*83+sq;h*=1099511628211ULL;}
+        for(auto hand:s.hands){h^=uint64_t(hand);h*=1099511628211ULL;}
+        return (h^(h>>32))&16383;
+    }
+    int static_eval() {
+        int value=eval(b)*o.eval_scale/100;
+        if(f.correction&&!isolated&&!null_level) {
+            const int delta=correction[b.pos.side_to_move()][correction_key()]*o.correction_gain/25600;
+            if(delta){++r.stats["correction_applied"];r.stats["correction_abs_sum"]+=std::abs(delta);}
+            value+=delta;
+        }
+        return std::clamp(value,-80000,80000);
+    }
+    void learn_correction(int value,int raw,int a,int beta,int effort,Move best) {
+        if(!f.correction||isolated||null_level||b.pos.in_check()||best==MOVE_NONE||tactical(best)||std::abs(value)>8000)return;
+        // Learn from exact quiet results, or from bounds only when their known
+        // direction proves a residual relative to the unadjusted static value.
+        if((value<=a&&value>=raw)||(value>=beta&&value<=raw))return;
+        auto& entry=correction[b.pos.side_to_move()][correction_key()];
+        const int target=std::clamp(value-raw,-180,180)*256;
+        const int weight=std::clamp(effort/4+1,1,16);
+        entry+=(target-entry)*weight/64;++r.stats["correction_updates"];
+    }
+    void learn_continuation(Move previous,Move best,const std::vector<Move>& searched,int bonus) {
+        if(!f.continuation||isolated||null_level||previous==MOVE_NONE)return;
+        auto update=[&](Move m,int d){auto& v=continuation[b.pos.side_to_move()][continuation_key(previous,m)];v+=d-v*std::abs(d)/16384;};
+        update(best,bonus);for(Move m:searched)if(m!=best)update(m,-bonus/2);
+        ++r.stats["continuation_updates"];
+    }
     Value partial_root{-infinity,{}};
     std::vector<ProbModel> models;
     std::ofstream trace;
@@ -182,7 +223,7 @@ class Worker {
         if(paths.size()>=o.tt_capacity*4){++r.stats["path_capacity_misses"];return 0;}
         return paths.emplace(key,++next_path).first->second;
     }
-    bool cacheable(uint64_t path) const {return f.tt&&path&&!isolated&&!null_level;}
+    bool cacheable(uint64_t path) const {return f.tt&&path&&!isolated&&!null_level&&!f.correction;}
     bool tactical(Move m) const {return is_promote(m)||b.pos.piece_on(to_sq(m))!=NO_PIECE;}
     int capture_key(Move m) const {
         const int pt=is_drop(m)?int(move_dropped_piece(m)):int(type_of(b.pos.piece_on(from_sq(m))));
@@ -260,6 +301,7 @@ class Worker {
             if(tactical(m)&&(o.policy_mode=="quiet"||(o.policy_mode=="root"&&ply>0)))score+=10000000;
             if(f.see_order&&tactical(m))score+=int64_t(see(m))*10000;
             if(f.history&&!tactical(m))score+=history[side][pack(m)];
+            if(f.continuation&&previous!=MOVE_NONE&&!tactical(m))score+=continuation[side][continuation_key(previous,m)];
             if(f.capture_history&&tactical(m))score+=4*capture_history[side][capture_key(m)];
             if(!o.policy_model.empty()&&o.policy_scale&&(o.policy_mode!="quiet"||!tactical(m))&&(o.policy_mode!="root"||ply==0)) {
                 score+=int64_t(o.policy_scale)*policy.score(b,m)*(o.policy_mode=="quiet"?1:1024);
@@ -346,7 +388,7 @@ class Worker {
             if(moves.empty()&&(!o.direct_qmoves||checked||!b.has_legal_move())){++r.base.terminals;return finish({-mate+ply,{}},"terminal");}
         }
         if(ply>=max_ply-1)throw Stop{"ply_limit"}; // Never publish static evaluation in unresolved check.
-        const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
+        const int stand=(!checked||o.eager_evaluation)?static_eval():0; Value best{checked?-infinity:stand,{}};
         leaf_event("qeval",node,parent,incoming,ply,left,a,beta,checked?"check_evasion":"stand_pat",!checked,stand);
         if(!checked) {
             if(left<=0&&o.driver!="adaptive"){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
@@ -355,11 +397,23 @@ class Worker {
             if(deferred)generate();
             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
         }
-        auto ordered=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+        auto ordered=order(std::move(moves),ply,MOVE_NONE,f.continuation?incoming:MOVE_NONE);
         int move_index=0;bool learned_cut=false;std::vector<Move> captures_searched;
         for(Move m:ordered) {
             const int index=move_index++;
             const bool checkmove=b.pos.gives_check(m);
+            if(f.qsee&&!isolated&&!null_level&&!checked&&!checkmove&&!is_drop(m)&&!is_promote(m)
+                &&b.pos.piece_on(to_sq(m))!=NO_PIECE&&!b.pos.see_ge(m,::Value(-o.qsee_margin))) {
+                ++r.stats["qsee_prunes"];
+                if(o.qsee_audit) {
+                    const uint64_t before=r.base.nodes;Value reference;
+                    {struct Guard{int& n;Guard(int& x):n(x){++n;}~Guard(){--n;}} guard(isolated);
+                     PlayedMove played(b,m);reference=qsearch(-beta,-a,ply+1,left-1,node,m);}
+                    ++r.stats["qsee_audits"];r.stats["qsee_audit_nodes"]+=r.base.nodes-before;
+                    if(-reference.score>a)++r.stats["qsee_missed_alpha"];
+                }
+                continue;
+            }
             if(f.qguard&&!isolated&&!null_level&&!checked&&!checkmove&&!is_drop(m)&&!is_promote(m)
                 &&b.pos.piece_on(to_sq(m))!=NO_PIECE&&type_of(b.pos.piece_on(from_sq(m)))!=KING
                 &&(incoming==MOVE_NONE||to_sq(incoming)!=to_sq(m))) {
@@ -456,7 +510,7 @@ class Worker {
         if(!null_level)if(auto rep=b.repetition_score(ply)){++r.base.terminals;return {*rep,{}};}
         auto moves=b.legal_moves();
         if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
-        if(d<=0){++r.base.leaves;return {eval(b),{}};}
+        if(d<=0){++r.base.leaves;return {static_eval(),{}};}
         const int original_a=a,original_beta=beta;
         const bool checked=b.pos.in_check(),pvnode=beta-a>1;
         Key key{path,d,ext};
@@ -490,7 +544,7 @@ class Worker {
         }
         const bool eligible=!isolated&&!pvnode&&!checked&&ply>0&&std::abs(a)<90000&&std::abs(beta)<90000;
         const bool needs_static=eligible&&(f.reverse_futility||f.razoring||f.null||f.adaptive_null||f.verified_null||f.futility);
-        const int stand=(needs_static||o.eager_evaluation)?eval(b):0;
+        const int stand=(needs_static||o.eager_evaluation)?static_eval():0;
         if(eligible&&f.reverse_futility&&d<=2&&stand-300*d>=beta) {
             ++r.stats["reverse_futility_prunes"];event("reverse_futility",d,ply,a,beta,stand,true);return finish({stand,{}});
         }
@@ -648,6 +702,7 @@ class Worker {
             }
         }
         const bool checked=b.pos.in_check();const Color side=b.pos.side_to_move();
+        const int correction_raw=f.correction&&!checked?eval(b)*o.eval_scale/100:0;
         std::unordered_map<int,double> priors;
         if(o.policy_mode=="cost") {
             double maximum=-1e100,sum=0;
@@ -669,7 +724,8 @@ class Worker {
                 else if(protected_move)cost=3;
                 else if(noise||is_drop(m))cost=4;
                 else {
-                    cost=std::clamp(4+int(std::log2(double(index)+1.0)*2)-history[side][pack(m)]/1024,3,12);
+                    const int combined=history[side][pack(m)]+(f.continuation&&prev!=MOVE_NONE?continuation[side][continuation_key(prev,m)]:0);
+                    cost=std::clamp(4+int(std::log2(double(index)+1.0)*2)-combined/1024,3,12);
                 }
                 if(o.policy_mode=="cost"&&ordered.size()>1) {
                     // Relative surprise around a uniform branch; not a literal RPS reproduction.
@@ -705,6 +761,7 @@ class Worker {
                 ++r.base.cutoffs;r.base.skipped_siblings+=ordered.size()-index-1;
                 learn_captures(m,captures,std::max(1,effort/4));
                 if(!noise){
+                    learn_continuation(prev,m,quiets,std::min(2000,32*(1+effort/4)*(1+effort/4)));
                     if(f.killer&&killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}
                     if(f.history){
                         const int bonus=std::min(2000,32*(1+effort/4)*(1+effort/4));
@@ -721,6 +778,7 @@ class Worker {
             if(hash_moves.size()<o.tt_capacity||hash_moves.count(uint64_t(b.pos.key())))hash_moves[uint64_t(b.pos.key())]=best.pv.front();
             if(cacheable(path)&&(tt.size()<o.tt_capacity||tt.count(key)))tt[key]={local_score(best.score,ply),best.score<=original_a?-1:best.score>=beta?1:0,best.pv.front(),best.pv};
         }
+        learn_correction(best.score,correction_raw,original_a,beta,effort,best.pv.empty()?MOVE_NONE:best.pv.front());
         return best;
     }
     Value rps(int budget,int a,int beta,int ply,Move prev) {
@@ -729,7 +787,7 @@ class Worker {
         if(ply>=max_ply-1)throw Stop{"ply_limit"};
         if(auto rep=b.repetition_score(ply))return {*rep,{}};
         auto moves=b.legal_moves();if(moves.empty())return {-mate+ply,{}};
-        if(budget<=0){++r.base.leaves;return {eval(b),{}};}
+        if(budget<=0){++r.base.leaves;return {static_eval(),{}};}
         auto ordered=order(std::move(moves),ply,MOVE_NONE,prev);
         Value best{-infinity,{}};size_t index=0;
         for(Move m:ordered) {
@@ -820,7 +878,7 @@ class Worker {
         std::vector<Arm> arms;double maximum=-1e100,total_prior=0;
         for(Move m:legal){
             check();Arm x;x.move=m;x.prior=o.policy_model.empty()?0:policy.score(b,m)/1024.0;maximum=std::max(maximum,x.prior);
-            {PlayedMove played(b,m);x.score=-eval(b);} // Priority only, never published as a completed qsearch.
+            {PlayedMove played(b,m);x.score=-static_eval();} // Priority only, never published as a completed qsearch.
             arms.push_back(x);
         }
         for(auto& x:arms){x.prior=std::exp(x.prior-maximum);total_prior+=x.prior;}
@@ -907,6 +965,11 @@ public:
         f.mate_distance=o.features.count("mate-distance")!=0;
         f.qsearch=o.features.count("qsearch")!=0;
         f.qcache=on("qcache");f.qguard=on("qguard");
+        f.qsee=on("qsee");f.continuation=on("continuation");f.correction=on("correction");
+        if(o.eval_scale<50||o.eval_scale>150||o.qsee_margin<0||o.qsee_margin>900||o.correction_gain<0||o.correction_gain>100)throw std::invalid_argument("Invalid v0.20 scale/margin");
+        if((f.qsee||f.continuation||f.correction)&&o.driver!="adaptive")throw std::invalid_argument("v0.20 search features require adaptive driver");
+        if(f.correction&&f.qcache)throw std::invalid_argument("Correction has mutable leaves: qcache disabled");
+        if(o.qsee_audit&&!f.qsee)throw std::invalid_argument("qsee audit requires qsee");
         f.see_order=o.features.count("see-order")!=0;
         f.see_prune=o.features.count("see-prune")!=0;
         f.delta=o.features.count("delta")!=0;
@@ -963,7 +1026,7 @@ public:
         if(o.driver=="adaptive") {
             if(o.multipv!=1||!f.qsearch||prune_enabled)throw std::invalid_argument("Adaptive requires MultiPV=1, qsearch, no learned pruning");
             for(const auto& x:o.features)if(x!="tt"&&x!="history"&&x!="capture-history"&&x!="killer"&&x!="counter"&&x!="mate-distance")
-                if(x!="qsearch"&&x!="qcache"&&x!="qguard")throw std::invalid_argument("Unsupported adaptive feature: "+x);
+                if(x!="qsearch"&&x!="qcache"&&x!="qguard"&&x!="qsee"&&x!="continuation"&&x!="correction")throw std::invalid_argument("Unsupported adaptive feature: "+x);
             r.selective=true;
         }
         if((on("qcache")||on("qguard"))&&o.driver!="adaptive")throw std::invalid_argument("qcache/qguard require adaptive driver");
@@ -974,6 +1037,8 @@ public:
         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
         if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
         if(on("qguard"))r.leaf_policy+="+guarded_see";
+        if(f.qsee)r.leaf_policy+="+threshold_see";
+        if(f.correction)r.leaf_policy+="+online_correction";
         if(o.root_scheduler!="off")r.leaf_policy+="+root_slices_"+o.root_scheduler;
         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
@@ -1008,7 +1073,7 @@ public:
                 iteration_depth=d;current_root_move=MOVE_NONE;
                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
-                else {v=root(d,r.base.has_result?r.base.score:eval(b));if(!v.pv.empty())lines.push_back({v.score,v.pv});}
+                else {v=root(d,r.base.has_result?r.base.score:static_eval());if(!v.pv.empty())lines.push_back({v.score,v.pv});}
                 r.base.score=v.score;r.base.pv=v.pv;r.candidates=std::move(lines);
                 r.base.has_result=true;r.base.completed_depth=d;
                 r.base.iterations.push_back({d,v.score,r.base.nodes-before,0,now()-t,v.pv});
@@ -1046,6 +1111,7 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
         <<",\"lazy_ordering\":"<<(o.lazy_ordering?"true":"false")<<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
     out<<"],\"iteration_unit\":"<<quote(o.driver=="adaptive"?"effort_steps_4":"plies")<<",\"evaluation_head\":"<<quote(o.evaluation_head);
+    out<<",\"correction_gain\":"<<o.correction_gain<<",\"eval_scale\":"<<o.eval_scale<<",\"qsee_margin\":"<<o.qsee_margin<<",\"qsee_audit\":"<<(o.qsee_audit?"true":"false");
     out<<",\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
        <<",\"policy_mode\":"<<quote(o.policy_mode)<<",\"root_scheduler\":"<<quote(o.root_scheduler)
        <<",\"qcache_min_nodes\":"<<o.qcache_min_nodes<<",\"qcache_scope\":"<<quote(o.qcache_scope)

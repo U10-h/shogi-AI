@@ -45,6 +45,9 @@ int main(int argc, char** argv) {
                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
                     "  --eval material|positional|learned|nnue|nnue-full|nnue-verify|nnue-scalar [--eval-model PATH] (advanced/USI)\n"
+                    "  --eval nnue-cache|nnue-fused|nnue-fast|nnue-fast-verify (exact inference experiments)\n"
+                    "  --eval-scale 50..150 --qsee-margin 0..900 --qsee-audit --correction-gain 0..100\n"
+                    "  --features ...,continuation,correction,qsee (adaptive experiments)\n"
                     "  --eval-head PATH (nnue-blend25|nnue-clipped; nnue-tempo40 needs no head)\n"
                     "  --driver adaptive: time/node budget, no fixed depth/beam; MultiPV=1\n"
                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
@@ -86,6 +89,10 @@ int main(int argc, char** argv) {
             else if (arg == "--policy-scale") advanced_options.policy_scale = int(number(value()));
             else if (arg == "--policy-mode") advanced_options.policy_mode = value();
             else if (arg == "--root-scheduler") advanced_options.root_scheduler = value();
+            else if (arg == "--eval-scale") advanced_options.eval_scale = int(number(value()));
+            else if (arg == "--correction-gain") advanced_options.correction_gain = int(number(value()));
+            else if (arg == "--qsee-margin") advanced_options.qsee_margin = int(number(value()));
+            else if (arg == "--qsee-audit") advanced_options.qsee_audit = true;
             else if (arg == "--qguard-audit") advanced_options.qguard_audit = true;
             else if (arg == "--qcache-min-nodes") advanced_options.qcache_min_nodes = number(value());
             else if (arg == "--qcache-scope") advanced_options.qcache_scope = value();

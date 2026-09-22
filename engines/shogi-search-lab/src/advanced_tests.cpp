@@ -139,7 +139,7 @@ int advanced_selftest() {
     }
     // Every exposed heuristic is executed in a bounded real search and unwinds.
     for(auto f:advanced_features()) {
-        if(f=="probcut"||f=="multiprobcut"||f=="qcache"||f=="qguard")continue;
+        if(f=="probcut"||f=="multiprobcut"||f=="qcache"||f=="qguard"||f=="qsee"||f=="continuation"||f=="correction")continue;
         AdvancedOptions h;set_advanced_preset(h,"tactical");h.features.insert(f);h.limits.depth=5;h.limits.max_nodes=3000;
         auto r=advanced_search(start,h);require(r.base.nodes<=3000&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"heuristic budget and restoration "+f);
     }
@@ -176,7 +176,8 @@ int advanced_selftest() {
         require(advanced_search(matepos,a).base.score==-mate,"root scheduler terminal mate");
     }
     // Cache values are keyed by full paths, preserving repetition history.
-    for(auto features:{"tt,qsearch,qcache","tt,qsearch,qguard","tt,qsearch,qcache,qguard"}) {
+    for(auto features:{"tt,qsearch,qcache","tt,qsearch,qguard","tt,qsearch,qcache,qguard",
+        "tt,qsearch,qsee","tt,qsearch,continuation","tt,qsearch,correction","tt,qsearch,qsee,continuation"}) {
         AdvancedOptions a;a.driver="adaptive";set_advanced_features(a,features);a.limits.max_nodes=12000;
         require(advanced_search(repeat,a).base.score==0,"q optimizations preserve fourfold repetition");
         require(advanced_search(perpetual,a).base.score==-mate,"q optimizations preserve perpetual-check loss");

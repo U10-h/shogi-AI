@@ -96,6 +96,16 @@ __attribute__((target("avx2"))) void add_avx2(int16_t* a,const int16_t* w,int am
         _mm256_storeu_si256(reinterpret_cast<__m256i*>(a+j),_mm256_add_epi16(x,_mm256_mullo_epi16(y,factor)));
     }
 }
+__attribute__((target("avx2"))) void deltas_avx2(int16_t* a,const std::vector<const int16_t*>& columns,const std::vector<int>& amounts) {
+    for(int j=0;j<width;j+=16) {
+        auto v=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(a+j));
+        for(size_t i=0;i<columns.size();++i) {
+            auto w=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(columns[i]+j));
+            v=_mm256_add_epi16(v,_mm256_mullo_epi16(w,_mm256_set1_epi16(int16_t(amounts[i]))));
+        }
+        _mm256_storeu_si256(reinterpret_cast<__m256i*>(a+j),v);
+    }
+}
 #endif
 template<size_t N,size_t M> std::array<uint8_t,M> hidden(
     const std::array<uint8_t,N>& x,const std::array<int32_t,M>& bias,
@@ -130,15 +140,24 @@ struct Nnue::Impl {
         read(rb2,-1000000000,1000000000);read(rw2,-128,127);
         std::array<int32_t,1> last{};read(last,-1000000000,1000000000);rb3=last[0];read(rw3,-128,127);
         std::string extra;if(in>>extra)throw std::invalid_argument("Trailing residual data");
-        residual=true;clipped=cap;frames.clear();
+        residual=true;clipped=cap;frames.clear();for(auto& x:score_cache)x.valid=false;
     }
     struct Frame {bool valid=false;Snapshot snapshot{};Acc acc{};int score=0;};
     std::vector<Frame> frames;
+    // K+P has no king-conditioned refresh buckets. This is an exact static-score
+    // cache, not a search-value TT and not a literal HalfKP Finny-table port.
+    struct ScoreEntry {bool valid=false;Snapshot snapshot{};int score=0;};
+    std::vector<ScoreEntry> score_cache;
+    bool fused=false,cache=false,verify_fast=false;
     std::string policy;
     bool vectorized=false;
     std::map<std::string,uint64_t> counts;
     Impl(const std::string& path,const std::string& mode):weights(inputs*width),policy(mode) {
         vectorized=mode!="nnue-scalar"&&has_avx2();
+        fused=mode=="nnue-fused"||mode=="nnue-fast"||mode=="nnue-fast-verify";
+        cache=mode=="nnue-cache"||mode=="nnue-fast"||mode=="nnue-fast-verify";
+        verify_fast=mode=="nnue-fast-verify";
+        if(cache)score_cache.resize(16384);
         counts["nnue_avx2_enabled"]=vectorized;
         Reader r(path);r.expect(0x7af32f16);r.expect(0x5c6464a9);
         const std::string architecture="Features=K+P[1710->256x2],Network=AffineTransform[1<-32](ClippedReLU[32](AffineTransform[32<-32](ClippedReLU[32](AffineTransform[32<-512](InputSlice[512(0:512)])))))";
@@ -171,21 +190,30 @@ struct Nnue::Impl {
     Acc update(const Frame& from,const Snapshot& to) const {
         Acc a=from.acc;const auto& old=from.snapshot;
         int zero=0;
+        std::array<std::vector<const int16_t*>,2> columns;
+        std::array<std::vector<int>,2> amounts;
+        auto delta=[&](int c,int idx,int amount){
+            if(fused&&vectorized){columns[c].push_back(&weights[idx*width]);amounts[c].push_back(amount);}
+            else add(a,c,idx,amount);
+        };
         for(int sq=0;sq<81;++sq)if(old.squares[sq]!=to.squares[sq]) {
             zero+=(old.squares[sq]&&type_of(Piece(old.squares[sq]))!=KING)
                  -(to.squares[sq]&&type_of(Piece(to.squares[sq]))!=KING);
             for(int c=0;c<2;++c){
-                if(old.squares[sq])add(a,c,feature(Piece(old.squares[sq]),sq,c),-1);
-                if(to.squares[sq])add(a,c,feature(Piece(to.squares[sq]),sq,c),1);
+                if(old.squares[sq])delta(c,feature(Piece(old.squares[sq]),sq,c),-1);
+                if(to.squares[sq])delta(c,feature(Piece(to.squares[sq]),sq,c),1);
             }
         }
         for(int side=0;side<2;++side)for(int pt=1;pt<=7;++pt){
             int before=hand_count(old.hands[side],PieceType(pt)),after=hand_count(to.hands[side],PieceType(pt));
             zero+=before-after;
             for(int i=std::min(before,after);i<std::max(before,after);++i)
-                for(int c=0;c<2;++c)add(a,c,hand_feature(pt,side,c,i),after>before?1:-1);
+                for(int c=0;c<2;++c)delta(c,hand_feature(pt,side,c,i),after>before?1:-1);
         }
-        if(zero)for(int c=0;c<2;++c)add(a,c,0,zero);
+        if(zero)for(int c=0;c<2;++c)delta(c,0,zero);
+#ifdef LAB_AVX2_DISPATCH
+        if(fused&&vectorized)for(int c=0;c<2;++c)deltas_avx2(a[c].data(),columns[c],amounts[c]);
+#endif
         return a;
     }
     int score(const Acc& a,Color side) const {
@@ -211,6 +239,16 @@ struct Nnue::Impl {
     }
     int evaluate(const Board& b) {
         ++counts["nnue_calls"];const auto& s=b.history.back();
+        ScoreEntry* cached=nullptr;
+        if(cache) {
+            cached=&score_cache[(uint64_t(s.key)^(uint64_t(s.key)>>32))&(score_cache.size()-1)];
+            if(cached->valid&&cached->snapshot.same_position(s)) {
+                ++counts["nnue_position_hits"];
+                if(verify_fast&&cached->score!=score(refresh(s),s.side))throw std::logic_error("NNUE static cache mismatch");
+                return cached->score;
+            }
+            ++counts["nnue_position_misses"];
+        }
         if(policy=="nnue-full"){++counts["nnue_refreshes"];return score(refresh(s),s.side);}
         const size_t ply=b.history.size()-1;
         if(frames.size()<=ply)frames.resize(ply+1);
@@ -222,10 +260,10 @@ struct Nnue::Impl {
         Acc a;
         if(base){a=update(*base,s);++counts["nnue_updates"];}
         else {a=refresh(s);++counts["nnue_refreshes"];}
-        if(policy=="nnue-verify"){
+        if(policy=="nnue-verify"||verify_fast){
             ++counts["nnue_verified"];if(a!=refresh(s))throw std::logic_error("NNUE incremental accumulator mismatch");
         }
-        f.acc=a;f.snapshot=s;f.score=score(a,s.side);f.valid=true;return f.score;
+        f.acc=a;f.snapshot=s;f.score=score(a,s.side);f.valid=true;if(cached)*cached={true,s,f.score};return f.score;
     }
 };
 Nnue::Nnue(const std::string& path,const std::string& policy):impl(std::make_shared<Impl>(path,policy)){}
