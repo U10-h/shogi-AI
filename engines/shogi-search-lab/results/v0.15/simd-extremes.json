@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "models": 8,
+  "positionsPerModel": 10,
+  "pairedChecks": 160,
+  "compared": "score and all32 first-hidden activations; scalar,AVX2,old baseline"
+}

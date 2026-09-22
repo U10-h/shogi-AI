@@ -19,6 +19,7 @@ struct AdvancedOptions {
     std::string evaluation_model;
     bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
     bool compact_ordering = true;
+    bool lazy_ordering = true; // Exact same frozen priorities, extract only consumed moves.
     bool direct_qmoves = true;
     bool defer_qmoves = true;
     std::string policy_model; // Quiet move ordering only; no evaluation/pruning.

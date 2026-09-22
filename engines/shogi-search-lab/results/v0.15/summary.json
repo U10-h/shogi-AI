@@ -1,0 +1,302 @@
+{
+  "fixed": {
+    "baseline": {
+      "positions": 16,
+      "medianMsSum": 2318.473,
+      "timeRatio": 1.0,
+      "timeRatio95": [
+        1.0,
+        1.0
+      ],
+      "nodeRatio": 1.0,
+      "scoreChanges": 0,
+      "moveChanges": 0,
+      "pvChanges": 0
+    },
+    "fast": {
+      "positions": 16,
+      "medianMsSum": 1161.806,
+      "timeRatio": 0.5011082725569804,
+      "timeRatio95": [
+        0.4870545004204216,
+        0.5239005559954566
+      ],
+      "nodeRatio": 1.0,
+      "scoreChanges": 0,
+      "moveChanges": 0,
+      "pvChanges": 0
+    },
+    "lmr": {
+      "positions": 16,
+      "medianMsSum": 867.934,
+      "timeRatio": 0.37435587992614106,
+      "timeRatio95": [
+        0.2916683765136606,
+        0.4705173268442161
+      ],
+      "nodeRatio": 0.7375655178400479,
+      "scoreChanges": 7,
+      "moveChanges": 4,
+      "pvChanges": 9
+    },
+    "history": {
+      "positions": 16,
+      "medianMsSum": 1232.398,
+      "timeRatio": 0.5315558990766768,
+      "timeRatio95": [
+        0.5110369442872484,
+        0.5487888235497967
+      ],
+      "nodeRatio": 1.0275336927058945,
+      "scoreChanges": 0,
+      "moveChanges": 0,
+      "pvChanges": 0
+    }
+  },
+  "quality": {
+    "1000": {
+      "baseline": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 4.875,
+        "meanNodes": 292359.90625,
+        "nodeRatio": 1.0,
+        "meanGapCp": 99.75,
+        "meanDeltaGapCp": 0,
+        "deltaGap95": [
+          0.0,
+          0.0
+        ],
+        "improvedEqualWorseRoots": [
+          0,
+          16,
+          0
+        ],
+        "meanPvLength": 5.625,
+        "maxElapsedMs": 1006.954
+      },
+      "fast": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 5.0625,
+        "meanNodes": 484408.03125,
+        "nodeRatio": 1.6568894054705903,
+        "meanGapCp": 82.875,
+        "meanDeltaGapCp": -16.875,
+        "deltaGap95": [
+          -59.625,
+          9.0
+        ],
+        "improvedEqualWorseRoots": [
+          1,
+          14,
+          1
+        ],
+        "meanPvLength": 5.75,
+        "maxElapsedMs": 1023.953
+      },
+      "lmr": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 6.1875,
+        "meanNodes": 490695.625,
+        "nodeRatio": 1.6783957530086258,
+        "meanGapCp": 63,
+        "meanDeltaGapCp": -36.75,
+        "deltaGap95": [
+          -115.1875,
+          27.125
+        ],
+        "improvedEqualWorseRoots": [
+          3,
+          11,
+          2
+        ],
+        "meanPvLength": 6.9375,
+        "maxElapsedMs": 1004.692
+      },
+      "history": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 5.75,
+        "meanNodes": 498589.1875,
+        "nodeRatio": 1.705395222947059,
+        "meanGapCp": 30.5,
+        "meanDeltaGapCp": -69.25,
+        "deltaGap95": [
+          -146.25,
+          -3.25
+        ],
+        "improvedEqualWorseRoots": [
+          4,
+          12,
+          0
+        ],
+        "meanPvLength": 6.34375,
+        "maxElapsedMs": 1000.319
+      }
+    },
+    "3000": {
+      "baseline": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 5.5,
+        "meanNodes": 814336.3125,
+        "nodeRatio": 1.0,
+        "meanGapCp": 82.875,
+        "meanDeltaGapCp": 0,
+        "deltaGap95": [
+          0.0,
+          0.0
+        ],
+        "improvedEqualWorseRoots": [
+          0,
+          16,
+          0
+        ],
+        "meanPvLength": 6.1875,
+        "maxElapsedMs": 3001.291
+      },
+      "fast": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 5.8125,
+        "meanNodes": 1369702.46875,
+        "nodeRatio": 1.6819862355702087,
+        "meanGapCp": 33.5,
+        "meanDeltaGapCp": -49.375,
+        "deltaGap95": [
+          -117.9375,
+          0.0
+        ],
+        "improvedEqualWorseRoots": [
+          3,
+          13,
+          0
+        ],
+        "meanPvLength": 6.4375,
+        "maxElapsedMs": 3004.652
+      },
+      "lmr": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 7.0625,
+        "meanNodes": 1404497.09375,
+        "nodeRatio": 1.7247138217847802,
+        "meanGapCp": 91.5625,
+        "meanDeltaGapCp": 8.6875,
+        "deltaGap95": [
+          -11.25,
+          37.3125
+        ],
+        "improvedEqualWorseRoots": [
+          1,
+          14,
+          1
+        ],
+        "meanPvLength": 7.5625,
+        "maxElapsedMs": 3005.407
+      },
+      "history": {
+        "positions": 16,
+        "cpPositions": 16,
+        "meanDepth": 6.625,
+        "meanNodes": 1419809.53125,
+        "nodeRatio": 1.7435174011720127,
+        "meanGapCp": 65.875,
+        "meanDeltaGapCp": -17,
+        "deltaGap95": [
+          -57.5625,
+          6.5625
+        ],
+        "improvedEqualWorseRoots": [
+          1,
+          14,
+          1
+        ],
+        "meanPvLength": 7.625,
+        "maxElapsedMs": 3000.171
+      }
+    }
+  },
+  "protocol": {
+    "seed": 2026092215,
+    "signatures": {
+      "baseline": "99ab593131ec1d5d385b1f69c95fc567f666e42d0b38cd493e9a8f9be9a448d6",
+      "candidate": "afb90f32c5341db2997c97ed4b69bd3d0d32ec5de4c38587241c40e89521f8fb",
+      "evaluation": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9"
+    },
+    "names": [
+      "baseline",
+      "fast",
+      "lmr",
+      "history"
+    ],
+    "roots": 16,
+    "generation": "Advance first 16 v0.14 roots 12 plies; historical teacher depth6 MultiPV3, random within120cp; final roots compared against all v0.13/v0.14 trajectories.",
+    "fixed": {
+      "depth": 4,
+      "repeats": 3,
+      "nodes": 10000000
+    },
+    "quality": {
+      "ms": [
+        1000,
+        3000
+      ],
+      "repeats": 2,
+      "teacherDepth": 12
+    },
+    "limitations": "Same opening families as earlier work; independent continuations, no new training. No Elo claim. Timing excludes model load/process startup."
+  },
+  "limitations": [
+    "Historical depth12 teacher is an estimate, not a full minimax oracle.",
+    "Same opening families. Two time repeats do not increase the independent root count.",
+    "CPU timing excludes model loading and process startup.",
+    "No match-based strength/Elo claim."
+  ],
+  "development": {
+    "baseline": {
+      "roots": 8,
+      "sumMs": 5152.945,
+      "timeRatio": 1.0,
+      "meanDepth": 4.5
+    },
+    "aspiration": {
+      "roots": 8,
+      "sumMs": 2786.067,
+      "timeRatio": 0.5406747015541599,
+      "meanDepth": 4.5
+    },
+    "fast": {
+      "roots": 8,
+      "sumMs": 2736.63,
+      "timeRatio": 0.53108077031678,
+      "meanDepth": 4.5
+    },
+    "eager": {
+      "roots": 8,
+      "sumMs": 2897.389,
+      "timeRatio": 0.5622782699990007,
+      "meanDepth": 4.5
+    },
+    "lmr": {
+      "roots": 8,
+      "sumMs": 2791.31,
+      "timeRatio": 0.5416921779681328,
+      "meanDepth": 5.625
+    },
+    "scalar": {
+      "roots": 8,
+      "sumMs": 4788.285,
+      "timeRatio": 0.9292327009118088,
+      "meanDepth": 4.5
+    },
+    "history": {
+      "roots": 8,
+      "sumMs": 2780.2709999999997,
+      "timeRatio": 0.539549907868219,
+      "meanDepth": 4.875
+    }
+  }
+}

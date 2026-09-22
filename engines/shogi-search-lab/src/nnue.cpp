@@ -3,6 +3,10 @@
 #include "nnue.hpp"
 #include <algorithm>
 #include <stdexcept>
+#if (defined(__x86_64__) || defined(__i386__)) && (defined(__GNUC__) || defined(__clang__))
+#include <immintrin.h>
+#define LAB_AVX2_DISPATCH 1
+#endif
 
 namespace lab {
 namespace {
@@ -46,12 +50,64 @@ int16_t wrap16(int n) {
     const auto bits=static_cast<uint16_t>(n);
     return static_cast<int16_t>(bits<32768?int(bits):int(bits)-65536);
 }
-template<size_t N,size_t M> std::array<uint8_t,M> hidden(
+template<size_t N,size_t M> std::array<uint8_t,M> hidden_scalar(
     const std::array<uint8_t,N>& x,const std::array<int32_t,M>& bias,const std::array<int8_t,N*M>& weights) {
     std::array<uint8_t,M> out{};
     for(size_t j=0;j<M;++j){int32_t sum=bias[j];for(size_t i=0;i<N;++i)sum+=x[i]*int(weights[j*N+i]);
         out[j]=uint8_t(sum<=0?0:std::min(127,sum/64));}
     return out;
+}
+bool has_avx2() {
+#ifdef LAB_AVX2_DISPATCH
+    return __builtin_cpu_supports("avx2");
+#else
+    return false;
+#endif
+}
+#ifdef LAB_AVX2_DISPATCH
+// x is in [0,127], w in [-128,127]. Each adjacent pair is in
+// [-32512,32258], so maddubs' signed saturation never changes the result.
+// Sum in 32 bits before adding the validated bias. No global -march flag.
+template<size_t N,size_t M> __attribute__((target("avx2")))
+std::array<uint8_t,M> hidden_avx2(const std::array<uint8_t,N>& x,
+    const std::array<int32_t,M>& bias,const std::array<int8_t,N*M>& weights) {
+    static_assert(N%32==0,"AVX2 affine inputs must be a multiple of 32");
+    std::array<uint8_t,M> out{};
+    const __m256i ones=_mm256_set1_epi16(1);
+    for(size_t j=0;j<M;++j) {
+        __m256i sum=_mm256_setzero_si256();
+        for(size_t i=0;i<N;i+=32) {
+            const auto a=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(x.data()+i));
+            const auto w=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(weights.data()+j*N+i));
+            sum=_mm256_add_epi32(sum,_mm256_madd_epi16(_mm256_maddubs_epi16(a,w),ones));
+        }
+        __m128i s=_mm_add_epi32(_mm256_castsi256_si128(sum),_mm256_extracti128_si256(sum,1));
+        s=_mm_add_epi32(s,_mm_srli_si128(s,8));s=_mm_add_epi32(s,_mm_srli_si128(s,4));
+        const int32_t v=bias[j]+_mm_cvtsi128_si32(s);
+        out[j]=uint8_t(v<=0?0:std::min(127,v/64));
+    }
+    return out;
+}
+__attribute__((target("avx2"))) void add_avx2(int16_t* a,const int16_t* w,int amount) {
+    const auto factor=_mm256_set1_epi16(int16_t(amount));
+    for(int j=0;j<width;j+=16) {
+        const auto x=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(a+j));
+        const auto y=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(w+j));
+        _mm256_storeu_si256(reinterpret_cast<__m256i*>(a+j),_mm256_add_epi16(x,_mm256_mullo_epi16(y,factor)));
+    }
+}
+#endif
+template<size_t N,size_t M> std::array<uint8_t,M> hidden(
+    const std::array<uint8_t,N>& x,const std::array<int32_t,M>& bias,
+    const std::array<int8_t,N*M>& weights,bool vectorized,bool verify) {
+#ifdef LAB_AVX2_DISPATCH
+    if(vectorized) {
+        auto out=hidden_avx2<N,M>(x,bias,weights);
+        if(verify&&out!=hidden_scalar<N,M>(x,bias,weights))throw std::logic_error("NNUE SIMD affine mismatch");
+        return out;
+    }
+#endif
+    return hidden_scalar<N,M>(x,bias,weights);
 }
 }
 struct Nnue::Impl {
@@ -65,8 +121,11 @@ struct Nnue::Impl {
     struct Frame {bool valid=false;Snapshot snapshot{};Acc acc{};int score=0;};
     std::vector<Frame> frames;
     std::string policy;
+    bool vectorized=false;
     std::map<std::string,uint64_t> counts;
     Impl(const std::string& path,const std::string& mode):weights(inputs*width),policy(mode) {
+        vectorized=mode!="nnue-scalar"&&has_avx2();
+        counts["nnue_avx2_enabled"]=vectorized;
         Reader r(path);r.expect(0x7af32f16);r.expect(0x5c6464a9);
         const std::string architecture="Features=K+P[1710->256x2],Network=AffineTransform[1<-32](ClippedReLU[32](AffineTransform[32<-32](ClippedReLU[32](AffineTransform[32<-512](InputSlice[512(0:512)])))))";
         r.expect(uint32_t(architecture.size()));
@@ -80,6 +139,9 @@ struct Nnue::Impl {
     }
     void add(Acc& a,int perspective,int index,int amount) const {
         const auto* column=&weights[index*width];
+#ifdef LAB_AVX2_DISPATCH
+        if(vectorized){add_avx2(a[perspective].data(),column,amount);return;}
+#endif
         for(int j=0;j<width;++j)a[perspective][j]=wrap16(int(a[perspective][j])+amount*int(column[j]));
     }
     Acc refresh(const Snapshot& s) const {
@@ -94,22 +156,29 @@ struct Nnue::Impl {
     }
     Acc update(const Frame& from,const Snapshot& to) const {
         Acc a=from.acc;const auto& old=from.snapshot;
-        for(int sq=0;sq<81;++sq)if(old.squares[sq]!=to.squares[sq])for(int c=0;c<2;++c){
-            if(old.squares[sq])add(a,c,feature(Piece(old.squares[sq]),sq,c),-1);
-            if(to.squares[sq])add(a,c,feature(Piece(to.squares[sq]),sq,c),1);
+        int zero=0;
+        for(int sq=0;sq<81;++sq)if(old.squares[sq]!=to.squares[sq]) {
+            zero+=(old.squares[sq]&&type_of(Piece(old.squares[sq]))!=KING)
+                 -(to.squares[sq]&&type_of(Piece(to.squares[sq]))!=KING);
+            for(int c=0;c<2;++c){
+                if(old.squares[sq])add(a,c,feature(Piece(old.squares[sq]),sq,c),-1);
+                if(to.squares[sq])add(a,c,feature(Piece(to.squares[sq]),sq,c),1);
+            }
         }
         for(int side=0;side<2;++side)for(int pt=1;pt<=7;++pt){
             int before=hand_count(old.hands[side],PieceType(pt)),after=hand_count(to.hands[side],PieceType(pt));
+            zero+=before-after;
             for(int i=std::min(before,after);i<std::max(before,after);++i)
                 for(int c=0;c<2;++c)add(a,c,hand_feature(pt,side,c,i),after>before?1:-1);
         }
-        int zero=missing(to)-missing(old);if(zero)for(int c=0;c<2;++c)add(a,c,0,zero);
+        if(zero)for(int c=0;c<2;++c)add(a,c,0,zero);
         return a;
     }
     int score(const Acc& a,Color side) const {
         std::array<uint8_t,512> x;
         for(int c=0;c<2;++c)for(int j=0;j<width;++j)x[c*width+j]=uint8_t(std::clamp(int(a[int(side)^c][j]),0,127));
-        const auto h1=hidden<512,32>(x,b1,w1),h2=hidden<32,32>(h1,b2,w2);
+        const auto h1=hidden<512,32>(x,b1,w1,vectorized,policy=="nnue-verify"),
+                   h2=hidden<32,32>(h1,b2,w2,vectorized,policy=="nnue-verify");
         int32_t out=b3[0];for(int i=0;i<32;++i)out+=int(h2[i])*w3[i];
         // Preserve the upstream raw unit (PawnValue=90), including truncation.
         return std::clamp(out/16,-27000,27000);
@@ -118,7 +187,7 @@ struct Nnue::Impl {
         const auto& s=b.history.back();const Acc a=refresh(s);
         std::array<uint8_t,512> x;
         for(int c=0;c<2;++c)for(int j=0;j<width;++j)x[c*width+j]=uint8_t(std::clamp(int(a[int(s.side)^c][j]),0,127));
-        return hidden<512,32>(x,b1,w1);
+        return hidden<512,32>(x,b1,w1,vectorized,policy=="nnue-verify");
     }
     int evaluate(const Board& b) {
         ++counts["nnue_calls"];const auto& s=b.history.back();

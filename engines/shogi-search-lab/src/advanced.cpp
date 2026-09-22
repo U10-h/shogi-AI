@@ -17,7 +17,7 @@ namespace lab {
 std::set<std::string> advanced_features() {
     return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
         "qsearch","see-order","see-prune","delta","futility","reverse-futility",
-        "razoring","null","adaptive-null","verified-null","lmr","check-extension",
+        "razoring","null","adaptive-null","verified-null","lmr","history-lmr","check-extension",
         "recapture-extension","singular","multicut","probcut","multiprobcut"};
 }
 void set_advanced_features(AdvancedOptions& o, const std::string& csv) {
@@ -47,6 +47,43 @@ struct KeyHash {size_t operator()(const Key& k) const {return std::hash<uint64_t
 struct PathHash {size_t operator()(const std::pair<uint64_t,int>& p) const {return std::hash<uint64_t>{}(p.first*65537+uint64_t(p.second));}};
 struct Entry {int score, flag; Move move; std::vector<Move> pv;};
 struct ProbModel {int deep, shallow; double slope, intercept, sigma, z;};
+// Freeze all priorities at node entry, then emit exactly the eager sort order.
+// Child searches may update histories, but cannot reorder this node's tail.
+struct OrderedMoves {
+    struct Item {Move move;int64_t priority;uint64_t key;};
+    static bool worse(const Item& a,const Item& b) {
+        return a.priority!=b.priority?a.priority<b.priority:a.key>b.key;
+    }
+    std::vector<Item> heap;
+    std::vector<Move> picked;
+    explicit OrderedMoves(std::vector<Move> moves):picked(std::move(moves)){}
+    OrderedMoves(std::vector<Item> items,bool lazy):heap(std::move(items)) {
+        picked.reserve(heap.size());
+        if(lazy&&heap.size()>16)std::make_heap(heap.begin(),heap.end(),worse);
+        else {
+            std::sort(heap.begin(),heap.end(),[](const Item& a,const Item& b){return worse(b,a);});
+            for(auto& i:heap)picked.push_back(i.move);
+            heap.clear();
+        }
+    }
+    size_t size() const {return picked.size()+heap.size();}
+    Move operator[](size_t i) {
+        while(picked.size()<=i) {
+            std::pop_heap(heap.begin(),heap.end(),worse);
+            picked.push_back(heap.back().move);heap.pop_back();
+        }
+        return picked[i];
+    }
+    Move front(){return (*this)[0];}
+    struct Iterator {
+        OrderedMoves* owner;size_t index;
+        Move operator*(){return (*owner)[index];}
+        Iterator& operator++(){++index;return *this;}
+        bool operator!=(const Iterator& other)const{return index!=other.index;}
+    };
+    Iterator begin(){return {this,0};}
+    Iterator end(){return {this,size()};}
+};
 constexpr int max_ply=96;
 int pack(Move m) {return int(m)&65535;}
 std::string line_json(const std::vector<Move>& pv) {
@@ -78,6 +115,7 @@ class Worker {
         bool adaptive_null = false;
         bool verified_null = false;
         bool lmr = false;
+        bool history_lmr = false;
         bool check_extension = false;
         bool recapture_extension = false;
         bool singular = false;
@@ -203,10 +241,11 @@ class Worker {
         {PlayedMove move(b,m);v-=exchange(to_sq(m),4);}
         return v;
     }
-    std::vector<Move> order(std::vector<Move> moves,int ply,Move preferred,Move previous) {
+    OrderedMoves order(std::vector<Move> moves,int ply,Move preferred,Move previous) {
         struct Item {Move move; int64_t priority; uint64_t key; std::string text;};
         std::vector<Item> items; auto side=b.pos.side_to_move();
-        items.reserve(moves.size());
+        std::vector<OrderedMoves::Item> compact;
+        if(o.compact_ordering)compact.reserve(moves.size());else items.reserve(moves.size());
         r.stats[o.compact_ordering?"integer_order_keys":"string_order_keys"]+=moves.size();
         for(Move m:moves) {
             check();
@@ -225,10 +264,12 @@ class Worker {
             }
             if(f.counter&&previous!=MOVE_NONE&&m==counters[side][pack(previous)]&&!tactical(m))score+=1500000;
             if(m==preferred)score+=1000000000;
-            items.push_back({m,score,o.compact_ordering?usi_sort_key(m):0,o.compact_ordering?std::string():usi(m)});
+            if(o.compact_ordering)compact.push_back({m,score,usi_sort_key(m)});
+            else items.push_back({m,score,0,usi(m)});
         }
+        if(o.compact_ordering)return OrderedMoves(std::move(compact),o.lazy_ordering);
         std::sort(items.begin(),items.end(),[&](const Item&a,const Item&b){return a.priority!=b.priority?a.priority>b.priority:o.compact_ordering?a.key<b.key:a.text<b.text;});
-        moves.clear();for(auto& i:items)moves.push_back(i.move);return moves;
+        moves.clear();for(auto& i:items)moves.push_back(i.move);return OrderedMoves(std::move(moves));
     }
     void leaf_event(const char* phase,uint64_t node,uint64_t parent,Move incoming,
                     int ply,int left,int a,int beta,const char* reason,
@@ -276,9 +317,9 @@ class Worker {
             if(deferred)generate();
             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
         }
-        moves=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+        auto ordered=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
         int move_index=0;bool learned_cut=false;std::vector<Move> captures_searched;
-        for(Move m:moves) {
+        for(Move m:ordered) {
             const int index=move_index++;
             const bool checkmove=b.pos.gives_check(m);
             if(!checked&&!checkmove&&!isolated) {
@@ -296,7 +337,7 @@ class Worker {
             std::string parent_sfen;
             if(consider){
                 ++r.stats["learned_eligible"];
-                x=prune_features(m,incoming,a,stand,left,index,int(moves.size()));
+                x=prune_features(m,incoming,a,stand,left,index,int(ordered.size()));
                 guarded=index>=2&&left>=3&&x[8]==0&&x[9]==0&&x[15]==0&&x[2]>=0&&!learned_cut;
                 if(prune_log.is_open())parent_sfen=b.pos.sfen();
                 if(guarded)++r.stats["learned_guard_eligible"];
@@ -433,9 +474,9 @@ class Worker {
         if(f.iid&&!isolated&&preferred==MOVE_NONE&&d>=3) {
             ++r.stats["iid_probes"];auto v=probe(d-2,a,beta,ply,prev);if(!v.pv.empty())preferred=v.pv[0];
         }
-        moves=order(std::move(moves),ply,preferred,prev);
+        auto ordered=order(std::move(moves),ply,preferred,prev);
         if(f.etc&&cacheable(path)&&d>=2) {
-            for(Move m:moves) {
+            for(Move m:ordered) {
                 check();++r.stats["etc_probes"];auto id=child_path(path,m);
                 auto found=tt.find({id,d-1,ext});
                 if(found!=tt.end()&&found->second.flag<=0) {
@@ -445,19 +486,19 @@ class Worker {
             }
         }
         if(eligible&&f.multicut&&d>=3) {
-            int cuts=0;for(size_t i=0;i<std::min<size_t>(6,moves.size());++i){Move m=moves[i];Value v;++r.stats["multicut_probes"];{PlayedMove move(b,m);v=probe(d-3,-beta,-beta+1,ply+1,m);}if(-v.score>=beta)++cuts;if(cuts>=3){++r.stats["multicut_prunes"];event("multicut",d,ply,a,beta,beta,true);return finish({beta,{}});}}
+            int cuts=0;for(size_t i=0;i<std::min<size_t>(6,ordered.size());++i){Move m=ordered[i];Value v;++r.stats["multicut_probes"];{PlayedMove move(b,m);v=probe(d-3,-beta,-beta+1,ply+1,m);}if(-v.score>=beta)++cuts;if(cuts>=3){++r.stats["multicut_prunes"];event("multicut",d,ply,a,beta,beta,true);return finish({beta,{}});}}
         }
         Move singular=MOVE_NONE;
-        if(f.singular&&!isolated&&d>=4&&ext>0&&preferred!=MOVE_NONE&&moves.front()==preferred) {
+        if(f.singular&&!isolated&&d>=4&&ext>0&&preferred!=MOVE_NONE&&ordered.front()==preferred) {
             ++r.stats["singular_probes"];int candidate;
             {PlayedMove move(b,preferred);candidate=-probe(d-3,-infinity,infinity,ply+1,preferred).score;}
             int threshold=candidate-150;bool unique=std::abs(candidate)<90000;
-            for(Move m:moves)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
+            for(Move m:ordered)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
             if(unique){singular=preferred;++r.stats["singular_confirmed"];}
         }
         Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched,captures_searched;
         const Color side=b.pos.side_to_move();
-        for(Move m:moves) {
+        for(Move m:ordered) {
             const bool noise=tactical(m),gives=b.pos.gives_check(m);
             // Never prune first move, captures, promotions, checks, drops, evasions.
             if(eligible&&index>0&&!noise&&!gives&&!is_drop(m)&&f.futility&&d<=2&&stand+300*d<=a) {
@@ -470,14 +511,25 @@ class Worker {
                 else if(m==singular){extension=1;++r.stats["singular_extensions"];}
             }
             int nd=d-1+extension;
-            bool reduce=!isolated&&f.lmr&&d>=3&&index>=4&&!checked&&!noise&&!gives&&!is_drop(m)&&extension==0;
+            bool reduce=!isolated&&(f.lmr||f.history_lmr)&&d>=3&&index>=4&&!checked&&!noise&&!gives&&!is_drop(m)&&extension==0;
+            int reduction=(d>=6&&index>=12)?2:1;
+            if(reduce&&f.history_lmr) {
+                // Conservative protection, plus one extra ply only for late
+                // non-PV moves with negative online history. No trained model.
+                const bool protected_move=m==preferred||m==killers[ply][0]||m==killers[ply][1]
+                    ||(prev!=MOVE_NONE&&m==counters[side][pack(prev)])||history[side][pack(m)]>=1024;
+                if(pvnode||protected_move){--reduction;++r.stats["history_lmr_protections"];}
+                else if(d>=5&&index>=8&&history[side][pack(m)]<0){++reduction;++r.stats["history_lmr_extra"];}
+                reduction=std::clamp(reduction,0,std::max(0,nd-1));
+                reduce=reduction>0;
+            }
             Value c;auto id=child_path(path,m);
             if(ply==0)current_root_move=m;
             {
                 PlayedMove move(b,m);
                 if(reduce) {
                     ++r.stats["lmr_reductions"];
-                    int red=(d>=6&&index>=12)?2:1;
+                    int red=reduction;
                     c=visit(std::max(0,nd-red),-a-1,-a,ply+1,id,ext-extension,true,m);
                     if(-c.score>a){++r.stats["lmr_researches"];c=visit(nd,-beta,-a,ply+1,id,ext-extension,true,m);}
                 } else if(o.driver!="ab"&&index>0&&beta-a>1) {
@@ -494,7 +546,7 @@ class Worker {
             if(!noise)quiet_searched.push_back(m);
             else if(f.capture_history)captures_searched.push_back(m);
             if(a>=beta) {
-                ++r.base.cutoffs;r.base.skipped_siblings+=moves.size()-index-1;
+                ++r.base.cutoffs;r.base.skipped_siblings+=ordered.size()-index-1;
                 learn_captures(m,captures_searched,d);
                 if(!noise&&!isolated) {
                     if(f.killer){if(killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}++r.stats["killer_updates"];}
@@ -517,9 +569,9 @@ class Worker {
         if(auto rep=b.repetition_score(ply))return {*rep,{}};
         auto moves=b.legal_moves();if(moves.empty())return {-mate+ply,{}};
         if(budget<=0){++r.base.leaves;return {eval(b),{}};}
-        moves=order(std::move(moves),ply,MOVE_NONE,prev);
+        auto ordered=order(std::move(moves),ply,MOVE_NONE,prev);
         Value best{-infinity,{}};size_t index=0;
-        for(Move m:moves) {
+        for(Move m:ordered) {
             // Compact category model adapted from Tsuruoka et al. Table 1.
             // It is not a re-trained professional-game probability model.
             double p=.05;
@@ -530,7 +582,7 @@ class Worker {
             if(capture&&prev!=MOVE_NONE&&to_sq(m)==to_sq(prev))p=std::max(p,exchange_gain>0?.89:exchange_gain==0?.22:.05);
             if(is_promote(m))p=std::max(p,exchange_gain>=0?.22:.02);
             if(b.pos.gives_check(m))p=std::max(p,exchange_gain>0?.43:exchange_gain==0?.25:.04);
-            int cost=moves.size()==1?0:int(std::lround(-std::log2(p)*1000));
+            int cost=ordered.size()==1?0:int(std::lround(-std::log2(p)*1000));
             if(o.driver=="erps"&&index<5&&cost>1000){cost=1000;++r.stats["erps_early_caps"];}
             Value c;
             if(ply==0)current_root_move=m;
@@ -576,9 +628,9 @@ class Worker {
         tick();
         if(!null_level)if(auto rep=b.repetition_score(0))return {{*rep,{}}};
         auto moves=b.legal_moves();if(moves.empty())return {{-mate,{}}};
-        moves=order(std::move(moves),0,MOVE_NONE,MOVE_NONE);
+        auto ordered=order(std::move(moves),0,MOVE_NONE,MOVE_NONE);
         std::vector<AdvancedLine> lines;
-        for(Move m:moves) {
+        for(Move m:ordered) {
             Value c;auto path=child_path(1,m);bool reject=false;
             current_root_move=m;
             {PlayedMove move(b,m);
@@ -621,6 +673,7 @@ public:
         f.adaptive_null=o.features.count("adaptive-null")!=0;
         f.verified_null=o.features.count("verified-null")!=0;
         f.lmr=o.features.count("lmr")!=0;
+        f.history_lmr=o.features.count("history-lmr")!=0;
         f.check_extension=o.features.count("check-extension")!=0;
         f.recapture_extension=o.features.count("recapture-extension")!=0;
         f.singular=o.features.count("singular")!=0;
@@ -632,7 +685,7 @@ public:
         const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps"};
         if(!drivers.count(o.driver))throw std::invalid_argument("Unknown driver");
         if(o.limits.depth<0||o.limits.depth>16||!o.limits.max_nodes||o.limits.time_ms>3600000||o.multipv<1||o.multipv>5||o.qdepth<0||o.qdepth>16||o.extension_budget<0||o.extension_budget>8||o.tt_capacity<1||o.tt_capacity>1000000||o.aspiration<1||o.aspiration>10000)throw std::invalid_argument("Invalid advanced limits");
-        const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","multicut","probcut","multiprobcut"};
+        const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","history-lmr","multicut","probcut","multiprobcut"};
         for(auto& f:selective)if(on(f))r.selective=true;
         const std::set<std::string> prune_policies={"off","collect","direct","guarded","verified","staticcheck","efficient"};
         if(!prune_policies.count(o.prune_policy))throw std::invalid_argument("Unknown learned prune policy");
@@ -727,7 +780,7 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     const auto first_comma=base.find(',');
     base="{\"algorithm\":\"advanced\""+base.substr(first_comma);
     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
-        <<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
+        <<",\"lazy_ordering\":"<<(o.lazy_ordering?"true":"false")<<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
     out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)

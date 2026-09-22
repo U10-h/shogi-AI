@@ -1,0 +1,7 @@
+{
+  "filename": "shogi-search-lab.zip",
+  "sha256": "da214f6618207e9f4a9e3c639b0e7be2994ff02b2835e4549f6e17e2c6103844",
+  "identifiedVersion": "v0.14",
+  "evidence": "README, REPORT-v0.14.md, source and recorded results",
+  "baseline": "v0.14 capture (recommended in input report)"
+}

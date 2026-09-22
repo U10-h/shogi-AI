@@ -91,8 +91,8 @@ int advanced_selftest() {
         ref.limits.depth=3;ref.limits.max_nodes=12000;ref.limits.iterative=true;
         ref.compact_ordering=false;ref.direct_qmoves=false;ref.defer_qmoves=false;
         auto expected=advanced_search(board,ref);
-        for(int variant=1;variant<8;++variant) {
-            auto opt=ref;opt.compact_ordering=variant&1;opt.direct_qmoves=variant&2;opt.defer_qmoves=variant&4;
+        for(int variant=1;variant<16;++variant) {
+            auto opt=ref;opt.compact_ordering=variant&1;opt.direct_qmoves=variant&2;opt.defer_qmoves=variant&4;opt.lazy_ordering=variant&8;
             auto actual=advanced_search(board,opt);
             require(actual.base.score==expected.base.score&&actual.base.pv==expected.base.pv&&actual.base.nodes==expected.base.nodes
                 &&actual.base.completed_depth==expected.base.completed_depth&&actual.base.stop_reason==expected.base.stop_reason,"exact qsearch/order ablation");

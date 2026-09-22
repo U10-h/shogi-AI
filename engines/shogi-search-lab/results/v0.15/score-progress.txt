@@ -1,0 +1,16 @@
+{"mode":"score","id":0,"candidates":[["3b3a","cp",-2741]]}
+{"mode":"score","id":1,"candidates":[["5c5d","cp",27],["8c8f","cp",-2]]}
+{"mode":"score","id":2,"candidates":[["3f3e","cp",-25],["2e2d","cp",23]]}
+{"mode":"score","id":3,"candidates":[["9a9e","cp",-2903],["6e5g+","cp",-3221]]}
+{"mode":"score","id":4,"candidates":[["6h5g","cp",-42]]}
+{"mode":"score","id":5,"candidates":[["4e3f","cp",2243]]}
+{"mode":"score","id":6,"candidates":[["G*8c","cp",245]]}
+{"mode":"score","id":7,"candidates":[["5c5d","cp",-3214]]}
+{"mode":"score","id":8,"candidates":[["7a8b","cp",-386]]}
+{"mode":"score","id":9,"candidates":[["6d6e","cp",-725]]}
+{"mode":"score","id":10,"candidates":[["9d9e","cp",-732],["6c7d","cp",-485],["7e7f","cp",-792],["4d2f","cp",-547]]}
+{"mode":"score","id":11,"candidates":[["4h5h","cp",-497],["2i3g","cp",-523],["3f3e","cp",-722],["5i4i","cp",-558]]}
+{"mode":"score","id":12,"candidates":[["8g8f","cp",212]]}
+{"mode":"score","id":13,"candidates":[["P*4h","cp",-1592],["2h4h","cp",-1135],["P*3e","cp",-1777]]}
+{"mode":"score","id":14,"candidates":[["6f6e","cp",242],["2f2e","cp",730]]}
+{"mode":"score","id":15,"candidates":[["7h8g","cp",472]]}
