@@ -1,0 +1,18 @@
+{
+  "reason": "Gap MAE fell but validation rank accuracy barely changed; prevent scale collapse before opening test outcomes",
+  "seed": 2026092212,
+  "epochs": 60,
+  "learningRate": 0.00015,
+  "batchSize": 256,
+  "loss": "pair logistic with sign labels; teacher separation >=20 cp",
+  "parameterAnchor": 0.02,
+  "valueAnchor": 0.05,
+  "projection": "train quiet positions: float head mean and standard deviation matched to base after each epoch; output bias then centered after integer export",
+  "selection": "highest validation rank agreement >=20cp, tie gapMAE; includes base; old test unused",
+  "affineControl": {
+    "fittedScale": 0.904645749038399,
+    "fittedInterceptRaw": -18.9506982354807,
+    "trainedOn": "v0.10 train quiet only"
+  },
+  "gradientMaxError": 1.833673490825305e-11
+}

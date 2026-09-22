@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "matchSha256": "a02fac4d2d4b7870e1d07a8547362bef408730a84e797fb08df5894cb47f3b19",
+  "moves": 490,
+  "pvMoves": 1701,
+  "fallbacks": {
+    "old": 1,
+    "final": 0
+  },
+  "games": [
+    {
+      "id": "core-0-black",
+      "moves": 55,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "prefixPreserved": true
+    },
+    {
+      "id": "core-0-white",
+      "moves": 138,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "prefixPreserved": true
+    },
+    {
+      "id": "core-1-black",
+      "moves": 129,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "prefixPreserved": true
+    },
+    {
+      "id": "core-1-white",
+      "moves": 168,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "prefixPreserved": true
+    }
+  ]
+}

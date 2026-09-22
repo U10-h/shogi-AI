@@ -1,0 +1,72 @@
+{"completed_case": "initial"}
+{"completed_case": "gokigen-6"}
+{"completed_case": "gokigen-20"}
+{"completed_case": "gokigen-36"}
+{"completed_case": "gokigen-52"}
+{"completed_case": "bishop-exchange"}
+{"completed_case": "pin-and-drop"}
+{"completed_case": "promotion"}
+{"completed_case": "holdout-pin-and-drop"}
+{"completed_case": "holdout-random-0-7"}
+{"completed_case": "holdout-random-0-16"}
+{"completed_case": "holdout-random-0-25"}
+{"completed_case": "holdout-random-1-2"}
+{"completed_case": "holdout-random-1-11"}
+{"completed_case": "holdout-random-1-20"}
+{"completed_case": "holdout-random-1-29"}
+{"completed_case": "recapture-trap"}
+{"completed_case": "mate-one"}
+{"completed_case": "flat-ties"}
+{"completed_case": "fewer-than-five"}
+{"completed_case": "recapture-trap-d4"}
+{"completed_case": "flat-ties-d4"}
+{
+  "cases": 22,
+  "repetitions": 3,
+  "runs": 264,
+  "all_top5_equal": true,
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "aggregate": {
+    "full": {
+      "elapsed_ms": 1054.703,
+      "nodes": 154118,
+      "probe_nodes": 0,
+      "probe_ms": 0.0,
+      "root_exclusions": 0,
+      "root_researches": 0,
+      "root_full_searches": 2409,
+      "faster_than_full_cases": 0
+    },
+    "screen": {
+      "elapsed_ms": 379.423,
+      "nodes": 56617,
+      "probe_nodes": 0,
+      "probe_ms": 0.0,
+      "root_exclusions": 1988,
+      "root_researches": 87,
+      "root_full_searches": 421,
+      "faster_than_full_cases": 21
+    },
+    "full-probe": {
+      "elapsed_ms": 1119.785,
+      "nodes": 154914,
+      "probe_nodes": 796,
+      "probe_ms": 1.218,
+      "root_exclusions": 0,
+      "root_researches": 0,
+      "root_full_searches": 2409,
+      "faster_than_full_cases": 14
+    },
+    "probe": {
+      "elapsed_ms": 382.54,
+      "nodes": 66503,
+      "probe_nodes": 796,
+      "probe_ms": 1.057,
+      "root_exclusions": 1926,
+      "root_researches": 149,
+      "root_full_searches": 483,
+      "faster_than_full_cases": 21
+    }
+  }
+}

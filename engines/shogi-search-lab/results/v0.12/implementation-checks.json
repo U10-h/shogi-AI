@@ -1,0 +1,17 @@
+{
+  "integerParity": {
+    "base": 150,
+    "pair": 150,
+    "affine": 150,
+    "anchored50": 150,
+    "tempo40": 150
+  },
+  "totalIndependentFeatureAndHeadChecks": 750,
+  "oldNewSearchParity": 44,
+  "traceLimit": {
+    "kept": 5,
+    "omitted": 22019,
+    "transparent": true
+  },
+  "diagnosticRuns": 13
+}

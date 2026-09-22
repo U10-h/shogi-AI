@@ -1,0 +1,198 @@
+{
+  "root": {
+    "sfen": "l3k1snl/1r1sg1g2/p6pp/1pppp1p2/5p2P/P1P2P1P1/1P+nPP1P2/3SG1S1R/LN2K1bNL b Bg 1",
+    "prefix": [
+      "9g9f",
+      "3c3d",
+      "7g7f",
+      "8c8d",
+      "1g1f",
+      "6c6d",
+      "6i6h",
+      "7a6b",
+      "4i5h",
+      "4c4d",
+      "6h7h",
+      "6a5b",
+      "2g2f",
+      "4a3b",
+      "1f1e",
+      "7c7d",
+      "3i3h",
+      "2b3c",
+      "4g4f",
+      "5c5d",
+      "8h7g",
+      "8a7c",
+      "7g6h",
+      "4d4e",
+      "6h7g",
+      "3c7g+",
+      "7h7g",
+      "B*3i",
+      "2h1h",
+      "7c6e",
+      "7i6h",
+      "6e7g+"
+    ],
+    "ply": 32,
+    "game": 12,
+    "split": "train",
+    "id": 24
+  },
+  "analysis": {
+    "algorithm": "advanced",
+    "depth": 16,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "node_limit",
+    "score": -1026,
+    "bestmove": "8i7g",
+    "nodes": 24000,
+    "leaves": 794,
+    "terminals": 0,
+    "cutoffs": 4424,
+    "skipped_siblings": 188414,
+    "elapsed_ms": 309.694,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "8i7g",
+      "G*2h",
+      "N*4d",
+      "2h1h",
+      "4d5b+",
+      "5a5b",
+      "1i1h",
+      "4e4f"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -622,
+        "nodes": 102,
+        "elapsed_ms": 1.863,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8i7g",
+          "4e4f"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -1013,
+        "nodes": 603,
+        "elapsed_ms": 10.126,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8i7g",
+          "G*2h"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -1026,
+        "nodes": 4327,
+        "elapsed_ms": 75.383,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8i7g",
+          "G*2h",
+          "N*4d",
+          "2h1h",
+          "4d5b+",
+          "5a5b",
+          "1i1h",
+          "4e4f"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -1026,
+        "nodes": 17239,
+        "elapsed_ms": 203.52,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "8i7g",
+          "G*2h",
+          "N*4d",
+          "2h1h",
+          "4d5b+",
+          "5a5b",
+          "1i1h",
+          "4e4f"
+        ]
+      }
+    ],
+    "engine": "research-v0.9",
+    "evaluation": "nnue",
+    "score_unit": "yaneuraou_raw_pawn90",
+    "evaluation_model": "/workspace/scratch/ebe259f952a0/work/opponent/yaneuraou.data",
+    "eager_evaluation": false,
+    "compact_ordering": true,
+    "direct_qmoves": true,
+    "driver": "pvs",
+    "selective": false,
+    "defer_qmoves": true,
+    "leaf_policy": "bounded_quiescence",
+    "features": [
+      "counter",
+      "history",
+      "killer",
+      "mate-distance",
+      "qsearch",
+      "tt"
+    ],
+    "prune_policy": "collect",
+    "prune_model": "",
+    "prune_probability_override": -1,
+    "prune_audit": false,
+    "stats": {
+      "counter_updates": 40,
+      "history_paths": 9380,
+      "history_updates": 40,
+      "integer_order_keys": 221719,
+      "killer_updates": 40,
+      "learned_eligible": 5726,
+      "learned_guard_eligible": 1111,
+      "nnue_cache_hits": 232,
+      "nnue_calls": 19893,
+      "nnue_refreshes": 1,
+      "nnue_updates": 19660,
+      "pvs_probes": 882,
+      "pvs_researches": 6,
+      "q_avoided_generations": 15416,
+      "q_deferred_nodes": 19884,
+      "q_full_generations": 2083,
+      "q_generated_moves": 21662,
+      "q_tactical_generations": 4476,
+      "qnodes": 21975,
+      "qstand_cutoffs": 14626,
+      "tt_entries": 2020,
+      "tt_probes": 2025
+    },
+    "candidates": [
+      {
+        "score": -1026,
+        "pv": [
+          "8i7g",
+          "G*2h",
+          "N*4d",
+          "2h1h",
+          "4d5b+",
+          "5a5b",
+          "1i1h",
+          "4e4f"
+        ]
+      }
+    ],
+    "fallback_move": null,
+    "fallback_pv": [],
+    "fallback_source": "",
+    "fallback_partial_score": null,
+    "completed_root_moves": 69
+  },
+  "logging_parity": true
+}

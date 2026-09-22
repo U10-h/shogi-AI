@@ -1,0 +1,85 @@
+{
+  "beforeSha256": "351aeb9cd568b8eb50f933c0f0a477f82daddc2ad7ad18f4cd229fe49299bdac",
+  "originalStatus": "running",
+  "moves": 631,
+  "pvMoves": 3157,
+  "games": [
+    {
+      "id": "self-0-black",
+      "originalStatus": "finished",
+      "originalResult": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "moves": 125
+    },
+    {
+      "id": "self-0-white",
+      "originalStatus": "finished",
+      "originalResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "moves": 84
+    },
+    {
+      "id": "self-1-black",
+      "originalStatus": "finished",
+      "originalResult": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "moves": 93
+    },
+    {
+      "id": "self-1-white",
+      "originalStatus": "finished",
+      "originalResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "moves": 86
+    },
+    {
+      "id": "yaneura-nnue-black",
+      "originalStatus": "finished",
+      "originalResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "moves": 108
+    },
+    {
+      "id": "yaneura-nnue-white",
+      "originalStatus": "running",
+      "originalResult": null,
+      "verifiedResult": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "moves": 135
+    }
+  ],
+  "afterSha256": "8e624926652b7c1ca0dfdec5a8b13a32168f38eb161934780102ae54807caf14",
+  "passed": true
+}

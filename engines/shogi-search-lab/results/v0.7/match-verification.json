@@ -1,0 +1,9 @@
+{
+  "allGamesFinished": true,
+  "games": 12,
+  "moves": 1138,
+  "pvLines": 1138,
+  "pvMoves": 5596,
+  "kifFiles": 12,
+  "checks": "match_eval.mjs checks each move and PV against tsshogi, no-legal-move terminals, and every KIF round-trip before marking the run finished."
+}

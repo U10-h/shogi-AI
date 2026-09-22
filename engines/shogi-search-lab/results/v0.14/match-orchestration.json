@@ -1,0 +1,26 @@
+{
+  "parallelEqualNodeRanges": [
+    [
+      32,
+      40
+    ],
+    [
+      40,
+      48
+    ],
+    [
+      28,
+      32
+    ],
+    [
+      26,
+      28
+    ]
+  ],
+  "allWorkerSessionsExitedSuccessfully": true,
+  "staleMarkersRemovedAfterSessionExit": [
+    28,
+    40
+  ],
+  "wallTimingStartedOnlyAfterAllMatchesFinished": true
+}

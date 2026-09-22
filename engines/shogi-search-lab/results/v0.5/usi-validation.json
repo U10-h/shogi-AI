@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "stop_seconds": 0.0007941059993754607,
+  "cases": [
+    "handshake",
+    "legal movetime",
+    "async stop",
+    "multipv5",
+    "infinite terminal waits for stop",
+    "mate score",
+    "mate command unsupported reply"
+  ],
+  "messages": [
+    "id name Shogi Search Lab v0.5",
+    "id author Shogi Search Lab",
+    "option name Preset type combo default tactical var baseline var exact var tactical var selective var custom",
+    "option name MultiPV type spin default 1 min 1 max 5",
+    "option name USI_Ponder type check default false",
+    "usiok",
+    "readyok",
+    "info depth 4 nodes 14623 time 50 score cp 0 pv 1g1f 1a1b 1f1e 2b1a",
+    "bestmove 1g1f",
+    "info depth 4 nodes 6975 time 23 score cp 0 pv 1a1b 1f1e 2b1a 1i1g",
+    "bestmove 1a1b",
+    "readyok",
+    "info depth 2 nodes 1762 time 6 multipv 1 score cp 0 pv 1g1f 1a1b",
+    "info depth 2 nodes 1762 time 6 multipv 2 score cp 0 pv 1i1h 1a1b",
+    "info depth 2 nodes 1762 time 6 multipv 3 score cp 0 pv 2g2f 1a1b",
+    "info depth 2 nodes 1762 time 6 multipv 4 score cp 0 pv 2h1h 1a1b",
+    "info depth 2 nodes 1762 time 6 multipv 5 score cp 0 pv 2h3h 1a1b",
+    "bestmove 1g1f",
+    "info depth 1 nodes 1 time 0 score mate - pv",
+    "bestmove resign",
+    "checkmate notimplemented"
+  ]
+}

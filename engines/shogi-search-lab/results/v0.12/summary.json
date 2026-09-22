@@ -1,0 +1,4749 @@
+{
+  "roots": 22,
+  "qualityRows": 22,
+  "searches": 220,
+  "quality": {
+    "12000-allCp": {
+      "n": 22,
+      "excludedIds": [],
+      "variants": {
+        "base": {
+          "gap": {
+            "mean": 93.18181818181819,
+            "ci95": [
+              26.363636363636363,
+              186.54999999999993
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "pair": {
+          "gap": {
+            "mean": 162.54545454545453,
+            "ci95": [
+              47.038636363636364,
+              336.46249999999986
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0,
+          "fallbacks": 0
+        },
+        "affine": {
+          "gap": {
+            "mean": 105.22727272727273,
+            "ci95": [
+              33.31704545454546,
+              200.18409090909088
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "anchored50": {
+          "gap": {
+            "mean": 87.27272727272727,
+            "ci95": [
+              23.545454545454547,
+              177.18295454545452
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "tempo40": {
+          "gap": {
+            "mean": 87.27272727272727,
+            "ci95": [
+              23.545454545454547,
+              177.18295454545452
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        }
+      },
+      "comparisons": {
+        "pair-base": {
+          "deltaGap": {
+            "mean": 69.36363636363636,
+            "ci95": [
+              -35.68181818181818,
+              227.0909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 16,
+          "worse": 4,
+          "sameMove": 15,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "pair-affine": {
+          "deltaGap": {
+            "mean": 57.31818181818182,
+            "ci95": [
+              -44.68181818181818,
+              211.45454545454547
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 18,
+          "worse": 2,
+          "sameMove": 16,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "P*3d",
+              "controlMove": "P*3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "7g3c+",
+              "controlMove": "7g3c+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "pair-tempo40": {
+          "deltaGap": {
+            "mean": 75.27272727272727,
+            "ci95": [
+              -28.6375,
+              233.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 15,
+          "worse": 5,
+          "sameMove": 14,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 130,
+              "candidateMove": "4f4e",
+              "controlMove": "3g3f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "affine-base": {
+          "deltaGap": {
+            "mean": 12.045454545454545,
+            "ci95": [
+              0.0,
+              33.09090909090909
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 20,
+          "worse": 2,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "9g9f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "anchored50-tempo40": {
+          "deltaGap": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 22,
+          "worse": 0,
+          "sameMove": 22,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "9g9f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        }
+      }
+    },
+    "12000-ordinaryCp": {
+      "n": 22,
+      "excludedIds": [],
+      "variants": {
+        "base": {
+          "gap": {
+            "mean": 93.18181818181819,
+            "ci95": [
+              26.363636363636363,
+              186.54999999999993
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "pair": {
+          "gap": {
+            "mean": 162.54545454545453,
+            "ci95": [
+              47.038636363636364,
+              336.46249999999986
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0,
+          "fallbacks": 0
+        },
+        "affine": {
+          "gap": {
+            "mean": 105.22727272727273,
+            "ci95": [
+              33.31704545454546,
+              200.18409090909088
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "anchored50": {
+          "gap": {
+            "mean": 87.27272727272727,
+            "ci95": [
+              23.545454545454547,
+              177.18295454545452
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        },
+        "tempo40": {
+          "gap": {
+            "mean": 87.27272727272727,
+            "ci95": [
+              23.545454545454547,
+              177.18295454545452
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.0454545454545454,
+          "fallbacks": 0
+        }
+      },
+      "comparisons": {
+        "pair-base": {
+          "deltaGap": {
+            "mean": 69.36363636363636,
+            "ci95": [
+              -35.68181818181818,
+              227.0909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 16,
+          "worse": 4,
+          "sameMove": 15,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "pair-affine": {
+          "deltaGap": {
+            "mean": 57.31818181818182,
+            "ci95": [
+              -44.68181818181818,
+              211.45454545454547
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 18,
+          "worse": 2,
+          "sameMove": 16,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "P*3d",
+              "controlMove": "P*3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "7g3c+",
+              "controlMove": "7g3c+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "pair-tempo40": {
+          "deltaGap": {
+            "mean": 75.27272727272727,
+            "ci95": [
+              -28.6375,
+              233.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 15,
+          "worse": 5,
+          "sameMove": 14,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 130,
+              "candidateMove": "4f4e",
+              "controlMove": "3g3f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 1490,
+              "candidateMove": "4e3g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 2,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": -411,
+              "candidateMove": "2h8h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 250,
+              "candidateMove": "4a4b",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": -68,
+              "candidateMove": "7g7f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "affine-base": {
+          "deltaGap": {
+            "mean": 12.045454545454545,
+            "ci95": [
+              0.0,
+              33.09090909090909
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 20,
+          "worse": 2,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 198,
+              "candidateMove": "P*3d",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "4f4e",
+              "controlMove": "4f4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "9g9f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 67,
+              "candidateMove": "7g3c+",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        },
+        "anchored50-tempo40": {
+          "deltaGap": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 22,
+          "worse": 0,
+          "sameMove": 22,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "3a3b",
+              "controlMove": "3a3b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g7i",
+              "controlMove": "9g7i",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 2,
+              "controlDepth": 2
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "P*4e",
+              "controlMove": "P*4e",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "9g9f",
+              "controlMove": "9g9f",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            }
+          ]
+        }
+      }
+    },
+    "48000-allCp": {
+      "n": 22,
+      "excludedIds": [],
+      "variants": {
+        "base": {
+          "gap": {
+            "mean": 99.9090909090909,
+            "ci95": [
+              34.90681818181818,
+              190.45909090909086
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.0,
+          "fallbacks": 0
+        },
+        "pair": {
+          "gap": {
+            "mean": 84.4090909090909,
+            "ci95": [
+              23.817045454545454,
+              173.27499999999998
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.909090909090909,
+          "fallbacks": 0
+        },
+        "affine": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.9545454545454546,
+          "fallbacks": 0
+        },
+        "anchored50": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.045454545454546,
+          "fallbacks": 0
+        },
+        "tempo40": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.045454545454546,
+          "fallbacks": 0
+        }
+      },
+      "comparisons": {
+        "pair-base": {
+          "deltaGap": {
+            "mean": -15.5,
+            "ci95": [
+              -40.22727272727273,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 20,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": -138,
+              "candidateMove": "4i3h",
+              "controlMove": "P*4e",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "pair-affine": {
+          "deltaGap": {
+            "mean": -9.227272727272727,
+            "ci95": [
+              -27.681818181818183,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "pair-tempo40": {
+          "deltaGap": {
+            "mean": -9.227272727272727,
+            "ci95": [
+              -27.681818181818183,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "affine-base": {
+          "deltaGap": {
+            "mean": -6.2727272727272725,
+            "ci95": [
+              -18.818181818181817,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 20,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": -138,
+              "candidateMove": "4i3h",
+              "controlMove": "P*4e",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "anchored50-tempo40": {
+          "deltaGap": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 22,
+          "worse": 0,
+          "sameMove": 22,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        }
+      }
+    },
+    "48000-ordinaryCp": {
+      "n": 22,
+      "excludedIds": [],
+      "variants": {
+        "base": {
+          "gap": {
+            "mean": 99.9090909090909,
+            "ci95": [
+              34.90681818181818,
+              190.45909090909086
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.0,
+          "fallbacks": 0
+        },
+        "pair": {
+          "gap": {
+            "mean": 84.4090909090909,
+            "ci95": [
+              23.817045454545454,
+              173.27499999999998
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.909090909090909,
+          "fallbacks": 0
+        },
+        "affine": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 3.9545454545454546,
+          "fallbacks": 0
+        },
+        "anchored50": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.045454545454546,
+          "fallbacks": 0
+        },
+        "tempo40": {
+          "gap": {
+            "mean": 93.63636363636364,
+            "ci95": [
+              31.636363636363637,
+              182.5909090909091
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "meanCompletedDepth": 4.045454545454546,
+          "fallbacks": 0
+        }
+      },
+      "comparisons": {
+        "pair-base": {
+          "deltaGap": {
+            "mean": -15.5,
+            "ci95": [
+              -40.22727272727273,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 2,
+          "equal": 20,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "7i8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": -138,
+              "candidateMove": "4i3h",
+              "controlMove": "P*4e",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "pair-affine": {
+          "deltaGap": {
+            "mean": -9.227272727272727,
+            "ci95": [
+              -27.681818181818183,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 3
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "pair-tempo40": {
+          "deltaGap": {
+            "mean": -9.227272727272727,
+            "ci95": [
+              -27.681818181818183,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 19,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": -203,
+              "candidateMove": "7h8g",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "7i8h",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "7c7d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "affine-base": {
+          "deltaGap": {
+            "mean": -6.2727272727272725,
+            "ci95": [
+              -18.818181818181817,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 1,
+          "equal": 21,
+          "worse": 0,
+          "sameMove": 20,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "7i8h",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 3,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": -138,
+              "candidateMove": "4i3h",
+              "controlMove": "P*4e",
+              "candidateDepth": 4,
+              "controlDepth": 3
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        },
+        "anchored50-tempo40": {
+          "deltaGap": {
+            "mean": 0.0,
+            "ci95": [
+              0.0,
+              0.0
+            ],
+            "clusters": 22,
+            "n": 22
+          },
+          "improved": 0,
+          "equal": 22,
+          "worse": 0,
+          "sameMove": 22,
+          "details": [
+            {
+              "id": 0,
+              "game": 1,
+              "deltaGapCp": 0,
+              "candidateMove": "3g4e",
+              "controlMove": "3g4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 1,
+              "game": 2,
+              "deltaGapCp": 0,
+              "candidateMove": "3g3f",
+              "controlMove": "3g3f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 2,
+              "game": 3,
+              "deltaGapCp": 0,
+              "candidateMove": "6g6f",
+              "controlMove": "6g6f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 3,
+              "game": 4,
+              "deltaGapCp": 0,
+              "candidateMove": "6f5g+",
+              "controlMove": "6f5g+",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 4,
+              "game": 5,
+              "deltaGapCp": 0,
+              "candidateMove": "4a3b",
+              "controlMove": "4a3b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 5,
+              "game": 6,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 5,
+              "controlDepth": 5
+            },
+            {
+              "id": 6,
+              "game": 7,
+              "deltaGapCp": 0,
+              "candidateMove": "6c6d",
+              "controlMove": "6c6d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 7,
+              "game": 8,
+              "deltaGapCp": 0,
+              "candidateMove": "5a4b",
+              "controlMove": "5a4b",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 8,
+              "game": 9,
+              "deltaGapCp": 0,
+              "candidateMove": "3i4h",
+              "controlMove": "3i4h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 9,
+              "game": 10,
+              "deltaGapCp": 0,
+              "candidateMove": "5f5e",
+              "controlMove": "5f5e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 10,
+              "game": 11,
+              "deltaGapCp": 0,
+              "candidateMove": "P*7d",
+              "controlMove": "P*7d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 11,
+              "game": 12,
+              "deltaGapCp": 0,
+              "candidateMove": "2h2i",
+              "controlMove": "2h2i",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 12,
+              "game": 13,
+              "deltaGapCp": 0,
+              "candidateMove": "9g8h",
+              "controlMove": "9g8h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 13,
+              "game": 14,
+              "deltaGapCp": 0,
+              "candidateMove": "4d4e",
+              "controlMove": "4d4e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 14,
+              "game": 15,
+              "deltaGapCp": 0,
+              "candidateMove": "4g4f",
+              "controlMove": "4g4f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 15,
+              "game": 16,
+              "deltaGapCp": 0,
+              "candidateMove": "6f6e",
+              "controlMove": "6f6e",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 16,
+              "game": 17,
+              "deltaGapCp": 0,
+              "candidateMove": "5c5d",
+              "controlMove": "5c5d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 17,
+              "game": 18,
+              "deltaGapCp": 0,
+              "candidateMove": "3c3d",
+              "controlMove": "3c3d",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 18,
+              "game": 19,
+              "deltaGapCp": 0,
+              "candidateMove": "4i3h",
+              "controlMove": "4i3h",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 19,
+              "game": 20,
+              "deltaGapCp": 0,
+              "candidateMove": "7g7f",
+              "controlMove": "7g7f",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 20,
+              "game": 22,
+              "deltaGapCp": 0,
+              "candidateMove": "8h7g",
+              "controlMove": "8h7g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            },
+            {
+              "id": 21,
+              "game": 23,
+              "deltaGapCp": 0,
+              "candidateMove": "2i3g",
+              "controlMove": "2i3g",
+              "candidateDepth": 4,
+              "controlDepth": 4
+            }
+          ]
+        }
+      }
+    }
+  },
+  "matches": {
+    "12000-pair-base": {
+      "games": 16,
+      "wins": 7,
+      "losses": 9,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.4375,
+        "ci95": [
+          0.125,
+          0.75
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.4375,
+        0.4375
+      ],
+      "fallbacks": {
+        "pair": 4,
+        "base": 4
+      },
+      "plies": 1197
+    },
+    "12000-pair-affine": {
+      "games": 16,
+      "wins": 6,
+      "losses": 10,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.375,
+        "ci95": [
+          0.1875,
+          0.625
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.375,
+        0.375
+      ],
+      "fallbacks": {
+        "pair": 10,
+        "affine": 10
+      },
+      "plies": 1198
+    },
+    "48000-pair-base": {
+      "games": 16,
+      "wins": 9,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.5625,
+        "ci95": [
+          0.3125,
+          0.8125
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.5625,
+        0.5625
+      ],
+      "fallbacks": {
+        "pair": 0,
+        "base": 0
+      },
+      "plies": 1389
+    },
+    "48000-pair-affine": {
+      "games": 16,
+      "wins": 6,
+      "losses": 10,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.375,
+        "ci95": [
+          0.1875,
+          0.5
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.375,
+        0.375
+      ],
+      "fallbacks": {
+        "pair": 0,
+        "affine": 0
+      },
+      "plies": 1270
+    }
+  },
+  "matchCount": 64,
+  "nodeBudgetComparison": {
+    "base": {
+      "mean": 6.7272727272727275,
+      "ci95": [
+        -17.09090909090909,
+        34.18295454545453
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "pair": {
+      "mean": -78.13636363636364,
+      "ci95": [
+        -242.46818181818182,
+        33.3715909090908
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "affine": {
+      "mean": -11.590909090909092,
+      "ci95": [
+        -44.41477272727272,
+        21.959090909090843
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "anchored50": {
+      "mean": 6.363636363636363,
+      "ci95": [
+        -17.0,
+        33.77386363636362
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "tempo40": {
+      "mean": 6.363636363636363,
+      "ci95": [
+        -17.0,
+        33.77386363636362
+      ],
+      "clusters": 22,
+      "n": 22
+    }
+  }
+}

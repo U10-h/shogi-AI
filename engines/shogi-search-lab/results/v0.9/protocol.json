@@ -1,0 +1,18 @@
+{
+  "baseline": "v0.8 archived before edits",
+  "evaluation": "nnue",
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "cycle1": [
+    "integer USI ordering with identical lexical tie break",
+    "direct capture + ALL promotion legal move generation; all legal evasions in check"
+  ],
+  "cycle2": "choose further exact optimization after cycle1 counters; no selective pruning or evaluation changes",
+  "speed": "first 8 v0.7 roots depth3, NNUE, 5 rounds rotated order, sequential; require score/bestmove/PV/nodes/stop equality",
+  "validation": "random legal play and crafted edge cases: compare move sets, sort key order, fixed-depth/limited-node search results; existing regression tests",
+  "quality": "12 v0.8 roots, 3000 ms per move each baseline/final, cold iterative tactical depth16; fixed opponent depth12 ranks union of chosen moves and its choice; paired candidate gap only",
+  "qualityLimits": "roots reused from v0.8, no tuning on quality outcomes; same weights as teacher; no independent strength/Elo claim",
+  "matches": "2 opening prefixes x colors swapped, baseline/final 150ms/move, cap200 plies; legal/PV and repetition verified with tsshogi; move limit unfinished, not win/draw",
+  "timeControl": "no benchmarks alongside builds/tests/opponent searches",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0"
+}

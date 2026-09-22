@@ -1,0 +1,15 @@
+{
+  "collectedGames": 24,
+  "roots": 24,
+  "skippedGames": [],
+  "overlapExclusions": 0,
+  "uniqueLoggedParentPositions": 560133,
+  "scoreRangeCp": [
+    -225,
+    223
+  ],
+  "selectionBeforeOutcomes": true,
+  "novelty": "new trajectories in shared opening families; excludes exact/mirror roots from old corpora and observed q parents; does not certify every new search descendant is unseen",
+  "rootsSha256": "89dac102338c5a2771e2e8f018a3d9e47ea77eba6f370347a486498d7df24232"
+}
+

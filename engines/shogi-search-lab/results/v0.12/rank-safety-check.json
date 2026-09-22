@@ -1,0 +1,95 @@
+{
+  "protocol": {
+    "reason": "Gap MAE fell but validation rank accuracy barely changed; prevent scale collapse before opening test outcomes",
+    "seed": 2026092212,
+    "epochs": 60,
+    "learningRate": 0.00015,
+    "batchSize": 256,
+    "loss": "pair logistic with sign labels; teacher separation >=20 cp",
+    "parameterAnchor": 0.02,
+    "valueAnchor": 0.05,
+    "projection": "train quiet positions: float head mean and standard deviation matched to base after each epoch; output bias then centered after integer export",
+    "selection": "highest validation rank agreement >=20cp, tie gapMAE; includes base; old test unused",
+    "affineControl": {
+      "fittedScale": 0.904645749038399,
+      "fittedInterceptRaw": -18.9506982354807,
+      "trainedOn": "v0.10 train quiet only"
+    },
+    "gradientMaxError": 1.833673490825305e-11
+  },
+  "baseline": {
+    "pairs": 7920,
+    "roots": 2924,
+    "gapMaeCp": 643.5706921011299,
+    "gapRmseCp": 1043.29667593593,
+    "rankAgreement20cp": 0.5788463997953703,
+    "rankPairs20cp": 7029
+  },
+  "affineControlValidation": {
+    "pairs": 7920,
+    "roots": 2924,
+    "gapMaeCp": 612.9858007802605,
+    "gapRmseCp": 992.2874362985209,
+    "rankAgreement20cp": 0.5792300805729633,
+    "rankPairs20cp": 7029
+  },
+  "selected": {
+    "epoch": 0,
+    "validation": {
+      "pairs": 7920,
+      "roots": 2924,
+      "gapMaeCp": 643.5706921011299,
+      "gapRmseCp": 1043.29667593593,
+      "rankAgreement20cp": 0.5788463997953703,
+      "rankPairs20cp": 7029
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "validation": {
+        "pairs": 7920,
+        "roots": 2924,
+        "gapMaeCp": 621.378540305011,
+        "gapRmseCp": 1001.5298600800845,
+        "rankAgreement20cp": 0.5782069318327152,
+        "rankPairs20cp": 7029
+      },
+      "meanCorrectionTrainCp": -0.006134851709131343,
+      "stdRatioTrain": 0.9580408427865557,
+      "rmsCorrectionTrainCp": 222.34621500063702
+    },
+    {
+      "epoch": 5,
+      "validation": {
+        "pairs": 7920,
+        "roots": 2924,
+        "gapMaeCp": 614.5117419060649,
+        "gapRmseCp": 977.3163111220528,
+        "rankAgreement20cp": 0.5739864432791918,
+        "rankPairs20cp": 7029
+      },
+      "meanCorrectionTrainCp": -0.020385600991801027,
+      "stdRatioTrain": 0.9578709479785322,
+      "rmsCorrectionTrainCp": 457.8972417306723
+    },
+    {
+      "epoch": 10,
+      "validation": {
+        "pairs": 7920,
+        "roots": 2924,
+        "gapMaeCp": 565.9112707098345,
+        "gapRmseCp": 895.5663684978598,
+        "rankAgreement20cp": 0.5659291469497378,
+        "rankPairs20cp": 7029
+      },
+      "meanCorrectionTrainCp": 0.03236773323619818,
+      "stdRatioTrain": 0.7728090187468725,
+      "rmsCorrectionTrainCp": 807.7980826273762,
+      "rejected": "quantized_projection_distortion"
+    }
+  ],
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "termination": "quantized_projection_distortion",
+  "frozenAt": "2026-09-21T16:57:15.966888+00:00"
+}

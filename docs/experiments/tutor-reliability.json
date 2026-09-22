@@ -1,0 +1,154 @@
+{
+  "date": "2026-09-20T08:58:58.360Z",
+  "scope": "Authored validation cases, not Qwen-generated outputs. The baseline is the previous shipped validator.",
+  "baselineCommit": "cd38a5fdbd2f1d9f8f321cb5a3608be5dc657e7c",
+  "sourceHash": "e37672f1c00e8d8a9ebc41924aea681408871704d61c7c76cde8a08d6485b52f",
+  "summary": {
+    "current": {
+      "correct": 22,
+      "total": 22,
+      "wrongAccepted": 0,
+      "groundedRejected": 0
+    },
+    "baseline": {
+      "correct": 10,
+      "total": 22,
+      "wrongAccepted": 12,
+      "groundedRejected": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "same-square-invention",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "score-without-points",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "sign-flip",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "win-percentage",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "win-japanese-ratio",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "qualification-laundering",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "reversed-line",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "spliced-lines",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "wrong-ply",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "concept-is-not-position",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "material-is-not-evaluation",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "unsupported-mate",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": true
+    },
+    {
+      "id": "uncited-move",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": false
+    },
+    {
+      "id": "uncited-score",
+      "expectedAcceptance": false,
+      "current": false,
+      "baseline": false
+    },
+    {
+      "id": "grounded-sequence",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "grounded-ply",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "qualified-handover",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "term-definition",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "root-evaluation",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "correct-material",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "two-branches",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    },
+    {
+      "id": "uncertain-mate",
+      "expectedAcceptance": true,
+      "current": true,
+      "baseline": true
+    }
+  ]
+}

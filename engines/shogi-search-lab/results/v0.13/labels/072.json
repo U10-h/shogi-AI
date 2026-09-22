@@ -1,0 +1,193 @@
+{
+  "root": {
+    "sfen": "lr5nl/3gksgb1/2np1p1p1/p1psp1p1p/1p3PP2/P3P3P/1PPP1S1P1/2GSR1G2/LNB1K2NL b - 1",
+    "prefix": [
+      "5g5f",
+      "3c3d",
+      "2h5h",
+      "8c8d",
+      "6i7h",
+      "3a4b",
+      "3i3h",
+      "1c1d",
+      "9g9f",
+      "7a6b",
+      "1g1f",
+      "4a3b",
+      "7i6h",
+      "5c5d",
+      "5h5g",
+      "7c7d",
+      "8h7i",
+      "8d8e",
+      "5g5h",
+      "8a7c",
+      "4g4f",
+      "9c9d",
+      "4f4e",
+      "5a5b",
+      "3h4g",
+      "6b5c",
+      "3g3f",
+      "8b8a",
+      "4i3h",
+      "5c6d",
+      "3f3e",
+      "6a6b"
+    ],
+    "ply": 32,
+    "game": 36,
+    "split": "train",
+    "id": 72
+  },
+  "analysis": {
+    "algorithm": "advanced",
+    "depth": 16,
+    "complete": false,
+    "iterative": true,
+    "pv_order": true,
+    "has_result": true,
+    "completed_depth": 4,
+    "stop_reason": "node_limit",
+    "score": -440,
+    "bestmove": "3e3d",
+    "nodes": 24000,
+    "leaves": 1171,
+    "terminals": 0,
+    "cutoffs": 5829,
+    "skipped_siblings": 120106,
+    "elapsed_ms": 402.279,
+    "pv_priority_nodes": 0,
+    "pv": [
+      "3e3d",
+      "6d7e",
+      "5f5e",
+      "8e8f",
+      "8g8f",
+      "7e8f",
+      "5e5d",
+      "8f8g+"
+    ],
+    "iterations": [
+      {
+        "depth": 1,
+        "score": -110,
+        "nodes": 36,
+        "elapsed_ms": 0.799,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3e3d"
+        ]
+      },
+      {
+        "depth": 2,
+        "score": -288,
+        "nodes": 313,
+        "elapsed_ms": 3.866,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3e3d",
+          "6d7e"
+        ]
+      },
+      {
+        "depth": 3,
+        "score": -194,
+        "nodes": 1608,
+        "elapsed_ms": 12.456,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3e3d",
+          "6d7e",
+          "2i3g"
+        ]
+      },
+      {
+        "depth": 4,
+        "score": -440,
+        "nodes": 8923,
+        "elapsed_ms": 108.302,
+        "pv_priority_nodes": 0,
+        "pv": [
+          "3e3d",
+          "6d7e",
+          "5f5e",
+          "8e8f",
+          "8g8f",
+          "7e8f",
+          "5e5d",
+          "8f8g+"
+        ]
+      }
+    ],
+    "engine": "research-v0.9",
+    "evaluation": "nnue",
+    "score_unit": "yaneuraou_raw_pawn90",
+    "evaluation_model": "/workspace/scratch/ebe259f952a0/work/opponent/yaneuraou.data",
+    "eager_evaluation": false,
+    "compact_ordering": true,
+    "direct_qmoves": true,
+    "driver": "pvs",
+    "selective": false,
+    "defer_qmoves": true,
+    "leaf_policy": "bounded_quiescence",
+    "features": [
+      "counter",
+      "history",
+      "killer",
+      "mate-distance",
+      "qsearch",
+      "tt"
+    ],
+    "prune_policy": "collect",
+    "prune_model": "",
+    "prune_probability_override": -1,
+    "prune_audit": false,
+    "stats": {
+      "counter_updates": 675,
+      "history_paths": 7856,
+      "history_updates": 675,
+      "integer_order_keys": 155225,
+      "killer_updates": 675,
+      "learned_eligible": 9382,
+      "learned_guard_eligible": 668,
+      "nnue_cache_hits": 602,
+      "nnue_calls": 20154,
+      "nnue_refreshes": 2,
+      "nnue_updates": 19550,
+      "pvs_probes": 632,
+      "pvs_researches": 13,
+      "q_avoided_generations": 13012,
+      "q_deferred_nodes": 20149,
+      "q_full_generations": 982,
+      "q_generated_moves": 24201,
+      "q_tactical_generations": 7141,
+      "qnodes": 21135,
+      "qstand_cutoffs": 11841,
+      "tt_entries": 2858,
+      "tt_hits": 3,
+      "tt_probes": 2865
+    },
+    "candidates": [
+      {
+        "score": -440,
+        "pv": [
+          "3e3d",
+          "6d7e",
+          "5f5e",
+          "8e8f",
+          "8g8f",
+          "7e8f",
+          "5e5d",
+          "8f8g+"
+        ]
+      }
+    ],
+    "fallback_move": null,
+    "fallback_pv": [],
+    "fallback_source": "",
+    "fallback_partial_score": null,
+    "completed_root_moves": 31
+  },
+  "logging_parity": true
+}

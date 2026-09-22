@@ -1,0 +1,4 @@
+./build/shogi-lab --selftest
+{"selftest":"passed","checks":115}
+./build/shogi-lab --session-selftest
+{"session_selftest":"passed","checks":1274}

@@ -1,0 +1,10 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "compiler_flags": "-std=c++17 -O2 -g -DNO_SSE -DASSERT_LV=1",
+  "initial_calibration_binary_sha256": "b04cd4801639542181ab07ca631eca349b0f9b0770238dc9d096778ba04fc057",
+  "final_binary_sha256": "2506aa064ffbd51e0ff2f545a6b9cdb4b9443e597e162860f66ed8d30a21ec46",
+  "final_search_source_sha256": "d354981a5234be5c753248cfd6a71c792ff85a3c4a0aef96850484dbcfe92567",
+  "timing_note": "Final exact/selective/timed measurements used the final advanced.cpp. Later changes only repaired USI protocol output/wait handling and its validation; the search core was unchanged. The measured executable hash was not retained separately."
+}

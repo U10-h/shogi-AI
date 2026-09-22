@@ -1,0 +1,10 @@
+{
+  "comparisons": 27,
+  "scenarios": 9,
+  "warm_faster_scenarios": 9,
+  "warm_nodes_sum": 97032,
+  "cold_nodes_sum": 97487,
+  "warm_median_ms_sum": 456.416,
+  "cold_median_ms_sum": 646.225,
+  "all_candidate_values_match": true
+}

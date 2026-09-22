@@ -1,0 +1,12 @@
+{"root":0,"runs":[{"variant":"old","depth":6,"move":"8h7g","gap":0,"nodes":359334},{"variant":"final","depth":6,"move":"8h7g","gap":0,"nodes":411745}]}
+{"root":1,"runs":[{"variant":"final","depth":6,"move":"4g4f","gap":0,"nodes":388469},{"variant":"old","depth":5,"move":"4h3i","gap":120,"nodes":325403}]}
+{"root":2,"runs":[{"variant":"old","depth":5,"move":"5f5e","gap":0,"nodes":320068},{"variant":"final","depth":6,"move":"5f5e","gap":0,"nodes":402826}]}
+{"root":3,"runs":[{"variant":"final","depth":6,"move":"3g3f","gap":33,"nodes":394674},{"variant":"old","depth":6,"move":"3g3f","gap":33,"nodes":366542}]}
+{"root":4,"runs":[{"variant":"old","depth":6,"move":"2e2d","gap":0,"nodes":338388},{"variant":"final","depth":6,"move":"2e2d","gap":0,"nodes":379491}]}
+{"root":5,"runs":[{"variant":"final","depth":5,"move":"2d6h","gap":0,"nodes":385926},{"variant":"old","depth":5,"move":"2d6h","gap":0,"nodes":329964}]}
+{"root":6,"runs":[{"variant":"old","depth":5,"move":"7g1a+","gap":0,"nodes":327342},{"variant":"final","depth":5,"move":"7g1a+","gap":0,"nodes":391247}]}
+{"root":7,"runs":[{"variant":"final","depth":5,"move":"2e2d","gap":0,"nodes":359409},{"variant":"old","depth":5,"move":"2e2d","gap":0,"nodes":298743}]}
+{"root":8,"runs":[{"variant":"old","depth":4,"move":"1c4f","gap":0,"nodes":247618},{"variant":"final","depth":4,"move":"1c4f","gap":0,"nodes":366704}]}
+{"root":9,"runs":[{"variant":"final","depth":6,"move":"8h7g","gap":0,"nodes":392731},{"variant":"old","depth":6,"move":"8h7g","gap":0,"nodes":360708}]}
+{"root":10,"runs":[{"variant":"old","depth":6,"move":"6i7h","gap":0,"nodes":360066},{"variant":"final","depth":6,"move":"6i7h","gap":0,"nodes":389938}]}
+{"root":11,"runs":[{"variant":"final","depth":5,"move":"2i3g","gap":0,"nodes":404966},{"variant":"old","depth":5,"move":"2i3g","gap":0,"nodes":331365}]}

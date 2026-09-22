@@ -1,0 +1,69 @@
+{
+  "games": [
+    {
+      "id": "v05-tactical-black",
+      "plies": 56,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "v05-selective-white",
+      "plies": 47,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "v05-tactical-white",
+      "plies": 61,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "v05-selective-black",
+      "plies": 70,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "game-1",
+      "plies": 76,
+      "result": {
+        "reason": "checkmate",
+        "winner": "white"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "game-2",
+      "plies": 79,
+      "result": {
+        "reason": "checkmate",
+        "winner": "black"
+      },
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    }
+  ],
+  "moves": 389,
+  "pvLines": 678,
+  "pvMoves": 3839,
+  "sourceHashes": true,
+  "passed": true
+}

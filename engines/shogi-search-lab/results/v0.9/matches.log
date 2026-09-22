@@ -1,0 +1,38 @@
+{"game":"core-0-black","ply":5,"move":"6i7h","variant":"final"}
+{"game":"core-0-black","ply":25,"move":"7f7e","variant":"final"}
+{"game":"core-0-black","ply":45,"move":"8b7b","variant":"final"}
+{"game":"core-0-black","plies":55,"result":{"reason":"checkmate","winner":"black"}}
+{"game":"core-0-white","ply":5,"move":"6i7h","variant":"old"}
+{"game":"core-0-white","ply":25,"move":"3i3h","variant":"old"}
+{"game":"core-0-white","ply":45,"move":"9e8d","variant":"old"}
+{"game":"core-0-white","ply":65,"move":"4f1c+","variant":"old"}
+{"game":"core-0-white","ply":85,"move":"3h2i","variant":"old"}
+{"game":"core-0-white","ply":105,"move":"4f6d","variant":"old"}
+{"game":"core-0-white","ply":125,"move":"R*1b","variant":"old"}
+{"game":"core-0-white","plies":138,"result":{"reason":"checkmate","winner":"white"}}
+{"game":"core-1-black","ply":5,"move":"4i5h","variant":"final"}
+{"game":"core-1-black","ply":25,"move":"4h3g","variant":"final"}
+{"game":"core-1-black","ply":45,"move":"2i3g","variant":"final"}
+{"game":"core-1-black","ply":65,"move":"P*4d","variant":"final"}
+{"game":"core-1-black","ply":85,"move":"S*8c","variant":"final"}
+{"game":"core-1-black","ply":105,"move":"7c6d","variant":"final"}
+{"game":"core-1-black","ply":125,"move":"7f8e","variant":"final"}
+{"game":"core-1-black","plies":129,"result":{"reason":"checkmate","winner":"black"}}
+{"game":"core-1-white","ply":5,"move":"4i5h","variant":"old"}
+{"game":"core-1-white","ply":25,"move":"4h3g","variant":"old"}
+{"game":"core-1-white","ply":45,"move":"2i3g","variant":"old"}
+{"game":"core-1-white","ply":65,"move":"P*2c","variant":"old"}
+{"game":"core-1-white","ply":85,"move":"P*7f","variant":"old"}
+{"game":"core-1-white","ply":105,"move":"P*5d","variant":"old"}
+{"game":"core-1-white","ply":125,"move":"R*7b","variant":"old"}
+{"game":"core-1-white","ply":145,"move":"9h8i","variant":"old"}
+{"game":"core-1-white","ply":165,"move":"9h9g","variant":"old"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: Illegal move/PV
+    at file:///workspace/scratch/791cf228e1b0/work/shogi-search-lab/scripts/match_search_core.mjs:31:108
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0

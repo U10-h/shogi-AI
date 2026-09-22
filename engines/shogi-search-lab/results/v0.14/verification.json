@@ -1,0 +1,18 @@
+{
+  "independentFeaturePositions": 59,
+  "independentFeatureMoves": 4270,
+  "independentIntegerInference": 4270,
+  "baselineAndZeroScaleSearches": 12,
+  "fields": [
+    "score",
+    "pv",
+    "nodes",
+    "completed_depth",
+    "has_result",
+    "stop_reason",
+    "bestmove",
+    "stats",
+    "fallback_move",
+    "fallback_pv"
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "files": 32,
+  "traceGeometry": {
+    "affine": {
+      "events": 179899,
+      "qevals": 89956,
+      "checked": 4855,
+      "uncompletedQnodes": 13,
+      "reasons": {
+        "stand_pat_cutoff": 56272,
+        "child_selected": 9062,
+        "child_beta_cutoff": 14080,
+        "stand_pat_selected": 7902,
+        "qdepth_limit": 2627
+      },
+      "ply": {
+        "1": 438,
+        "2": 1783,
+        "3": 22887,
+        "4": 30144,
+        "5": 12683,
+        "6": 9232,
+        "7": 5070,
+        "8": 3731,
+        "9": 2219,
+        "10": 1412,
+        "11": 341,
+        "12": 16
+      }
+    },
+    "base": {
+      "events": 178819,
+      "qevals": 89413,
+      "checked": 5276,
+      "uncompletedQnodes": 7,
+      "reasons": {
+        "stand_pat_cutoff": 56470,
+        "stand_pat_selected": 9583,
+        "child_beta_cutoff": 13741,
+        "child_selected": 8062,
+        "qdepth_limit": 1550
+      },
+      "ply": {
+        "1": 438,
+        "2": 1760,
+        "3": 21878,
+        "4": 32695,
+        "5": 13089,
+        "6": 9125,
+        "7": 5392,
+        "8": 2838,
+        "9": 1478,
+        "10": 562,
+        "11": 142,
+        "12": 16
+      }
+    },
+    "pair": {
+      "events": 180642,
+      "qevals": 90322,
+      "checked": 5092,
+      "uncompletedQnodes": 2,
+      "reasons": {
+        "stand_pat_cutoff": 52478,
+        "child_selected": 9172,
+        "child_beta_cutoff": 16008,
+        "stand_pat_selected": 9204,
+        "qdepth_limit": 3458
+      },
+      "ply": {
+        "1": 439,
+        "2": 2029,
+        "3": 23206,
+        "4": 27845,
+        "5": 12912,
+        "6": 9653,
+        "7": 5324,
+        "8": 4138,
+        "9": 2677,
+        "10": 1692,
+        "11": 390,
+        "12": 17
+      }
+    },
+    "tempo40": {
+      "events": 178561,
+      "qevals": 89287,
+      "checked": 5565,
+      "uncompletedQnodes": 13,
+      "reasons": {
+        "stand_pat_cutoff": 56953,
+        "stand_pat_selected": 10073,
+        "child_beta_cutoff": 13408,
+        "child_selected": 7698,
+        "qdepth_limit": 1142
+      },
+      "ply": {
+        "1": 435,
+        "2": 1725,
+        "3": 21887,
+        "4": 31733,
+        "5": 13782,
+        "6": 9893,
+        "7": 5393,
+        "8": 2396,
+        "9": 1136,
+        "10": 692,
+        "11": 201,
+        "12": 14
+      }
+    }
+  },
+  "baseReachedLeaves": {
+    "visits": 84137,
+    "uniqueSfens": 58179,
+    "independentFeatureChecks": 128,
+    "integerBaseParity": 58179,
+    "variants": {
+      "base": {
+        "all": {
+          "n": 84137,
+          "meanCorrectionCp": 0.0,
+          "rmsCorrectionCp": 0.0,
+          "medianCorrectionCp": 0.0
+        },
+        "evenPly": {
+          "n": 44286,
+          "meanCorrectionCp": 0.0,
+          "rmsCorrectionCp": 0.0,
+          "medianCorrectionCp": 0.0
+        },
+        "oddPly": {
+          "n": 39851,
+          "meanCorrectionCp": 0.0,
+          "rmsCorrectionCp": 0.0,
+          "medianCorrectionCp": 0.0
+        },
+        "qdepthLimit": {
+          "n": 1550,
+          "meanCorrectionCp": 0.0,
+          "rmsCorrectionCp": 0.0,
+          "medianCorrectionCp": 0.0
+        },
+        "frozenWindowStandPat": {
+          "eligible": 82520,
+          "toCutoff": 0,
+          "awayFromCutoff": 0
+        }
+      },
+      "pair": {
+        "all": {
+          "n": 84137,
+          "meanCorrectionCp": -103.70399863714337,
+          "rmsCorrectionCp": 276.55707721579745,
+          "medianCorrectionCp": -157.77777777777777
+        },
+        "evenPly": {
+          "n": 44286,
+          "meanCorrectionCp": -110.30998007898155,
+          "rmsCorrectionCp": 276.8624642734295,
+          "medianCorrectionCp": -156.66666666666666
+        },
+        "oddPly": {
+          "n": 39851,
+          "meanCorrectionCp": -96.36284046963829,
+          "rmsCorrectionCp": 276.2173076777438,
+          "medianCorrectionCp": -160.0
+        },
+        "qdepthLimit": {
+          "n": 1550,
+          "meanCorrectionCp": -4.087455197132618,
+          "rmsCorrectionCp": 290.2243052393316,
+          "medianCorrectionCp": -41.11111111111111
+        },
+        "frozenWindowStandPat": {
+          "eligible": 82520,
+          "toCutoff": 39,
+          "awayFromCutoff": 1640
+        }
+      },
+      "affine": {
+        "all": {
+          "n": 84137,
+          "meanCorrectionCp": -68.30124941728636,
+          "rmsCorrectionCp": 237.08808395485772,
+          "medianCorrectionCp": -64.44444444444444
+        },
+        "evenPly": {
+          "n": 44286,
+          "meanCorrectionCp": -79.25343850828203,
+          "rmsCorrectionCp": 241.8882870100146,
+          "medianCorrectionCp": -63.33333333333333
+        },
+        "oddPly": {
+          "n": 39851,
+          "meanCorrectionCp": -56.13019609155213,
+          "rmsCorrectionCp": 231.63700173125818,
+          "medianCorrectionCp": -64.44444444444444
+        },
+        "qdepthLimit": {
+          "n": 1550,
+          "meanCorrectionCp": -23.25089605734767,
+          "rmsCorrectionCp": 268.0672285608138,
+          "medianCorrectionCp": -34.44444444444444
+        },
+        "frozenWindowStandPat": {
+          "eligible": 82520,
+          "toCutoff": 42,
+          "awayFromCutoff": 324
+        }
+      },
+      "anchored50": {
+        "all": {
+          "n": 84137,
+          "meanCorrectionCp": 46.3989419372901,
+          "rmsCorrectionCp": 49.71169940500366,
+          "medianCorrectionCp": 45.55555555555556
+        },
+        "evenPly": {
+          "n": 44286,
+          "meanCorrectionCp": 46.4691625645426,
+          "rmsCorrectionCp": 49.83247087693646,
+          "medianCorrectionCp": 46.666666666666664
+        },
+        "oddPly": {
+          "n": 39851,
+          "meanCorrectionCp": 46.32090648777809,
+          "rmsCorrectionCp": 49.57714219348248,
+          "medianCorrectionCp": 44.44444444444444
+        },
+        "qdepthLimit": {
+          "n": 1550,
+          "meanCorrectionCp": 53.90824372759856,
+          "rmsCorrectionCp": 55.3433653873115,
+          "medianCorrectionCp": 56.666666666666664
+        },
+        "frozenWindowStandPat": {
+          "eligible": 82520,
+          "toCutoff": 528,
+          "awayFromCutoff": 0
+        }
+      },
+      "tempo40": {
+        "all": {
+          "n": 84137,
+          "meanCorrectionCp": 39.99012193076636,
+          "rmsCorrectionCp": 39.990257939825675,
+          "medianCorrectionCp": 40.0
+        },
+        "evenPly": {
+          "n": 44286,
+          "meanCorrectionCp": 39.99008966967238,
+          "rmsCorrectionCp": 39.9902261190398,
+          "medianCorrectionCp": 40.0
+        },
+        "oddPly": {
+          "n": 39851,
+          "meanCorrectionCp": 39.990157782183076,
+          "rmsCorrectionCp": 39.9902933019029,
+          "medianCorrectionCp": 40.0
+        },
+        "qdepthLimit": {
+          "n": 1550,
+          "meanCorrectionCp": 39.991397849462366,
+          "rmsCorrectionCp": 39.991516424137146,
+          "medianCorrectionCp": 40.0
+        },
+        "frozenWindowStandPat": {
+          "eligible": 82520,
+          "toCutoff": 627,
+          "awayFromCutoff": 0
+        }
+      }
+    }
+  },
+  "method": "Offline heads evaluated on the SAME base-reached non-check qeval visits; visit weighted, not independent samples. Frozen windows only; crossing counts are NOT actual alternative-search cutoffs."
+}

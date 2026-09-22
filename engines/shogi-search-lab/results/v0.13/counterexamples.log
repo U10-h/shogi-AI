@@ -1,0 +1,99 @@
+[
+  {
+    "file": "013-efficient0025-0.jsonl",
+    "event": "audit",
+    "sfen": "l3k1s+B1/1r1s2g2/3ppgbpP/1p6p/2pN5/p1P1RpPPN/1P1P5/1SG6/L3K1SNL b NLg4p 71",
+    "move": "5f4f",
+    "alpha": 491,
+    "stand": -176,
+    "qleft": 3,
+    "index": 9,
+    "parent_score_bound": 630,
+    "improves": 1,
+    "cost": 10,
+    "guarded": true,
+    "x": [
+      1,
+      0.741111111111,
+      0.541111111111,
+      0.1,
+      1,
+      0.5,
+      0.5625,
+      0.6875,
+      0,
+      0,
+      0.2375,
+      0.155,
+      0.0488888888889,
+      0.541111111111,
+      0,
+      0,
+      1
+    ],
+    "predicted_risk": 0.0015214065679860788,
+    "predicted_cost_probability": 0.07547104633168347,
+    "full_window_probes": [
+      {
+        "child_qdepth": 0,
+        "parent_score": 630,
+        "parent_pv": [
+          "5f4f"
+        ],
+        "nodes": 1
+      },
+      {
+        "child_qdepth": 1,
+        "parent_score": -994,
+        "parent_pv": [
+          "5f4f",
+          "3c8h+"
+        ],
+        "nodes": 7
+      },
+      {
+        "child_qdepth": 2,
+        "parent_score": 630,
+        "parent_pv": [
+          "5f4f"
+        ],
+        "nodes": 10
+      },
+      {
+        "child_qdepth": 3,
+        "parent_score": 292,
+        "parent_pv": [
+          "5f4f",
+          "9f9g+"
+        ],
+        "nodes": 36
+      },
+      {
+        "child_qdepth": 4,
+        "parent_score": 630,
+        "parent_pv": [
+          "5f4f"
+        ],
+        "nodes": 25
+      },
+      {
+        "child_qdepth": 6,
+        "parent_score": 630,
+        "parent_pv": [
+          "5f4f"
+        ],
+        "nodes": 46
+      }
+    ],
+    "forced_shallow_capture_reply": {
+      "line": [
+        "5f4f",
+        "3c8h+",
+        "4f4c"
+      ],
+      "score_black_to_move": 1233,
+      "nodes": 12
+    },
+    "limitations": "Standalone SFEN probes omit ancestor repetition history; same-depth threshold label is checked separately. Diagnostic only; no test-driven retuning."
+  }
+]

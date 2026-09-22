@@ -1,0 +1,613 @@
+--- a/scripts/arena_lib.mjs
++++ b/scripts/arena_lib.mjs
+@@ -16,9 +16,9 @@
+  const get=k=>Number(line.match(new RegExp('(?:^| )'+k+' (\\d+)'))?.[1]||0);
+  return {type:match[1],score:Number(match[2]),depth:get('depth'),nodes:get('nodes'),time:get('time'),rank:get('multipv')||1,bound:/\b(lowerbound|upperbound)\b/.test(line),pv:line.split(' pv ')[1].trim().split(/\s+/)};
+ }
+-export function lab(moves,args=[],initial=START){
++export function lab(moves,args=[],initial=START,binary=BIN){
+  return new Promise((resolve,reject)=>{
+-  const child=spawn(BIN,['--sfen',initial,'--moves',moves.join(' '),...args]);let out='',err='';
++  const child=spawn(binary,['--sfen',initial,'--moves',moves.join(' '),...args]);let out='',err='';
+   const timer=setTimeout(()=>{child.kill();reject(Error('Lab watchdog timeout'));},60000);
+   child.stdout.on('data',d=>out+=d);child.stderr.on('data',d=>err+=d);child.on('error',reject);
+   child.on('close',code=>{clearTimeout(timer);if(![0,3].includes(code))reject(Error('Lab '+code+': '+err));else try{resolve(JSON.parse(out));}catch(e){reject(e);}});
+--- /dev/null
++++ b/scripts/audit_search_core_matches.mjs
+@@ -0,0 +1,39 @@
++// Independently replay complete games, including the resumed prefix and fallback.
++import {readFileSync,writeFileSync} from 'node:fs';
++import {ROOT,START,lab,hash} from './arena_lib.mjs';
++import {recordAt,checkedPV,hasLegalMove,parseRecord} from './record_helpers.mjs';
++const dir=ROOT+'/results/v0.9',path=dir+'/matches.json',data=JSON.parse(readFileSync(path));
++const previous=data.resumed?JSON.parse(readFileSync(dir+'/matches-before-resume.json')):null;
++if(data.status!=='finished'||data.games.length!==4)throw Error('Incomplete matches');
++const report={passed:true,matchSha256:hash(path),moves:0,pvMoves:0,fallbacks:{old:0,final:0},games:[]};
++for(const game of data.games) {
++ const before=previous?.games.find(g=>g.id===game.id);
++ if(before&&JSON.stringify(game.moves.slice(0,before.moves.length))!==JSON.stringify(before.moves))throw Error('Resume altered recorded prefix');
++ const record=recordAt(START,game.opening),prefix=[...game.opening];
++ for(const entry of game.moves) {
++  if(checkedPV(record.position,entry.analysis.pv).length!==entry.analysis.pv.length)throw Error('Illegal PV');
++  report.pvMoves+=entry.analysis.pv.length;report.moves++;
++  if(entry.fallback) {
++   const state=await lab(prefix,['--legal']);
++   if(entry.analysis.has_result||entry.analysis.pv.length||state.moves[0]!==entry.usi)throw Error('Invalid fallback');
++   report.fallbacks[entry.variant]++;
++  }else if(entry.analysis.bestmove!==entry.usi)throw Error('Wrong recorded best move');
++  const m=record.position.createMoveByUSI(entry.usi);
++  if(!m||!record.position.isValidMove(m)||!record.append(m))throw Error('Illegal played move');
++  prefix.push(entry.usi);
++ }
++ const state=await lab(prefix,['--legal']),r=game.result,side=record.position.color,other=c=>c==='black'?'white':'black';
++ if(r.reason==='checkmate'||r.reason==='no-legal-move') {
++  if(hasLegalMove(record.position)||state.moves.length||r.winner!==other(side)||state.in_check!==(r.reason==='checkmate'))throw Error('Wrong terminal outcome');
++ }else if(r.reason==='move-limit') {
++  if(game.moves.length!==game.maxPlies||!r.unresolved||!hasLegalMove(record.position)||record.repetition)throw Error('Wrong unresolved game');
++ }else if(r.reason==='repetition'||r.reason==='perpetual-check') {
++  if(!record.repetition)throw Error('Missing repetition');
++  const checker=record.perpetualCheck;
++  if((checker===null?null:other(checker))!==r.winner)throw Error('Wrong repetition result');
++ }else throw Error('Unexpected result reason');
++ const kif=parseRecord(readFileSync(dir+'/'+game.id+'.kif','utf8'));
++ if(JSON.stringify(kif.moves)!==JSON.stringify(game.moves.map(m=>m.usi)))throw Error('KIF mismatch');
++ report.games.push({id:game.id,moves:game.moves.length,result:r,prefixPreserved:before?true:null});
++}
++writeFileSync(dir+'/match-audit.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+--- /dev/null
++++ b/scripts/benchmark_search_core.mjs
+@@ -0,0 +1,35 @@
++// Paired 3-second move decisions; fixed teacher evaluates their candidate union.
++import {readFileSync,writeFileSync} from 'node:fs';
++import {ROOT,BIN,START,ASSETS,lab,yaneura,hash} from './arena_lib.mjs';
++import {recordAt,checkedPV} from './record_helpers.mjs';
++const dir=ROOT+'/results/v0.9',old=ROOT+'/build/shogi-lab-v0.8';
++const protocol=JSON.parse(readFileSync(dir+'/protocol.json'));
++if(hash(ASSETS+'/yaneuraou.data')!==protocol.modelSha256)throw Error('Frozen model mismatch');
++const roots=JSON.parse(readFileSync(ROOT+'/results/v0.8/quality.json')).rows;
++const result={status:'running',protocolSha256:hash(dir+'/protocol.json'),binaries:{old:hash(old),final:hash(BIN)},modelSha256:protocol.modelSha256,rows:[]};
++const save=()=>writeFileSync(dir+'/quality.json',JSON.stringify(result,null,2));
++const teacher=await yaneura(dir+'/quality-protocol.jsonl');
++try {
++ for(const [n,root] of roots.entries()) {
++  const row={group:root.group,offset:root.offset,prefix:root.prefix,sfen:root.sfen,runs:[]},record=recordAt(START,root.prefix);
++  for(const name of n%2?['final','old']:['old','final']) {
++   const args=['--advanced','--preset','tactical','--eval','nnue','--eval-model',ASSETS+'/yaneuraou.data','--depth','16','--iterative','--time-ms','3000','--max-nodes','1000000000'];
++   const r=await lab(root.prefix,args,START,name==='old'?old:BIN);
++   if(!r.has_result||!r.bestmove||checkedPV(record.position,r.pv).length!==r.pv.length)throw Error('Invalid PV');
++   row.runs.push({variant:name,...r});
++  }
++  await teacher.reset();row.teacherUnrestricted=await teacher.search(root.prefix,{depth:12});
++  const moves=[...new Set([row.teacherUnrestricted.move,...row.runs.map(r=>r.bestmove)])];
++  await teacher.reset();row.teacher=await teacher.search(root.prefix,{depth:12,multipv:moves.length,searchmoves:moves});
++  const ranked=new Map();for(const i of row.teacher.infos)if(i.depth===12&&!i.bound&&moves.includes(i.pv[0]))ranked.set(i.pv[0],i);
++  if(ranked.size!==moves.length)throw Error('Incomplete teacher ranking');
++  row.candidateScores=moves.map(move=>({move,...ranked.get(move)}));
++  for(const c of row.candidateScores)if(checkedPV(record.position,c.pv).length!==c.pv.length)throw Error('Invalid teacher PV');
++  if(row.candidateScores.every(c=>c.type==='cp')) {
++   const best=Math.max(...row.candidateScores.map(c=>c.score));
++   for(const r of row.runs)r.teacherGap=best-ranked.get(r.bestmove).score;
++  }
++  result.rows.push(row);save();console.log(JSON.stringify({root:n,runs:row.runs.map(r=>({variant:r.variant,depth:r.completed_depth,move:r.bestmove,gap:r.teacherGap,nodes:r.nodes}))}));
++ }
++ result.status='finished';save();
++}catch(e){result.status='error';result.error=e.stack;save();throw e;}finally{teacher.close();}
+--- /dev/null
++++ b/scripts/benchmark_search_core.py
+@@ -0,0 +1,48 @@
++#!/usr/bin/env python3
++"""Sequential paired exact-search benchmarks. Build/test before running."""
++import argparse,hashlib,json,os,platform,statistics,subprocess
++from pathlib import Path
++
++ROOT=Path(__file__).resolve().parents[1]
++p=argparse.ArgumentParser();p.add_argument('--phase',choices=['cycle1','cycle2'],required=True)
++p.add_argument('--repeats',type=int,default=5);args=p.parse_args()
++MODEL=Path(os.environ['YANEURAOU_ASSETS'])/'yaneuraou.data'
++current=ROOT/'build/shogi-lab';old=ROOT/'build/shogi-lab-v0.8'
++if args.phase=='cycle1':
++    variants=[('v0.8',old,[]),('control',current,['--legacy-order','--full-qmoves','--eager-qmoves']),
++              ('order',current,['--full-qmoves','--eager-qmoves']),('direct',current,['--legacy-order','--eager-qmoves']),('cycle1',current,['--eager-qmoves'])]
++else:
++    variants=[('v0.8',old,[]),('cycle1',current,['--eager-qmoves']),('cycle2',current,[])]
++roots=json.loads((ROOT/'results/v0.7/comparison.json').read_text())['rows'][:8]
++out=ROOT/'results/v0.9'/('speed-'+args.phase+'.json')
++result={'phase':args.phase,'platform':platform.platform(),'repeats':args.repeats,
++        'modelSha256':hashlib.sha256(MODEL.read_bytes()).hexdigest(),
++        'binaries':{n:hashlib.sha256(b.read_bytes()).hexdigest() for n,b,_ in variants},'rows':[]}
++signatures={}
++# One discarded warm-up per variant, before all measurements.
++for _,binary,flags in variants:
++    subprocess.run([str(binary),'--advanced','--preset','tactical','--eval','nnue','--eval-model',str(MODEL),'--depth','2',*flags],capture_output=True,check=True)
++for repeat in range(args.repeats):
++    for i,root in enumerate(roots):
++        for j in range(len(variants)):
++            name,binary,flags=variants[(i+repeat+j)%len(variants)]
++            cmd=[str(binary),'--sfen',root['sfen'],'--advanced','--preset','tactical','--eval','nnue','--eval-model',str(MODEL),'--depth','3','--max-nodes','1000000000',*flags]
++            r=json.loads(subprocess.check_output(cmd,text=True))
++            signature=[r[k] for k in ['score','bestmove','pv','nodes','completed_depth','stop_reason','candidates']]
++            if i in signatures:assert signature==signatures[i],(i,name,'search mismatch')
++            signatures[i]=signature
++            result['rows'].append({'root':i,'repeat':repeat,'variant':name,**r})
++        out.write_text(json.dumps(result,indent=2)+'\n')
++    print('round',repeat+1,flush=True)
++summary={}
++for name,_,_ in variants:
++    rows=[r for r in result['rows'] if r['variant']==name]
++    medians=[statistics.median(r['elapsed_ms'] for r in rows if r['root']==i) for i in range(len(roots))]
++    summary[name]={'meanMs':statistics.mean(r['elapsed_ms'] for r in rows),'sumRootMedianMs':sum(medians),'rootMedianMs':medians,
++                   'nodesPerRound':sum(r['nodes'] for r in rows if r['repeat']==0),
++                   'statsPerRound':{k:sum(r['stats'].get(k,0) for r in rows if r['repeat']==0) for k in sorted(set().union(*(r['stats'] for r in rows)))}}
++base=summary['v0.8']['sumRootMedianMs']
++for s in summary.values():s['reductionVsOldPct']=100*(1-s['sumRootMedianMs']/base)
++result['summary']=summary;result['allSearchSignaturesEqual']=True
++out.write_text(json.dumps(result,indent=2)+'\n')
++print(json.dumps(summary,indent=2),flush=True)
+--- a/scripts/build_checkpoint.py
++++ b/scripts/build_checkpoint.py
+@@ -3,7 +3,7 @@
+ import argparse,shutil,subprocess,tempfile
+ from pathlib import Path
+ root=Path(__file__).resolve().parents[1]
+-p=argparse.ArgumentParser();p.add_argument('version',choices=['v0.6','v0.7']);args=p.parse_args()
++p=argparse.ArgumentParser();p.add_argument('version',choices=['v0.6','v0.7','v0.8']);args=p.parse_args()
+ checkpoint=root/'checkpoints'/args.version
+ with tempfile.TemporaryDirectory(prefix='shogi-checkpoint-') as d:
+  target=Path(d);shutil.copytree(checkpoint/'src',target/'src');shutil.copy2(checkpoint/'Makefile',target/'Makefile')
+--- /dev/null
++++ b/scripts/match_search_core.mjs
+@@ -0,0 +1,54 @@
++// Four color-swapped games, fixed openings and equal per-move time.
++import {readFileSync,writeFileSync} from 'node:fs';
++import {ROOT,BIN,START,ASSETS,lab,hash} from './arena_lib.mjs';
++import {recordAt,checkedPV,hasLegalMove,exportGame,parseRecord} from './record_helpers.mjs';
++const dir=ROOT+'/results/v0.9',old=ROOT+'/build/shogi-lab-v0.8',model=ASSETS+'/yaneuraou.data';
++const protocol=JSON.parse(readFileSync(dir+'/protocol.json'));
++if(hash(model)!==protocol.modelSha256)throw Error('Frozen model mismatch');
++const openings=JSON.parse(readFileSync(ROOT+'/results/v0.8/protocol.json')).openings.slice(0,2);
++const plans=[];for(const [index,opening] of openings.entries())for(const side of ['black','white'])plans.push({id:'core-'+index+'-'+side,opening,candidateSide:side,ms:150,maxPlies:200});
++const result={status:'running',plans,binaries:{old:hash(old),final:hash(BIN)},modelSha256:hash(model),protocolSha256:hash(dir+'/protocol.json'),games:[]};
++if(process.argv.includes('--resume')) {
++ const saved=JSON.parse(readFileSync(dir+'/matches.json'));
++ if(JSON.stringify(saved.binaries)!==JSON.stringify(result.binaries)||JSON.stringify(saved.plans)!==JSON.stringify(plans))throw Error('Resume configuration changed');
++ result.games=saved.games;result.resumed=true;
++}
++result.fallbackPolicy='If no iteration completes, use first legal move, matching the existing USI adapter for both binaries. Analysis retains null bestmove.';
++result.protocolAmendment='results/v0.9/match-fallback-amendment.json';
++const save=()=>writeFileSync(dir+'/matches.json',JSON.stringify(result,null,2));
++const other=c=>c==='black'?'white':'black';
++try {for(const p of plans) {
++ let game=result.games.find(g=>g.id===p.id);
++ if(game?.status==='finished')continue;
++ if(!game){game={...p,status:'running',moves:[],result:null};result.games.push(game);}save();
++ const initialAfterOpening=recordAt(START,p.opening).position.sfen;
++ const record=recordAt(START,[...p.opening,...game.moves.map(m=>m.usi)]);
++ for(let ply=game.moves.length;ply<=p.maxPlies;ply++) {
++  const prefix=[...p.opening,...game.moves.map(m=>m.usi)],state=await lab(prefix,['--legal']);
++  const side=record.position.color;
++  if(state.repetition_score!==null) {
++   if(!record.repetition)throw Error('Independent repetition mismatch');
++   const checker=record.perpetualCheck;
++   const expected=checker===null?0:checker===side?-100000:100000;
++   if(state.repetition_score!==expected)throw Error('Independent perpetual-check mismatch');
++   game.result={reason:state.repetition_score===0?'repetition':'perpetual-check',winner:state.repetition_score===0?null:state.repetition_score>0?side:other(side)};break;
++  }
++  if(!state.moves.length){if(hasLegalMove(record.position))throw Error('Independent terminal mismatch');game.result={reason:state.in_check?'checkmate':'no-legal-move',winner:other(side)};break;}
++  if(ply===p.maxPlies)break;
++  const variant=side===p.candidateSide?'final':'old';
++  const args=['--advanced','--preset','tactical','--eval','nnue','--eval-model',model,'--depth','16','--iterative','--time-ms',String(p.ms),'--max-nodes','1000000000'];
++  const begin=performance.now(),analysis=await lab(prefix,args,START,variant==='old'?old:BIN),wallMs=performance.now()-begin;
++  let move=analysis.bestmove;const fallback=!analysis.has_result;
++  if(fallback){if(analysis.pv.length)throw Error('Unexpected PV without completed iteration');move=state.moves[0];}
++  if(!state.moves.includes(move)||checkedPV(record.position,analysis.pv).length!==analysis.pv.length)throw Error('Illegal move/PV');
++  const m=record.position.createMoveByUSI(move);if(!m||!record.position.isValidMove(m)||!record.append(m))throw Error('Independent illegal move');
++  game.moves.push({ply:prefix.length+1,side,variant,usi:move,beforeSfen:state.sfen,afterSfen:record.position.sfen,analysis,wallMs,...(fallback?{fallback:'no-completed-iteration'}:{})});save();
++  if(ply%20===0)console.log(JSON.stringify({game:p.id,ply:prefix.length+1,move,variant}));
++ }
++ if(!game.result)game.result={reason:'move-limit',winner:null,unresolved:true};
++ game.status='finished';save();
++ const kif=exportGame({initial:initialAfterOpening,moves:game.moves.map(m=>m.usi),result:JSON.stringify(game.result)});
++ if(JSON.stringify(parseRecord(kif).moves)!==JSON.stringify(game.moves.map(m=>m.usi)))throw Error('KIF mismatch');
++ writeFileSync(dir+'/'+game.id+'.kif',kif);
++ console.log(JSON.stringify({game:game.id,plies:game.moves.length,result:game.result}));
++}result.status='finished';save();}catch(e){result.status='error';result.error=e.stack;save();throw e;}
+--- /dev/null
++++ b/scripts/summarize_search_core.py
+@@ -0,0 +1,43 @@
++#!/usr/bin/env python3
++"""Summarize recorded v0.9 data; never substitute inferred game results."""
++import csv,json,statistics
++from pathlib import Path
++ROOT=Path(__file__).resolve().parents[1];D=ROOT/'results/v0.9'
++read=lambda name:json.loads((D/name).read_text())
++s1=read('speed-cycle1.json');s2=read('speed-cycle2.json');quality=read('quality.json');matches=read('matches.json');verification=read('verification.json')
++assert quality['status']==matches['status']=='finished'
++assert len(quality['rows'])==12 and len(matches['games'])==4
++assert s1['allSearchSignaturesEqual'] and s2['allSearchSignaturesEqual'] and verification['passed']
++assert quality['binaries']==matches['binaries']
++assert quality['binaries']['final']==verification['binaries']['shogi-lab']==s2['binaries']['cycle2']
++assert quality['binaries']['old']==verification['binaries']['shogi-lab-v0.8']==s2['binaries']['v0.8']
++summary={'speedCycle1':s1['summary'],'speedCycle2':s2['summary'],'verificationConditions':verification['checks'],'quality':{},'matches':{'wins':0,'losses':0,'draws':0,'unresolved':0,'moves':0,'pvMoves':0}}
++for variant in ['old','final']:
++    rows=[next(r for r in row['runs'] if r['variant']==variant) for row in quality['rows']]
++    gaps=[r['teacherGap'] for r in rows if 'teacherGap' in r]
++    summary['quality'][variant]={'meanDepth':statistics.mean(r['completed_depth'] for r in rows),'nodes':sum(r['nodes'] for r in rows),'meanGapCp':statistics.mean(gaps) if gaps else None,'gapRoots':len(gaps),'meanElapsedMs':statistics.mean(r['elapsed_ms'] for r in rows)}
++better=equal=worse=deeper=shallower=0;quality_csv=[]
++for i,row in enumerate(quality['rows']):
++    a=next(r for r in row['runs'] if r['variant']=='old');b=next(r for r in row['runs'] if r['variant']=='final')
++    if 'teacherGap' in a and 'teacherGap' in b:
++        better+=b['teacherGap']<a['teacherGap'];equal+=b['teacherGap']==a['teacherGap'];worse+=b['teacherGap']>a['teacherGap']
++    deeper+=b['completed_depth']>a['completed_depth'];shallower+=b['completed_depth']<a['completed_depth']
++    quality_csv.append({'root':i,'group':row['group'],'offset':row['offset'],'oldMove':a['bestmove'],'finalMove':b['bestmove'],'oldDepth':a['completed_depth'],'finalDepth':b['completed_depth'],'oldGapCp':a.get('teacherGap'),'finalGapCp':b.get('teacherGap'),'oldNodes':a['nodes'],'finalNodes':b['nodes']})
++summary['quality'].update({'better':better,'equal':equal,'worse':worse,'deeper':deeper,'shallower':shallower})
++for g in matches['games']:
++    assert g['status']=='finished' and g['result']
++    m=summary['matches'];r=g['result'];m['moves']+=len(g['moves']);m['pvMoves']+=sum(len(x['analysis']['pv']) for x in g['moves'])
++    if r.get('unresolved'):m['unresolved']+=1
++    elif r['winner'] is None:m['draws']+=1
++    elif r['winner']==g['candidateSide']:m['wins']+=1
++    else:m['losses']+=1
++summary['matches']['fallbacks']={v:sum(1 for g in matches['games'] for e in g['moves'] if e['variant']==v and e.get('fallback')) for v in ['old','final']}
++summary['matches']['audit']='match-audit.json'
++with (D/'quality.csv').open('w') as f:
++    w=csv.DictWriter(f,fieldnames=list(quality_csv[0]));w.writeheader();w.writerows(quality_csv)
++with (D/'speed.csv').open('w') as f:
++    w=csv.DictWriter(f,fieldnames=['phase','root','repeat','variant','elapsed_ms','nodes','q_generated_moves','q_avoided_generations']);w.writeheader()
++    for phase,data in [('cycle1',s1),('cycle2',s2)]:
++        for r in data['rows']:w.writerow({'phase':phase,**{k:r[k] for k in ['root','repeat','variant','elapsed_ms','nodes']},'q_generated_moves':r['stats'].get('q_generated_moves'),'q_avoided_generations':r['stats'].get('q_avoided_generations')})
++(D/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
++print(json.dumps({k:v for k,v in summary.items() if not k.startswith('speed')},indent=2))
+--- a/scripts/test_nnue_usi.py
++++ b/scripts/test_nnue_usi.py
+@@ -1,8 +1,9 @@
+ #!/usr/bin/env python3
+-import json,os,queue,re,subprocess,threading
++import argparse,json,os,queue,re,subprocess,threading
+ from pathlib import Path
+ ROOT=Path(__file__).resolve().parents[1];BIN=ROOT/'build/shogi-lab';MODEL=Path(os.environ['YANEURAOU_ASSETS'])/'yaneuraou.data'
+-args=['--preset','exact','--eval','nnue','--eval-model',str(MODEL)]
++parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'results/v0.8/usi-verification.json');parser.add_argument('--preset',default='exact');config=parser.parse_args()
++args=['--preset',config.preset,'--eval','nnue','--eval-model',str(MODEL)]
+ p=subprocess.Popen([str(BIN),'--usi',*args],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,bufsize=1)
+ q=queue.Queue();log=[]
+ def read():
+@@ -33,5 +34,5 @@
+  send('quit');p.wait(timeout=10);assert p.returncode==0
+ finally:
+  if p.poll() is None:p.kill()
+-(ROOT/'results/v0.8/usi-verification.json').write_text(json.dumps({'passed':True,'cpConversion':True,'timeAbortAndStopRestore':True,'evaluationSwitch':True,'transcript':log},indent=2))
++config.output.write_text(json.dumps({'passed':True,'cpConversion':True,'timeAbortAndStopRestore':True,'evaluationSwitch':True,'transcript':log},indent=2))
+ print('NNUE USI checks passed')
+--- /dev/null
++++ b/scripts/verify_search_core.py
+@@ -0,0 +1,40 @@
++#!/usr/bin/env python3
++"""Compare archived/current search semantics with histories and bounded aborts."""
++import hashlib,json,os,subprocess
++from pathlib import Path
++ROOT=Path(__file__).resolve().parents[1];OLD=ROOT/'build/shogi-lab-v0.8';NEW=ROOT/'build/shogi-lab'
++MODEL=Path(os.environ['YANEURAOU_ASSETS'])/'yaneuraou.data'
++out={'binaries':{str(p.name):hashlib.sha256(p.read_bytes()).hexdigest() for p in [OLD,NEW]},'rows':[]}
++rows=json.loads((ROOT/'results/v0.8/quality.json').read_text())['rows']
++def run(binary,extra):
++    r=subprocess.run([str(binary),'--advanced','--depth','3','--max-nodes','18000',*extra],capture_output=True,text=True)
++    assert r.returncode in [0,3],r.stderr
++    return json.loads(r.stdout)
++keys=['score','bestmove','pv','nodes','completed_depth','has_result','complete','stop_reason','candidates','leaves','terminals','cutoffs']
++def compare(label,extra):
++    a=run(OLD,extra);b=run(NEW,extra)
++    for k in keys:assert a.get(k)==b.get(k),(label,k,a.get(k),b.get(k))
++    out['rows'].append({'case':label,'args':extra,'old':a,'final':b})
++for i,root in enumerate(rows):
++    for mode in ['material','positional','nnue']:
++        extra=['--moves',' '.join(root['prefix']),'--preset','tactical','--eval',mode,'--iterative']
++        if mode=='nnue':extra+=['--eval-model',str(MODEL)]
++        compare(f'root-{i}-{mode}',extra)
++    for preset in ['exact','selective']:
++        compare(f'root-{i}-{preset}',['--moves',' '.join(root['prefix']),'--preset',preset,'--eval','nnue','--eval-model',str(MODEL),'--tt-entries','32'])
++for name,sfen,moves in [
++    ('draw','4k4/9/9/9/9/9/9/9/4K4 b - 1',' '.join(['5i4i 5a4a 4i5i 4a5a']*3)),
++    ('perpetual','4k4/9/5R3/9/9/9/9/9/K8 b - 1',' '.join(['4c5c 5a4a 5c4c 4a5a']*3)),
++    ('no-legal-move','k6r1/9/9/9/9/9/9/6r2/8K b - 1',''),
++    ('only-drops','k6r1/9/9/9/9/9/9/6r2/8K b P 1',''),
++    ('checked','4k4/9/9/9/9/4r4/9/9/4K4 b G 1','')]:
++    for qdepth in [0,2,6]:
++        compare(f'{name}-q{qdepth}',['--sfen',sfen,'--moves',moves,'--preset','tactical','--qdepth',str(qdepth),'--eval','nnue','--eval-model',str(MODEL)])
++for driver in ['ab','pvs','aspiration','mtdf','sss','dual']:
++    compare(f'driver-{driver}',['--preset','tactical','--driver',driver,'--iterative','--depth','2'])
++for multipv in [1,5]:
++    compare(f'multipv-{multipv}',['--preset','tactical','--multipv',str(multipv),'--depth','2'])
++out['checks']=len(out['rows']);out['passed']=True
++assert out['binaries']=={str(p.name):hashlib.sha256(p.read_bytes()).hexdigest() for p in [OLD,NEW]},'Binary changed during verification'
++(ROOT/'results/v0.9/verification.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps({'passed':True,'searchConditions':out['checks'],'completed':sum(r['final']['complete'] for r in out['rows']),'limited':sum(not r['final']['complete'] for r in out['rows'])}))
+--- a/src/advanced.cpp
++++ b/src/advanced.cpp
+@@ -149,8 +149,10 @@
+         return v;
+     }
+     std::vector<Move> order(std::vector<Move> moves,int ply,Move preferred,Move previous) {
+-        struct Item {Move move; int64_t priority; std::string text;};
++        struct Item {Move move; int64_t priority; uint64_t key; std::string text;};
+         std::vector<Item> items; auto side=b.pos.side_to_move();
++        items.reserve(moves.size());
++        r.stats[o.compact_ordering?"integer_order_keys":"string_order_keys"]+=moves.size();
+         for(Move m:moves) {
+             check();
+             int64_t score=ordering_score(b,m);
+@@ -163,23 +165,36 @@
+             }
+             if(f.counter&&previous!=MOVE_NONE&&m==counters[side][pack(previous)]&&!tactical(m))score+=1500000;
+             if(m==preferred)score+=1000000000;
+-            items.push_back({m,score,usi(m)});
+-        }
+-        std::sort(items.begin(),items.end(),[](const Item&a,const Item&b){return a.priority!=b.priority?a.priority>b.priority:a.text<b.text;});
++            items.push_back({m,score,o.compact_ordering?usi_sort_key(m):0,o.compact_ordering?std::string():usi(m)});
++        }
++        std::sort(items.begin(),items.end(),[&](const Item&a,const Item&b){return a.priority!=b.priority?a.priority>b.priority:o.compact_ordering?a.key<b.key:a.text<b.text;});
+         moves.clear();for(auto& i:items)moves.push_back(i.move);return moves;
+     }
+     Value qsearch(int a,int beta,int ply,int left) {
+         tick();++r.stats["qnodes"];
+         if(!null_level)if(auto rep=b.repetition_score(ply))return {*rep,{}};
+-        auto moves=b.legal_moves();
+-        if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
+         const bool checked=b.pos.in_check();
++        // A legal king move certifies non-terminal status without materializing
++        // the move list. If the witness fails, keep the exact eager fallback.
++        const bool deferred=o.defer_qmoves&&o.direct_qmoves&&!checked&&b.has_legal_king_move();
++        std::vector<Move> moves;
++        auto generate=[&]() {
++            moves=o.direct_qmoves&&!checked?b.tactical_moves():b.legal_moves();
++            ++r.stats[o.direct_qmoves&&!checked?"q_tactical_generations":"q_full_generations"];
++            r.stats["q_generated_moves"]+=moves.size();
++        };
++        if(deferred)++r.stats["q_deferred_nodes"];
++        else {
++            generate();
++            if(moves.empty()&&(!o.direct_qmoves||checked||!b.has_legal_move())){++r.base.terminals;return {-mate+ply,{}};}
++        }
+         if(ply>=max_ply-1)throw Stop{"ply_limit"}; // Never publish static evaluation in unresolved check.
+         const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
+         if(!checked) {
+-            if(left<=0){++r.base.leaves;return best;}
+-            if(stand>=beta){++r.stats["qstand_cutoffs"];return best;}
++            if(left<=0){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return best;}
++            if(stand>=beta){++r.stats["qstand_cutoffs"];if(deferred)++r.stats["q_avoided_generations"];return best;}
+             a=std::max(a,stand);
++            if(deferred)generate();
+             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
+         }
+         moves=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+@@ -532,8 +547,8 @@
+     std::string base=result_json(r.base,o.limits);base.pop_back();
+     const auto first_comma=base.find(',');
+     base="{\"algorithm\":\"advanced\""+base.substr(first_comma);
+-    std::ostringstream out;out<<base<<",\"engine\":\"research-v0.8\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
+-        <<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
++    std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
++        <<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
+     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
+     out<<"],\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
+     out<<"},\"candidates\":[";comma=false;for(auto& c:r.candidates){if(comma)out<<',';out<<"{\"score\":"<<c.score<<",\"pv\":"<<line_json(c.pv)<<'}';comma=true;}
+--- a/src/advanced.hpp
++++ b/src/advanced.hpp
+@@ -18,6 +18,9 @@
+     std::string evaluation = "material";
+     std::string evaluation_model;
+     bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
++    bool compact_ordering = true;
++    bool direct_qmoves = true;
++    bool defer_qmoves = true;
+ };
+ struct AdvancedLine {int score = 0; std::vector<Move> pv;};
+ struct AdvancedResult {
+--- a/src/advanced_tests.cpp
++++ b/src/advanced_tests.cpp
+@@ -9,6 +9,43 @@
+ int advanced_selftest() {
+     int checks=0;
+     auto require=[&](bool ok,const std::string& label){++checks;if(!ok)throw std::runtime_error("Advanced test: "+label);};
++    // Exact move-set comparison includes quiet promotions (not only pawns),
++    // underpromotions, pinned captures, all evasions, drops and no-legal-move.
++    std::vector<std::string> move_cases={SFEN_HIRATE,
++        "4k4/9/P8/9/9/9/9/9/4K4 b - 1",
++        "4k4/9/2S6/9/4B4/9/9/9/4K4 b RNL 1",
++        "4k3p/9/8L/9/9/9/9/9/K8 b - 1",
++        "3pk4/9/4N4/9/9/9/9/9/K8 b - 1",
++        "k8/9/9/9/9/9/4n4/9/3PK4 w - 1",
++        "4k4/9/9/9/9/4r4/9/9/4K4 b G 1",
++        "k3r4/9/9/9/9/9/4G4/9/4K4 b P 1",
++        "k6r1/9/9/9/9/9/9/6r2/8K b - 1",
++        "k6r1/9/9/9/9/9/9/6r2/8K b P 1",
++        "3lkl3/3pGp3/4R4/9/9/9/9/9/K8 w - 1"};
++    uint64_t move_positions=0,move_count=0;
++    auto compare_moves=[&](Board& board) {
++        auto legal=board.legal_moves(),expected=legal;
++        if(!board.pos.in_check())expected.erase(std::remove_if(expected.begin(),expected.end(),[&](Move m){return !is_promote(m)&&board.pos.piece_on(to_sq(m))==NO_PIECE;}),expected.end());
++        auto actual=board.tactical_moves();
++        std::sort(expected.begin(),expected.end());std::sort(actual.begin(),actual.end());
++        require(expected==actual,"direct tactical move set: "+board.pos.sfen());
++        require(board.has_legal_move()==!legal.empty(),"legal-move existence witness");
++        auto text=legal,key=legal;
++        std::sort(text.begin(),text.end(),[](Move a,Move b){return usi(a)<usi(b);});
++        std::sort(key.begin(),key.end(),[](Move a,Move b){return usi_sort_key(a)<usi_sort_key(b);});
++        require(text==key,"integer ordering preserves exact USI lexical order");
++        ++move_positions;move_count+=legal.size();
++    };
++    for(const auto& sfen:move_cases){Board board(sfen);compare_moves(board);}
++    std::mt19937 move_rng(20260923);
++    for(int game=0;game<8;++game) {
++        Board board(move_cases[game%move_cases.size()]);
++        for(int ply=0;ply<200;++ply) {
++            compare_moves(board);auto legal=board.legal_moves();
++            if(legal.empty()||board.repetition_score(0))break;
++            board.play_input(usi(legal[move_rng()%legal.size()]));
++        }
++    }
+     std::vector<std::string> sfens={SFEN_HIRATE,"4k4/9/P8/9/9/9/9/9/4K4 b - 1","k3r4/9/9/9/9/9/4G4/9/4K4 b P 1","3lkl3/3pGp3/4R4/9/9/9/9/9/K8 w - 1"};
+     std::mt19937 rng(20260921);Board generated;
+     for(int n=0;n<48;++n){auto legal=generated.legal_moves();if(legal.empty()||generated.repetition_score(0))break;generated.play_input(usi(legal[rng()%legal.size()]));if(n%4==3)sfens.push_back(generated.pos.sfen());}
+@@ -32,6 +69,19 @@
+         }
+     }
+     Board start;
++    for(const auto& sfen:sfens) {
++        Board board(sfen);AdvancedOptions ref;set_advanced_preset(ref,"tactical");
++        ref.limits.depth=3;ref.limits.max_nodes=12000;ref.limits.iterative=true;
++        ref.compact_ordering=false;ref.direct_qmoves=false;ref.defer_qmoves=false;
++        auto expected=advanced_search(board,ref);
++        for(int variant=1;variant<8;++variant) {
++            auto opt=ref;opt.compact_ordering=variant&1;opt.direct_qmoves=variant&2;opt.defer_qmoves=variant&4;
++            auto actual=advanced_search(board,opt);
++            require(actual.base.score==expected.base.score&&actual.base.pv==expected.base.pv&&actual.base.nodes==expected.base.nodes
++                &&actual.base.completed_depth==expected.base.completed_depth&&actual.base.stop_reason==expected.base.stop_reason,"exact qsearch/order ablation");
++            require(board.pos.sfen()==sfen&&board.history.size()==1,"qsearch ablation restores position");
++        }
++    }
+     for(size_t capacity:{size_t(1),size_t(32),size_t(10000)}) {
+         AdvancedOptions o;set_advanced_preset(o,"exact");o.tt_capacity=capacity;o.driver="mtdf";o.limits.depth=3;
+         Options ref;ref.depth=3;auto truth=search(start,ref);auto r=advanced_search(start,o);
+@@ -61,6 +111,10 @@
+     Board checked("4k4/9/9/9/9/4r4/9/9/4K4 b G 1");AdvancedOptions q;set_advanced_preset(q,"tactical");q.qdepth=0;q.limits.depth=0;
+     auto qr=advanced_search(checked,q);require(qr.base.complete&&!qr.base.pv.empty(),"qsearch cannot stand pat in check");
+     Board matepos(sfens[3]);require(advanced_search(matepos,q).base.score==-mate,"qsearch terminal mate");
++    Board stalemate("k6r1/9/9/9/9/9/9/6r2/8K b - 1");
++    require(!stalemate.pos.in_check()&&advanced_search(stalemate,q).base.score==-mate,"no-legal-move detected before stand pat");
++    Board drop_only("k6r1/9/9/9/9/9/9/6r2/8K b P 1");
++    require(!drop_only.has_legal_king_move()&&advanced_search(drop_only,q).base.score>-90000,"failed king witness is not terminal proof");
+     for(auto& sfen:std::vector<std::string>{sfens[0],sfens[1],sfens[2]}) {
+         Board b(sfen);AdvancedOptions qo;set_advanced_preset(qo,"tactical");qo.qdepth=2;qo.limits.depth=2;qo.driver="ab";
+         const auto reference=advanced_search(b,qo);qo.driver="pvs";const auto pvs=advanced_search(b,qo);
+@@ -73,6 +127,6 @@
+         auto r=advanced_search(start,h);require(r.base.nodes<=3000&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"heuristic budget and restoration "+f);
+     }
+     for(auto driver:{"rps","erps"}){AdvancedOptions p;p.features={"qsearch"};p.driver=driver;p.limits.depth=4;p.limits.max_nodes=3000;auto r=advanced_search(start,p);require(r.base.nodes<=3000&&start.history.size()==1,std::string("probability search ")+driver);}
+-    std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"random_seed\":20260921}\n";return 0;
++    std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
+ }
+ }
+--- a/src/advanced_usi.cpp
++++ b/src/advanced_usi.cpp
+@@ -27,7 +27,7 @@
+                     AdvancedOptions candidate;set_advanced_preset(candidate,name);
+                     if(candidate.driver==configured.driver&&candidate.features==configured.features)preset=name;
+                 }
+-                send("id name Shogi Search Lab v0.8\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify\noption name USI_Ponder type check default false\nusiok");
++                send("id name Shogi Search Lab v0.9\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify\noption name USI_Ponder type check default false\nusiok");
+             }
+             else if(command=="isready")send("readyok");
+             else if(command=="quit"){join();break;}
+--- a/src/board.cpp
++++ b/src/board.cpp
+@@ -97,6 +97,14 @@
+     return out + '"';
+ }
+ 
++uint64_t usi_sort_key(Move move) {
++    const auto to=to_sq(move);
++    const uint64_t a=is_drop(move)?" PLNSBRGK"[move_dropped_piece(move)]:'1'+file_of(from_sq(move));
++    const uint64_t b=is_drop(move)?'*':'a'+rank_of(from_sq(move));
++    return (a<<32)|(b<<24)|(uint64_t('1'+file_of(to))<<16)
++        |(uint64_t('a'+rank_of(to))<<8)|(is_promote(move)?'+':0);
++}
++
+ bool Snapshot::same_position(const Snapshot& other) const {
+     return key == other.key && side == other.side && squares == other.squares && hands == other.hands;
+ }
+@@ -124,6 +132,54 @@
+     std::vector<Move> moves;
+     for (auto entry : MoveList<LEGAL_ALL>(pos)) moves.push_back(entry.move);
+     return moves;
++}
++
++std::vector<Move> Board::tactical_moves() const {
++    // Do not use CAPTURES_PRO_PLUS: it omits quiet non-pawn promotions.
++    // The qsearch leaf policy includes ALL promotions and legal non-promotions.
++    if(pos.in_check())return legal_moves();
++    std::vector<Move> moves;
++    const Color us=pos.side_to_move();
++    const auto occupied=pos.pieces(), enemy=pos.pieces(~us), empty=pos.empties();
++    auto pieces=pos.pieces(us);
++    while(pieces) {
++        const Square from=pieces.pop();const Piece pc=pos.piece_on(from);
++        const PieceType pt=type_of(pc);
++        const bool promotable=pt>=PAWN&&pt<=ROOK;
++        auto target=enemy;
++        if(promotable)target|=canPromote(us,from)?empty:(empty&enemy_field(us));
++        auto dest=effects_from(pc,from,occupied)&target;
++        while(dest) {
++            const Square to=dest.pop();
++            if(promotable&&canPromote(us,from,to)) {
++                const Move m=make_move_promote(from,to,pc);
++                if(pos.legal(m))moves.push_back(m);
++            }
++            const int rank=us==BLACK?int(rank_of(to)):8-int(rank_of(to));
++            const bool mandatory=((pt==PAWN||pt==LANCE)&&rank==0)||(pt==KNIGHT&&rank<=1);
++            if(pos.piece_on(to)!=NO_PIECE&&!mandatory) {
++                const Move m=make_move(from,to,pc);
++                if(pos.legal(m))moves.push_back(m);
++            }
++        }
++    }
++    return moves;
++}
++
++bool Board::has_legal_king_move() const {
++    const Color us=pos.side_to_move();const Square from=pos.king_square(us);
++    auto targets=kingEffect(from)&~pos.pieces(us);
++    while(targets)if(pos.legal(make_move(from,targets.pop(),us,KING)))return true;
++    return false;
++}
++
++bool Board::has_legal_move() const {
++    if(pos.in_check())return !legal_moves().empty();
++    if(has_legal_king_move())return true;
++    // The generator handles mandatory promotion, nifu and pawn-drop mate.
++    // Only one legal witness is needed, not the complete filtered list.
++    for(auto entry:MoveList<NON_EVASIONS_ALL>(pos))if(pos.legal(entry.move))return true;
++    return false;
+ }
+ 
+ void Board::play_input(const std::string& moves) {
+--- a/src/lab.hpp
++++ b/src/lab.hpp
+@@ -13,6 +13,8 @@
+ constexpr int infinity = 1000000;
+ constexpr int mate = 100000;
+ std::string usi(Move move);
++// Exact lexical order of legal USI move strings, without string construction.
++uint64_t usi_sort_key(Move move);
+ std::string quote(const std::string& s);
+ 
+ struct Snapshot {
+@@ -33,6 +35,9 @@
+     Board(const Board&) = delete;
+     Board& operator=(const Board&) = delete;
+     std::vector<Move> legal_moves() const;
++    std::vector<Move> tactical_moves() const; // Captures + every promotion; all evasions in check.
++    bool has_legal_move() const;
++    bool has_legal_king_move() const;
+     void remember();
+     void play_input(const std::string& moves);
+     std::optional<int> repetition_score(int ply) const;
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -44,6 +44,7 @@
+                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
+                     "  --eval material|positional|learned|nnue|nnue-full|nnue-verify [--eval-model PATH] (advanced/USI)\n"
+                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
++                    "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
+                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
+                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
+                 return 0;
+@@ -78,6 +79,9 @@
+             else if (arg == "--eval") advanced_options.evaluation=value();
+             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
+             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
++            else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
++            else if (arg == "--full-qmoves") advanced_options.direct_qmoves=false;
++            else if (arg == "--eager-qmoves") advanced_options.defer_qmoves=false;
+             else if (arg == "--eval-batch") eval_batch=true;
+             else if (arg == "--preset") {advanced = true;lab::set_advanced_preset(advanced_options,value());}
+             else if (arg == "--features") {advanced = true;lab::set_advanced_features(advanced_options,value());}

@@ -1,0 +1,248 @@
+import {positionAt,moveLabel} from './core.js';
+import {positionKey,resolveMove,questionIntent,investigate,reportEvidence} from './coach-analysis.js';
+import {teachingEnabled,sameLesson,reviewPlayedMove,teacherComment,teacherAnswer,teacherEvidence,goalLabels,movePoint} from './teacher-analysis.js';
+
+import {belongsToGame} from './background-coach.js';
+import {ReadingBoard} from './reading.js';
+import {reviewPast} from './retrospective.js';
+import {prepareTeaching,teachingReady} from './teaching-lines.js';
+
+const $=id=>document.getElementById(id);
+const abort=()=>new DOMException('指導を中止しました。','AbortError');
+const rootOf=g=>({initial:g.initial,moves:[...g.moves]});
+
+// A lesson belongs to an actual played move. Browsing a variation never changes
+// its checkpoint, and only an explicit continue/retry releases the game.
+export class Teacher {
+  constructor(bridge,engine,tutor){
+    this.bridge=bridge;this.engine=engine;this.tutor=tutor;this.lesson=null;this.working=false;this.job=0;this.gameId=null;this.history=[];this.progress='';this.observed=null;this.notice=null;this.watchStatus='対局を見守っています';this.lastPraise=-8;
+    this.recent=new Map();this.past=null;this.scanning=false;
+    this.reading=new ReadingBoard($('teacher-reading'),(r,b,n)=>this.openReading(r,b,n));
+    $('teacher-scan').onclick=()=>this.scanPast();$('teacher-older').onclick=()=>this.scanPast(this.past?.start);
+    $('teacher-scan-stop').onclick=()=>this.cancel();
+    $('teacher-deep').onclick=()=>this.ask('相手の応手を比較して、もっと深く読んでください');
+    $('teacher-check').onclick=()=>this.openObserved();
+    $('teacher-ask').onsubmit=e=>{e.preventDefault();const text=$('teacher-question').value.trim();if(text)this.ask(text);};
+    $('teacher-continue').onclick=()=>this.continue();$('teacher-retry').onclick=()=>this.retry();
+    $('teacher-more').onclick=()=>this.ask('なぜこの手がよい、または気になるのでしょうか？');
+    $('teacher-look').onclick=()=>this.explore();$('teacher-origin').onclick=()=>this.origin();
+    $('teacher-reanalyze').onclick=()=>this.review(this.lesson.root,this.lesson.played,true);
+    $('teacher-stop').onclick=()=>this.cancel();
+    $('teacher-intents').replaceChildren();
+    for(const [goal,label] of Object.entries(goalLabels)){
+      const button=document.createElement('button');button.type='button';button.textContent=label;button.onclick=()=>this.ask(label,goal);$('teacher-intents').append(button);
+    }
+  }
+  observe(report,{gameId,concern}){
+    const g=this.bridge.game();if(gameId!==g.id||this.active||!belongsToGame(report.root,report.chosen,g))return;
+    this.remember(report);
+    const item={report,gameId};
+    // Keep an unresolved warning available even if a later quiet move finishes.
+    if(concern||!this.notice)this.observed=item;
+    if(concern){
+      this.notice=item;const c=teacherComment(report,{brief:true});
+      this.message('assistant',(report.root.moves.length+1)+'手目のことですが、'+c.text);
+    }else if(!this.notice&&report.root.moves.length-this.lastPraise>=8&&teacherComment(report).grade==='good'&&movePoint(report)){
+      this.lastPraise=report.root.moves.length;this.message('assistant',(report.root.moves.length+1)+'手目、'+teacherComment(report,{brief:true}).text);
+    }
+    this.bridge.refresh();
+  }
+  async openObserved(){
+    const item=this.observed;if(!item||this.opening||this.working||this.active||this.bridge.dialogueBusy?.())return;
+    this.opening=true;this.sync();
+    try{
+      await this.bridge.prepare();const g=this.bridge.game();
+      if(g.id!==item.gameId||!belongsToGame(item.report.root,item.report.chosen,g))return;
+      this.bridge.markPending(item.report.root.moves.length+1,item.report.chosen);
+      this.opening=false;await this.review(item.report.root,item.report.chosen,true,item.report);
+    }finally{this.opening=false;this.bridge.refresh();}
+  }
+  get active(){return !!this.lesson;}
+  get locked(){return this.working||Boolean(this.bridge.locked?.());}
+  sync(){
+    const g=this.bridge.game();
+    if(this.gameId!==g.id){this.invalidate();this.gameId=g.id;this.history=[];this.observed=null;this.notice=null;this.lastPraise=-8;this.recent.clear();this.past=null;$('teacher-past-list').replaceChildren();$('teacher-scan-status').textContent='';$('teacher-chat').replaceChildren();}
+    if(this.lesson&&!sameLesson(this.lesson,g)){this.invalidate();this.message('assistant','本対局の局面が変わりました。次に指した手から、また一緒に考えましょう。');}
+    const enabled=teachingEnabled(g),l=this.lesson;
+    if(this.observed&&!belongsToGame(this.observed.report.root,this.observed.report.chosen,g)){this.observed=null;this.notice=null;}
+    $('teacher-welcome').hidden=this.history.length>0;
+    $('teacher-welcome').textContent=enabled?(g.backgroundCoaching===false?'見守りを休んでいます。気になる局面は「自分で候補を相談する」から一緒に考えられます。':'どうぞ、自分のペースで指してください。気になる手があれば声をかけます。立ち止まって考えたいときは、一緒に盤面を見てみましょう。'):'実戦モードです。対局中の助言はありません。先生と指すには、設定で「先生と学ぶ」を選んでください。';
+    $('teacher-status').textContent=l?(this.progress|| (l.report?'指した手を一緒に確認中 · 時計は停止':'講評を待っています · 時計は停止')):enabled?(g.backgroundCoaching===false?'見守りはお休み中です':!this.bridge.running?.()?'対局を始めると、先生が見守ります':this.watchStatus):'実戦練習';
+    $('teacher-context').textContent=l?'確認する手：'+(l.root.moves.length+1)+'手目 '+moveLabel(positionAt(l.root.initial,l.root.moves),l.played)+' ／ 本対局は'+l.checkpoint.moves.length+'手目'+(l.discussionRoot&&positionKey(l.discussionRoot)!==positionKey(l.root)?' ／ 検討 '+l.discussionRoot.moves.length+'手目':''):'';
+    $('teacher-lesson').hidden=!l;
+    $('teacher-check').hidden=!!l||!enabled||!this.observed;$('teacher-check').disabled=this.working||this.opening||!!this.bridge.dialogueBusy?.();
+    $('teacher-check').textContent=this.observed?(this.observed.report.root.moves.length+1)+'手目を先生と確認':'先生と確認';
+    $('teacher-retry').textContent=l?(l.root.moves.length+1)+'手目の前から指し直す':'指し直す';
+    $('teacher-question').disabled=!l||this.locked||!l.report;
+    for(const id of ['teacher-send','teacher-more','teacher-look','teacher-origin','teacher-deep'])$(id).disabled=!l||this.locked||!l.report;
+    const branch=l?.discussionReport?.[l.discussionBranch||'defense'];
+    $('teacher-look').disabled=!l||this.locked||!branch||branch.pv.length<2;
+    $('teacher-look').textContent=l?.discussionRoot&&positionKey(l.discussionRoot)!==positionKey(l.root)?'さらに2手先を見る':'相手の応手まで盤面で見る';
+    $('teacher-origin').hidden=!l?.discussionRoot||positionKey(l.discussionRoot)===positionKey(l.root);
+    $('teacher-continue').disabled=!l||this.locked;$('teacher-retry').disabled=!l||this.locked;
+    $('teacher-continue').textContent=l?.result?'この一手の確認を終える':l?.report?'本対局を続ける':'本対局に戻る';
+    $('teacher-intents').hidden=!l?.awaitingIntent||!l.report||positionKey(l.discussionRoot||l.root)!==positionKey(l.root);
+    for(const b of $('teacher-intents').querySelectorAll('button'))b.disabled=this.locked;
+    $('teacher-reanalyze').hidden=!l||!!l.report||this.working;$('teacher-reanalyze').disabled=this.locked;
+    $('teacher-stop').hidden=!this.working;
+    $('teacher-retrospective').hidden=!enabled;
+    $('teacher-scan').disabled=this.locked||this.opening||!g.moves.length;
+    $('teacher-older').hidden=!this.past?.start;$('teacher-older').disabled=this.locked||this.opening;
+    $('teacher-scan-stop').hidden=!this.scanning;
+    if(this.past&&!belongsToGame(this.past.checkpoint,null,g)){this.past=null;$('teacher-past-list').replaceChildren();$('teacher-scan-status').textContent='手順が変わりました。この局面までの指し手を調べ直せます。';}
+    for(const b of $('teacher-past-list').querySelectorAll('button'))b.disabled=this.locked||this.opening;
+    this.reading.set(l?.discussionReport||l?.report||null,g.human,this.locked);
+  }
+  message(role,text){
+    const row=document.createElement('div');row.className='teacher-message '+role;
+    const who=document.createElement('span');who.className='coach-speaker';who.textContent=role==='user'?'あなた':'先生';
+    const body=document.createElement('p');body.textContent=text;row.append(who,body);$('teacher-chat').append(row);
+    while($('teacher-chat').children.length>14)$('teacher-chat').firstChild.remove();
+    this.history.push({role,text});this.history=this.history.slice(-14);$('teacher-chat').scrollTop=$('teacher-chat').scrollHeight;
+  }
+  invalidate(){this.job++;if(this.working){this.engine.stop();this.tutor?.interrupt();}this.working=false;this.scanning=false;this.lesson=null;this.progress='';}
+  cancel(){this.job++;this.engine.stop();this.tutor?.interrupt();this.working=false;this.scanning=false;this.progress='講評を中止しました · 時計は停止';$('teacher-scan-status').textContent='振り返りを中止しました。完了済みの結果は残っています。';this.bridge.refresh();}
+  remember(r){const key=positionKey(r.root)+'|'+r.chosen;this.recent.set(key,r);while(this.recent.size>40)this.recent.delete(this.recent.keys().next().value);}
+  async scanPast(before){
+    if(this.locked||this.opening||!teachingEnabled(this.bridge.game()))return;
+    this.opening=true;this.bridge.refresh();await this.bridge.prepare();this.opening=false;
+    const g=structuredClone(this.bridge.game()),checkpoint=rootOf(g),id=++this.job;
+    this.working=true;this.scanning=true;this.bridge.show(false);this.bridge.refresh();
+    try{
+      const past=await this.bridge.run(async hostCheck=>{
+        const check=()=>{hostCheck();const now=this.bridge.game();if(id!==this.job||now.id!==g.id||positionKey(rootOf(now))!==positionKey(checkpoint))throw abort();};
+        return reviewPast(this.engine,g,{before,time:this.bridge.time(),check,cached:t=>this.recent.get(positionKey(t.root)+'|'+t.played),onProgress:text=>{check();this.progress=text;$('teacher-scan-status').textContent=text;this.sync();}});
+      });
+      if(id!==this.job)return;this.past={...past,checkpoint};
+      for(const item of past.items)this.remember(item.report);
+      $('teacher-scan-status').textContent=(past.start+1)+'〜'+past.end+'手目を確認しました。'+(past.suspect?past.suspect.ply+'手目から見直すと、改善の糸口がありそうです。':'この範囲では、評価を大きく損ねた手を特定できませんでした。')+' 探索による暫定評価です。';
+      const labels={concern:'見直したい分岐',review:'応手を確認したい',good:'有力候補との差は小さめ',resilient:'苦しい局面で粘る手',uncertain:'評価はまだ未確定'};
+      $('teacher-past-list').replaceChildren(...past.items.map(item=>{const b=document.createElement('button');b.className='past-move'+(item===past.suspect?' suspect':'');b.textContent=item.ply+'手目 '+moveLabel(positionAt(item.root.initial,item.root.moves),item.played)+' · '+labels[item.grade];b.onclick=()=>this.openPast(item);return b;}));
+    }catch(e){if(id===this.job)$('teacher-scan-status').textContent=e.name==='AbortError'?'振り返りを中止しました。':e.message;}
+    finally{if(id===this.job){this.working=false;this.scanning=false;this.progress='';this.bridge.refresh();}}
+  }
+  async openPast(item){
+    if(this.locked||!belongsToGame(item.root,item.played,this.bridge.game()))return;
+    await this.bridge.prepare();if(!belongsToGame(item.root,item.played,this.bridge.game()))return;
+    this.bridge.actualView();this.bridge.markPending(item.ply,item.played);this.message('assistant',item.ply+'手目に戻って考えてみましょう。ここで何を選べたか、その先の盤面を比べます。');
+    await this.review(item.root,item.played,true,item.report);
+  }
+  restore(){
+    if(this.active)return;
+    const g=this.bridge.game(),marker=g.teacherPending;
+    if(!teachingEnabled(g)||!marker||!Number.isInteger(marker.ply)||marker.ply<1||marker.ply>g.moves.length||marker.move!==g.moves[marker.ply-1]||!g.moves.length)return;
+    const root={initial:g.initial,moves:g.moves.slice(0,marker.ply-1)};
+    if(positionAt(root.initial,root.moves).color!==g.human)return;
+    this.lesson={gameId:g.id,checkpoint:rootOf(g),result:g.result,root,played:marker.move,report:null};
+    this.message('assistant','前回指した一手の講評が途中でした。「講評を再開」で一緒に確認できます。');this.sync();
+  }
+  async review(root,played,restart=false,cached=null){
+    if(this.locked)return;
+    const g=this.bridge.game();if(!teachingEnabled(g))return;
+    this.gameId=g.id;const id=++this.job;
+    const lesson=this.lesson={gameId:g.id,checkpoint:rootOf(g),result:g.result,root:structuredClone(root),played,report:null,awaitingIntent:false};
+    this.working=true;this.progress='指した手と、相手の応手を確かめています…';
+    if(!restart)this.message('user',moveLabel(positionAt(root.initial,root.moves),played)+' と指しました。');
+    $('teacher-question').value='';this.bridge.show();this.bridge.refresh();
+    try{
+      const report=teachingReady(cached)?cached:await this.bridge.run(async hostCheck=>{
+        const check=()=>{hostCheck();if(id!==this.job||!sameLesson(lesson,this.bridge.game()))throw abort();};check();
+        const options={time:this.bridge.time(),check,onProgress:text=>{check();this.progress=text;this.sync();}};
+        const r=cached?.verification?cached:await reviewPlayedMove(this.engine,root,played,{...options,rigor:'deep'});
+        return prepareTeaching(this.engine,r,options);
+      });
+      if(id!==this.job||!sameLesson(lesson,this.bridge.game()))return;
+      lesson.report=report;lesson.discussionRoot=structuredClone(root);lesson.discussionReport=report;
+      this.remember(report);
+      this.observed={report,gameId:g.id};
+      lesson.comment=teacherComment(report);lesson.awaitingIntent=!!lesson.comment.question;
+      this.message('assistant',lesson.comment.text+(lesson.comment.question?'\n\n'+lesson.comment.question:''));
+      this.bridge.report(report);this.progress='';
+    }catch(e){if(id===this.job){this.progress=e.name==='AbortError'?'講評を中止しました · 時計は停止':'講評を取得できませんでした · 時計は停止';if(e.name!=='AbortError')this.message('assistant',e.message+' 指した手は保存されています。再開するか、指し直してみましょう。');}}
+    finally{if(id===this.job){this.working=false;this.bridge.refresh();}}
+  }
+  async ask(text,goal=null){
+    const l=this.lesson;if(!l?.report||this.locked||!sameLesson(l,this.bridge.game()))return;
+    const id=++this.job;this.working=true;$('teacher-question').value='';this.message('user',text);this.bridge.refresh();
+    try{
+      const view=this.bridge.current(),isStudy=this.bridge.isStudy();
+      let root=isStudy?view:l.discussionRoot||l.root,r=l.discussionReport||l.report;
+      const intent=questionIntent(text);
+      let found=resolveMove(positionAt(root.initial,root.moves),text),reply=null;
+      if(intent==='reply'&&positionKey(root)===positionKey(r.root)){
+        const after={initial:root.initial,moves:[...root.moves,r.chosen]};
+        found=resolveMove(positionAt(after.initial,after.moves),text);
+        if(found.kind==='move')reply=found.usi;
+      }
+      if(found.kind==='illegal'||found.kind==='ambiguous'){this.message('assistant',found.message||'指す駒と移動先を、もう少し具体的に教えてください。');return;}
+      const isIntent=positionKey(root)===positionKey(l.root)&&(!!goal||l.awaitingIntent&&found.kind==='none'&&!/[?？]|なぜ|どう|ですか|ますか|何を|最善|読み/.test(text));
+      if(isIntent){l.goal=goal?goalLabels[goal]:text.slice(0,160);l.awaitingIntent=false;}
+      if(intent==='future'){
+        this.message('assistant','「相手の応手まで盤面で見る」で2手進められます。進んだ局面でも、同じ欄から次の手や狙いを質問できます。');return;
+      }
+      if(found.kind==='move'||positionKey(root)!==positionKey(r.root)||['deeper','verify','reply'].includes(intent)){
+        this.progress='質問した局面の続きを確かめています…';this.sync();
+        const chosen=reply?r.chosen:found.kind==='move'?found.usi:positionKey(root)===positionKey(r.root)?r.chosen:null;
+        r=await this.bridge.run(async hostCheck=>{
+          const check=()=>{hostCheck();if(id!==this.job||!sameLesson(l,this.bridge.game()))throw abort();};check();
+          const time=['deeper','verify'].includes(intent)?Math.min(30000,Math.max(this.bridge.time(),r.time||0)*2):this.bridge.time();
+          const options={time,check,onProgress:text=>{check();this.progress=text;this.sync();}};
+          const result=await investigate(this.engine,root,chosen,{...options,rigor:'deep',reply});check();return prepareTeaching(this.engine,result,options);
+        });
+        if(id!==this.job||!sameLesson(l,this.bridge.game()))return;
+        l.discussionRoot=structuredClone(root);l.discussionReport=r;this.bridge.report(r);
+      }
+      l.discussionBranch=intent==='reply'&&r.assumption?'assumption':intent==='best'?'best':intent==='opportunity'&&r.opportunity?'opportunity':'defense';
+      this.reading.set(r,this.bridge.game().human,this.locked);this.reading.select(l.discussionBranch);
+      const options={question:text,text:isIntent?text:'',goal,intent:isIntent?'explain':intent,side:this.bridge.game().human,round:l.round||0};
+      let answer=teacherAnswer(r,options);l.round=(l.round||0)+1;
+      if(positionKey(r.root)!==positionKey(l.root))answer=r.root.moves.length+'手目まで進めた盤面ですね。'+answer;
+      // Show one answer. A language-model response replaces the fallback rather
+      // than being appended after another long explanation of the same move.
+      if(this.tutor?.ready){
+        this.progress='考えを聞きながら、続きを整理しています…';this.sync();
+        try{
+          const evidence=[{id:'teaching_focus',text:answer},...teacherEvidence(r,teacherComment(r)),...reportEvidence(r,this.bridge.game().human)];
+          const result=await this.tutor.answer(text,evidence,this.history.slice(0,-1),{}, {style:'teacher'});
+          if(id!==this.job||!sameLesson(l,this.bridge.game()))return;
+          answer=result.answer;
+        }catch(e){if(id!==this.job)return;}
+      }
+      this.message('assistant',answer);
+
+    }catch(e){if(id===this.job&&e.name!=='AbortError')this.message('assistant',e.message);}
+    finally{if(id===this.job){this.working=false;this.progress='';this.bridge.refresh();}}
+  }
+  async explore(){
+    const l=this.lesson,r=l?.discussionReport,b=r?.[l.discussionBranch||'defense'];if(this.locked||!b||b.pv.length<2)return;
+    return this.openReading(r,b,2);
+  }
+  async openReading(r,b,plies){
+    const l=this.lesson;if(!l||this.locked)return;
+    const id=++this.job;this.working=true;this.bridge.refresh();
+    try{
+      await this.bridge.showLine(r.root,b.pv,plies);
+      if(id!==this.job||!sameLesson(l,this.bridge.game()))return;
+      l.discussionRoot={initial:r.root.initial,moves:[...r.root.moves,...b.pv.slice(0,plies)]};l.discussionReport=null;
+      this.message('assistant',r.root.moves.length+'手目の局面から'+plies+'手進めました。本対局は止めたままです。\n\nここから、どうなれば嬉しくて、何をされると困りますか？ 考えた次の手も聞かせてください。');
+      this.bridge.show(false);
+    }catch(e){if(id===this.job)this.message('assistant',e.message);}
+    finally{if(id===this.job){this.working=false;this.bridge.refresh();}}
+  }
+  async origin(){
+    const l=this.lesson;if(!l||this.locked)return;
+    await this.bridge.showLine(l.root,[l.played],1);if(!sameLesson(l,this.bridge.game()))return;
+    l.discussionRoot=structuredClone(l.root);l.discussionReport=l.report;l.discussionBranch='defense';this.bridge.actualView();this.bridge.report(l.report);this.bridge.refresh();
+    this.message('assistant','本対局で指した '+moveLabel(positionAt(l.root.initial,l.root.moves),l.played)+' の話に戻りました。');
+  }
+  note(l,action){this.bridge.note?.({ply:l.root.moves.length+1,move:l.played,grade:l.comment?.grade||'unreviewed',goal:l.goal||'',note:(l.comment?.text||'講評なし').slice(0,400),action});}
+  async continue(){
+    const l=this.lesson;if(!l||this.locked||!sameLesson(l,this.bridge.game()))return;
+    this.note(l,'continue');this.notice=null;this.invalidate();this.message('assistant',l.result?'この一手の確認を終えました。棋譜を見ながら振り返ることもできます。':'では、続けてみましょう。');
+    await this.bridge.resume(l);this.bridge.refresh();
+  }
+  async retry(){
+    const l=this.lesson;if(!l||this.locked||!sameLesson(l,this.bridge.game()))return;
+    this.note(l,'retry');this.observed=null;this.notice=null;this.invalidate();await this.bridge.retry(l);this.message('assistant','指す前の盤面に戻しました。相手の応手も思い浮かべて、もう一手選んでみましょう。');this.bridge.refresh();
+  }
+}

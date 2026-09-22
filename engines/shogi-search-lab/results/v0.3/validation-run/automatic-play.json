@@ -1,0 +1,232 @@
+{
+  "before": {
+    "event": "analysis",
+    "requested_depth": 3,
+    "complete": true,
+    "stop_reason": "depth_limit",
+    "nodes": 3646,
+    "exact_hits": 0,
+    "bound_hits": 0,
+    "ranking_hits": 0,
+    "cutoffs": 869,
+    "capacity_misses": 0,
+    "elapsed_ms": 17.347,
+    "completed_iterations": [
+      1,
+      2,
+      3
+    ],
+    "position": {
+      "sfen": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "history_positions": 1,
+      "root_id": 1,
+      "tree_nodes": 493,
+      "retained_top_k": 5,
+      "has_result": true,
+      "candidates_complete": true,
+      "terminal": false,
+      "completed_depth": 3,
+      "score": 200,
+      "pv": [
+        "7g7f",
+        "4c4d",
+        "8h4d"
+      ],
+      "candidates": [
+        {
+          "rank": 1,
+          "move": "7g7f",
+          "score": 200,
+          "depth": 3,
+          "bound": "exact",
+          "node_id": 2906,
+          "pv": [
+            "7g7f",
+            "4c4d",
+            "8h4d"
+          ]
+        },
+        {
+          "rank": 2,
+          "move": "1g1f",
+          "score": 0,
+          "depth": 3,
+          "bound": "exact",
+          "node_id": 2,
+          "pv": [
+            "1g1f",
+            "1a1b",
+            "1f1e"
+          ]
+        },
+        {
+          "rank": 3,
+          "move": "1i1h",
+          "score": 0,
+          "depth": 3,
+          "bound": "exact",
+          "node_id": 3,
+          "pv": [
+            "1i1h",
+            "1a1b",
+            "1g1f"
+          ]
+        },
+        {
+          "rank": 4,
+          "move": "2g2f",
+          "score": 0,
+          "depth": 3,
+          "bound": "exact",
+          "node_id": 4,
+          "pv": [
+            "2g2f",
+            "1a1b",
+            "1g1f"
+          ]
+        },
+        {
+          "rank": 5,
+          "move": "2h1h",
+          "score": 0,
+          "depth": 3,
+          "bound": "exact",
+          "node_id": 5,
+          "pv": [
+            "2h1h",
+            "1a1b",
+            "1g1f"
+          ]
+        }
+      ]
+    }
+  },
+  "played": {
+    "event": "played_and_searched",
+    "advance": {
+      "event": "played",
+      "reused_tree": true,
+      "previous_rank": 5,
+      "previous_root_id": 1,
+      "position": {
+        "sfen": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B6R/LNSGKGSNL w - 2",
+        "history_positions": 2,
+        "root_id": 5,
+        "tree_nodes": 90,
+        "retained_top_k": 5,
+        "has_result": true,
+        "candidates_complete": false,
+        "terminal": false,
+        "completed_depth": 2,
+        "score": 0,
+        "pv": [
+          "1a1b",
+          "1g1f"
+        ],
+        "candidates": []
+      }
+    },
+    "analysis": {
+      "event": "analysis",
+      "requested_depth": 3,
+      "complete": true,
+      "stop_reason": "depth_limit",
+      "nodes": 3616,
+      "exact_hits": 2,
+      "bound_hits": 0,
+      "ranking_hits": 0,
+      "cutoffs": 869,
+      "capacity_misses": 0,
+      "elapsed_ms": 9.664,
+      "completed_iterations": [
+        1,
+        2,
+        3
+      ],
+      "position": {
+        "sfen": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B6R/LNSGKGSNL w - 2",
+        "history_positions": 2,
+        "root_id": 5,
+        "tree_nodes": 493,
+        "retained_top_k": 5,
+        "has_result": true,
+        "candidates_complete": true,
+        "terminal": false,
+        "completed_depth": 3,
+        "score": 200,
+        "pv": [
+          "3c3d",
+          "6g6f",
+          "2b6f"
+        ],
+        "candidates": [
+          {
+            "rank": 1,
+            "move": "3c3d",
+            "score": 200,
+            "depth": 3,
+            "bound": "exact",
+            "node_id": 4669,
+            "pv": [
+              "3c3d",
+              "6g6f",
+              "2b6f"
+            ]
+          },
+          {
+            "rank": 2,
+            "move": "1a1b",
+            "score": 0,
+            "depth": 3,
+            "bound": "exact",
+            "node_id": 122,
+            "pv": [
+              "1a1b",
+              "1g1f",
+              "1c1d"
+            ]
+          },
+          {
+            "rank": 3,
+            "move": "1c1d",
+            "score": 0,
+            "depth": 3,
+            "bound": "exact",
+            "node_id": 123,
+            "pv": [
+              "1c1d",
+              "1g1f",
+              "1a1b"
+            ]
+          },
+          {
+            "rank": 4,
+            "move": "2c2d",
+            "score": 0,
+            "depth": 3,
+            "bound": "exact",
+            "node_id": 124,
+            "pv": [
+              "2c2d",
+              "1g1f",
+              "1a1b"
+            ]
+          },
+          {
+            "rank": 5,
+            "move": "3a3b",
+            "score": 0,
+            "depth": 3,
+            "bound": "exact",
+            "node_id": 125,
+            "pv": [
+              "3a3b",
+              "1g1f",
+              "1a1b"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

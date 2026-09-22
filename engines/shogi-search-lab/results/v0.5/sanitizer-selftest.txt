@@ -1,0 +1,3 @@
+{"selftest":"passed","checks":115}
+{"session_selftest":"passed","checks":1274}
+{"advanced_selftest":"passed","checks":504,"random_seed":20260921}

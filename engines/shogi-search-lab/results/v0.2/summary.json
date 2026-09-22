@@ -1,0 +1,12 @@
+{
+  "fixed_depth": 4,
+  "total_fixed_nodes": 706037,
+  "total_iterative_pv_nodes": 591771,
+  "node_reduction_fraction": 0.1618413765850798,
+  "node_wins_vs_fixed": 4,
+  "time_wins_vs_fixed": 3,
+  "sum_fixed_median_ms": 1670.177,
+  "sum_iterative_pv_median_ms": 1553.9560000000001,
+  "max_timed_elapsed_ms": 200.896,
+  "timed_runs": 48
+}

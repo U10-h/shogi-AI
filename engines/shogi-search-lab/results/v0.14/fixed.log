@@ -1,0 +1,8 @@
+file:///workspace/scratch/274c63214c26/shogi-search-lab/scripts/policy_v14.mjs:82
+   if(Date.now()-waitStart>60000)throw Error('Match workers still active: rerun fixed after they finish');
+                                       ^
+
+Error: Match workers still active: rerun fixed after they finish
+    at file:///workspace/scratch/274c63214c26/shogi-search-lab/scripts/policy_v14.mjs:82:40
+
+Node.js v24.19.0

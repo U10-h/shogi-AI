@@ -1,0 +1,286 @@
+{
+  "ab": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 1.0105130591907134,
+    "time_ratio": 1.0941348308947592,
+    "median_completed_depth": 3,
+    "stats": {
+      "history_paths": 0,
+      "tt_entries": 0
+    }
+  },
+  "aspiration": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.8913924327876034,
+    "time_ratio": 1.3535596464277617,
+    "median_completed_depth": 3,
+    "stats": {
+      "aspiration_retries": 195,
+      "counter_updates": 1920,
+      "history_paths": 84978,
+      "history_updates": 1941,
+      "killer_updates": 1941,
+      "pvs_probes": 16998,
+      "tt_cutoffs": 3768,
+      "tt_entries": 9726,
+      "tt_hits": 3996,
+      "tt_probes": 13830,
+      "pvs_researches": 6,
+      "mate_distance_cutoffs": 108
+    }
+  },
+  "counter": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9814378798663965,
+    "time_ratio": 1.2059986401067766,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 2088,
+      "history_paths": 0,
+      "pvs_probes": 17424,
+      "pvs_researches": 84,
+      "tt_entries": 0
+    }
+  },
+  "dual": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9886929858183212,
+    "time_ratio": 1.3560024175879524,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 2031,
+      "history_paths": 85659,
+      "history_updates": 2232,
+      "killer_updates": 2232,
+      "mate_distance_cutoffs": 432,
+      "mtd_passes": 609,
+      "mtd_pv_recovery": 171,
+      "tt_cutoffs": 6549,
+      "tt_entries": 9729,
+      "tt_hits": 7581,
+      "tt_probes": 17742
+    }
+  },
+  "etc": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.8883808793735969,
+    "time_ratio": 1.8106726434813267,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 1914,
+      "etc_probes": 119619,
+      "history_paths": 194706,
+      "history_updates": 1914,
+      "killer_updates": 1914,
+      "pvs_probes": 15654,
+      "pvs_researches": 54,
+      "tt_cutoffs": 870,
+      "tt_entries": 9726,
+      "tt_hits": 942,
+      "tt_probes": 10776,
+      "mate_distance_cutoffs": 108
+    }
+  },
+  "exact": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.8883808793735969,
+    "time_ratio": 1.2633156211438212,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 1914,
+      "history_paths": 86334,
+      "history_updates": 1914,
+      "killer_updates": 1914,
+      "pvs_probes": 15654,
+      "pvs_researches": 54,
+      "tt_cutoffs": 870,
+      "tt_entries": 9726,
+      "tt_hits": 942,
+      "tt_probes": 10776,
+      "mate_distance_cutoffs": 108
+    }
+  },
+  "history": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9429721294420413,
+    "time_ratio": 1.2086051021179076,
+    "median_completed_depth": 3,
+    "stats": {
+      "history_paths": 0,
+      "history_updates": 2088,
+      "pvs_probes": 17424,
+      "pvs_researches": 84,
+      "tt_entries": 0
+    }
+  },
+  "iid": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.8883808793735969,
+    "time_ratio": 1.4337555717847341,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 1914,
+      "history_paths": 86334,
+      "history_updates": 1914,
+      "killer_updates": 1914,
+      "pvs_probes": 15654,
+      "pvs_researches": 54,
+      "tt_cutoffs": 870,
+      "tt_entries": 9726,
+      "tt_hits": 942,
+      "tt_probes": 10776,
+      "mate_distance_cutoffs": 108
+    }
+  },
+  "killer": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9421507966927668,
+    "time_ratio": 1.2347830466644838,
+    "median_completed_depth": 3,
+    "stats": {
+      "history_paths": 0,
+      "killer_updates": 2088,
+      "pvs_probes": 17421,
+      "pvs_researches": 84,
+      "tt_entries": 0
+    }
+  },
+  "legacy": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 1.0,
+    "time_ratio": 1.0,
+    "median_completed_depth": 3,
+    "stats": {}
+  },
+  "mtdf": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9768931719870777,
+    "time_ratio": 1.3327960915661436,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 2037,
+      "history_paths": 84999,
+      "history_updates": 2136,
+      "killer_updates": 2136,
+      "mtd_passes": 378,
+      "mtd_pv_recovery": 171,
+      "tt_cutoffs": 6318,
+      "tt_entries": 9735,
+      "tt_hits": 7104,
+      "tt_probes": 17055,
+      "mate_distance_cutoffs": 216
+    }
+  },
+  "pvs": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9814378798663965,
+    "time_ratio": 1.2238157596514643,
+    "median_completed_depth": 3,
+    "stats": {
+      "history_paths": 0,
+      "pvs_probes": 17424,
+      "pvs_researches": 84,
+      "tt_entries": 0
+    }
+  },
+  "see-order": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 1.8385259814926354,
+    "time_ratio": 2.203807701024956,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 1932,
+      "history_paths": 127752,
+      "history_updates": 1932,
+      "killer_updates": 1932,
+      "pvs_probes": 15885,
+      "pvs_researches": 90,
+      "see_calls": 28131,
+      "see_nodes": 62034,
+      "tt_cutoffs": 618,
+      "tt_entries": 9615,
+      "tt_hits": 948,
+      "tt_probes": 10671,
+      "mate_distance_cutoffs": 108
+    }
+  },
+  "sss": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 1.1657997043202102,
+    "time_ratio": 1.7467324787831477,
+    "median_completed_depth": 3,
+    "stats": {
+      "counter_updates": 3279,
+      "history_paths": 91155,
+      "history_updates": 3369,
+      "killer_updates": 3369,
+      "mate_distance_cutoffs": 8340,
+      "mtd_passes": 618,
+      "mtd_pv_recovery": 171,
+      "tt_cutoffs": 9249,
+      "tt_entries": 8637,
+      "tt_hits": 14667,
+      "tt_probes": 31644
+    }
+  },
+  "tt": {
+    "runs": 57,
+    "complete": 57,
+    "paired_positions": 19,
+    "different_scores": 0,
+    "node_ratio": 0.9455182609647922,
+    "time_ratio": 1.4478329849656244,
+    "median_completed_depth": 3,
+    "stats": {
+      "history_paths": 92538,
+      "pvs_probes": 15717,
+      "pvs_researches": 57,
+      "tt_cutoffs": 870,
+      "tt_entries": 11127,
+      "tt_hits": 942,
+      "tt_probes": 12069
+    }
+  }
+}

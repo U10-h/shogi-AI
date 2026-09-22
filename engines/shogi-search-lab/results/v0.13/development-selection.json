@@ -1,0 +1,21 @@
+{
+  "selected": "efficient0025",
+  "reason": "Choose the conservative cost-aware variant with zero audited false cuts and identical root moves/scores on all 32 development roots; 0.65% node reduction is small and wall-time improvement is not assumed",
+  "candidate_summary": {
+    "roots": 32,
+    "nodes_excluding_audit": 574657,
+    "prunes": 2720,
+    "false_prunes": 0,
+    "changed_moves": 0,
+    "changed_scores": 0
+  },
+  "rejected_promotions": [
+    "direct",
+    "guarded",
+    "verified",
+    "efficient",
+    "efficient005"
+  ],
+  "default_policy": "off",
+  "independent_test_started": false
+}

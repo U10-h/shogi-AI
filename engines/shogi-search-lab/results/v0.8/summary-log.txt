@@ -1,0 +1,150 @@
+{
+  "speed": {
+    "nnue-full-eager": {
+      "meanMs": 59.428958333333334,
+      "totalNodes": 128043,
+      "totalMs": 1426.295
+    },
+    "nnue-full-lazy": {
+      "meanMs": 50.161833333333334,
+      "totalNodes": 128043,
+      "totalMs": 1203.884
+    },
+    "nnue-eager": {
+      "meanMs": 39.533166666666666,
+      "totalNodes": 128043,
+      "totalMs": 948.796
+    },
+    "nnue-lazy": {
+      "meanMs": 38.849875,
+      "totalNodes": 128043,
+      "totalMs": 932.3969999999999
+    },
+    "positional-eager": {
+      "meanMs": 37.84675,
+      "totalNodes": 175458,
+      "totalMs": 908.322
+    },
+    "positional-lazy": {
+      "meanMs": 34.451166666666666,
+      "totalNodes": 175458,
+      "totalMs": 826.828
+    }
+  },
+  "quality": {
+    "positional": {
+      "roots": 12,
+      "meanCandidateGapCp": 118.08333333333333,
+      "meanCompletedDepth": 5.5,
+      "meanNodes": 558921.6666666666
+    },
+    "nnue": {
+      "roots": 12,
+      "meanCandidateGapCp": 0,
+      "meanCompletedDepth": 5.416666666666667,
+      "meanNodes": 336777.5833333333
+    }
+  },
+  "qualityPairs": {
+    "better": 9,
+    "equal": 3,
+    "worse": 0
+  },
+  "matches": {
+    "positional": {
+      "wins": 4,
+      "losses": 0,
+      "draws": 0,
+      "unresolved": 0,
+      "games": [
+        {
+          "id": "self-0-black",
+          "candidateSide": "black",
+          "plies": 125,
+          "result": {
+            "reason": "checkmate",
+            "winner": "black"
+          }
+        },
+        {
+          "id": "self-0-white",
+          "candidateSide": "white",
+          "plies": 84,
+          "result": {
+            "reason": "checkmate",
+            "winner": "white"
+          }
+        },
+        {
+          "id": "self-1-black",
+          "candidateSide": "black",
+          "plies": 93,
+          "result": {
+            "reason": "checkmate",
+            "winner": "black"
+          }
+        },
+        {
+          "id": "self-1-white",
+          "candidateSide": "white",
+          "plies": 86,
+          "result": {
+            "reason": "checkmate",
+            "winner": "white"
+          }
+        }
+      ]
+    },
+    "yaneuraou": {
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "games": [
+        {
+          "id": "yaneura-nnue-black",
+          "candidateSide": "black",
+          "plies": 108,
+          "result": {
+            "reason": "checkmate",
+            "winner": "white"
+          }
+        },
+        {
+          "id": "yaneura-nnue-white",
+          "candidateSide": "white",
+          "plies": 135,
+          "result": {
+            "reason": "checkmate",
+            "winner": "black"
+          }
+        }
+      ]
+    }
+  },
+  "verification": {
+    "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+    "oraclePositions": 2246,
+    "staticModes": {
+      "nnue-full": {
+        "exactMatches": 2246,
+        "maxError": 0
+      },
+      "nnue": {
+        "exactMatches": 2246,
+        "maxError": 0
+      },
+      "nnue-verify": {
+        "exactMatches": 2246,
+        "maxError": 0
+      }
+    },
+    "searchComparisons": 30,
+    "verifiedAccumulatorUpdates": 243773,
+    "legacyComparisons": 20,
+    "malformedModelsRejected": 5,
+    "passed": true
+  },
+  "speedReductionPercent": 34.62803978139165,
+  "adoptOptInNnue": true
+}

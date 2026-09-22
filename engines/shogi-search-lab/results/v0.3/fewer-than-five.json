@@ -1,0 +1,71 @@
+{
+  "event": "analysis",
+  "requested_depth": 2,
+  "complete": true,
+  "stop_reason": "depth_limit",
+  "nodes": 17,
+  "exact_hits": 0,
+  "bound_hits": 0,
+  "ranking_hits": 0,
+  "cutoffs": 0,
+  "capacity_misses": 0,
+  "elapsed_ms": 0.099,
+  "completed_iterations": [
+    1,
+    2
+  ],
+  "position": {
+    "sfen": "8k/9/9/9/9/9/9/9/K8 w - 1",
+    "history_positions": 1,
+    "root_id": 1,
+    "tree_nodes": 13,
+    "retained_top_k": 5,
+    "has_result": true,
+    "candidates_complete": true,
+    "terminal": false,
+    "completed_depth": 2,
+    "score": 0,
+    "pv": [
+      "1a1b",
+      "9i8h"
+    ],
+    "candidates": [
+      {
+        "rank": 1,
+        "move": "1a1b",
+        "score": 0,
+        "depth": 2,
+        "bound": "exact",
+        "node_id": 2,
+        "pv": [
+          "1a1b",
+          "9i8h"
+        ]
+      },
+      {
+        "rank": 2,
+        "move": "1a2a",
+        "score": 0,
+        "depth": 2,
+        "bound": "exact",
+        "node_id": 3,
+        "pv": [
+          "1a2a",
+          "9i8h"
+        ]
+      },
+      {
+        "rank": 3,
+        "move": "1a2b",
+        "score": 0,
+        "depth": 2,
+        "bound": "exact",
+        "node_id": 4,
+        "pv": [
+          "1a2b",
+          "9i8h"
+        ]
+      }
+    ]
+  }
+}

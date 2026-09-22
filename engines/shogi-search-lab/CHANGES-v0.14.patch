@@ -1,0 +1,248 @@
+--- a/src/advanced.hpp
++++ b/src/advanced.hpp
+@@ -21,6 +21,8 @@
+     bool compact_ordering = true;
+     bool direct_qmoves = true;
+     bool defer_qmoves = true;
++    std::string policy_model; // Quiet move ordering only; no evaluation/pruning.
++    int policy_scale = 1; // 0 is an exact disabled control, 1..16 mixes with history.
+     // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
+     std::string leaf_trace_path;
+     // Experimental learned q-move pruning. Labels are alpha-threshold outcomes,
+--- a/src/advanced.cpp
++++ b/src/advanced.cpp
+@@ -1,5 +1,6 @@
+ #include "advanced.hpp"
+ #include "positional.hpp"
++#include "policy.hpp"
+ #include <algorithm>
+ #include <chrono>
+ #include <cmath>
+@@ -14,7 +15,7 @@
+ 
+ namespace lab {
+ std::set<std::string> advanced_features() {
+-    return {"tt","history","killer","counter","iid","etc","mate-distance",
++    return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
+         "qsearch","see-order","see-prune","delta","futility","reverse-futility",
+         "razoring","null","adaptive-null","verified-null","lmr","check-extension",
+         "recapture-extension","singular","multicut","probcut","multiprobcut"};
+@@ -56,9 +57,11 @@
+ class Worker {
+     Board& b; const AdvancedOptions& o;
+     Evaluator eval;
++    MovePolicy policy;
+     struct Flags {
+         bool tt = false;
+         bool history = false;
++        bool capture_history = false;
+         bool killer = false;
+         bool counter = false;
+         bool iid = false;
+@@ -89,6 +92,7 @@
+     std::unordered_map<std::pair<uint64_t,int>,uint64_t,PathHash> paths;
+     uint64_t next_path=1;
+     std::array<std::array<int,65536>,2> history{};
++    std::array<std::array<int,16*81*16>,2> capture_history{};
+     std::array<std::array<Move,2>,max_ply> killers{};
+     std::array<std::array<Move,65536>,2> counters{};
+     int null_level=0, isolated=0;
+@@ -135,6 +139,18 @@
+     }
+     bool cacheable(uint64_t path) const {return f.tt&&path&&!isolated&&!null_level;}
+     bool tactical(Move m) const {return is_promote(m)||b.pos.piece_on(to_sq(m))!=NO_PIECE;}
++    int capture_key(Move m) const {
++        const int pt=is_drop(m)?int(move_dropped_piece(m)):int(type_of(b.pos.piece_on(from_sq(m))));
++        return (pt*81+int(to_sq(m)))*16+int(type_of(b.pos.piece_on(to_sq(m))));
++    }
++    void learn_captures(Move best,const std::vector<Move>& searched,int depth) {
++        if(!f.capture_history||isolated||null_level||!tactical(best))return;
++        const int bonus=std::min(1600,128+64*depth*depth);
++        auto update=[&](Move m,int delta){auto& v=capture_history[b.pos.side_to_move()][capture_key(m)];v+=delta-v*std::abs(delta)/16384;};
++        update(best,bonus);
++        for(Move m:searched)if(m!=best&&tactical(m))update(m,-bonus/2);
++        ++r.stats["capture_history_updates"];
++    }
+     int gain(Move m) const {
+         Piece p=b.pos.piece_on(to_sq(m));
+         int v=p==NO_PIECE?0:piece_value(type_of(p))+piece_value(raw_type_of(p));
+@@ -198,6 +214,11 @@
+             if(tactical(m))score+=10000000;
+             if(f.see_order&&tactical(m))score+=int64_t(see(m))*10000;
+             if(f.history&&!tactical(m))score+=history[side][pack(m)];
++            if(f.capture_history&&tactical(m))score+=4*capture_history[side][capture_key(m)];
++            if(!o.policy_model.empty()&&o.policy_scale&&!tactical(m)) {
++                score+=int64_t(o.policy_scale)*policy.score(b,m);
++                ++r.stats["policy_moves_scored"];
++            }
+             if(f.killer&&ply<max_ply&&!tactical(m)) {
+                 if(m==killers[ply][0])score+=3000000;
+                 else if(m==killers[ply][1])score+=2000000;
+@@ -256,7 +277,7 @@
+             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
+         }
+         moves=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+-        int move_index=0;bool learned_cut=false;
++        int move_index=0;bool learned_cut=false;std::vector<Move> captures_searched;
+         for(Move m:moves) {
+             const int index=move_index++;
+             const bool checkmove=b.pos.gives_check(m);
+@@ -313,7 +334,8 @@
+             Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m);}
+             if(consider)prune_row("observed",parent_sfen,m,a,stand,left,index,x,-c.score,r.base.nodes-before,guarded);
+             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
+-            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;return finish(best,"child_beta_cutoff");}
++            if(f.capture_history&&tactical(m))captures_searched.push_back(m);
++            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;learn_captures(m,captures_searched,std::max(1,left));return finish(best,"child_beta_cutoff");}
+         }
+         return finish(best,best.pv.empty()?"stand_pat_selected":"child_selected");
+     }
+@@ -433,7 +455,7 @@
+             for(Move m:moves)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
+             if(unique){singular=preferred;++r.stats["singular_confirmed"];}
+         }
+-        Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched;
++        Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched,captures_searched;
+         const Color side=b.pos.side_to_move();
+         for(Move m:moves) {
+             const bool noise=tactical(m),gives=b.pos.gives_check(m);
+@@ -470,8 +492,10 @@
+             }
+             a=std::max(a,best.score);
+             if(!noise)quiet_searched.push_back(m);
++            else if(f.capture_history)captures_searched.push_back(m);
+             if(a>=beta) {
+                 ++r.base.cutoffs;r.base.skipped_siblings+=moves.size()-index-1;
++                learn_captures(m,captures_searched,d);
+                 if(!noise&&!isolated) {
+                     if(f.killer){if(killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}++r.stats["killer_updates"];}
+                     if(f.history) {
+@@ -576,9 +600,11 @@
+     }
+ public:
+     AdvancedResult r;
+-    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model) {
++    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model),policy(o.policy_model) {
++        if(o.policy_scale<0||o.policy_scale>16)throw std::invalid_argument("Policy scale must be 0..16");
+         f.tt=o.features.count("tt")!=0;
+         f.history=o.features.count("history")!=0;
++        f.capture_history=o.features.count("capture-history")!=0;
+         f.killer=o.features.count("killer")!=0;
+         f.counter=o.features.count("counter")!=0;
+         f.iid=o.features.count("iid")!=0;
+@@ -703,7 +729,8 @@
+     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
+         <<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
+     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
+-    out<<"],\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
++    out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
++       <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
+        <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
+        <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
+     out<<"},\"candidates\":[";comma=false;for(auto& c:r.candidates){if(comma)out<<',';out<<"{\"score\":"<<c.score<<",\"pv\":"<<line_json(c.pv)<<'}';comma=true;}
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -2,6 +2,7 @@
+ #include "session.hpp"
+ #include "advanced.hpp"
+ #include "positional.hpp"
++#include "policy.hpp"
+ #include <algorithm>
+ #include <iostream>
+ #include <iomanip>
+@@ -13,6 +14,7 @@
+         lab::AdvancedOptions advanced_options;
+         bool advanced = false, advanced_tests = false, usi_mode = false;
+         bool eval_batch=false,nnue_features=false;
++        bool policy_dump=false;
+         std::string sfen = SFEN_HIRATE, moves;
+         bool legal = false, tests = false;
+         bool session = false, session_tests = false;
+@@ -48,6 +50,8 @@
+                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
+                     "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
+                     "  --leaf-trace PATH (opt-in qsearch entry/return observations)\n"
++                    "  --policy-model PATH --policy-scale 0..16 (quiet move ordering)\n"
++                    "  --policy-dump (stdin SFEN, output legal moves and sparse policy features)\n"
+                     "  --prune-policy off|collect|direct|guarded|verified|staticcheck|efficient\n"
+                     "  --prune-model PATH [--prune-probability 0..1) --prune-log PATH --prune-audit]\n"
+                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
+@@ -72,6 +76,9 @@
+             } else if (arg == "--max-nodes") options.max_nodes = number(value());
+             else if (arg == "--trace") options.trace_path = value();
+             else if (arg == "--leaf-trace") advanced_options.leaf_trace_path = value();
++            else if (arg == "--policy-model") advanced_options.policy_model = value();
++            else if (arg == "--policy-scale") advanced_options.policy_scale = int(number(value()));
++            else if (arg == "--policy-dump") policy_dump = true;
+             else if (arg == "--prune-policy") advanced_options.prune_policy = value();
+             else if (arg == "--prune-model") advanced_options.prune_model = value();
+             else if (arg == "--prune-log") advanced_options.prune_log_path = value();
+@@ -123,6 +130,23 @@
+         Bitboards::init();
+         Position::init();
+         advanced_options.limits=options;
++        if(policy_dump) {
++            lab::MovePolicy policy(advanced_options.policy_model);std::string input;
++            while(std::getline(std::cin,input)) {
++                lab::Board b(input);std::cout<<"{\"sfen\":"<<lab::quote(b.pos.sfen())<<",\"moves\":[";
++                bool first=true;for(Move m:b.legal_moves()) {
++                    if(!first)std::cout<<',';
++                    first=false;
++                    std::cout<<"{\"move\":"<<lab::quote(lab::usi(m))<<",\"quiet\":"
++                        <<(!is_promote(m)&&b.pos.piece_on(to_sq(m))==NO_PIECE?"true":"false")
++                        <<",\"score\":"<<policy.score(b,m)<<",\"ids\":[";
++                    auto ids=lab::policy_features(b,m);for(size_t i=0;i<ids.size();++i){if(i)std::cout<<',';std::cout<<ids[i];}
++                    std::cout<<"]}";
++                }
++                std::cout<<"]}"<<std::endl;
++            }
++            return 0;
++        }
+         if(nnue_features&&(!eval_batch||advanced_options.evaluation.rfind("nnue",0)!=0))throw std::invalid_argument("--nnue-features requires --eval-batch --eval nnue");
+         if(eval_batch){
+             std::cout<<std::setprecision(17);
+--- /dev/null
++++ b/src/policy.hpp
+@@ -0,0 +1,42 @@
++#pragma once
++#include "lab.hpp"
++#include <array>
++#include <algorithm>
++#include <cmath>
++#include <stdexcept>
++
++namespace lab {
++// Sparse additive policy, used only for ordering. It supplies no value bounds.
++constexpr int policy_dim=25392;
++inline std::array<int,10> policy_features(const Board& b,Move m) {
++    const Color side=b.pos.side_to_move();
++    const int pt=is_drop(m)?16+int(move_dropped_piece(m)):int(type_of(b.pos.piece_on(from_sq(m))));
++    auto orient=[&](Square s){return side==BLACK?int(s):80-int(s);};
++    const int to=orient(to_sq(m)),from=is_drop(m)?81:orient(from_sq(m));
++    auto delta=[](int a,int c){return (a/9-c/9+8)*17+(a%9-c%9+8);};
++    const int own=orient(b.pos.king_square(side)),enemy=orient(b.pos.king_square(~side));
++    return {pt*81+to,1944+pt*82+from,
++        3912+pt*289+(is_drop(m)?144:delta(to,from)),
++        10848+pt*16+int(type_of(b.pos.piece_on(to_sq(m)))),
++        11232+pt*289+delta(to,enemy),18168+pt*289+delta(to,own),
++        25104+pt*2+int(is_promote(m)),25152+pt*2+int(b.pos.gives_check(m)),
++        25200+pt*4+std::min(3,b.pos.attackers_to(~side,to_sq(m)).pop_count()),
++        25296+pt*4+std::min(3,b.pos.attackers_to(side,to_sq(m)).pop_count())};
++}
++class MovePolicy {
++    std::array<int,policy_dim> weights{};
++public:
++    explicit MovePolicy(const std::string& path) {
++        if(path.empty())return;
++        std::ifstream in(path);std::string header;
++        if(!std::getline(in,header)||header!="shogi-lab-quiet-policy-v1 dim25392 scale1024")
++            throw std::invalid_argument("Invalid move policy header");
++        for(auto& w:weights)if(!(in>>w)||std::abs(int64_t(w))>100000)
++            throw std::invalid_argument("Invalid move policy weight");
++        std::string extra;if(in>>extra)throw std::invalid_argument("Trailing move policy data");
++    }
++    int score(const Board& b,Move m) const {
++        int v=0;for(int id:policy_features(b,m))v+=weights[id];return v;
++    }
++};
++}

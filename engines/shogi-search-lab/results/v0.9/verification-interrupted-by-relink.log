@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/791cf228e1b0/work/shogi-search-lab/scripts/verify_search_core.py", line 32, in <module>
+    compare(f'{name}-q{qdepth}',['--sfen',sfen,'--moves',moves,'--preset','tactical','--qdepth',str(qdepth),'--eval','nnue','--eval-model',str(MODEL)])
+  File "/workspace/scratch/791cf228e1b0/work/shogi-search-lab/scripts/verify_search_core.py", line 15, in compare
+    a=run(OLD,extra);b=run(NEW,extra)
+                       ^^^^^^^^^^^^^^
+  File "/workspace/scratch/791cf228e1b0/work/shogi-search-lab/scripts/verify_search_core.py", line 10, in run
+    r=subprocess.run([str(binary),'--advanced','--depth','3','--max-nodes','18000',*extra],capture_output=True,text=True)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: '/workspace/scratch/791cf228e1b0/work/shogi-search-lab/build/shogi-lab'

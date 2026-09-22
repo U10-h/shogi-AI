@@ -1,0 +1,16 @@
+{"mode":"matches","i":0,"plies":96,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":2,"plies":146,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":4,"plies":102,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":6,"plies":107,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":8,"plies":102,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":10,"plies":84,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":12,"plies":176,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":14,"plies":90,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":16,"plies":95,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":18,"plies":99,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":20,"plies":176,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":22,"plies":87,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":24,"plies":90,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":26,"plies":95,"result":{"reason":"checkmate","winner":"black"}}
+{"mode":"matches","i":28,"plies":48,"result":{"reason":"checkmate","winner":"white"}}
+{"mode":"matches","i":30,"plies":30,"result":{"reason":"checkmate","winner":"white"}}

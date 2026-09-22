@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "expected": "5i6h+",
+  "transcript": [
+    "id name Shogi Search Lab v0.9",
+    "id author Shogi Search Lab",
+    "option name Preset type combo default tactical var baseline var exact var tactical var selective var custom",
+    "option name MultiPV type spin default 1 min 1 max 5",
+    "option name Evaluation type combo default nnue var material var positional var learned var nnue var nnue-full var nnue-verify",
+    "option name USI_Ponder type check default false",
+    "usiok",
+    "readyok",
+    "info string no completed iteration; fallback completed_root_child",
+    "bestmove 5i6h+"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "visits": {
+    "train": 859143,
+    "calibration": 220581,
+    "development": 221594
+  },
+  "games": {
+    "train": 63,
+    "calibration": 16,
+    "development": 16
+  },
+  "unique_raw_positions": {
+    "train": 371118,
+    "calibration": 92346,
+    "development": 96669
+  },
+  "unique_canonical_positions": {
+    "train": 371118,
+    "calibration": 92346,
+    "development": 96669
+  },
+  "shared_positions_including_mirrors": {
+    "train-calibration": 0,
+    "train-development": 0,
+    "calibration-development": 0
+  },
+  "uncompleted_child_labels_omitted": 95,
+  "interpretation": "game split and root dedup do not necessarily separate every search descendant; overlaps are disclosed, not independent evidence; fresh final roots excluded all these parent positions"
+}

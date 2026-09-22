@@ -1,0 +1,121 @@
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/board.cpp -o build/src/board.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/main.cpp -o build/src/main.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/evaluate.cpp -o build/src/evaluate.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/positional.cpp -o build/src/positional.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/nnue.cpp -o build/src/nnue.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/search.cpp -o build/src/search.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/tests.cpp -o build/src/tests.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/session.cpp -o build/src/session.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/session_cli.cpp -o build/src/session_cli.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/session_tests.cpp -o build/src/session_tests.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/advanced.cpp -o build/src/advanced.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/advanced_tests.cpp -o build/src/advanced_tests.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c src/advanced_usi.cpp -o build/src/advanced_usi.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c vendor/yaneuraou/bitboard.cpp -o build/vendor/yaneuraou/bitboard.o
+In file included from vendor/yaneuraou/types.h:9,
+                 from vendor/yaneuraou/bitboard.h:4,
+                 from vendor/yaneuraou/bitboard.cpp:1:
+vendor/yaneuraou/bitboard.cpp: In function ‘void Bitboards::init()’:
+vendor/yaneuraou/config.h:606:31: warning: array subscript 0 is outside array bounds of ‘int [0]’ [-Warray-bounds=]
+  606 | #define ASSERT(X) { if (!(X)) *(int*)1 = 0; }
+      |                               ^~~~~~~~
+vendor/yaneuraou/config.h:620:50: note: in expansion of macro ‘ASSERT’
+  620 | #define ASSERT_LV_EX(L, X) { if (L <= ASSERT_LV) ASSERT(X); }
+      |                                                  ^~~~~~
+vendor/yaneuraou/config.h:621:23: note: in expansion of macro ‘ASSERT_LV_EX’
+  621 | #define ASSERT_LV1(X) ASSERT_LV_EX(1, X)
+      |                       ^~~~~~~~~~~~
+vendor/yaneuraou/bitboard.cpp:742:17: note: in expansion of macro ‘ASSERT_LV1’
+  742 |                 ASSERT_LV1(between_index == 785);
+      |                 ^~~~~~~~~~
+cc1plus: note: source object is likely at address zero
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c vendor/yaneuraou/position.cpp -o build/vendor/yaneuraou/position.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c vendor/yaneuraou/movegen.cpp -o build/vendor/yaneuraou/movegen.o
+vendor/yaneuraou/position.cpp: In member function ‘void Position::set(std::string, StateInfo*, Thread*)’:
+vendor/yaneuraou/position.cpp:227:20: warning: ‘void* memset(void*, int, size_t)’ clearing an object of type ‘class Position’ with no trivial copy-assignment; use value-initialization instead [-Wclass-memaccess]
+  227 |         std::memset(this, 0, sizeof(Position));
+      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from vendor/yaneuraou/position.cpp:1:
+vendor/yaneuraou/position.h:202:7: note: ‘class Position’ declared here
+  202 | class Position
+      |       ^~~~~~~~
+vendor/yaneuraou/position.cpp:232:20: warning: ‘void* memset(void*, int, size_t)’ clearing an object of non-trivial type ‘struct StateInfo’; use assignment or value-initialization instead [-Wclass-memaccess]
+  232 |         std::memset(si, 0, sizeof(StateInfo));
+      |         ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+vendor/yaneuraou/position.h:29:8: note: ‘struct StateInfo’ declared here
+   29 | struct StateInfo {
+      |        ^~~~~~~~~
+vendor/yaneuraou/position.cpp:341:43: warning: unused variable ‘rpc’ [-Wunused-variable]
+  341 |                                 PieceType rpc = raw_type_of(Piece(idx));
+      |                                           ^~~
+vendor/yaneuraou/position.cpp: In member function ‘void Position::do_null_move(StateInfo&)’:
+vendor/yaneuraou/position.cpp:1764:19: warning: unused variable ‘key’ [-Wunused-variable]
+ 1764 |         const Key key = st->key();
+      |                   ^~~
+vendor/yaneuraou/position.cpp: In instantiation of ‘void Position::do_move_impl(Move, StateInfo&, bool) [with Color Us = BLACK]’:
+vendor/yaneuraou/position.cpp:1722:22:   required from here
+vendor/yaneuraou/position.cpp:1239:27: warning: unused variable ‘key’ [-Wunused-variable]
+ 1239 |                 const Key key = k + h;
+      |                           ^~~
+vendor/yaneuraou/position.cpp:1406:27: warning: unused variable ‘key’ [-Wunused-variable]
+ 1406 |                 const Key key = k + h;
+      |                           ^~~
+vendor/yaneuraou/position.cpp: In instantiation of ‘void Position::do_move_impl(Move, StateInfo&, bool) [with Color Us = WHITE]’:
+vendor/yaneuraou/position.cpp:1724:22:   required from here
+vendor/yaneuraou/position.cpp:1239:27: warning: unused variable ‘key’ [-Wunused-variable]
+ 1239 |                 const Key key = k + h;
+      |                           ^~~
+vendor/yaneuraou/position.cpp:1406:27: warning: unused variable ‘key’ [-Wunused-variable]
+ 1406 |                 const Key key = k + h;
+      |                           ^~~
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c vendor/yaneuraou/types.cpp -o build/vendor/yaneuraou/types.o
+g++ -Ivendor/yaneuraou -DLAB_RULES_ONLY -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 -std=c++17 -O2 -g -Wall -Wextra -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -ffunction-sections -fdata-sections -MMD -MP -c vendor/yaneuraou/eval/evaluate.cpp -o build/vendor/yaneuraou/eval/evaluate.o
+In file included from vendor/yaneuraou/types.h:9,
+                 from vendor/yaneuraou/bitboard.h:4,
+                 from vendor/yaneuraou/position.h:6:
+vendor/yaneuraou/position.cpp: In member function ‘void Position::do_move_impl(Move, StateInfo&, bool) [with Color Us = BLACK]’:
+vendor/yaneuraou/config.h:606:40: warning: array subscript 0 is outside array bounds of ‘int [0]’ [-Warray-bounds=]
+  606 | #define ASSERT(X) { if (!(X)) *(int*)1 = 0; }
+      |                               ~~~~~~~~~^~~
+vendor/yaneuraou/config.h:620:50: note: in expansion of macro ‘ASSERT’
+  620 | #define ASSERT_LV_EX(L, X) { if (L <= ASSERT_LV) ASSERT(X); }
+      |                                                  ^~~~~~
+vendor/yaneuraou/config.h:621:23: note: in expansion of macro ‘ASSERT_LV_EX’
+  621 | #define ASSERT_LV1(X) ASSERT_LV_EX(1, X)
+      |                       ^~~~~~~~~~~~
+vendor/yaneuraou/position.cpp:1329:25: note: in expansion of macro ‘ASSERT_LV1’
+ 1329 |                         ASSERT_LV1(type_of(to_pc) != KING);
+      |                         ^~~~~~~~~~
+cc1plus: note: source object is likely at address zero
+vendor/yaneuraou/position.cpp: In member function ‘void Position::do_move_impl(Move, StateInfo&, bool) [with Color Us = WHITE]’:
+vendor/yaneuraou/config.h:606:40: warning: array subscript 0 is outside array bounds of ‘int [0]’ [-Warray-bounds=]
+  606 | #define ASSERT(X) { if (!(X)) *(int*)1 = 0; }
+      |                               ~~~~~~~~~^~~
+vendor/yaneuraou/config.h:620:50: note: in expansion of macro ‘ASSERT’
+  620 | #define ASSERT_LV_EX(L, X) { if (L <= ASSERT_LV) ASSERT(X); }
+      |                                                  ^~~~~~
+vendor/yaneuraou/config.h:621:23: note: in expansion of macro ‘ASSERT_LV_EX’
+  621 | #define ASSERT_LV1(X) ASSERT_LV_EX(1, X)
+      |                       ^~~~~~~~~~~~
+vendor/yaneuraou/position.cpp:1329:25: note: in expansion of macro ‘ASSERT_LV1’
+ 1329 |                         ASSERT_LV1(type_of(to_pc) != KING);
+      |                         ^~~~~~~~~~
+cc1plus: note: source object is likely at address zero
+In file included from vendor/yaneuraou/types.h:9,
+                 from vendor/yaneuraou/types.cpp:1:
+vendor/yaneuraou/types.h: In function ‘std::string pretty2(Piece)’:
+vendor/yaneuraou/config.h:606:31: warning: array subscript 0 is outside array bounds of ‘int [0]’ [-Warray-bounds=]
+  606 | #define ASSERT(X) { if (!(X)) *(int*)1 = 0; }
+      |                               ^~~~~~~~
+vendor/yaneuraou/config.h:620:50: note: in expansion of macro ‘ASSERT’
+  620 | #define ASSERT_LV_EX(L, X) { if (L <= ASSERT_LV) ASSERT(X); }
+      |                                                  ^~~~~~
+vendor/yaneuraou/config.h:621:23: note: in expansion of macro ‘ASSERT_LV_EX’
+  621 | #define ASSERT_LV1(X) ASSERT_LV_EX(1, X)
+      |                       ^~~~~~~~~~~~
+vendor/yaneuraou/types.h:527:40: note: in expansion of macro ‘ASSERT_LV1’
+  527 | static std::string pretty2(Piece pc) { ASSERT_LV1(color_of(pc) == BLACK); auto s = pretty(pc); return s.substr(1, s.length() - 1); }
+      |                                        ^~~~~~~~~~
+cc1plus: note: source object is likely at address zero
+g++ build/src/main.o build/src/board.o build/src/evaluate.o build/src/positional.o build/src/nnue.o build/src/search.o build/src/tests.o build/src/session.o build/src/session_cli.o build/src/session_tests.o build/src/advanced.o build/src/advanced_tests.o build/src/advanced_usi.o build/vendor/yaneuraou/bitboard.o build/vendor/yaneuraou/position.o build/vendor/yaneuraou/movegen.o build/vendor/yaneuraou/types.o build/vendor/yaneuraou/eval/evaluate.o -Wl,--gc-sections -pthread -o build/shogi-lab
+/workspace/scratch/ebe259f952a0/work/shogi-search-lab/build/shogi-lab-v0.12-rebuilt

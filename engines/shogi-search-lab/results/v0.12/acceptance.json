@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "roots": 22,
+  "searches": 220,
+  "matches": 64,
+  "pliesCheckedDuringPlay": 5054,
+  "nodeLimitChecks": 5054,
+  "fallbackSources": {
+    "completed_root_child": 28
+  },
+  "traceRuns": 32,
+  "traceEdgeValidation": {
+    "nodes": 358978,
+    "edges": 166267,
+    "pvMoves": 123925,
+    "captures": 144514,
+    "promotions": 38801,
+    "drops": 1499,
+    "independentRules": "tsshogi",
+    "allValid": true
+  },
+  "implementationChecks": {
+    "integerParity": {
+      "base": 150,
+      "pair": 150,
+      "affine": 150,
+      "anchored50": 150,
+      "tempo40": 150
+    },
+    "totalIndependentFeatureAndHeadChecks": 750,
+    "oldNewSearchParity": 44,
+    "traceLimit": {
+      "kept": 5,
+      "omitted": 22019,
+      "transparent": true
+    },
+    "diagnosticRuns": 13
+  },
+  "modelHashesVerified": {
+    "base": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+    "pair": "920eb161c5cc7aba9d9763ad839d0d8ea28a94408d20ddc347cca12194507e68",
+    "affine": "59ed9ee942a55af452ca3758213577188ba4bfb8a04ad85874601d1909c021df",
+    "anchored50": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+    "tempo40": "02aea154f0afedd71e24ab64dd384e53a54451fbc4f508ca2781d50ba6a0551f"
+  },
+  "rankSafetyStop": "quantized_projection_distortion"
+}

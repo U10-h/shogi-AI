@@ -1,0 +1,119 @@
+round 1
+round 2
+round 3
+round 4
+round 5
+{
+  "v0.8": {
+    "meanMs": 39.10915,
+    "sumRootMedianMs": 305.386,
+    "rootMedianMs": [
+      34.412,
+      34.665,
+      57.423,
+      59.905,
+      19.661,
+      23.486,
+      57.489,
+      18.345
+    ],
+    "nodesPerRound": 42681,
+    "statsPerRound": {
+      "counter_updates": 1275,
+      "history_paths": 27285,
+      "history_updates": 1275,
+      "killer_updates": 1275,
+      "nnue_cache_hits": 1073,
+      "nnue_calls": 35916,
+      "nnue_refreshes": 22,
+      "nnue_updates": 34821,
+      "pvs_probes": 5692,
+      "pvs_researches": 153,
+      "qnodes": 38444,
+      "qstand_cutoffs": 26456,
+      "tt_cutoffs": 1088,
+      "tt_entries": 2938,
+      "tt_hits": 1299,
+      "tt_probes": 4237
+    },
+    "reductionVsOldPct": 0.0
+  },
+  "cycle1": {
+    "meanMs": 33.939025,
+    "sumRootMedianMs": 251.668,
+    "rootMedianMs": [
+      30.511,
+      34.146,
+      46.783,
+      42.193,
+      15.217,
+      18.739,
+      47.958,
+      16.121
+    ],
+    "nodesPerRound": 42681,
+    "statsPerRound": {
+      "counter_updates": 1275,
+      "history_paths": 27285,
+      "history_updates": 1275,
+      "integer_order_keys": 192242,
+      "killer_updates": 1275,
+      "nnue_cache_hits": 1073,
+      "nnue_calls": 35916,
+      "nnue_refreshes": 22,
+      "nnue_updates": 34821,
+      "pvs_probes": 5692,
+      "pvs_researches": 153,
+      "q_full_generations": 2536,
+      "q_generated_moves": 52773,
+      "q_tactical_generations": 35908,
+      "qnodes": 38444,
+      "qstand_cutoffs": 26456,
+      "tt_cutoffs": 1088,
+      "tt_entries": 2938,
+      "tt_hits": 1299,
+      "tt_probes": 4237
+    },
+    "reductionVsOldPct": 17.590197324042368
+  },
+  "cycle2": {
+    "meanMs": 31.965125,
+    "sumRootMedianMs": 245.507,
+    "rootMedianMs": [
+      27.529,
+      28.433,
+      43.847,
+      40.306,
+      15.847,
+      18.435,
+      55.561,
+      15.549
+    ],
+    "nodesPerRound": 42681,
+    "statsPerRound": {
+      "counter_updates": 1275,
+      "history_paths": 27285,
+      "history_updates": 1275,
+      "integer_order_keys": 192242,
+      "killer_updates": 1275,
+      "nnue_cache_hits": 1073,
+      "nnue_calls": 35916,
+      "nnue_refreshes": 22,
+      "nnue_updates": 34821,
+      "pvs_probes": 5692,
+      "pvs_researches": 153,
+      "q_avoided_generations": 26714,
+      "q_deferred_nodes": 35893,
+      "q_full_generations": 2536,
+      "q_generated_moves": 20057,
+      "q_tactical_generations": 9194,
+      "qnodes": 38444,
+      "qstand_cutoffs": 26456,
+      "tt_cutoffs": 1088,
+      "tt_entries": 2938,
+      "tt_hits": 1299,
+      "tt_probes": 4237
+    },
+    "reductionVsOldPct": 19.607644096324005
+  }
+}

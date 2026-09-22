@@ -1,0 +1,84 @@
+{"at":"2026-09-21T14:21:53.457Z","engine":"yaneuraou","direction":"in","line":"usi"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"id name id name YaneuraOu NNUE KP256 6.03 32SSE42 TOURNAMENT"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"id author by yaneurao"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":""}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"option name Threads type spin default 1 min 1 max 32"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"option name USI_Hash type spin default 16 min 1 max 1024"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"option name USI_Ponder type check default false"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"option name Stochastic_Ponder type check default false"}
+{"at":"2026-09-21T14:21:53.471Z","engine":"yaneuraou","direction":"out","line":"option name MultiPV type spin default 1 min 1 max 800"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name NetworkDelay type spin default 120 min 0 max 10000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name NetworkDelay2 type spin default 1120 min 0 max 10000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name MinimumThinkingTime type spin default 2000 min 1000 max 100000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name SlowMover type spin default 100 min 1 max 1000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name MaxMovesToDraw type spin default 0 min 0 max 100000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name DepthLimit type spin default 0 min 0 max 2147483647"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name NodesLimit type spin default 0 min 0 max 9223372036854775807"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name EvalDir type string default eval"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name WriteDebugLog type check default false"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name EnteringKingRule type combo default CSARule27 var NoEnteringKing var CSARule24 var CSARule27 var TryRule"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name GenerateAllLegalMoves type check default false"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name USI_OwnBook type check default true"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name NarrowBook type check default false"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookMoves type spin default 16 min 0 max 10000"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookIgnoreRate type spin default 0 min 0 max 100"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookFile type combo default standard_book.db var no_book var standard_book.db var yaneura_book1.db var yaneura_book2.db var yaneura_book3.db var yaneura_book4.db var user_book1.db var user_book2.db var user_book3.db var book.bin"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookDir type string default book"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalDiff type spin default 30 min 0 max 99999"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalBlackLimit type spin default 0 min -99999 max 99999"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalWhiteLimit type spin default -140 min -99999 max 99999"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookDepthLimit type spin default 16 min 0 max 99999"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookOnTheFly type check default false"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name ConsiderBookMoveCount type check default false"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name BookPvMoves type spin default 8 min 1 max 246"}
+{"at":"2026-09-21T14:21:53.472Z","engine":"yaneuraou","direction":"out","line":"option name IgnoreBookPly type check default false"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name SkillLevel type spin default 20 min 0 max 20"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name DrawValueBlack type spin default -2 min -30000 max 30000"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name DrawValueWhite type spin default -2 min -30000 max 30000"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name PvInterval type spin default 300 min 0 max 100000"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name ResignValue type spin default 99999 min 0 max 99999"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name ConsiderationMode type check default false"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"option name OutputFailLHPV type check default true"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":""}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"out","line":"usiok"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"in","line":"setoption name Threads value 1"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_Hash value 32"}
+{"at":"2026-09-21T14:21:53.473Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_Ponder value false"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name Stochastic_Ponder value false"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_OwnBook value false"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name BookFile value no_book"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name PvInterval value 100"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name ResignValue value 99999"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name EnteringKingRule value NoEnteringKing"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name NetworkDelay value 0"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name NetworkDelay2 value 0"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name MinimumThinkingTime value 1000"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name SkillLevel value 20"}
+{"at":"2026-09-21T14:21:53.474Z","engine":"yaneuraou","direction":"in","line":"setoption name DrawValueBlack value 0"}
+{"at":"2026-09-21T14:21:53.475Z","engine":"yaneuraou","direction":"in","line":"setoption name DrawValueWhite value 0"}
+{"at":"2026-09-21T14:21:53.475Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T14:21:53.746Z","engine":"yaneuraou","direction":"out","line":"info string Hash table allocation: Large Pages not used."}
+{"at":"2026-09-21T14:21:53.746Z","engine":"yaneuraou","direction":"out","line":"info string EvalDirectory = /eval"}
+{"at":"2026-09-21T14:21:53.746Z","engine":"yaneuraou","direction":"out","line":"info string loading eval file : eval/nn.bin"}
+{"at":"2026-09-21T14:21:53.746Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T14:21:53.747Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T14:21:53.747Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T14:21:53.758Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T14:21:53.759Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T14:21:53.759Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 4g4f 5a4b 3i3h 4b3b 6h7h 6c6d 3g3f 7b6c 3f3e 8d8e 3e3d 8e8f 8g8f 6c5d 7h8g 5d6e 1g1f 7c7d 6i7h 6a5b 3h4g 8a7c 8i7g 6e5d 2f2e 9c9d 4g3f 9d9e 4i5h 2b4d 7g8e 7c8e 2e2d 8e9g+ 9i9g 2c2d 2h2d 9e9f 9g9f 4d8h+ 7i8h B*6i B*7a 8b7b N*3c 2a3c 2d2h 3c2e 3f2e 7b7a 5h5i P*2g 3d3c+ 3b3c 2h3h P*3g 5i6i 3g3h+ P*3d 3c3b 2e2d N*2a N*3c B*1d 6i7i P*8e 8f8e N*1b 1f1e 1b2d 1e1d 1c1d 3c2a+ P*8f 8g8f 3b2a 3d3c+ 9a9f 8f9f S*2b B*8b 7a8a 8b9c+ 2b3c B*7b L*9a P*9b 8a5a 9b9a+ 2g2h+ 9a9b 2h2i L*5f 5d6c"}
+{"at":"2026-09-21T14:21:53.763Z","engine":"yaneuraou","direction":"in","line":"go depth 10"}
+{"at":"2026-09-21T14:21:53.799Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 1234 nodes 396 nps 13655 time 29 pv 7b9d+ 2i1i"}
+{"at":"2026-09-21T14:21:53.800Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 1234 nodes 603 nps 16750 time 36 pv 7b9d+ 2i1i"}
+{"at":"2026-09-21T14:21:53.880Z","engine":"yaneuraou","direction":"out","line":"info depth 10 seldepth 14 score cp 1965 nodes 18190 nps 158173 time 115 pv 7b9d+ 4a3b 8e8d 2a2b 8d8c+ 2i1i"}
+{"at":"2026-09-21T14:21:53.881Z","engine":"yaneuraou","direction":"out","line":"bestmove 7b9d+ ponder 4a3b"}
+{"at":"2026-09-21T14:21:53.882Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T14:21:53.882Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T14:21:53.892Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T14:21:53.893Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T14:21:53.894Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 4g4f 5a4b 3i3h 4b3b 6h7h 6c6d 3g3f 7b6c 3f3e 8d8e 3e3d 8e8f 8g8f 6c5d 7h8g 5d6e 1g1f 7c7d 6i7h 6a5b 3h4g 8a7c 8i7g 6e5d 2f2e 9c9d 4g3f 9d9e 4i5h 2b4d 7g8e 7c8e 2e2d 8e9g+ 9i9g 2c2d 2h2d 9e9f 9g9f 4d8h+ 7i8h B*6i B*7a 8b7b N*3c 2a3c 2d2h 3c2e 3f2e 7b7a 5h5i P*2g 3d3c+ 3b3c 2h3h P*3g 5i6i 3g3h+ P*3d 3c3b 2e2d N*2a N*3c B*1d 6i7i P*8e 8f8e N*1b 1f1e 1b2d 1e1d 1c1d 3c2a+ P*8f 8g8f 3b2a 3d3c+ 9a9f 8f9f S*2b B*8b 7a8a 8b9c+ 2b3c B*7b L*9a P*9b 8a5a 9b9a+ 2g2h+ 9a9b 2h2i L*5f 5d6c"}
+{"at":"2026-09-21T14:21:53.896Z","engine":"yaneuraou","direction":"in","line":"go depth 10 searchmoves 7b9d+ 7b9d"}
+{"at":"2026-09-21T14:21:53.898Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 1234 nodes 4 nps 4000 time 1 pv 7b9d+ 2i1i"}
+{"at":"2026-09-21T14:21:53.900Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 1234 nodes 8 nps 8000 time 1 pv 7b9d+ 2i1i"}
+{"at":"2026-09-21T14:21:53.981Z","engine":"yaneuraou","direction":"out","line":"info depth 10 seldepth 14 score cp 1946 nodes 23443 nps 282445 time 83 pv 7b9d+ 2i1i 8e8d 2a2b 8d8c+ 4a3b 9f9e 2b2c N*5e 5c5d"}
+{"at":"2026-09-21T14:21:53.982Z","engine":"yaneuraou","direction":"out","line":"bestmove 7b9d+ ponder 2i1i"}

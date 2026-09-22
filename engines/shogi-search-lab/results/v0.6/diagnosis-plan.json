@@ -1,0 +1,37 @@
+{
+  "selection": "Own turns 3, 7, 11 in each of four games",
+  "labMs": 3000,
+  "variants": [
+    {
+      "id": "tactical",
+      "args": [
+        "--preset",
+        "tactical"
+      ]
+    },
+    {
+      "id": "selective",
+      "args": [
+        "--preset",
+        "selective"
+      ]
+    },
+    {
+      "id": "check-extension",
+      "args": [
+        "--features",
+        "tt,history,killer,counter,mate-distance,qsearch,check-extension"
+      ]
+    },
+    {
+      "id": "futility",
+      "args": [
+        "--features",
+        "tt,history,killer,counter,mate-distance,qsearch,futility"
+      ]
+    }
+  ],
+  "teacherDepth": 12,
+  "teacher": "Same fixed YaneuraOu; one MultiPV search restricted to the union of candidate moves",
+  "interpretation": "Candidate-set score gaps are heuristic teacher estimates, not exact minimax regret or win-rate improvements."
+}

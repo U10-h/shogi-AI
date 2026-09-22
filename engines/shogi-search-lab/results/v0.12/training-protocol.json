@@ -1,0 +1,27 @@
+{
+  "seed": 2026092112,
+  "epochs": 60,
+  "batchSize": 256,
+  "learningRate": 0.00015,
+  "parameterAnchor": 0.02,
+  "valueAnchor": 0.05,
+  "gapResidualClipRaw": 324,
+  "loss": "Huber raw scale 300; each root has equal total weight",
+  "configs": [
+    {
+      "name": "pair50",
+      "alpha": 0.5
+    },
+    {
+      "name": "pair100",
+      "alpha": 1.0
+    }
+  ],
+  "selection": "minimum root-weighted validation gap MAE over checkpoints and configs; base included",
+  "calibration": "b3 is not trained; recalibrated to zero mean correction on training quiet positions only",
+  "oldTestUsed": false,
+  "pairsSha256": "c0c45c7bb3657f2afdf8e87fe22e7e4d790fbab8d6e1be5ce0e047787b783d7b",
+  "baseSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "datasetSha256": "0cdab05043ce77b7015c966cae45ae78012dd11ef8040dcbda6d13970425d46b",
+  "gradientMaxError": 5.890704590783002e-13
+}

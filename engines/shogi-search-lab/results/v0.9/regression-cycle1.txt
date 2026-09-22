@@ -1,0 +1,6 @@
+./build/shogi-lab --selftest
+{"selftest":"passed","checks":115}
+./build/shogi-lab --session-selftest
+{"session_selftest":"passed","checks":1274}
+./build/shogi-lab --advanced-selftest
+{"advanced_selftest":"passed","checks":4224,"move_positions":1208,"moves_compared":29779,"random_seed":20260921}

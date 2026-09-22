@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "status": "running",
+  "binarySha256": "801be1f127dda3c79bcdcadaa2e54ba8405006ccf3c4c0ac8bb8467667a27000",
+  "freeze": {
+    "selected": "positional",
+    "selection": "Minimum validation PV-endpoint MAE among positional and learned; test unopened",
+    "lambda_": 1000,
+    "modelSha256": "137b07e6b6a516b157f8f8da3b478daa7027b4a87aeee218e21b158367b15dc1",
+    "validation": {
+      "material": {
+        "n": 226,
+        "mae": 481.88495575221236,
+        "rmse": 689.028680189652
+      },
+      "positional": {
+        "n": 226,
+        "mae": 464.04424778761063,
+        "rmse": 670.0771452086494
+      },
+      "learned": {
+        "n": 226,
+        "mae": 476.5163638584246,
+        "rmse": 694.2442108580873
+      }
+    }
+  },
+  "plans": [
+    {
+      "id": "self-test-0-black",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "black",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-0-white",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "white",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-1-black",
+      "opening": [
+        "2g2f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "black",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-1-white",
+      "opening": [
+        "2g2f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "white",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-2-black",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "6g6f",
+        "8c8d",
+        "2h7h"
+      ],
+      "candidateSide": "black",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-2-white",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "6g6f",
+        "8c8d",
+        "2h7h"
+      ],
+      "candidateSide": "white",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-3-black",
+      "opening": [
+        "5g5f",
+        "8c8d",
+        "2h5h",
+        "3c3d"
+      ],
+      "candidateSide": "black",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-test-3-white",
+      "opening": [
+        "5g5f",
+        "8c8d",
+        "2h5h",
+        "3c3d"
+      ],
+      "candidateSide": "white",
+      "opponent": "material",
+      "candidate": "positional",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "yaneura-material-black",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "black",
+      "opponent": "yaneuraou",
+      "candidate": "material",
+      "ms": 3000,
+      "maxPlies": 160
+    },
+    {
+      "id": "yaneura-positional-white",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "white",
+      "opponent": "yaneuraou",
+      "candidate": "positional",
+      "ms": 3000,
+      "maxPlies": 160
+    },
+    {
+      "id": "yaneura-material-white",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "white",
+      "opponent": "yaneuraou",
+      "candidate": "material",
+      "ms": 3000,
+      "maxPlies": 160
+    },
+    {
+      "id": "yaneura-positional-black",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ],
+      "candidateSide": "black",
+      "opponent": "yaneuraou",
+      "candidate": "positional",
+      "ms": 3000,
+      "maxPlies": 160
+    }
+  ],
+  "settings": {
+    "ponder": false,
+    "book": false,
+    "preset": "tactical",
+    "threads": 1,
+    "multiPV": 1,
+    "reuseBetweenMoves": false
+  }
+}

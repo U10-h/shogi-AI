@@ -1,0 +1,33 @@
+{"event_id":1,"parent_id":0,"kind":"root_iteration","depth":1,"sfen":"4k4/9/9/9/9/9/9/9/4K4 b - 1","history_positions":1}
+{"event_id":2,"parent_id":1,"kind":"root_candidate","move":"5i4h","probe_cause_id":0}
+{"event_id":3,"parent_id":2,"kind":"root_exact","cause_id":0,"depth":1,"move":"5i4h","score":0}
+{"event_id":4,"parent_id":1,"kind":"root_candidate","move":"5i4i","probe_cause_id":0}
+{"event_id":5,"parent_id":4,"kind":"root_exact","cause_id":0,"depth":1,"move":"5i4i","score":0}
+{"event_id":6,"parent_id":1,"kind":"root_candidate","move":"5i5h","probe_cause_id":0}
+{"event_id":7,"parent_id":6,"kind":"root_exact","cause_id":0,"depth":1,"move":"5i5h","score":0}
+{"event_id":8,"parent_id":1,"kind":"root_candidate","move":"5i6h","probe_cause_id":0}
+{"event_id":9,"parent_id":8,"kind":"root_exact","cause_id":0,"depth":1,"move":"5i6h","score":0}
+{"event_id":10,"parent_id":1,"kind":"root_candidate","move":"5i6i","probe_cause_id":0}
+{"event_id":11,"parent_id":10,"kind":"root_exact","cause_id":0,"depth":1,"move":"5i6i","score":0}
+{"event_id":12,"parent_id":0,"kind":"root_iteration","depth":2,"sfen":"4k4/9/9/9/9/9/9/9/4K4 b - 1","history_positions":1}
+{"event_id":13,"parent_id":12,"kind":"root_candidate","move":"5i4h","probe_cause_id":0}
+{"event_id":14,"parent_id":13,"kind":"root_exact","cause_id":0,"depth":2,"move":"5i4h","score":0}
+{"event_id":15,"parent_id":12,"kind":"root_candidate","move":"5i4i","probe_cause_id":0}
+{"event_id":16,"parent_id":15,"kind":"root_exact","cause_id":0,"depth":2,"move":"5i4i","score":0}
+{"event_id":17,"parent_id":12,"kind":"root_candidate","move":"5i5h","probe_cause_id":0}
+{"event_id":18,"parent_id":17,"kind":"root_exact","cause_id":0,"depth":2,"move":"5i5h","score":0}
+{"event_id":19,"parent_id":12,"kind":"root_candidate","move":"5i6h","probe_cause_id":0}
+{"event_id":20,"parent_id":19,"kind":"root_exact","cause_id":0,"depth":2,"move":"5i6h","score":0}
+{"event_id":21,"parent_id":12,"kind":"root_candidate","move":"5i6i","probe_cause_id":0}
+{"event_id":22,"parent_id":21,"kind":"root_exact","cause_id":0,"depth":2,"move":"5i6i","score":0}
+{"event_id":23,"parent_id":0,"kind":"root_iteration","depth":3,"sfen":"4k4/9/9/9/9/9/9/9/4K4 b - 1","history_positions":1}
+{"event_id":24,"parent_id":23,"kind":"root_candidate","move":"5i4h","probe_cause_id":0}
+{"event_id":25,"parent_id":24,"kind":"root_exact","cause_id":0,"depth":3,"move":"5i4h","score":0}
+{"event_id":26,"parent_id":23,"kind":"root_candidate","move":"5i4i","probe_cause_id":0}
+{"event_id":27,"parent_id":26,"kind":"root_exact","cause_id":0,"depth":3,"move":"5i4i","score":0}
+{"event_id":28,"parent_id":23,"kind":"root_candidate","move":"5i5h","probe_cause_id":0}
+{"event_id":29,"parent_id":28,"kind":"root_exact","cause_id":0,"depth":3,"move":"5i5h","score":0}
+{"event_id":30,"parent_id":23,"kind":"root_candidate","move":"5i6h","probe_cause_id":0}
+{"event_id":31,"parent_id":30,"kind":"root_exact","cause_id":0,"depth":3,"move":"5i6h","score":0}
+{"event_id":32,"parent_id":23,"kind":"root_candidate","move":"5i6i","probe_cause_id":0}
+{"event_id":33,"parent_id":32,"kind":"root_exact","cause_id":0,"depth":3,"move":"5i6i","score":0}

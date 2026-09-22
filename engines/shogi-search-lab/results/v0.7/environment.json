@@ -1,0 +1,26 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "cpu": "x86_64",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "node": "v24.19.0",
+  "binarySha256": "801be1f127dda3c79bcdcadaa2e54ba8405006ccf3c4c0ac8bb8467667a27000",
+  "sourceSha256": {
+    "src/advanced.cpp": "be69957626ed0ee9989fce78ae5122db247aa3514b3d217e10be5102cdd87930",
+    "src/advanced.hpp": "12e0c7e633c6e2acf9f4c73da710a0b5d93f06fa2b22cfb23a663d0b32291d20",
+    "src/advanced_tests.cpp": "fe8ea89956a3f5eaa33fe2f5af5052ee2324b52301f57eebfdb5b27122acdeb6",
+    "src/advanced_usi.cpp": "82e34f2e2786b87f3d0bf58eb35ea219a0cd448d08ea6f9b032ff872e16049de",
+    "src/board.cpp": "3d8d739f469e07d61fb6beb1adf017274488add59c657c2ad8a862b74943f417",
+    "src/evaluate.cpp": "c2928932a312d87e961ae478adbda3573acd02154d41d8ad5f99c3c946f9bcd7",
+    "src/lab.hpp": "88f0ec4906ac54680aefeb8000223e7bd45806da828c41dd57f0525342ffaec3",
+    "src/main.cpp": "69eebac903ec178138ab76bdcb535ceee3f8859d2433bd332023b75c782df50e",
+    "src/positional.cpp": "ca7ea130fb5603ff0acb09a48843b8e7c45c035fa409afca0e07acc199338657",
+    "src/positional.hpp": "f50c5920ea26bb1135c939c1e83255a15ff8ab41c251c26a5170f33d2691575d",
+    "src/search.cpp": "8542dc0dcd408a99b72a6cead43aa668a3ac1ccc2ba52c75231d284bd2120e86",
+    "src/session.cpp": "3ed2e229216f23f3df821bcc55cedb085c2a706d45c5695d0064123dbc968a05",
+    "src/session.hpp": "f9c2bf6a8b032f5701c1eca0122c3583594a3d6e7a14737447b4ef538defa1c8",
+    "src/session_cli.cpp": "65d2f774859f0ee6364c133f5ad8c077ebb3b14408e32ea95e9836156dfc6b4b",
+    "src/session_tests.cpp": "6e489a68e6cab9b257fac1b5a59e03e74a58b29d2c797c933d84de7a0efa7abb",
+    "src/tests.cpp": "9c58f7a756519ff3461b51dfd072b54e1868f095d0a5b52df02d222ba024b528"
+  }
+}

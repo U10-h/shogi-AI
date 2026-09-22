@@ -1,0 +1,33 @@
+{
+  "independentImplementation": "tsshogi via record_helpers.mjs",
+  "games": [
+    {
+      "id": "tactical-black",
+      "plies": 56,
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "selective-white",
+      "plies": 47,
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "tactical-white",
+      "plies": 61,
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    },
+    {
+      "id": "selective-black",
+      "plies": 70,
+      "independentlyCheckedMate": true,
+      "kifRoundTrip": true
+    }
+  ],
+  "moves": 234,
+  "pvLines": 234,
+  "pvMoves": 1619,
+  "passed": true
+}

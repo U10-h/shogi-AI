@@ -1,0 +1,194 @@
+{
+  "checks": 44,
+  "fields": [
+    "score",
+    "pv",
+    "nodes",
+    "completed_depth",
+    "has_result",
+    "stop_reason",
+    "bestmove",
+    "stats",
+    "fallback_move",
+    "fallback_pv"
+  ],
+  "rows": [
+    {
+      "game": 1,
+      "variant": "base"
+    },
+    {
+      "game": 1,
+      "variant": "pair"
+    },
+    {
+      "game": 2,
+      "variant": "base"
+    },
+    {
+      "game": 2,
+      "variant": "pair"
+    },
+    {
+      "game": 3,
+      "variant": "base"
+    },
+    {
+      "game": 3,
+      "variant": "pair"
+    },
+    {
+      "game": 4,
+      "variant": "base"
+    },
+    {
+      "game": 4,
+      "variant": "pair"
+    },
+    {
+      "game": 5,
+      "variant": "base"
+    },
+    {
+      "game": 5,
+      "variant": "pair"
+    },
+    {
+      "game": 6,
+      "variant": "base"
+    },
+    {
+      "game": 6,
+      "variant": "pair"
+    },
+    {
+      "game": 7,
+      "variant": "base"
+    },
+    {
+      "game": 7,
+      "variant": "pair"
+    },
+    {
+      "game": 8,
+      "variant": "base"
+    },
+    {
+      "game": 8,
+      "variant": "pair"
+    },
+    {
+      "game": 9,
+      "variant": "base"
+    },
+    {
+      "game": 9,
+      "variant": "pair"
+    },
+    {
+      "game": 10,
+      "variant": "base"
+    },
+    {
+      "game": 10,
+      "variant": "pair"
+    },
+    {
+      "game": 11,
+      "variant": "base"
+    },
+    {
+      "game": 11,
+      "variant": "pair"
+    },
+    {
+      "game": 12,
+      "variant": "base"
+    },
+    {
+      "game": 12,
+      "variant": "pair"
+    },
+    {
+      "game": 13,
+      "variant": "base"
+    },
+    {
+      "game": 13,
+      "variant": "pair"
+    },
+    {
+      "game": 14,
+      "variant": "base"
+    },
+    {
+      "game": 14,
+      "variant": "pair"
+    },
+    {
+      "game": 15,
+      "variant": "base"
+    },
+    {
+      "game": 15,
+      "variant": "pair"
+    },
+    {
+      "game": 16,
+      "variant": "base"
+    },
+    {
+      "game": 16,
+      "variant": "pair"
+    },
+    {
+      "game": 17,
+      "variant": "base"
+    },
+    {
+      "game": 17,
+      "variant": "pair"
+    },
+    {
+      "game": 18,
+      "variant": "base"
+    },
+    {
+      "game": 18,
+      "variant": "pair"
+    },
+    {
+      "game": 19,
+      "variant": "base"
+    },
+    {
+      "game": 19,
+      "variant": "pair"
+    },
+    {
+      "game": 20,
+      "variant": "base"
+    },
+    {
+      "game": 20,
+      "variant": "pair"
+    },
+    {
+      "game": 22,
+      "variant": "base"
+    },
+    {
+      "game": 22,
+      "variant": "pair"
+    },
+    {
+      "game": 23,
+      "variant": "base"
+    },
+    {
+      "game": 23,
+      "variant": "pair"
+    }
+  ],
+  "binarySha256": "5c2e3628635121ce17c2ef4b70a97f942a1125652ae894fc2a0df58479b0e7c4"
+}

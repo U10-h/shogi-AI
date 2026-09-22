@@ -1,0 +1,155 @@
+{
+  "roots": 22,
+  "qualityRows": 22,
+  "searches": 220,
+  "matches": {
+    "12000-pair-base": {
+      "games": 16,
+      "wins": 7,
+      "losses": 9,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.4375,
+        "ci95": [
+          0.125,
+          0.75
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.4375,
+        0.4375
+      ],
+      "fallbacks": {
+        "pair": 4,
+        "base": 4
+      },
+      "plies": 1197
+    },
+    "12000-pair-affine": {
+      "games": 16,
+      "wins": 6,
+      "losses": 10,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.375,
+        "ci95": [
+          0.1875,
+          0.625
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.375,
+        0.375
+      ],
+      "fallbacks": {
+        "pair": 10,
+        "affine": 10
+      },
+      "plies": 1198
+    },
+    "48000-pair-base": {
+      "games": 16,
+      "wins": 9,
+      "losses": 7,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.5625,
+        "ci95": [
+          0.3125,
+          0.8125
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.5625,
+        0.5625
+      ],
+      "fallbacks": {
+        "pair": 0,
+        "base": 0
+      },
+      "plies": 1389
+    },
+    "48000-pair-affine": {
+      "games": 16,
+      "wins": 6,
+      "losses": 10,
+      "draws": 0,
+      "unresolved": 0,
+      "resolvedScore": {
+        "mean": 0.375,
+        "ci95": [
+          0.1875,
+          0.5
+        ],
+        "clusters": 8,
+        "n": 16
+      },
+      "allGameScoreBounds": [
+        0.375,
+        0.375
+      ],
+      "fallbacks": {
+        "pair": 0,
+        "affine": 0
+      },
+      "plies": 1270
+    }
+  },
+  "matchCount": 64,
+  "nodeBudgetComparison": {
+    "base": {
+      "mean": 6.7272727272727275,
+      "ci95": [
+        -17.09090909090909,
+        34.18295454545453
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "pair": {
+      "mean": -78.13636363636364,
+      "ci95": [
+        -242.46818181818182,
+        33.3715909090908
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "affine": {
+      "mean": -11.590909090909092,
+      "ci95": [
+        -44.41477272727272,
+        21.959090909090843
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "anchored50": {
+      "mean": 6.363636363636363,
+      "ci95": [
+        -17.0,
+        33.77386363636362
+      ],
+      "clusters": 22,
+      "n": 22
+    },
+    "tempo40": {
+      "mean": 6.363636363636363,
+      "ci95": [
+        -17.0,
+        33.77386363636362
+      ],
+      "clusters": 22,
+      "n": 22
+    }
+  }
+}

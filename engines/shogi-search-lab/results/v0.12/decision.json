@@ -1,0 +1,8 @@
+{
+  "promotePairModel": false,
+  "promoteRankModel": false,
+  "promoteAffineControl": false,
+  "defaultEvaluationChanged": false,
+  "reason": "Static gap MAE improved but rank benefit and playing strength were not established. New leaf observations identify distribution shift and search-depth sensitivity.",
+  "next": "Collect and relabel base-reached search leaves from training-only trajectories; retain affine controls and hold out new opening families."
+}

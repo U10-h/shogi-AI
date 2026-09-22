@@ -1,0 +1,23 @@
+{
+  "utc": "2026-09-21T09:31:38.138142+00:00",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "source_sha256": {
+    "src/board.cpp": "3d8d739f469e07d61fb6beb1adf017274488add59c657c2ad8a862b74943f417",
+    "src/evaluate.cpp": "c2928932a312d87e961ae478adbda3573acd02154d41d8ad5f99c3c946f9bcd7",
+    "src/lab.hpp": "ad4b7f2159445b83d3d00d7bbbe7b755c5dc4dcf44b8896db0b864b6eda859f5",
+    "src/main.cpp": "3e569ae37a2821628baaa5a906bcbfcb8bbcdee553235a5be4a4aa89a5cd9e5a",
+    "src/search.cpp": "8542dc0dcd408a99b72a6cead43aa668a3ac1ccc2ba52c75231d284bd2120e86",
+    "src/session.cpp": "1c7781f380ebfbc28b2283af8df927feda8216d6bd7767c3a0c569cde45bd76e",
+    "src/session.hpp": "cfd9593d30d1e544a95e299e2de9a05fe4e249d32cf50903eb718fb6c2ad8a9d",
+    "src/session_cli.cpp": "65d2f774859f0ee6364c133f5ad8c077ebb3b14408e32ea95e9836156dfc6b4b",
+    "src/session_tests.cpp": "c411442053a558aa59eeadce5ca8e91145c248f3ed097c5748490dbb26718c89",
+    "src/tests.cpp": "9c58f7a756519ff3461b51dfd072b54e1868f095d0a5b52df02d222ba024b528"
+  },
+  "suite_sha256": "ec53242f6c15f40426946116ef827824a0520ee39ab6c1b1a4d81771fff728b0",
+  "conditions": "Three specified positions, ranks 1/3/5, three repeats, sequential alternating order. Parent depth 3, then child depth 3; both return exact top five.",
+  "timing": "Continuation search only; prior parent analysis excluded and recorded separately. First samples retained, no warm-up runs.",
+  "tree_capacity": 50000,
+  "all_top_five_values_match_fresh": true,
+  "all_pvs_legally_replay_and_match_leaf_score": true
+}

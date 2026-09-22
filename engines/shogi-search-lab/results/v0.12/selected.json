@@ -1,0 +1,10 @@
+{
+  "selected": {
+    "name": "pair100",
+    "gapMaeCp": 606.4842807924205,
+    "modelSha256": "920eb161c5cc7aba9d9763ad839d0d8ea28a94408d20ddc347cca12194507e68"
+  },
+  "frozenAt": "2026-09-21T16:41:12.467636+00:00",
+  "testOpened": false,
+  "trainingCodeSha256": "2080fe70aefe78e2c572239a1477d584bcbf365de996d78ec1a8a1e56c12eee1"
+}

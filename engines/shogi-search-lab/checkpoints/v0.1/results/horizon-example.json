@@ -1,0 +1,39 @@
+{
+  "description": "Separate teaching example, not part of the timing suite. Pawn at 5d is defended by gold at 5c.",
+  "sfen": "8k/9/4g4/4p4/4R4/9/9/9/K8 b - 1",
+  "results": [
+    {
+      "algorithm": "ordered",
+      "depth": 1,
+      "complete": true,
+      "score": 550,
+      "bestmove": "5e5d",
+      "nodes": 17,
+      "leaves": 16,
+      "terminals": 0,
+      "cutoffs": 0,
+      "skipped_siblings": 0,
+      "elapsed_ms": 0.072,
+      "pv": [
+        "5e5d"
+      ]
+    },
+    {
+      "algorithm": "ordered",
+      "depth": 2,
+      "complete": true,
+      "score": 350,
+      "bestmove": "5e1e",
+      "nodes": 42,
+      "leaves": 25,
+      "terminals": 0,
+      "cutoffs": 14,
+      "skipped_siblings": 110,
+      "elapsed_ms": 0.186,
+      "pv": [
+        "5e1e",
+        "1a2a"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "groups": [
+    {
+      "id": "train-0",
+      "split": "train",
+      "opening": [
+        "7g7f",
+        "3c3d"
+      ]
+    },
+    {
+      "id": "train-1",
+      "split": "train",
+      "opening": [
+        "2g2f",
+        "8c8d"
+      ]
+    },
+    {
+      "id": "train-2",
+      "split": "train",
+      "opening": [
+        "7g7f",
+        "8c8d"
+      ]
+    },
+    {
+      "id": "train-3",
+      "split": "train",
+      "opening": [
+        "2g2f",
+        "3c3d"
+      ]
+    },
+    {
+      "id": "train-4",
+      "split": "train",
+      "opening": [
+        "5g5f",
+        "3c3d",
+        "2h5h",
+        "8c8d"
+      ]
+    },
+    {
+      "id": "train-5",
+      "split": "train",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "2h6h",
+        "8c8d"
+      ]
+    },
+    {
+      "id": "validation-0",
+      "split": "validation",
+      "opening": [
+        "7g7f",
+        "8c8d",
+        "6g6f",
+        "3c3d"
+      ]
+    },
+    {
+      "id": "validation-1",
+      "split": "validation",
+      "opening": [
+        "2g2f",
+        "8c8d",
+        "2f2e",
+        "8d8e"
+      ]
+    },
+    {
+      "id": "test-0",
+      "split": "test",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "8h2b+",
+        "3a2b"
+      ]
+    },
+    {
+      "id": "test-1",
+      "split": "test",
+      "opening": [
+        "2g2f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ]
+    },
+    {
+      "id": "test-2",
+      "split": "test",
+      "opening": [
+        "7g7f",
+        "3c3d",
+        "6g6f",
+        "8c8d",
+        "2h7h"
+      ]
+    },
+    {
+      "id": "test-3",
+      "split": "test",
+      "opening": [
+        "5g5f",
+        "8c8d",
+        "2h5h",
+        "3c3d"
+      ]
+    }
+  ],
+  "pliesPerGroup": 40,
+  "teacherDepth": 8,
+  "multipv": 3,
+  "seed": 20260921,
+  "selection": "Choose top 3 with fixed PRNG if within 180 cp; otherwise best. Labels use full PV endpoints. Test roots at offsets 4,12,20,28.",
+  "fit": "Fixed material + 38 positional features. Ridge around manual prior; lambda in [10,100,1000], chosen on validation MAE only. Exclude train/validation endpoint duplicates with later splits.",
+  "comparison": "Freeze final weights before test; tactical search unchanged; material, manual and learned; 16 unseen roots, 3000 ms, depth 3 also. Teacher depth 12 MultiPV over union. No timing concurrency.",
+  "match": "Final candidate vs material: 4 test openings, colors swapped, 300 ms per move, 200 ply cap. Candidate and material vs YaneuraOu: test-0 opening colors swapped, 3000 ms each, 160 ply cap. No Elo inference."
+}

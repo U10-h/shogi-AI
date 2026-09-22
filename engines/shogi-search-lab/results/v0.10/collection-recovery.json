@@ -1,0 +1,26 @@
+{
+  "incompleteCheckpointIds": [
+    8,
+    182,
+    106,
+    105,
+    189,
+    125,
+    57,
+    2,
+    151,
+    55,
+    126,
+    121,
+    95,
+    120,
+    145,
+    54,
+    75,
+    162,
+    166,
+    147,
+    112
+  ],
+  "action": "Regenerate incomplete games from their fixed seeds; retain finished games; write immutable final-game files; only final-game files enter dataset."
+}

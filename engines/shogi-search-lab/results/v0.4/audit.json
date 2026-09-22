@@ -1,0 +1,907 @@
+{
+  "status": "passed",
+  "certificates": 4150,
+  "proven_exclusions": 3914,
+  "pv_endpoints": 216,
+  "detailed_trace_events": 1708,
+  "retained_candidates": [
+    {
+      "rank": 1,
+      "move": "7g7f",
+      "warm_nodes": 1788,
+      "cold_nodes": 4492
+    },
+    {
+      "rank": 2,
+      "move": "1g1f",
+      "warm_nodes": 1591,
+      "cold_nodes": 3858
+    },
+    {
+      "rank": 3,
+      "move": "1i1h",
+      "warm_nodes": 1491,
+      "cold_nodes": 3466
+    },
+    {
+      "rank": 4,
+      "move": "2g2f",
+      "warm_nodes": 1542,
+      "cold_nodes": 3736
+    },
+    {
+      "rank": 5,
+      "move": "2h1h",
+      "warm_nodes": 1525,
+      "cold_nodes": 3646
+    }
+  ],
+  "shadow_pruning": {
+    "fewest_replies_keep5": {
+      "cases": 22,
+      "cases_losing_best_value": 5,
+      "cases_missing_top5": 16
+    },
+    "depth1_keep5": {
+      "cases": 22,
+      "cases_losing_best_value": 3,
+      "cases_missing_top5": 17
+    },
+    "depth1_margin200": {
+      "cases": 22,
+      "cases_losing_best_value": 0,
+      "cases_missing_top5": 1
+    }
+  },
+  "shadow_cases": [
+    {
+      "case": "initial",
+      "policy": "fewest_replies_keep5",
+      "legal": 30,
+      "retained": 5,
+      "top5_missing": [
+        "7g7f"
+      ],
+      "best_value_loss": 200,
+      "reference_best": "7g7f",
+      "reference_score": 200,
+      "retained_best": 0
+    },
+    {
+      "case": "initial",
+      "policy": "depth1_keep5",
+      "legal": 30,
+      "retained": 5,
+      "top5_missing": [
+        "7g7f"
+      ],
+      "best_value_loss": 200,
+      "reference_best": "7g7f",
+      "reference_score": 200,
+      "retained_best": 0
+    },
+    {
+      "case": "initial",
+      "policy": "depth1_margin200",
+      "legal": 30,
+      "retained": 30,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "7g7f",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "gokigen-6",
+      "policy": "fewest_replies_keep5",
+      "legal": 41,
+      "retained": 5,
+      "top5_missing": [
+        "1g1f",
+        "1i1h",
+        "2e2d",
+        "2h1h",
+        "2h2f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "gokigen-6",
+      "policy": "depth1_keep5",
+      "legal": 41,
+      "retained": 5,
+      "top5_missing": [
+        "2e2d",
+        "2h1h",
+        "2h2f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "gokigen-6",
+      "policy": "depth1_margin200",
+      "legal": 41,
+      "retained": 41,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "gokigen-20",
+      "policy": "fewest_replies_keep5",
+      "legal": 39,
+      "retained": 5,
+      "top5_missing": [
+        "3d4c",
+        "3d4c+",
+        "2d2e"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "2c2b+",
+      "reference_score": 650,
+      "retained_best": 650
+    },
+    {
+      "case": "gokigen-20",
+      "policy": "depth1_keep5",
+      "legal": 39,
+      "retained": 5,
+      "top5_missing": [
+        "2c2b",
+        "2d2e"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "2c2b+",
+      "reference_score": 650,
+      "retained_best": 650
+    },
+    {
+      "case": "gokigen-20",
+      "policy": "depth1_margin200",
+      "legal": 39,
+      "retained": 39,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "2c2b+",
+      "reference_score": 650,
+      "retained_best": 650
+    },
+    {
+      "case": "gokigen-36",
+      "policy": "fewest_replies_keep5",
+      "legal": 85,
+      "retained": 5,
+      "top5_missing": [
+        "R*4a",
+        "R*8b",
+        "3f5d",
+        "P*2d",
+        "1i1h"
+      ],
+      "best_value_loss": 2900,
+      "reference_best": "R*4a",
+      "reference_score": 1100,
+      "retained_best": -1800
+    },
+    {
+      "case": "gokigen-36",
+      "policy": "depth1_keep5",
+      "legal": 85,
+      "retained": 5,
+      "top5_missing": [
+        "R*4a",
+        "R*8b",
+        "P*2d"
+      ],
+      "best_value_loss": 500,
+      "reference_best": "R*4a",
+      "reference_score": 1100,
+      "retained_best": 600
+    },
+    {
+      "case": "gokigen-36",
+      "policy": "depth1_margin200",
+      "legal": 85,
+      "retained": 85,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "R*4a",
+      "reference_score": 1100,
+      "retained_best": 1100
+    },
+    {
+      "case": "gokigen-52",
+      "policy": "fewest_replies_keep5",
+      "legal": 86,
+      "retained": 5,
+      "top5_missing": [
+        "3f1h",
+        "P*2g",
+        "P*2h",
+        "3i3h"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "3f1h",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "gokigen-52",
+      "policy": "depth1_keep5",
+      "legal": 86,
+      "retained": 5,
+      "top5_missing": [
+        "P*2e",
+        "P*2g",
+        "P*2h",
+        "3i3h"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "3f1h",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "gokigen-52",
+      "policy": "depth1_margin200",
+      "legal": 86,
+      "retained": 86,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "3f1h",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "bishop-exchange",
+      "policy": "fewest_replies_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "B*7g",
+        "B*8f",
+        "B*9e",
+        "1g1f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "B*1e",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "bishop-exchange",
+      "policy": "depth1_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "B*1e",
+        "B*7g",
+        "B*8f",
+        "B*9e"
+      ],
+      "best_value_loss": 200,
+      "reference_best": "B*1e",
+      "reference_score": 200,
+      "retained_best": 0
+    },
+    {
+      "case": "bishop-exchange",
+      "policy": "depth1_margin200",
+      "legal": 77,
+      "retained": 77,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "B*1e",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "pin-and-drop",
+      "policy": "fewest_replies_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "5g5h",
+        "5i4h",
+        "5i5h",
+        "5i6h",
+        "P*5f"
+      ],
+      "best_value_loss": 200,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -550
+    },
+    {
+      "case": "pin-and-drop",
+      "policy": "depth1_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "5i6h",
+        "P*5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -350
+    },
+    {
+      "case": "pin-and-drop",
+      "policy": "depth1_margin200",
+      "legal": 77,
+      "retained": 77,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -350
+    },
+    {
+      "case": "promotion",
+      "policy": "fewest_replies_keep5",
+      "legal": 7,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "promotion",
+      "policy": "depth1_keep5",
+      "legal": 7,
+      "retained": 5,
+      "top5_missing": [
+        "5i6i"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "promotion",
+      "policy": "depth1_margin200",
+      "legal": 7,
+      "retained": 7,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "holdout-pin-and-drop",
+      "policy": "fewest_replies_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "5g5h",
+        "5i4h",
+        "5i5h",
+        "5i6h",
+        "P*5f"
+      ],
+      "best_value_loss": 200,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -550
+    },
+    {
+      "case": "holdout-pin-and-drop",
+      "policy": "depth1_keep5",
+      "legal": 77,
+      "retained": 5,
+      "top5_missing": [
+        "5i6h",
+        "P*5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -350
+    },
+    {
+      "case": "holdout-pin-and-drop",
+      "policy": "depth1_margin200",
+      "legal": 77,
+      "retained": 77,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5g5h",
+      "reference_score": -350,
+      "retained_best": -350
+    },
+    {
+      "case": "holdout-random-0-7",
+      "policy": "fewest_replies_keep5",
+      "legal": 40,
+      "retained": 5,
+      "top5_missing": [
+        "1a1b",
+        "1c1d",
+        "2a3c"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "2b8h+",
+      "reference_score": 2700,
+      "retained_best": 2700
+    },
+    {
+      "case": "holdout-random-0-7",
+      "policy": "depth1_keep5",
+      "legal": 40,
+      "retained": 5,
+      "top5_missing": [
+        "2a3c"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "2b8h+",
+      "reference_score": 2700,
+      "retained_best": 2700
+    },
+    {
+      "case": "holdout-random-0-7",
+      "policy": "depth1_margin200",
+      "legal": 40,
+      "retained": 40,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "2b8h+",
+      "reference_score": 2700,
+      "retained_best": 2700
+    },
+    {
+      "case": "holdout-random-0-16",
+      "policy": "fewest_replies_keep5",
+      "legal": 29,
+      "retained": 5,
+      "top5_missing": [
+        "4i3h",
+        "4i3i"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "9i9g",
+      "reference_score": 500,
+      "retained_best": 500
+    },
+    {
+      "case": "holdout-random-0-16",
+      "policy": "depth1_keep5",
+      "legal": 29,
+      "retained": 5,
+      "top5_missing": [
+        "4i3h",
+        "4i3i"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "9i9g",
+      "reference_score": 500,
+      "retained_best": 500
+    },
+    {
+      "case": "holdout-random-0-16",
+      "policy": "depth1_margin200",
+      "legal": 29,
+      "retained": 6,
+      "top5_missing": [
+        "4i3h",
+        "4i3i"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "9i9g",
+      "reference_score": 500,
+      "retained_best": 500
+    },
+    {
+      "case": "holdout-random-0-25",
+      "policy": "fewest_replies_keep5",
+      "legal": 38,
+      "retained": 5,
+      "top5_missing": [
+        "6i7i",
+        "9e9f",
+        "8a9c"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "6i6h",
+      "reference_score": 2200,
+      "retained_best": 2200
+    },
+    {
+      "case": "holdout-random-0-25",
+      "policy": "depth1_keep5",
+      "legal": 38,
+      "retained": 5,
+      "top5_missing": [
+        "6i7i",
+        "8a9c"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "6i6h",
+      "reference_score": 2200,
+      "retained_best": 2200
+    },
+    {
+      "case": "holdout-random-0-25",
+      "policy": "depth1_margin200",
+      "legal": 38,
+      "retained": 38,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "6i6h",
+      "reference_score": 2200,
+      "retained_best": 2200
+    },
+    {
+      "case": "holdout-random-1-2",
+      "policy": "fewest_replies_keep5",
+      "legal": 30,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "holdout-random-1-2",
+      "policy": "depth1_keep5",
+      "legal": 30,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "holdout-random-1-2",
+      "policy": "depth1_margin200",
+      "legal": 30,
+      "retained": 30,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "1g1f",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "holdout-random-1-11",
+      "policy": "fewest_replies_keep5",
+      "legal": 24,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "3c3d",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-11",
+      "policy": "depth1_keep5",
+      "legal": 24,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "3c3d",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-11",
+      "policy": "depth1_margin200",
+      "legal": 24,
+      "retained": 24,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "3c3d",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-20",
+      "policy": "fewest_replies_keep5",
+      "legal": 25,
+      "retained": 5,
+      "top5_missing": [
+        "7g7f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5f5e",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-20",
+      "policy": "depth1_keep5",
+      "legal": 25,
+      "retained": 5,
+      "top5_missing": [
+        "7g7f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5f5e",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-20",
+      "policy": "depth1_margin200",
+      "legal": 25,
+      "retained": 25,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5f5e",
+      "reference_score": 200,
+      "retained_best": 200
+    },
+    {
+      "case": "holdout-random-1-29",
+      "policy": "fewest_replies_keep5",
+      "legal": 25,
+      "retained": 5,
+      "top5_missing": [
+        "8e8f",
+        "5c5d",
+        "6d6e"
+      ],
+      "best_value_loss": 450,
+      "reference_best": "8e8f",
+      "reference_score": 250,
+      "retained_best": -200
+    },
+    {
+      "case": "holdout-random-1-29",
+      "policy": "depth1_keep5",
+      "legal": 25,
+      "retained": 5,
+      "top5_missing": [
+        "5c5d"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "8e8f",
+      "reference_score": 250,
+      "retained_best": 250
+    },
+    {
+      "case": "holdout-random-1-29",
+      "policy": "depth1_margin200",
+      "legal": 25,
+      "retained": 25,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "8e8f",
+      "reference_score": 250,
+      "retained_best": 250
+    },
+    {
+      "case": "recapture-trap",
+      "policy": "fewest_replies_keep5",
+      "legal": 16,
+      "retained": 5,
+      "top5_missing": [
+        "5e5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5e1e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "recapture-trap",
+      "policy": "depth1_keep5",
+      "legal": 16,
+      "retained": 5,
+      "top5_missing": [
+        "5e5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5e1e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "recapture-trap",
+      "policy": "depth1_margin200",
+      "legal": 16,
+      "retained": 16,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5e1e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "mate-one",
+      "policy": "fewest_replies_keep5",
+      "legal": 21,
+      "retained": 5,
+      "top5_missing": [
+        "5d5e",
+        "5d5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5c4c",
+      "reference_score": 99999,
+      "retained_best": 99999
+    },
+    {
+      "case": "mate-one",
+      "policy": "depth1_keep5",
+      "legal": 21,
+      "retained": 5,
+      "top5_missing": [
+        "5d5e",
+        "5d5f"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5c4c",
+      "reference_score": 99999,
+      "retained_best": 99999
+    },
+    {
+      "case": "mate-one",
+      "policy": "depth1_margin200",
+      "legal": 21,
+      "retained": 21,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5c4c",
+      "reference_score": 99999,
+      "retained_best": 99999
+    },
+    {
+      "case": "flat-ties",
+      "policy": "fewest_replies_keep5",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "flat-ties",
+      "policy": "depth1_keep5",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "flat-ties",
+      "policy": "depth1_margin200",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "fewer-than-five",
+      "policy": "fewest_replies_keep5",
+      "legal": 3,
+      "retained": 3,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "9i8h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "fewer-than-five",
+      "policy": "depth1_keep5",
+      "legal": 3,
+      "retained": 3,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "9i8h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "fewer-than-five",
+      "policy": "depth1_margin200",
+      "legal": 3,
+      "retained": 3,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "9i8h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "recapture-trap-d4",
+      "policy": "fewest_replies_keep5",
+      "legal": 16,
+      "retained": 5,
+      "top5_missing": [
+        "5e6e",
+        "5e7e",
+        "5e8e",
+        "5e9e"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5e4e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "recapture-trap-d4",
+      "policy": "depth1_keep5",
+      "legal": 16,
+      "retained": 5,
+      "top5_missing": [
+        "5e6e",
+        "5e7e",
+        "5e8e",
+        "5e9e"
+      ],
+      "best_value_loss": 0,
+      "reference_best": "5e4e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "recapture-trap-d4",
+      "policy": "depth1_margin200",
+      "legal": 16,
+      "retained": 16,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5e4e",
+      "reference_score": 550,
+      "retained_best": 550
+    },
+    {
+      "case": "flat-ties-d4",
+      "policy": "fewest_replies_keep5",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "flat-ties-d4",
+      "policy": "depth1_keep5",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    },
+    {
+      "case": "flat-ties-d4",
+      "policy": "depth1_margin200",
+      "legal": 5,
+      "retained": 5,
+      "top5_missing": [],
+      "best_value_loss": 0,
+      "reference_best": "5i4h",
+      "reference_score": 0,
+      "retained_best": 0
+    }
+  ]
+}

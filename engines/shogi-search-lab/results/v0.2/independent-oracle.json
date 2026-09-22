@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "method": "Independent tsshogi legal moves and explicit black max / white min, shallow fixed trees. Repetition tested separately in C++.",
+  "cases": [
+    {
+      "id": "initial",
+      "depth": 2,
+      "expected": 0,
+      "actual": 0,
+      "oracle_nodes": 931,
+      "pv": [
+        "1g1f",
+        "1a1b"
+      ]
+    },
+    {
+      "id": "gokigen-6",
+      "depth": 2,
+      "expected": 0,
+      "actual": 0,
+      "oracle_nodes": 1500,
+      "pv": [
+        "8h2b+",
+        "3a2b"
+      ]
+    },
+    {
+      "id": "trap-black",
+      "depth": 2,
+      "expected": 350,
+      "actual": 350,
+      "oracle_nodes": 152,
+      "pv": [
+        "5e1e",
+        "1a2a"
+      ]
+    },
+    {
+      "id": "trap-white",
+      "depth": 2,
+      "expected": 1650,
+      "actual": 1650,
+      "oracle_nodes": 141,
+      "pv": [
+        "5d5e",
+        "9i8h"
+      ]
+    },
+    {
+      "id": "mate-in-one",
+      "depth": 2,
+      "expected": 99999,
+      "actual": 99999,
+      "oracle_nodes": 56,
+      "pv": [
+        "5c4c"
+      ]
+    },
+    {
+      "id": "mated-white",
+      "depth": 2,
+      "expected": -100000,
+      "actual": -100000,
+      "oracle_nodes": 1,
+      "pv": []
+    },
+    {
+      "id": "promotion",
+      "depth": 3,
+      "expected": 550,
+      "actual": 550,
+      "oracle_nodes": 338,
+      "pv": [
+        "9c9b+",
+        "5a4a",
+        "5i4h"
+      ]
+    },
+    {
+      "id": "bishop-exchange",
+      "depth": 2,
+      "expected": 0,
+      "actual": 0,
+      "oracle_nodes": 5468,
+      "pv": [
+        "1g1f",
+        "1a1b"
+      ]
+    },
+    {
+      "id": "pin-and-drop",
+      "depth": 2,
+      "expected": -550,
+      "actual": -550,
+      "oracle_nodes": 1350,
+      "pv": [
+        "P*5b",
+        "5a5b"
+      ]
+    }
+  ]
+}

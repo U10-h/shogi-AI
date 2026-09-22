@@ -1,0 +1,8 @@
+{
+  "observation": "Anchored50 changes validation scores by mean +40.76cp; mean absolute correction42.53cp.",
+  "control": "Keep all original weights, add36 raw (=40cp) to the output bias, encoded as +576 before division16. No new input features.",
+  "purpose": "Distinguish input-dependent learned head from simple side-to-move calibration.",
+  "modelSha256": "02aea154f0afedd71e24ab64dd384e53a54451fbc4f508ca2781d50ba6a0551f",
+  "testUsed": false,
+  "frozenBeforeBiasControlResults": true
+}

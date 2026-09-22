@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "recordedAt": "2026-09-21T11:32:16.236Z",
+  "status": "running",
+  "settings": {
+    "timeMs": 3000,
+    "ponder": false,
+    "opening": "平手・初期局面",
+    "maxPlies": 256,
+    "enteringKing": false,
+    "lab": {
+      "version": "0.5",
+      "binarySha256": "d62ca273d191b71b0033038dd0071064b237e5e3b800aea06da83d80014de4e8",
+      "threads": 1,
+      "multiPV": 1,
+      "maxDepth": 16,
+      "maxNodes": 1000000000,
+      "reuseBetweenMoves": false
+    },
+    "opponent": {
+      "version": "6.03",
+      "variant": "NNUE KP256 / WASM 0.1.2",
+      "evaluation": "2019-01-15 KP256",
+      "wasmSha256": "ba9bd600d048e9b3e43eec8a155883815a5620f4adf61f659faa1b7c0dd65f1b",
+      "evaluationSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9"
+    }
+  },
+  "plans": [
+    {
+      "id": "tactical-black",
+      "preset": "tactical",
+      "labSide": "black"
+    },
+    {
+      "id": "selective-white",
+      "preset": "selective",
+      "labSide": "white"
+    },
+    {
+      "id": "tactical-white",
+      "preset": "tactical",
+      "labSide": "white"
+    },
+    {
+      "id": "selective-black",
+      "preset": "selective",
+      "labSide": "black"
+    }
+  ]
+}

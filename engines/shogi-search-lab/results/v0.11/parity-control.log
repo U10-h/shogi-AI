@@ -1,0 +1,77 @@
+{
+  "1": {
+    "n": 16,
+    "sameMove": 16,
+    "samePv": 16,
+    "rawScoreDifferences": [
+      -35,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36
+    ],
+    "scoreUnit": "pawn90_raw",
+    "allComplete": true
+  },
+  "2": {
+    "n": 16,
+    "sameMove": 16,
+    "samePv": 16,
+    "rawScoreDifferences": [
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36,
+      36
+    ],
+    "scoreUnit": "pawn90_raw",
+    "allComplete": true
+  },
+  "3": {
+    "n": 16,
+    "sameMove": 16,
+    "samePv": 16,
+    "rawScoreDifferences": [
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36,
+      -36
+    ],
+    "scoreUnit": "pawn90_raw",
+    "allComplete": true
+  }
+}

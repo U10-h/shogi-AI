@@ -1,0 +1,300 @@
+{
+  "rawLabels": 1433,
+  "retainedLabels": 1352,
+  "features": 38,
+  "method": "Teacher PV endpoint residual ridge around manual prior; fixed material; no intercept; positional correction clipped to \u00b11500",
+  "candidates": [
+    {
+      "lambda_": 10,
+      "validation": {
+        "n": 226,
+        "mae": 528.0038454998327,
+        "rmse": 735.053170203023
+      }
+    },
+    {
+      "lambda_": 100,
+      "validation": {
+        "n": 226,
+        "mae": 501.7317418222039,
+        "rmse": 720.2224879823613
+      }
+    },
+    {
+      "lambda_": 1000,
+      "validation": {
+        "n": 226,
+        "mae": 476.5163638584246,
+        "rmse": 694.2442108580873
+      }
+    }
+  ],
+  "freeze": {
+    "selected": "positional",
+    "selection": "Minimum validation PV-endpoint MAE among positional and learned; test unopened",
+    "lambda_": 1000,
+    "modelSha256": "137b07e6b6a516b157f8f8da3b478daa7027b4a87aeee218e21b158367b15dc1",
+    "validation": {
+      "material": {
+        "n": 226,
+        "mae": 481.88495575221236,
+        "rmse": 689.028680189652
+      },
+      "positional": {
+        "n": 226,
+        "mae": 464.04424778761063,
+        "rmse": 670.0771452086494
+      },
+      "learned": {
+        "n": 226,
+        "mae": 476.5163638584246,
+        "rmse": 694.2442108580873
+      }
+    }
+  },
+  "metrics": {
+    "train": {
+      "material": {
+        "n": 672,
+        "mae": 262.96875,
+        "rmse": 476.36666331374056
+      },
+      "positional": {
+        "n": 672,
+        "mae": 259.0386904761905,
+        "rmse": 480.1326422632257
+      },
+      "learned": {
+        "n": 672,
+        "mae": 231.77059921101326,
+        "rmse": 453.5895740475403
+      }
+    },
+    "validation": {
+      "material": {
+        "n": 226,
+        "mae": 481.88495575221236,
+        "rmse": 689.028680189652
+      },
+      "positional": {
+        "n": 226,
+        "mae": 464.04424778761063,
+        "rmse": 670.0771452086494
+      },
+      "learned": {
+        "n": 226,
+        "mae": 476.5163638584246,
+        "rmse": 694.2442108580873
+      }
+    },
+    "test": {
+      "material": {
+        "n": 454,
+        "mae": 300.54185022026434,
+        "rmse": 534.1722774783728
+      },
+      "positional": {
+        "n": 454,
+        "mae": 289.6409691629956,
+        "rmse": 525.3958713064874
+      },
+      "learned": {
+        "n": 454,
+        "mae": 284.5734309126158,
+        "rmse": 526.2624356953721
+      }
+    }
+  },
+  "weights": [
+    {
+      "name": "king_advance_squared",
+      "manual": -5.0,
+      "learned": -8.509271628734254
+    },
+    {
+      "name": "king_centrality",
+      "manual": -8.0,
+      "learned": -13.5088345359001
+    },
+    {
+      "name": "gold_adjacent",
+      "manual": 45.0,
+      "learned": 33.77211056785558
+    },
+    {
+      "name": "gold_near",
+      "manual": 15.0,
+      "learned": 29.765936770758678
+    },
+    {
+      "name": "silver_adjacent",
+      "manual": 25.0,
+      "learned": 22.819836481321552
+    },
+    {
+      "name": "silver_near",
+      "manual": 8.0,
+      "learned": 17.899880983670414
+    },
+    {
+      "name": "pawn_shield",
+      "manual": 20.0,
+      "learned": -0.16463161763136114
+    },
+    {
+      "name": "enemy_ring_attacks",
+      "manual": -18.0,
+      "learned": -16.949455541008934
+    },
+    {
+      "name": "own_ring_defenses",
+      "manual": 7.0,
+      "learned": 4.555263363405031
+    },
+    {
+      "name": "rook_near_own_king",
+      "manual": -5.0,
+      "learned": -12.979751808978474
+    },
+    {
+      "name": "bishop_near_own_king",
+      "manual": 0.0,
+      "learned": -8.258253667929699
+    },
+    {
+      "name": "gold_advance",
+      "manual": -2.0,
+      "learned": 2.4205193089678163
+    },
+    {
+      "name": "silver_advance",
+      "manual": 3.0,
+      "learned": 8.962200090817486
+    },
+    {
+      "name": "knight_advance",
+      "manual": 2.0,
+      "learned": 7.479224854201301
+    },
+    {
+      "name": "lance_advance",
+      "manual": -8.0,
+      "learned": -7.181138165653831
+    },
+    {
+      "name": "pawn_advance",
+      "manual": 2.0,
+      "learned": 0.7842609298630927
+    },
+    {
+      "name": "rook_advance",
+      "manual": 2.0,
+      "learned": -3.892381291597136
+    },
+    {
+      "name": "bishop_advance",
+      "manual": 1.0,
+      "learned": -15.894513310456798
+    },
+    {
+      "name": "gold_centrality",
+      "manual": 0.0,
+      "learned": -8.006332497279084
+    },
+    {
+      "name": "silver_centrality",
+      "manual": 2.0,
+      "learned": 10.78415342560592
+    },
+    {
+      "name": "knight_centrality",
+      "manual": 1.0,
+      "learned": 16.23392285408889
+    },
+    {
+      "name": "central_pawn_advance",
+      "manual": 1.0,
+      "learned": -2.054262222602933
+    },
+    {
+      "name": "rook_mobility",
+      "manual": 4.0,
+      "learned": 11.271822449380391
+    },
+    {
+      "name": "bishop_mobility",
+      "manual": 4.0,
+      "learned": -2.2145027065106957
+    },
+    {
+      "name": "lance_mobility",
+      "manual": 1.0,
+      "learned": -2.5846136955160333
+    },
+    {
+      "name": "knight_mobility",
+      "manual": 3.0,
+      "learned": 8.819549767123284
+    },
+    {
+      "name": "silver_mobility",
+      "manual": 2.0,
+      "learned": 1.2744229333802028
+    },
+    {
+      "name": "gold_mobility",
+      "manual": 1.0,
+      "learned": -0.49778676183251713
+    },
+    {
+      "name": "promoted_king_proximity",
+      "manual": 6.0,
+      "learned": -13.13846996670381
+    },
+    {
+      "name": "attacker_king_proximity",
+      "manual": 1.0,
+      "learned": 1.8619852520738014
+    },
+    {
+      "name": "hand_pawn",
+      "manual": 10.0,
+      "learned": 2.9502102851129637
+    },
+    {
+      "name": "hand_lance",
+      "manual": 0.0,
+      "learned": 1.9114265142523799
+    },
+    {
+      "name": "hand_knight",
+      "manual": 0.0,
+      "learned": 7.969584163687064
+    },
+    {
+      "name": "hand_silver",
+      "manual": 5.0,
+      "learned": -1.4196394321937076
+    },
+    {
+      "name": "hand_bishop",
+      "manual": 0.0,
+      "learned": -8.554171010834095
+    },
+    {
+      "name": "hand_rook",
+      "manual": 0.0,
+      "learned": 0.527208088743622
+    },
+    {
+      "name": "hand_gold",
+      "manual": 5.0,
+      "learned": 9.588016291029767
+    },
+    {
+      "name": "empty_king_ring_with_enemy_hand",
+      "manual": -5.0,
+      "learned": -2.514586997943539
+    }
+  ]
+}
