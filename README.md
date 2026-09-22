@@ -119,7 +119,9 @@ npm start
 
 ## GitHubへの保存状況
 
-初回と2026-09-20の保存要求はGitHub連携から `403 Resource not accessible by integration` で拒否されました。リポジトリへのコード保存はまだ完了していません。連携の書き込み権限が整ったら、ソース一式を `U10-h/shogi-AI` に保存する必要があります。利用ページの「エンジン・ライセンス」からソースZIPを取得できます。
+2026-09-22、ユーザーの書き込み許可に基づき、Webアプリの既存17コミットを維持し、探索研究の保存済みスナップショットをv0.14まで順に取り込みました。実装・学習モデル・棋譜・探索ログ・報告書・再現手順は [engines/shogi-search-lab](engines/shogi-search-lab) にあります。保存版の出所と検証結果は [履歴の取込み記録](docs/history/github-import-20260922.md) にまとめています。
+
+送信先は `U10-h/shogi-AI`。この取込み時点では、GitHub連携APIの `Invalid MCP request metadata` と通常のGit接続の書き込み認証未設定により、リモートへの送信は未完了です。権限追加の再承認ではなく、認証済み接続の復旧が必要です。
 
 設計と次の実装順序は [docs/ROADMAP.md](docs/ROADMAP.md)。ライセンスは [GPLv3](LICENSE)。同梱ライブラリには個別のライセンスが適用されます。
 
