@@ -12,7 +12,6 @@ class Nnue {
 public:
     Nnue(const std::string& path, const std::string& policy);
     int operator()(const Board& board) const;
-    void residual_head(const std::string& path, bool clipped);
     std::array<uint8_t,32> first_hidden(const Board& board) const;
     std::map<std::string,uint64_t> stats() const;
 };

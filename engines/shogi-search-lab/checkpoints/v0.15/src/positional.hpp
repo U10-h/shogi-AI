@@ -11,7 +11,7 @@ class Evaluator {
     std::array<double,positional_size> weights_{};
     std::unique_ptr<Nnue> nnue_;
 public:
-    explicit Evaluator(const std::string& mode="material",const std::string& model="",const std::string& head="");
+    explicit Evaluator(const std::string& mode="material",const std::string& model="");
     int operator()(const Board& board) const;
     std::array<uint8_t,32> nnue_features(const Board& board) const;
     const std::array<double,positional_size>& weights() const {return weights_;}

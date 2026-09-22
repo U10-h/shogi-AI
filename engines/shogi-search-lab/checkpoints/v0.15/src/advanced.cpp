@@ -286,12 +286,9 @@ class Worker {
     }
     Value qsearch(int a,int beta,int ply,int left,uint64_t parent=0,Move incoming=MOVE_NONE) {
         tick();++r.stats["qnodes"];
-        r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
         const uint64_t node=r.base.nodes;
         const int original_a=a;
         auto finish=[&](Value v,const char* reason) {
-            ++r.stats["qreturn_count"];r.stats["qreturn_ply_sum"]+=ply;
-            ++r.stats["qreturn_ply_"+std::to_string(ply)];
             leaf_event("qreturn",node,parent,incoming,ply,left,original_a,beta,reason,true,v.score,v.pv);return v;
         };
         if(!null_level)if(auto rep=b.repetition_score(ply))return finish({*rep,{}},"repetition");
@@ -314,7 +311,7 @@ class Worker {
         const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
         leaf_event("qeval",node,parent,incoming,ply,left,a,beta,checked?"check_evasion":"stand_pat",!checked,stand);
         if(!checked) {
-            if(left<=0&&o.driver!="adaptive"){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
+            if(left<=0){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
             if(stand>=beta){++r.stats["qstand_cutoffs"];if(deferred)++r.stats["q_avoided_generations"];return finish(best,"stand_pat_cutoff");}
             a=std::max(a,stand);
             if(deferred)generate();
@@ -565,87 +562,6 @@ class Worker {
         }
         return finish(best);
     }
-    // Fractional effort, not a uniform ply horizon. Edge costs are hand-tuned
-    // priority scores, NOT calibrated probabilities. No fixed top-k exclusion.
-    Value adaptive(int effort,int a,int beta,int ply,uint64_t path,Move prev) {
-        r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
-        if(effort<=0)return qsearch(a,beta,ply,0,0,prev);
-        tick();++r.stats["adaptive_nodes"];
-        if(ply>=max_ply-1)throw Stop{"ply_limit"};
-        if(auto rep=b.repetition_score(ply))return {*rep,{}};
-        auto moves=b.legal_moves();
-        if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
-        const int original_a=a;const Key key{path,effort,0};
-        Move preferred=MOVE_NONE;
-        if(f.tt){
-            auto hint=hash_moves.find(uint64_t(b.pos.key()));if(hint!=hash_moves.end())preferred=hint->second;
-            if(cacheable(path)){
-                ++r.stats["tt_probes"];auto it=tt.find(key);
-                if(it!=tt.end()){
-                    ++r.stats["tt_hits"];const auto& e=it->second;int s=root_score(e.score,ply);preferred=e.move;
-                    if(e.flag==0||(e.flag>0&&s>=beta)||(e.flag<0&&s<=a)){++r.stats["tt_cutoffs"];return {s,e.pv};}
-                }
-            }
-        }
-        const bool checked=b.pos.in_check();const Color side=b.pos.side_to_move();
-        auto ordered=order(std::move(moves),ply,preferred,prev);
-        r.stats["max_legal_width"]=std::max(r.stats["max_legal_width"],uint64_t(ordered.size()));
-        Value best{-infinity,{}};size_t index=0;std::vector<Move> captures,quiets;
-        for(Move m:ordered){
-            const bool noise=tactical(m),gives=b.pos.gives_check(m);
-            const bool protected_move=m==preferred||m==killers[ply][0]||m==killers[ply][1]
-                ||(prev!=MOVE_NONE&&m==counters[side][pack(prev)]);
-            int cost=4;
-            if(ply>0){
-                if(ordered.size()==1)cost=1;
-                else if(checked||gives||(noise&&prev!=MOVE_NONE&&to_sq(m)==to_sq(prev)))cost=3;
-                else if(protected_move)cost=3;
-                else if(noise||is_drop(m))cost=4;
-                else {
-                    cost=std::clamp(4+int(std::log2(double(index)+1.0)*2)-history[side][pack(m)]/1024,3,12);
-                }
-            }
-            ++r.stats["edge_cost_"+std::to_string(cost)];
-            Value c;const auto id=child_path(path,m);const auto before=r.base.nodes;
-            if(ply==0)current_root_move=m;
-            {
-                PlayedMove move(b,m);
-                if(cost>4){
-                    ++r.stats["adaptive_reductions"];
-                    c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
-                    if(-c.score>a){++r.stats["adaptive_researches"];c=adaptive(effort-4,-beta,-a,ply+1,id,m);}
-                }else if(index>0&&beta-a>1){
-                    ++r.stats["pvs_probes"];c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
-                    if(-c.score>a&&-c.score<beta){++r.stats["pvs_researches"];c=adaptive(effort-cost,-beta,-a,ply+1,id,m);}
-                }else c=adaptive(effort-cost,-beta,-a,ply+1,id,m);
-            }
-            if(ply==0)r.stats["root_nodes_"+usi(m)]+=r.base.nodes-before;
-            if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
-            if(ply==0&&!r.base.has_result){++r.completed_root_moves;partial_root=best;}
-            a=std::max(a,best.score);
-            if(noise)captures.push_back(m);else quiets.push_back(m);
-            if(a>=beta){
-                ++r.base.cutoffs;r.base.skipped_siblings+=ordered.size()-index-1;
-                learn_captures(m,captures,std::max(1,effort/4));
-                if(!noise){
-                    if(f.killer&&killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}
-                    if(f.history){
-                        const int bonus=std::min(2000,32*(1+effort/4)*(1+effort/4));
-                        auto update=[&](Move h,int delta){auto& v=history[side][pack(h)];v+=delta-v*std::abs(delta)/16384;};
-                        update(m,bonus);for(Move h:quiets)if(h!=m)update(h,-bonus/2);
-                    }
-                    if(f.counter&&prev!=MOVE_NONE)counters[side][pack(prev)]=m;
-                }
-                break;
-            }
-            ++index;
-        }
-        if(f.tt&&!best.pv.empty()){
-            if(hash_moves.size()<o.tt_capacity||hash_moves.count(uint64_t(b.pos.key())))hash_moves[uint64_t(b.pos.key())]=best.pv.front();
-            if(cacheable(path)&&(tt.size()<o.tt_capacity||tt.count(key)))tt[key]={local_score(best.score,ply),best.score<=original_a?-1:best.score>=beta?1:0,best.pv.front(),best.pv};
-        }
-        return best;
-    }
     Value rps(int budget,int a,int beta,int ply,Move prev) {
         if(budget<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth,0,prev);
         tick();++r.stats["rps_nodes"];
@@ -682,7 +598,6 @@ class Worker {
         return best;
     }
     Value root(int d,int guess) {
-        if(o.driver=="adaptive")return adaptive(d*4,-infinity,infinity,0,1,MOVE_NONE);
         if(o.driver=="rps"||o.driver=="erps")return rps(1000*d,-infinity,infinity,0,MOVE_NONE);
         if(o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual") {
             // True game-value limits, not the wider alpha-beta sentinels.
@@ -737,7 +652,7 @@ class Worker {
     }
 public:
     AdvancedResult r;
-    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model,o.evaluation_head),policy(o.policy_model) {
+    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model),policy(o.policy_model) {
         if(o.policy_scale<0||o.policy_scale>16)throw std::invalid_argument("Policy scale must be 0..16");
         f.tt=o.features.count("tt")!=0;
         f.history=o.features.count("history")!=0;
@@ -767,7 +682,7 @@ public:
         f.multiprobcut=o.features.count("multiprobcut")!=0;
 
         const auto known=advanced_features();for(auto& f:o.features)if(!known.count(f))throw std::invalid_argument("Unknown feature "+f);
-        const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps","adaptive"};
+        const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps"};
         if(!drivers.count(o.driver))throw std::invalid_argument("Unknown driver");
         if(o.limits.depth<0||o.limits.depth>16||!o.limits.max_nodes||o.limits.time_ms>3600000||o.multipv<1||o.multipv>5||o.qdepth<0||o.qdepth>16||o.extension_budget<0||o.extension_budget>8||o.tt_capacity<1||o.tt_capacity>1000000||o.aspiration<1||o.aspiration>10000)throw std::invalid_argument("Invalid advanced limits");
         const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","history-lmr","multicut","probcut","multiprobcut"};
@@ -801,14 +716,7 @@ public:
             r.selective=true;
             for(auto& f:o.features)if(f!="qsearch"&&f!="see-order")throw std::invalid_argument("RPS/ERPS use only qsearch and see-order features; pass --features explicitly");
         }
-        if(o.driver=="adaptive") {
-            if(o.multipv!=1||!f.qsearch||prune_enabled)throw std::invalid_argument("Adaptive requires MultiPV=1, qsearch, no learned pruning");
-            for(const auto& x:o.features)if(x!="tt"&&x!="history"&&x!="capture-history"&&x!="killer"&&x!="counter"&&x!="mate-distance")
-                if(x!="qsearch")throw std::invalid_argument("Unsupported adaptive feature: "+x);
-            r.selective=true;
-        }
         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
-        if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
         if((o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual")&&(!f.tt||r.selective||r.leaf_policy.find("extensions")!=std::string::npos))throw std::invalid_argument("MTD drivers require tt and a nonselective fixed leaf policy");
@@ -833,11 +741,9 @@ public:
     }
     AdvancedResult run() {
         start=now();
-        const bool adaptive_mode=o.driver=="adaptive";
-        int first=adaptive_mode?1:o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
-        const int last=adaptive_mode?1000000:o.limits.depth;
+        int first=o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
         try {
-            for(int d=first;d<=last;++d) {
+            for(int d=first;d<=o.limits.depth;++d) {
                 iteration_depth=d;current_root_move=MOVE_NONE;
                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
@@ -845,7 +751,7 @@ public:
                 r.base.score=v.score;r.base.pv=v.pv;r.candidates=std::move(lines);
                 r.base.has_result=true;r.base.completed_depth=d;
                 r.base.iterations.push_back({d,v.score,r.base.nodes-before,0,now()-t,v.pv});
-                if(!adaptive_mode&&d==o.limits.depth){r.base.complete=true;r.base.stop_reason="depth_limit";}
+                if(d==o.limits.depth){r.base.complete=true;r.base.stop_reason="depth_limit";}
                 if(d>0&&v.pv.empty()&&(b.repetition_score(0).has_value()||b.legal_moves().empty())){r.base.complete=true;r.base.stop_reason="terminal";break;}
             }
         }catch(const Stop& stop){r.base.stop_reason=stop.reason;}
@@ -876,8 +782,7 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
         <<",\"lazy_ordering\":"<<(o.lazy_ordering?"true":"false")<<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
-    out<<"],\"iteration_unit\":"<<quote(o.driver=="adaptive"?"effort_steps_4":"plies")<<",\"evaluation_head\":"<<quote(o.evaluation_head);
-    out<<",\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
+    out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
        <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
        <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}

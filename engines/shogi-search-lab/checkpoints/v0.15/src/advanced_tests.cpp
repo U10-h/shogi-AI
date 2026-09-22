@@ -144,23 +144,6 @@ int advanced_selftest() {
         auto r=advanced_search(start,h);require(r.base.nodes<=3000&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"heuristic budget and restoration "+f);
     }
     for(auto driver:{"rps","erps"}){AdvancedOptions p;p.features={"qsearch"};p.driver=driver;p.limits.depth=4;p.limits.max_nodes=3000;auto r=advanced_search(start,p);require(r.base.nodes<=3000&&start.history.size()==1,std::string("probability search ")+driver);}
-    for(uint64_t n:{uint64_t(1),uint64_t(31),uint64_t(1000),uint64_t(10000)}) {
-        AdvancedOptions a;set_advanced_preset(a,"tactical");a.driver="adaptive";a.limits.max_nodes=n;
-        auto r=advanced_search(start,a);
-        require(r.base.nodes==n&&r.base.stop_reason=="node_limit","adaptive bounded by nodes not target depth");
-        require(start.pos.sfen()==SFEN_HIRATE&&start.history.size()==1,"adaptive abort restores board");
-        auto pv=r.base.has_result?r.base.pv:r.fallback_pv;
-        require(!pv.empty(),"adaptive legal emergency/completed move");
-        Board replay;for(auto m:pv){auto legal=replay.legal_moves();require(std::find(legal.begin(),legal.end(),m)!=legal.end(),"adaptive PV legal");replay.play_input(usi(m));}
-    }
-    {
-        AdvancedOptions a;set_advanced_preset(a,"tactical");a.driver="adaptive";
-        require(advanced_search(repeat,a).base.score==0,"adaptive respects repetition history");
-        require(advanced_search(perpetual,a).base.score==-mate,"adaptive perpetual check");
-        require(advanced_search(matepos,a).base.score==-mate,"adaptive terminal mate");
-        double t=0;a.limits.clock_ms=[&](){return t++;};a.limits.time_ms=20;
-        require(advanced_search(start,a).base.stop_reason=="time_limit","adaptive time deadline");
-    }
     std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
 }
 }

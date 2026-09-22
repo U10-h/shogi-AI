@@ -64,13 +64,7 @@ PositionalFeatures positional_features(const Board& b){
     }
     return x;
 }
-Evaluator::Evaluator(const std::string& mode,const std::string& model,const std::string& head):mode_(mode){
-    if(mode=="nnue-blend25"||mode=="nnue-clipped") {
-        nnue_=std::make_unique<Nnue>(model,"nnue");
-        nnue_->residual_head(head,mode=="nnue-clipped");return;
-    }
-    if(!head.empty())throw std::invalid_argument("Evaluation head requires nnue-blend25 or nnue-clipped");
-    if(mode=="nnue-tempo40"){nnue_=std::make_unique<Nnue>(model,"nnue");return;}
+Evaluator::Evaluator(const std::string& mode,const std::string& model):mode_(mode){
     if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
         nnue_=std::make_unique<Nnue>(model,mode);return;
     }
@@ -90,7 +84,7 @@ Evaluator::Evaluator(const std::string& mode,const std::string& model,const std:
     }
 }
 int Evaluator::operator()(const Board& b) const{
-    if(nnue_)return std::clamp((*nnue_)(b)+(mode_=="nnue-tempo40"?36:0),-27000,27000);
+    if(nnue_)return (*nnue_)(b);
     const int material=evaluate(b);if(mode_=="material")return material;
     const auto x=positional_features(b);double positional=0;
     for(size_t i=0;i<x.size();++i)positional+=x[i]*weights_[i];

@@ -118,20 +118,6 @@ struct Nnue::Impl {
     std::array<int8_t,32*32> w2;
     std::array<int32_t,1> b3;
     std::array<int8_t,32> w3;
-    bool residual=false,clipped=false;
-    std::array<int32_t,32> rb2{};
-    std::array<int8_t,1024> rw2{};
-    std::array<int8_t,32> rw3{};
-    int32_t rb3=0;
-    void load_head(const std::string& path,bool cap) {
-        std::ifstream in(path);std::string header;
-        if(!std::getline(in,header)||header!="shogi-lab-residual-v1 raw90 dim32")throw std::invalid_argument("Invalid residual head");
-        auto read=[&](auto& array,int64_t lo,int64_t hi){for(auto& v:array){int64_t n;if(!(in>>n)||n<lo||n>hi)throw std::invalid_argument("Invalid residual coefficient");v=n;}};
-        read(rb2,-1000000000,1000000000);read(rw2,-128,127);
-        std::array<int32_t,1> last{};read(last,-1000000000,1000000000);rb3=last[0];read(rw3,-128,127);
-        std::string extra;if(in>>extra)throw std::invalid_argument("Trailing residual data");
-        residual=true;clipped=cap;frames.clear();
-    }
     struct Frame {bool valid=false;Snapshot snapshot{};Acc acc{};int score=0;};
     std::vector<Frame> frames;
     std::string policy;
@@ -195,13 +181,7 @@ struct Nnue::Impl {
                    h2=hidden<32,32>(h1,b2,w2,vectorized,policy=="nnue-verify");
         int32_t out=b3[0];for(int i=0;i<32;++i)out+=int(h2[i])*w3[i];
         // Preserve the upstream raw unit (PawnValue=90), including truncation.
-        const int base=std::clamp(out/16,-27000,27000);
-        if(!residual)return base;
-        const auto rh=hidden<32,32>(h1,rb2,rw2,vectorized,false);
-        int32_t raw=rb3;for(int i=0;i<32;++i)raw+=int(rh[i])*rw3[i];
-        int delta=(std::clamp(raw/16,-27000,27000)-base)/4;
-        if(clipped)delta=std::clamp(delta,-72,72);
-        return std::clamp(base+delta,-27000,27000);
+        return std::clamp(out/16,-27000,27000);
     }
     std::array<uint8_t,32> first_hidden(const Board& b) const {
         const auto& s=b.history.back();const Acc a=refresh(s);
@@ -229,7 +209,6 @@ struct Nnue::Impl {
     }
 };
 Nnue::Nnue(const std::string& path,const std::string& policy):impl(std::make_shared<Impl>(path,policy)){}
-void Nnue::residual_head(const std::string& path,bool clipped){impl->load_head(path,clipped);}
 int Nnue::operator()(const Board& b) const{return impl->evaluate(b);}
 std::array<uint8_t,32> Nnue::first_hidden(const Board& b) const{return impl->first_hidden(b);}
 std::map<std::string,uint64_t> Nnue::stats() const{return impl->counts;}

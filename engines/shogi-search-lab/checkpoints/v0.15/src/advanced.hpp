@@ -17,7 +17,6 @@ struct AdvancedOptions {
     std::string probcut_model;
     std::string evaluation = "material";
     std::string evaluation_model;
-    std::string evaluation_head; // Frozen v0.12 learned head for residual hypotheses.
     bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
     bool compact_ordering = true;
     bool lazy_ordering = true; // Exact same frozen priorities, extract only consumed moves.

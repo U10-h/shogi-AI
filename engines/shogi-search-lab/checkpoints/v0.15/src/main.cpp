@@ -41,12 +41,10 @@ int main(int argc, char** argv) {
                     "  --root-policy full|screen|full-probe|probe (session; default screen)\n"
                     "  --trace-root-only (session root decisions without recursive events)\n"
                     "  --advanced --preset baseline|exact|tactical|selective\n"
-                    "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps|adaptive\n"
+                    "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
                     "  --eval material|positional|learned|nnue|nnue-full|nnue-verify|nnue-scalar [--eval-model PATH] (advanced/USI)\n"
-                    "  --eval-head PATH (nnue-blend25|nnue-clipped; nnue-tempo40 needs no head)\n"
-                    "  --driver adaptive: time/node budget, no fixed depth/beam; MultiPV=1\n"
                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
                     "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
                     "  --eager-order (v0.15: fully sort moves instead of lazy extraction)\n"
@@ -97,7 +95,6 @@ int main(int argc, char** argv) {
             else if (arg == "--advanced-selftest") advanced_tests = true;
             else if (arg == "--usi") usi_mode = true;
             else if (arg == "--eval") advanced_options.evaluation=value();
-            else if (arg == "--eval-head") advanced_options.evaluation_head=value();
             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
             else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
@@ -155,7 +152,7 @@ int main(int argc, char** argv) {
         if(nnue_features&&(!eval_batch||advanced_options.evaluation.rfind("nnue",0)!=0))throw std::invalid_argument("--nnue-features requires --eval-batch --eval nnue");
         if(eval_batch){
             std::cout<<std::setprecision(17);
-            lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model,advanced_options.evaluation_head);
+            lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
             std::string input;
             while(std::getline(std::cin,input)){
                 lab::Board b(input);
@@ -180,7 +177,7 @@ int main(int argc, char** argv) {
             return 0;
         }
         if((!advanced&&!usi_mode)&&advanced_options.evaluation!="material")throw std::invalid_argument("Positional evaluation requires --advanced, --usi, or --eval-batch");
-        lab::Evaluator validate_evaluator(advanced_options.evaluation,advanced_options.evaluation_model,advanced_options.evaluation_head);
+        lab::Evaluator validate_evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
         if(advanced_tests)return lab::advanced_selftest();
         if(usi_mode)return lab::advanced_usi(advanced_options);
         if(session&&advanced)throw std::invalid_argument("Legacy retained-tree session cannot mix advanced policies; use --advanced or --usi");

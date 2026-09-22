@@ -42,9 +42,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
                 }
                 else if(name=="MultiPV"){int n=std::stoi(value);if(n<1||n>5)throw std::invalid_argument("Invalid MultiPV");configured.multipv=n;}
                 else if(name=="Evaluation"){
-                    Evaluator check(value,(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"",
-                        (value=="nnue-blend25"||value=="nnue-clipped")?defaults.evaluation_head:"");
-                    configured.evaluation_head=(value=="nnue-blend25"||value=="nnue-clipped")?defaults.evaluation_head:"";
+                    Evaluator check(value,(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"");
                     configured.evaluation=value;
                     configured.evaluation_model=(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"";
                 }
