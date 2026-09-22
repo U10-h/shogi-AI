@@ -1,0 +1,13 @@
+[
+  {
+    "at": "2026-09-22T14:57:24.648422+00:00",
+    "event": "exec-server transport disconnected; failed to resume session 32029 after 25s",
+    "action": "Resume matches_v20 from saved moves with fresh engines",
+    "saved_games": [
+      {
+        "file": "black-base.json",
+        "plies": 73
+      }
+    ]
+  }
+]

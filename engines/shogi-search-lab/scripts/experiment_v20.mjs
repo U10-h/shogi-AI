@@ -1,7 +1,7 @@
 import {readFileSync,writeFileSync,mkdirSync,existsSync,renameSync} from 'node:fs';
 import {ROOT,START,ASSETS,BIN,lab,yaneura,hash} from './arena_lib.mjs';
 import {recordAt,checkedPV} from './record_helpers.mjs';
-export const D=ROOT+'/results/v0.20';
+export const D=process.env.V20_RESULTS||ROOT+'/results/v0.20';
 export const read=p=>JSON.parse(readFileSync(p));
 export function save(p,x){mkdirSync(p.slice(0,p.lastIndexOf('/')),{recursive:true});writeFileSync(p+'.tmp',JSON.stringify(x));renameSync(p+'.tmp',p);}
 export const variants=['base','cache','fused','fast','continuation','correction','scale75','scale125','see0','see90','see180','seecont'];
@@ -20,7 +20,14 @@ export function args(name){
  if(![...variants,'fast-verify'].includes(name))throw Error('Unknown variant '+name);
  return ['--advanced','--driver','adaptive','--eval',evaluation,'--eval-model',ASSETS+'/yaneuraou.data','--features',f.join(','),'--policy-model',ROOT+'/models/v0.17/all-policy.txt','--policy-mode','root',...extra];
 }
+const verifiedBinaries=new Set();
 export async function run(root,name,ms,nodes=1000000000,binary=BIN){
+ if(!verifiedBinaries.has(binary)){
+  const p=read(D+'/protocol.json'),amend=existsSync(D+'/protocol-amendment.json')?read(D+'/protocol-amendment.json'):null;
+  const expected=binary.endsWith('shogi-lab-v0.19')?p.baselineBinary:binary.endsWith('shogi-lab-v20-screen')?p.binary:amend?.binary||p.binary;
+  if(hash(binary)!==expected||hash(ASSETS+'/yaneuraou.data')!==p.model||hash(ROOT+'/models/v0.17/all-policy.txt')!==p.policy)throw Error('Frozen binary/model/policy mismatch');
+  verifiedBinaries.add(binary);
+ }
  const a=await lab(root.prefix,[...args(name),'--max-nodes',String(nodes),...(ms?['--time-ms',String(ms)]:[])],START,binary);
  const pv=a.has_result?a.pv:a.fallback_pv;
  if(!pv.length||checkedPV(recordAt(START,root.prefix).position,pv).length!==pv.length)throw Error('Illegal PV');

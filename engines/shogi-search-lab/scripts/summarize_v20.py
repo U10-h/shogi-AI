@@ -1,5 +1,5 @@
-import json, pathlib, statistics, random, collections, csv
-D=pathlib.Path(__file__).resolve().parents[1]/'results/v0.20'
+import json, pathlib, statistics, random, collections, csv, os
+D=pathlib.Path(os.environ.get('V20_RESULTS',pathlib.Path(__file__).resolve().parents[1]/'results/v0.20'))
 def read(p): return json.loads((D/p).read_text())
 def mean(a): return statistics.mean(a) if a else None
 out={'selection':read('selection.json')}
