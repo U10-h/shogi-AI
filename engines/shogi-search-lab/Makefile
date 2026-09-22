@@ -9,7 +9,7 @@ OBJECTS := $(patsubst %.cpp,build/%.o,$(SOURCES))
 all: build/shogi-lab
 build/shogi-lab: $(OBJECTS)
 	$(CXX) $^ $(LDFLAGS) -o $@
-build/%.o: %.cpp
+build/%.o: %.cpp Makefile
 	@mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -MMD -MP -c $< -o $@
 -include $(OBJECTS:.o=.d)

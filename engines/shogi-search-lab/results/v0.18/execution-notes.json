@@ -1,0 +1,7 @@
+{
+  "notes": [
+    "Quality was pinned to CPU 7 and matched pairs ran consecutively.",
+    "Execution environment restart recovered three games at saved ply 42/62/39 and one incomplete quality block. Search state was reset each move before and after restart."
+  ],
+  "protocolUnmodified": true
+}

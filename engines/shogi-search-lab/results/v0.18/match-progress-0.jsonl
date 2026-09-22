@@ -1,0 +1,12 @@
+{"id":"black-3000-cache","ply":1,"move":"2g2f"}
+{"id":"black-3000-cache","ply":21,"move":"4i3h"}
+{"id":"black-3000-cache","ply":41,"move":"4f4e"}
+{"id":"black-3000-cache","ply":61,"move":"S*6b"}
+{"id":"black-3000-cache","ply":81,"move":"7i8h"}
+{"id":"black-3000-cache","plies":84,"result":{"reason":"checkmate","winner":"white"}}
+{"id":"black-3000-root","ply":1,"move":"2g2f"}
+{"id":"black-3000-root","ply":21,"move":"4i3h"}
+{"id":"black-3000-root","ply":41,"move":"P*3f"}
+{"id":"black-3000-root","ply":61,"move":"R*4h"}
+{"id":"black-3000-root","ply":81,"move":"7g6f"}
+{"id":"black-3000-root","plies":86,"result":{"reason":"checkmate","winner":"white"}}

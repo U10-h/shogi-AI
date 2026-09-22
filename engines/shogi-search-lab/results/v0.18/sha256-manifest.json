@@ -1,0 +1,19 @@
+{
+  "Makefile": "b52fb3d913e9257ca9cbaf1616e0f43c27f25a98755caf4d19fc58f3f77517d5",
+  "THIRD_PARTY.md": "73be9ec3cec16f78217a6d242250146f476630e7b1b1d29ae8f44269c1f01876",
+  "src/advanced.cpp": "23e58570bead705d5392009b2e0badf3de9f67633bde5a62778ca5b0f67b77fd",
+  "src/advanced.hpp": "67c30463bf37598e37dfd3deda441cb9d6fee6e4bf8a05ff474f87dfef2c1c5b",
+  "src/advanced_tests.cpp": "0a1547ad676909337ea143b120f201d78d71d81caac0c47c2b55b5a94408041b",
+  "src/main.cpp": "8b140561dbe37ad042ead808c8e4b560565ce2cd17c18cc20647349fd3bce288",
+  "scripts/viewer_v18.mjs": "4981f9f77881b5083f47c593b720b0593a7001bbda3924c9505c2231bd2992ff",
+  "scripts/report_v18.py": "aca8d65497458d93ac8822bd2a8608b6f1a32b5310508b09597d468882678de5",
+  "scripts/summarize_v18.py": "6bbb38905766acd4dde552d8a80e23781840574a1025974171d95697d024f543",
+  "scripts/plot_v18.py": "b4f0b78b8e7ee31015a3b9fa4dade4d1f8c26b173d3fb7900229cd7163563a7e",
+  "scripts/audit_v18.mjs": "8ad9efedbf1de4f6e967a6b82c0e51b744fb7ee948b375d7d697249721b78dcf",
+  "scripts/experiment_v18.mjs": "bbea3a22b7a82a19644ff7d4c7e28b84c813b50dba38a212f8e29fbe63f461f2",
+  "scripts/overhead_v18.mjs": "3791c9e710f422740a84fde5272b6979d6d29483e4b7713edd3a0e18598baded",
+  "scripts/matches_v18.mjs": "f7528b902cf0918808782c7f0f127397a2a2ab1a45226457b629a18f6c901004",
+  "scripts/verify_v18.mjs": "ae16adad05931d27f92ad51d4992db0dad4da83b065da7ff5bab6f08d8d9561d",
+  "models/v0.17/all-policy.txt": "e9a4ca1834ace10aa663d6a6033b4f046e53ec9fced69caa25838b1adfdeea9b",
+  "build/shogi-lab": "fc02159930a5f396d30a6f9dd189219f969286b6f6b484d676c9580fa62e43d8"
+}

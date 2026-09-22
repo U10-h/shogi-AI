@@ -1,0 +1,12 @@
+file:///workspace/scratch/7bdea79c5746/repo/engines/shogi-search-lab/scripts/arena_lib.mjs:24
+  child.on('close',code=>{clearTimeout(timer);if(![0,3].includes(code))reject(Error('Lab '+code+': '+err));else try{resolve(JSON.parse(out));}catch(e){reject(e);}});
+                                                                              ^
+
+Error: Lab 2: {"error":"Time budget must be 1..3600000 ms"}
+
+    at ChildProcess.<anonymous> (file:///workspace/scratch/7bdea79c5746/repo/engines/shogi-search-lab/scripts/arena_lib.mjs:24:79)
+    at ChildProcess.emit (node:events:509:28)
+    at maybeClose (node:internal/child_process:1141:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:306:5)
+
+Node.js v24.19.0

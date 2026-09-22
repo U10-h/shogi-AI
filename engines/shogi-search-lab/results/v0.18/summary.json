@@ -1,0 +1,450 @@
+{
+  "quality": [
+    {
+      "variant": "cache",
+      "ms": 1000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 171.41666666666666,
+      "meanPV": 5.416666666666667,
+      "meanSelectiveDepth": 20.166666666666668,
+      "meanIteration": 3.75,
+      "meanNodes": 294884.3333333333,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 19621,
+      "meanPathCapacityMisses": 0
+    },
+    {
+      "variant": "cache",
+      "ms": 3000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 59.5,
+      "meanPV": 6.166666666666667,
+      "meanSelectiveDepth": 22.333333333333332,
+      "meanIteration": 4.416666666666667,
+      "meanNodes": 933254.8333333334,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 41524.916666666664,
+      "meanPathCapacityMisses": 170627.41666666666
+    },
+    {
+      "variant": "cache",
+      "ms": 5000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 59.5,
+      "meanPV": 6.416666666666667,
+      "meanSelectiveDepth": 23.916666666666668,
+      "meanIteration": 4.75,
+      "meanNodes": 1774077.0833333333,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 51257.333333333336,
+      "meanPathCapacityMisses": 413298.25
+    },
+    {
+      "variant": "cache",
+      "ms": 10000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 3.9166666666666665,
+      "meanPV": 6.666666666666667,
+      "meanSelectiveDepth": 24.916666666666668,
+      "meanIteration": 5.083333333333333,
+      "meanNodes": 3311675,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 57990.25,
+      "meanPathCapacityMisses": 749153.3333333334
+    },
+    {
+      "variant": "root",
+      "ms": 1000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 171.41666666666666,
+      "meanPV": 5.166666666666667,
+      "meanSelectiveDepth": 21.166666666666668,
+      "meanIteration": 3.75,
+      "meanNodes": 345559,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 0
+    },
+    {
+      "variant": "root",
+      "ms": 3000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 32.333333333333336,
+      "meanPV": 6.083333333333333,
+      "meanSelectiveDepth": 23.583333333333332,
+      "meanIteration": 4.583333333333333,
+      "meanNodes": 1083669.1666666667,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 108246.25
+    },
+    {
+      "variant": "root",
+      "ms": 5000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 32.333333333333336,
+      "meanPV": 6.5,
+      "meanSelectiveDepth": 24.583333333333332,
+      "meanIteration": 4.833333333333333,
+      "meanNodes": 1823113.75,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 367749.0833333333
+    },
+    {
+      "variant": "root",
+      "ms": 10000,
+      "roots": 12,
+      "cpRoots": 12,
+      "meanGap": 3.9166666666666665,
+      "meanPV": 6.916666666666667,
+      "meanSelectiveDepth": 26,
+      "meanIteration": 5.166666666666667,
+      "meanNodes": 3502357.9166666665,
+      "firstIterationFailures": 0,
+      "meanCacheHits": 0,
+      "meanPathCapacityMisses": 947621.4166666666
+    }
+  ],
+  "pairedQuality": [
+    {
+      "ms": 1000,
+      "meanDelta": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    },
+    {
+      "ms": 3000,
+      "meanDelta": 27.166666666666668,
+      "better": 0,
+      "equal": 11,
+      "worse": 1,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 108.66666666666667,
+        "3": 0
+      }
+    },
+    {
+      "ms": 5000,
+      "meanDelta": 27.166666666666668,
+      "better": 0,
+      "equal": 11,
+      "worse": 1,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 108.66666666666667,
+        "3": 0
+      }
+    },
+    {
+      "ms": 10000,
+      "meanDelta": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0,
+      "trajectoryMeanDeltas": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      }
+    }
+  ],
+  "timeComparisons": [
+    {
+      "variant": "cache",
+      "fromMs": 1000,
+      "toMs": 3000,
+      "roots": 12,
+      "meanGapChange": -111.91666666666667,
+      "better": 3,
+      "equal": 9,
+      "worse": 0
+    },
+    {
+      "variant": "cache",
+      "fromMs": 3000,
+      "toMs": 5000,
+      "roots": 12,
+      "meanGapChange": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0
+    },
+    {
+      "variant": "cache",
+      "fromMs": 5000,
+      "toMs": 10000,
+      "roots": 12,
+      "meanGapChange": -55.583333333333336,
+      "better": 2,
+      "equal": 10,
+      "worse": 0
+    },
+    {
+      "variant": "root",
+      "fromMs": 1000,
+      "toMs": 3000,
+      "roots": 12,
+      "meanGapChange": -139.08333333333334,
+      "better": 4,
+      "equal": 8,
+      "worse": 0
+    },
+    {
+      "variant": "root",
+      "fromMs": 3000,
+      "toMs": 5000,
+      "roots": 12,
+      "meanGapChange": 0,
+      "better": 0,
+      "equal": 12,
+      "worse": 0
+    },
+    {
+      "variant": "root",
+      "fromMs": 5000,
+      "toMs": 10000,
+      "roots": 12,
+      "meanGapChange": -28.416666666666668,
+      "better": 1,
+      "equal": 11,
+      "worse": 0
+    }
+  ],
+  "games": [
+    {
+      "id": "black-3000-cache",
+      "variant": "cache",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 84,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 49,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.1341666666667,
+      "meanOurWallMs": 3180.5299609285735,
+      "meanOpponentWallMs": 1812.7454312619059
+    },
+    {
+      "id": "black-3000-root",
+      "variant": "root",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 86,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 35,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.132069767442,
+      "meanOurWallMs": 3153.9222668837274,
+      "meanOpponentWallMs": 1782.1970917209312
+    },
+    {
+      "id": "black-5000-cache",
+      "variant": "cache",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 86,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 43,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5000.7366279069765,
+      "meanOurWallMs": 5193.74549560465,
+      "meanOpponentWallMs": 1798.6386970697647
+    },
+    {
+      "id": "black-5000-root",
+      "variant": "root",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "black",
+      "totalPlies": 110,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 45,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5002.1869636363635,
+      "meanOurWallMs": 5166.569862927272,
+      "meanOpponentWallMs": 1724.8076793272746
+    },
+    {
+      "id": "white-3000-cache",
+      "variant": "cache",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 111,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 58,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.1337636363637,
+      "meanOurWallMs": 3177.4072454727298,
+      "meanOpponentWallMs": 1865.477379232142
+    },
+    {
+      "id": "white-3000-root",
+      "variant": "root",
+      "ourMs": 3000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 117,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 64,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 3000.3136896551723,
+      "meanOurWallMs": 3152.4923147413783,
+      "meanOpponentWallMs": 1816.4878142033895
+    },
+    {
+      "id": "white-5000-cache",
+      "variant": "cache",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 133,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 72,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5001.9440151515155,
+      "meanOurWallMs": 5191.9317385303,
+      "meanOpponentWallMs": 1884.3681574029845
+    },
+    {
+      "id": "white-5000-root",
+      "variant": "root",
+      "ourMs": 5000,
+      "opponentMs": 2000,
+      "opening": "free",
+      "side": "white",
+      "totalPlies": 91,
+      "outcome": "loss",
+      "reason": "checkmate",
+      "firstSustained500Ply": 50,
+      "firstIterationFailures": 0,
+      "meanOurSearchMs": 5000.2138888888885,
+      "meanOurWallMs": 5168.03029393333,
+      "meanOpponentWallMs": 1788.4887169565259
+    }
+  ],
+  "matches": [
+    {
+      "variant": "cache",
+      "ms": 3000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 97.5,
+      "meanFirst500Ply": 53.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "cache",
+      "ms": 5000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 109.5,
+      "meanFirst500Ply": 57.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "root",
+      "ms": 3000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 101.5,
+      "meanFirst500Ply": 49.5,
+      "firstIterationFailures": 0
+    },
+    {
+      "variant": "root",
+      "ms": 5000,
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0,
+      "meanPlies": 100.5,
+      "meanFirst500Ply": 47.5,
+      "firstIterationFailures": 0
+    }
+  ],
+  "fallback": [
+    {
+      "variant": "root",
+      "completed": 1,
+      "roots": 6,
+      "meanNodes": 559186.5
+    },
+    {
+      "variant": "cache",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 400473.6666666667
+    },
+    {
+      "variant": "guard",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 518774
+    },
+    {
+      "variant": "both",
+      "completed": 0,
+      "roots": 6,
+      "meanNodes": 390428.1666666667
+    }
+  ],
+  "audit": {
+    "visits": 3330,
+    "missedAlpha": 0,
+    "referenceNodes": 3330,
+    "roots": 3
+  },
+  "notes": [
+    "12 roots from four newly seeded teacher trajectories. Training overlap not fully ruled out.",
+    "One timing run per root/variant/budget; same pair rotates execution order.",
+    "No Elo or statistical strength claim. Four trajectory clusters too few for a stable generalization interval.",
+    "Total plies and sustained 500cp disadvantage are different observations; no certified defeat threshold."
+  ]
+}

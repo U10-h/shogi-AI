@@ -1,0 +1,6 @@
+{
+  "games": 8,
+  "positions": "Generated from independently validated recorded moves and PVs",
+  "browserRendering": "Not tested: Cloud Browser rejected file protocol; no workaround attempted",
+  "syntax": "Checked separately with node --check"
+}
