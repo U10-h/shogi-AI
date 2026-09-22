@@ -92,6 +92,7 @@ class Worker {
     std::array<std::array<Move,2>,max_ply> killers{};
     std::array<std::array<Move,65536>,2> counters{};
     int null_level=0, isolated=0;
+    Value partial_root{-infinity,{}};
     std::vector<ProbModel> models;
     std::ofstream trace;
     uint64_t events=0;
@@ -356,6 +357,10 @@ class Worker {
                 } else c=visit(nd,-beta,-a,ply+1,id,ext-extension,true,m);
             }
             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
+            if(ply==0&&!isolated&&!r.base.has_result&&original_a==-infinity&&original_beta==infinity) {
+                ++r.completed_root_moves;
+                partial_root=best;
+            }
             a=std::max(a,best.score);
             if(!noise)quiet_searched.push_back(m);
             if(a>=beta) {
@@ -456,6 +461,7 @@ class Worker {
             AdvancedLine line{-c.score,{m}};line.pv.insert(line.pv.end(),c.pv.begin(),c.pv.end());lines.push_back(std::move(line));
             std::sort(lines.begin(),lines.end(),[](const auto&a,const auto&b){return a.score!=b.score?a.score>b.score:usi(a.pv[0])<usi(b.pv[0]);});
             if(int(lines.size())>o.multipv)lines.pop_back();
+            if(!r.base.has_result){++r.completed_root_moves;partial_root={lines.front().score,lines.front().pv};}
         }
         return lines;
     }
@@ -533,6 +539,15 @@ public:
                 if(d>0&&v.pv.empty()&&(b.repetition_score(0).has_value()||b.legal_moves().empty())){r.base.complete=true;r.base.stop_reason="terminal";break;}
             }
         }catch(const Stop& stop){r.base.stop_reason=stop.reason;}
+        if(!r.base.has_result&&!b.repetition_score(0)) {
+            if(!partial_root.pv.empty()) {
+                r.fallback_pv=partial_root.pv;r.fallback_score=partial_root.score;
+                r.fallback_source="completed_root_child";
+            } else {
+                auto legal=b.legal_moves();
+                if(!legal.empty()){r.fallback_pv={legal.front()};r.fallback_source="first_legal";}
+            }
+        }
         for(const auto& item:eval.stats())r.stats[item.first]=item.second;
         r.base.elapsed_ms=now()-start;r.stats["tt_entries"]=tt.size();r.stats["history_paths"]=paths.size();
         return r;
@@ -552,6 +567,9 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
     out<<"],\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
     out<<"},\"candidates\":[";comma=false;for(auto& c:r.candidates){if(comma)out<<',';out<<"{\"score\":"<<c.score<<",\"pv\":"<<line_json(c.pv)<<'}';comma=true;}
-    out<<"]}";return out.str();
+    out<<"],\"fallback_move\":"<<(r.fallback_pv.empty()?"null":quote(usi(r.fallback_pv.front())))
+       <<",\"fallback_pv\":"<<line_json(r.fallback_pv)<<",\"fallback_source\":"<<quote(r.fallback_source)
+       <<",\"fallback_partial_score\":"<<(r.fallback_source=="completed_root_child"?std::to_string(r.fallback_score):"null")
+       <<",\"completed_root_moves\":"<<r.completed_root_moves<<"}";return out.str();
 }
 }

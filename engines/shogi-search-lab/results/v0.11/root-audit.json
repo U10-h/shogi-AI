@@ -1,0 +1,9 @@
+{
+  "games": 16,
+  "roots": 63,
+  "starts": 16,
+  "excludedExistingChecks": 0,
+  "noExactOrMirrorOverlapWithAllV010Labels": true,
+  "selection": "Nearest eligible non-check cp-only position up to 7 plies before offsets 15/31/47/63; starts nearest offset31. No v0.11 outcome used.",
+  "rootsSha256": "cab9f9d98102d437cb15b2d0b1effc87aaccc3530456cf082832f3f840af36c9"
+}

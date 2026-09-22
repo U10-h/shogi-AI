@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "games": 128,
+  "qualityRows": 79,
+  "historicalFallbackCases": 23,
+  "plies": 10577,
+  "partialFallbacks": 79,
+  "firstLegalFallbacks": 0,
+  "binaryAndModelProtocolPreserved": true
+}

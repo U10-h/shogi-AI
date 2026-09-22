@@ -1,0 +1,17 @@
+{
+  "scope": "Source and analysis helpers used for v0.11; models and binary frozen separately in protocol.json",
+  "sha256": {
+    "scripts/analyze_head_v11.py": "c84230a44f717a09727fdb838312e51e2dcda877cf1e86d1357746cc4ef666ca",
+    "scripts/continue_v11.mjs": "e2cd35a58124137edbf8055f6ba6bbad0d4adf62896ebb83f1ec0c2e7119a8ef",
+    "scripts/parity_v11.py": "42002968e6bbd164615d2358a50db2436d5f454b2860337086e1a67501e3b287",
+    "scripts/plot_v11.py": "4936b0f8fb2f3b733b28619d8731f60b6188a01fdd1feea494824dee3a83602a",
+    "scripts/prepare_v11.py": "234e4be42042990a048e58ae8baaa5231ddb3fe92ef7c8e9b02122a4f7042464",
+    "scripts/report_v11.py": "32837cf7fb0c96d686505337ff2d412149f344cc683eba24147b5333555f4aa8",
+    "scripts/summarize_v11.py": "1aa3a80cdc5b59cf8234c84853128caf66600e6fb926a6c19a8e06a20a70de36",
+    "scripts/verify_v11.py": "febb157dd285ff76727add9a5b1204fad9989a77b1d09b2cf0a0f2b9f977f71c",
+    "src/advanced.cpp": "acef6f80793066daa45d93ab9657297be2bc2f964da257546c880ea12e310fc1",
+    "src/advanced.hpp": "56d01ebdb8c31e9ecfc7250500708756e3b732f893919655a165599978a078e2",
+    "src/advanced_tests.cpp": "a05c45867cadc6c1ef6f245bd45cf4934549ec3789063711cdd9b074b6590229",
+    "src/advanced_usi.cpp": "ec17f1aaaa9424a669d6e4cf9153f09a22d6f6ff2c8f7deb63ace079fc2c817c"
+  }
+}

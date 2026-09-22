@@ -101,6 +101,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
                         if(infinite){std::unique_lock<std::mutex> lock(stop_mutex);stop_condition.wait(lock,[&](){return stopped.load();});}
                         std::string move="resign";
                         if(!r.base.pv.empty())move=usi(r.base.pv[0]);
+                        else if(!r.fallback_pv.empty()){move=usi(r.fallback_pv.front());send("info string no completed iteration; fallback "+r.fallback_source);}
                         else if(!board->repetition_score(0)){auto legal=board->legal_moves();if(!legal.empty()){move=usi(legal[0]);send("info string no completed iteration; legal fallback");}}
                         send("bestmove "+move);
                     }catch(const std::exception& e){send("info string error "+std::string(e.what()));send("bestmove resign");}

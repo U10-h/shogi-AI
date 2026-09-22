@@ -69,6 +69,23 @@ int advanced_selftest() {
         }
     }
     Board start;
+    // A completed child can guide emergency play, but must not be advertised
+    // as a completed minimax iteration or contaminate its score/PV.
+    for(int mp:{1,3}) {
+        AdvancedOptions interrupted;set_advanced_preset(interrupted,"exact");
+        interrupted.multipv=mp;interrupted.limits.depth=3;
+        interrupted.limits.iterative=true;interrupted.limits.max_nodes=2;
+        auto r=advanced_search(start,interrupted);
+        require(!r.base.has_result&&r.base.pv.empty()&&r.base.iterations.empty(),"partial root is not a completed result");
+        require(r.completed_root_moves==1&&r.fallback_source=="completed_root_child"&&r.fallback_pv.size()==1,"reuse only a completed child");
+        auto legal=start.legal_moves();
+        require(std::find(legal.begin(),legal.end(),r.fallback_pv.front())!=legal.end(),"partial fallback is legal");
+        require(start.pos.sfen()==SFEN_HIRATE&&start.history.size()==1&&r.base.nodes==2,"partial fallback preserves board and budget");
+        interrupted.limits.max_nodes=1;r=advanced_search(start,interrupted);
+        require(r.completed_root_moves==0&&r.fallback_source=="first_legal"&&r.fallback_pv.front()==legal.front(),"immediate interruption has a legal fallback");
+        interrupted.limits.depth=1;interrupted.limits.max_nodes=10000;r=advanced_search(start,interrupted);
+        require(r.base.complete&&r.fallback_pv.empty()&&r.fallback_source.empty(),"completed iteration takes priority");
+    }
     for(const auto& sfen:sfens) {
         Board board(sfen);AdvancedOptions ref;set_advanced_preset(ref,"tactical");
         ref.limits.depth=3;ref.limits.max_nodes=12000;ref.limits.iterative=true;

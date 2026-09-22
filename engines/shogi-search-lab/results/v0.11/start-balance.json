@@ -1,0 +1,108 @@
+{
+  "selection": "All prespecified16 starts; descriptive only",
+  "values": [
+    {
+      "game": 0,
+      "ply": 33,
+      "teacherDepth6Score": -41,
+      "sfen": "ln2k2bl/1r2gg1s1/pp1ps2p1/2p1ppp1P/9/P1P2PPP1/1PSPPS3/2GK3R1/LN3G1NL w NPb 1"
+    },
+    {
+      "game": 1,
+      "ply": 33,
+      "teacherDepth6Score": -538,
+      "sfen": "lns1k2nl/4g1gs1/prpp1pppp/4p1b2/9/2P2P3/PpNPP1P1P/2G1G2R1/L1S1K1SNL w B2P 1"
+    },
+    {
+      "game": 2,
+      "ply": 33,
+      "teacherDepth6Score": 531,
+      "sfen": "ln6l/1r2gkgs1/p1spppnpp/2p3p2/1p5PB/P1PP1BP2/1PK1PP2P/3S1S1G1/LNG2r1NL w - 1"
+    },
+    {
+      "game": 3,
+      "ply": 33,
+      "teacherDepth6Score": -90,
+      "sfen": "lns1k1snl/1r2g2g1/p1pppp1pp/1P4p2/9/2PB1PPP1/PpNPPSN1P/7R1/L1g1KG2L w Bs 1"
+    },
+    {
+      "game": 4,
+      "ply": 35,
+      "teacherDepth6Score": 887,
+      "sfen": "l3k2nl/1r2g1gb1/2n1sp1pp/p1spp1p2/2p6/PP1PPSPPP/2P2PN2/1BG1KGS2/LN2R3L w P 1"
+    },
+    {
+      "game": 5,
+      "ply": 35,
+      "teacherDepth6Score": 255,
+      "sfen": "ln2kg2l/1r1sg4/2ppbsnp1/p3p1p1p/1p1P1p3/2P3P1P/PPS1BP1P1/3RG1S2/LN3GKNL w P 1"
+    },
+    {
+      "game": 6,
+      "ply": 35,
+      "teacherDepth6Score": 137,
+      "sfen": "ln4knl/4g1g2/pr1spsbp1/2pp1pp1p/1p5P1/2PPP1PRP/PP1SSPN2/2GBG4/LN1K4L w - 1"
+    },
+    {
+      "game": 7,
+      "ply": 35,
+      "teacherDepth6Score": 6973,
+      "sfen": "ln1gkg2+B/2s3p2/p1ppppnpp/9/2S6/P1P1L4/1+r1PPPP1P/1+p2K4/LN1G1GSNL w Prbsp 1"
+    },
+    {
+      "game": 8,
+      "ply": 35,
+      "teacherDepth6Score": 2703,
+      "sfen": "ln4knl/1r2g1g2/4pp1p1/p1pps1psp/1p5N1/P1P2PPPP/1PSPPS3/2G1G1R2/LNK5L w Bb 1"
+    },
+    {
+      "game": 9,
+      "ply": 35,
+      "teacherDepth6Score": -7,
+      "sfen": "l2g1g1nl/1rs2k3/p1n1ppsp1/2p3p1p/1p1p5/P1PP2PP1/1PKGPPS1P/4G2R1/LN5NL w 2Bs 1"
+    },
+    {
+      "game": 10,
+      "ply": 36,
+      "teacherDepth6Score": 396,
+      "sfen": "ln3gsnl/2r1g1kb1/3p1p1p1/4psp1p/ppPP5/2S3P1P/PPB1PPSP1/2GRG1K2/LN5NL b P 1"
+    },
+    {
+      "game": 11,
+      "ply": 35,
+      "teacherDepth6Score": 68,
+      "sfen": "ln5nl/1r2gkg2/p2sppspp/3p1b3/1pB5P/2R6/PPPP1PPP1/2SG1GK2/LN4SNL w 2Pp 1"
+    },
+    {
+      "game": 12,
+      "ply": 35,
+      "teacherDepth6Score": 482,
+      "sfen": "lnsgk2nl/5g3/2ppppspp/p8/6P2/Pr1b1P1PP/2P1P1N2/1GK1G1R2/LNS3S1L w BP3p 1"
+    },
+    {
+      "game": 13,
+      "ply": 35,
+      "teacherDepth6Score": 1097,
+      "sfen": "ln2k3l/1rg3S2/p1ppsgnpp/1p2p4/9/1PPS1p2P/P1NPP1PP1/1R2G4/L2G1KSNL w P2bp 1"
+    },
+    {
+      "game": 14,
+      "ply": 37,
+      "teacherDepth6Score": -427,
+      "sfen": "lnsg4l/1k3bgr1/2pp2npp/pp2spp2/3P3P1/P1P2PP1P/1P1G1S3/1BS4R1/LNKG3NL w Pp 1"
+    },
+    {
+      "game": 15,
+      "ply": 35,
+      "teacherDepth6Score": -316,
+      "sfen": "l3k2nl/2rsg1gb1/3p1s1pp/pp2ppp2/2Pn1P3/P2BP1PPP/1P1P1SN2/2SKG1R2/LN1G4L w P 1"
+    }
+  ],
+  "absoluteCpPercentiles": [
+    7.0,
+    125.25,
+    411.5,
+    625.25,
+    6973.0
+  ]
+}

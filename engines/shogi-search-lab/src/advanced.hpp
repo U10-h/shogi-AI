@@ -25,6 +25,12 @@ struct AdvancedOptions {
 struct AdvancedLine {int score = 0; std::vector<Move> pv;};
 struct AdvancedResult {
     Result base;
+    // A legal emergency move is separate from a completed search result.
+    // The partial score is only the best among completed root children.
+    std::vector<Move> fallback_pv;
+    int fallback_score = 0;
+    std::string fallback_source;
+    uint64_t completed_root_moves = 0;
     std::vector<AdvancedLine> candidates;
     std::map<std::string, uint64_t> stats;
     bool selective = false;
