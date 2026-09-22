@@ -1,0 +1,32 @@
+{
+  "verificationConditions": 83,
+  "quality": {
+    "old": {
+      "meanDepth": 5.333333333333333,
+      "nodes": 3965541,
+      "meanGapCp": 12.75,
+      "gapRoots": 12,
+      "meanElapsedMs": 3000.7801666666664
+    },
+    "final": {
+      "meanDepth": 5.5,
+      "nodes": 4668126,
+      "meanGapCp": 2.75,
+      "gapRoots": 12,
+      "meanElapsedMs": 3000.556
+    },
+    "better": 1,
+    "equal": 11,
+    "worse": 0,
+    "deeper": 2,
+    "shallower": 0
+  },
+  "matches": {
+    "wins": 4,
+    "losses": 0,
+    "draws": 0,
+    "unresolved": 0,
+    "moves": 490,
+    "pvMoves": 1701
+  }
+}

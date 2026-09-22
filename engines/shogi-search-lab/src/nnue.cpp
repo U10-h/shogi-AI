@@ -114,6 +114,12 @@ struct Nnue::Impl {
         // Preserve the upstream raw unit (PawnValue=90), including truncation.
         return std::clamp(out/16,-27000,27000);
     }
+    std::array<uint8_t,32> first_hidden(const Board& b) const {
+        const auto& s=b.history.back();const Acc a=refresh(s);
+        std::array<uint8_t,512> x;
+        for(int c=0;c<2;++c)for(int j=0;j<width;++j)x[c*width+j]=uint8_t(std::clamp(int(a[int(s.side)^c][j]),0,127));
+        return hidden<512,32>(x,b1,w1);
+    }
     int evaluate(const Board& b) {
         ++counts["nnue_calls"];const auto& s=b.history.back();
         if(policy=="nnue-full"){++counts["nnue_refreshes"];return score(refresh(s),s.side);}
@@ -135,5 +141,6 @@ struct Nnue::Impl {
 };
 Nnue::Nnue(const std::string& path,const std::string& policy):impl(std::make_shared<Impl>(path,policy)){}
 int Nnue::operator()(const Board& b) const{return impl->evaluate(b);}
+std::array<uint8_t,32> Nnue::first_hidden(const Board& b) const{return impl->first_hidden(b);}
 std::map<std::string,uint64_t> Nnue::stats() const{return impl->counts;}
 }

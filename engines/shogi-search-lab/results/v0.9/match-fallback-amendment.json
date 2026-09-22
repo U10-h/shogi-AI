@@ -1,0 +1,7 @@
+{
+  "reason": "At core-1-white ply169, neither binary completes the first iteration within150ms in a reproduction; CLI returns null bestmove. The existing USI adapter uses first legal move in this case.",
+  "rule": "Both engines use the first legal move if and only if no iteration has completed; retain raw analysis and mark fallback.",
+  "timing": "Added after first3 games and164 recorded moves of fourth game; not pre-registered. Previous completed games had no fallback events.",
+  "resume": "Preserve all recorded moves, initial history, colors, time, binaries and remaining move cap; resume unplayed ply169.",
+  "diagnosis": "fallback-diagnosis.json"
+}

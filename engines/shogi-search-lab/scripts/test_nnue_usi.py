@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import json,os,queue,re,subprocess,threading
+import argparse,json,os,queue,re,subprocess,threading
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];BIN=ROOT/'build/shogi-lab';MODEL=Path(os.environ['YANEURAOU_ASSETS'])/'yaneuraou.data'
-args=['--preset','exact','--eval','nnue','--eval-model',str(MODEL)]
+parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,default=ROOT/'results/v0.8/usi-verification.json');parser.add_argument('--preset',default='exact');config=parser.parse_args()
+args=['--preset',config.preset,'--eval','nnue','--eval-model',str(MODEL)]
 p=subprocess.Popen([str(BIN),'--usi',*args],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,bufsize=1)
 q=queue.Queue();log=[]
 def read():
@@ -33,5 +34,5 @@ try:
  send('quit');p.wait(timeout=10);assert p.returncode==0
 finally:
  if p.poll() is None:p.kill()
-(ROOT/'results/v0.8/usi-verification.json').write_text(json.dumps({'passed':True,'cpConversion':True,'timeAbortAndStopRestore':True,'evaluationSwitch':True,'transcript':log},indent=2))
+config.output.write_text(json.dumps({'passed':True,'cpConversion':True,'timeAbortAndStopRestore':True,'evaluationSwitch':True,'transcript':log},indent=2))
 print('NNUE USI checks passed')

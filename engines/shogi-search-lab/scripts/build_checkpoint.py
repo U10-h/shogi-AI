@@ -3,7 +3,7 @@
 import argparse,shutil,subprocess,tempfile
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser();p.add_argument('version',choices=['v0.6','v0.7']);args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('version',choices=['v0.6','v0.7','v0.8','v0.9']);args=p.parse_args()
 checkpoint=root/'checkpoints'/args.version
 with tempfile.TemporaryDirectory(prefix='shogi-checkpoint-') as d:
  target=Path(d);shutil.copytree(checkpoint/'src',target/'src');shutil.copy2(checkpoint/'Makefile',target/'Makefile')

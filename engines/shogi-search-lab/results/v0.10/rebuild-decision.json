@@ -1,0 +1,18 @@
+{
+  "observations": {
+    "validationTeacherGapCp": {
+      "base": 131.59375,
+      "naive": 158.46875
+    },
+    "previouslyAccurateBaseMAECp": 47.845950587924435,
+    "previouslyAccurateNaiveMAECp": 245.11547100013215,
+    "staticMAECp": {
+      "base": 731.0616189883914,
+      "naive": 664.5428067993366
+    }
+  },
+  "inference": "Static target fitting changed already accurate predictions too strongly and degraded fixed-node move quality.",
+  "reconstruction": "Anchor to original parameters, teacher residual clipped to \u00b1180 raw (200cp), target interpolation alpha in [0.25,0.5], Huber loss with raw delta150, learning rate0.00015, regularization0.02; unchanged inference architecture and cost.",
+  "testUsed": false,
+  "freezeBeforeRebuild": true
+}

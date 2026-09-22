@@ -1,0 +1,43 @@
+{
+  "all": {
+    "n": 8576,
+    "meanTeacherMinusBaseCp": 452.63655679933663,
+    "medianTeacherMinusBaseCp": 184.94444444444446,
+    "depths": {
+      "5": 5692,
+      "6": 2884
+    }
+  },
+  "root": {
+    "n": 2884,
+    "meanTeacherMinusBaseCp": 561.3643088303282,
+    "medianTeacherMinusBaseCp": 264.66666666666663,
+    "depths": {
+      "6": 2884
+    }
+  },
+  "child_rank_1": {
+    "n": 818,
+    "meanTeacherMinusBaseCp": 159.65824504210812,
+    "medianTeacherMinusBaseCp": -8.777777777777775,
+    "depths": {
+      "5": 818
+    }
+  },
+  "child_rank_2": {
+    "n": 2285,
+    "meanTeacherMinusBaseCp": 329.91237539508876,
+    "medianTeacherMinusBaseCp": 123.11111111111111,
+    "depths": {
+      "5": 2285
+    }
+  },
+  "child_rank_3": {
+    "n": 2589,
+    "meanTeacherMinusBaseCp": 532.4010128320672,
+    "medianTeacherMinusBaseCp": 257.4444444444444,
+    "depths": {
+      "5": 2589
+    }
+  }
+}

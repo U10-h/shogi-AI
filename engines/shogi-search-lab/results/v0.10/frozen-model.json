@@ -1,0 +1,25 @@
+{
+  "selected": "anchored50",
+  "head": "models/v0.10/anchored50.npz",
+  "headSha256": "672448a8497d026b9ee5fa34ffbced395bb837089e1ec9fed2aa2aaab30eb6a7",
+  "modelSha256": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+  "binarySha256": "1e7691b5ec234744ffa49914e79032dd865a96be6a26f07c7737c95825a6709b",
+  "frozenAt": "2026-09-21T14:18:44.472155+00:00",
+  "validation": {
+    "base": {
+      "meanGapCp": 139.5,
+      "fallbacks": 0
+    },
+    "anchored50": {
+      "meanGapCp": 89.9375,
+      "fallbacks": 0
+    },
+    "tempo40": {
+      "meanGapCp": 114.875,
+      "fallbacks": 0
+    }
+  },
+  "selection": "Lowest mean teacher candidate-gap among rebuilt heads, also compared with +40cp bias control. Against base: 2 improved,29 equal,1 worse; worst regression21cp. Low evidence count acknowledged.",
+  "testMetricsOpened": false,
+  "testPlan": "96 roots x1000ms +24 roots x3000ms, both base/selected. 32 fixed12000-node games,16 distinct holdout starts x colors."
+}

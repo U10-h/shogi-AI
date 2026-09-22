@@ -1,0 +1,37 @@
+{
+  "games": 192,
+  "teacherSearchRoots": 21889,
+  "rawLabelsAfterEarlyFilter": 80471,
+  "kept": 56805,
+  "removed": {
+    "mate_or_extreme": 4800,
+    "early": 1596,
+    "overlap": 18866
+  },
+  "splits": {
+    "train": {
+      "labels": 37887,
+      "quietLabels": 34774,
+      "games": 128
+    },
+    "validation": {
+      "labels": 9275,
+      "quietLabels": 8576,
+      "games": 32
+    },
+    "test": {
+      "labels": 9643,
+      "quietLabels": 8827,
+      "games": 32
+    }
+  },
+  "crossSplitOverlapAfterSymmetryDedup": 0,
+  "independentFeatureChecks": 1024,
+  "headScoreMatches": 56805,
+  "datasetSha256": "0cdab05043ce77b7015c966cae45ae78012dd11ef8040dcbda6d13970425d46b",
+  "roots": {
+    "validation": 32,
+    "test": 96
+  },
+  "gamesWithTerminal": 59
+}

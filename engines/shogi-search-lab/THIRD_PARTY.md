@@ -9,7 +9,7 @@
 - Local source: the existing site's `dist/vendor/yaneuraou/corresponding-source.zip`, SHA-256 `15e6ac502d282adec7b9e17609b7e7265adfe56c08cd498be0f3a3351b8ea227`.
 - Snapshot extraction: `.cpp`, `.h`, and `.hpp` files beneath `source/`. This is a research subset of the source distribution, not a complete upstream WASM release.
 - In the main engine, only `bitboard.cpp`, `position.cpp`, `movegen.cpp`, `types.cpp`, and the no-evaluation configuration of `eval/evaluate.cpp` are built directly from upstream. The test-only NNUE oracle additionally builds `eval/evaluate_bona_piece.cpp` and NNUE K/P feature code and instantiates the upstream transformer/layer templates. Other source files are retained for reading.
-- No upstream search implementation is linked. Neural weights are external and are not packaged. In v0.8, `src/nnue.cpp` implements compatible inference, following the fixed upstream K+P feature numbering, architecture, integer arithmetic, and binary layout. It is distributed under this project’s GPL-3.0 license.
+- No upstream search implementation is linked. The complete pretrained neural network remains external. In v0.8, `src/nnue.cpp` implements compatible inference, following the fixed upstream K+P feature numbering, architecture, integer arithmetic, and binary layout. It is distributed under this project’s GPL-3.0 license.
 
 ### Local modification, 2026-09-21
 
@@ -38,6 +38,13 @@ The suite is frozen before timing and is not a representative strength-rating da
 
 - Fixed weights: `source/eval/nn.bin` (2019-01-15 KP256) from the pinned YaneuraOu.wasm distribution above. The matching distribution asset `yaneuraou.data` consists of these model bytes directly.
 - SHA-256: `cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9`; size 893917 bytes.
-- Fetch/verification: `scripts/fetch_opponent.py`, pinned file Git blob IDs and source references. This archive does not redistribute the weights; consult the upstream distribution for their terms and provenance. No claim of independent training or new weight authorship is made.
+- Fetch/verification: `scripts/fetch_opponent.py`, pinned file Git blob IDs and source references. This archive does not redistribute the complete pretrained network; consult the upstream distribution for its terms and provenance. The baseline is not independently trained here.
 - Architecture: K+P[1710→256×2], dense layers 512→32→32→1, integer inference. This is K+P, not HalfKP.
 - The adapter preserves upstream raw scores (PawnValue=90); USI output converts ordinary scores to cp using `score * 100 / 90`. Search JSON declares the raw score unit.
+
+## Trained NNUE head derivatives (v0.10)
+
+- `models/v0.10/*.npz` contain 1089-parameter head derivatives initialized from the pinned network above; unchanged head parameters retain upstream provenance. These are transfer-learning artifacts, not independently trained full networks. The `*-float.npz` files are corresponding optimizer-space checkpoints.
+- The 454432 parameters of the feature transformer and first dense layer are frozen and are not included in these head files. Export requires the exact externally obtained base model and verifies its SHA-256.
+- Labels are locally generated outputs of that same pinned YaneuraOu teacher. They are not human game annotations or an independent test of the teacher's strength.
+- Training, selection, limitations, and provenance are described in `models/v0.10/MODEL_CARD.md` and `REPORT-v0.10.md`.

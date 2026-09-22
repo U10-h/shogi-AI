@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "version": "v0.10",
+  "seed": 20260924,
+  "teacher": "pinned YaneuraOu KP256 6.03 WASM, same fixed pretrained weights as v0.8/v0.9",
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "data": {
+    "games": 192,
+    "splits": {
+      "train": 128,
+      "validation": 32,
+      "test": 32
+    },
+    "maxPlies": 120,
+    "teacherDepth": 6,
+    "multiPV": 3,
+    "labelAfterPly": 12,
+    "moveChoice": "fixed per-game PRNG among top 3 within 180cp of best; use best at mate",
+    "labels": "root score and each candidate child side-to-move score; conventional cp only; preserve game/rank/phase/PV; exclude checked feature positions when fitting quiet evaluator",
+    "dedup": "exact position ignoring move counter and left-right mirror canonical key; later split takes priority; split games before generation"
+  },
+  "training": {
+    "stage1": "direct neural head fitting teacher search targets; frozen NNUE feature transformer and first hidden layer, train last hidden32 and output1, 1089 weights/biases",
+    "stage2": "inspect validation search degradation/errors; reconstruct using anchoring to base, robust/squashed loss, conservative parameter interpolation; choose solely on validation",
+    "loss": "teacher-score regression, not game win-probability calibration",
+    "numpy": "NumPy manual backprop + Adam + quantization-aware export to compatible integer NNUE format"
+  },
+  "selection": {
+    "static": "validation-only metrics and phase/tactical diagnostics; save checkpoints",
+    "search": "validation roots with fixed-node budget and teacher depth10 candidate-union ranking; consider regression tail, not only mean static error",
+    "test": "do not compute candidate test metrics until final candidate hash frozen"
+  },
+  "evaluation": {
+    "heldoutRoots": 96,
+    "timeMs": 1000,
+    "longRoots": 24,
+    "longTimeMs": 3000,
+    "teacherDepth": 10,
+    "games": 32,
+    "matchBudget": "fixed 12000 nodes per move, cap200, 16 holdout openings x colors swapped; both engines same search code; legal fallback if first iteration unavailable",
+    "timing": "timed searches sequential after generation and training, rotation of variant order; node-budget matches may use parallel workers",
+    "baseline": "original NNUE weights in v0.9 search",
+    "controls": "full/incremental NNUE equality; Python/C++ inference parity; malformed model checks; existing rules tests"
+  },
+  "scope": "substantially larger local research experiment, not million-position professional training; no Elo or independent teacher claim",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpusAvailable": 9
+}

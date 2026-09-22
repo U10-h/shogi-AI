@@ -1,0 +1,1 @@
+{"passed": true, "models": ["naive", "anchored25", "anchored50"], "staticPositionsPerMode": 1024, "legacyComparisons": 8}

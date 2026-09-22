@@ -13,6 +13,7 @@ class Evaluator {
 public:
     explicit Evaluator(const std::string& mode="material",const std::string& model="");
     int operator()(const Board& board) const;
+    std::array<uint8_t,32> nnue_features(const Board& board) const;
     const std::array<double,positional_size>& weights() const {return weights_;}
     std::map<std::string,uint64_t> stats() const {return nnue_?nnue_->stats():std::map<std::string,uint64_t>{};}
 };

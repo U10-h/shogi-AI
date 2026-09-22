@@ -1,0 +1,37 @@
+{"stage":"test","task":0,"game":160,"ms":1000,"runs":[{"name":"base","depth":4,"gap":0,"move":"6b6c","fallback":false},{"name":"anchored50","depth":4,"gap":0,"move":"6b6c","fallback":false}]} null 0
+{"stage":"test","task":1,"game":160,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":369,"move":"6d6e","fallback":false},{"name":"base","depth":4,"gap":369,"move":"6d6e","fallback":false}]} null 0
+{"stage":"test","task":2,"game":160,"ms":1000,"runs":[{"name":"base","depth":4,"gap":206,"move":"P*2d","fallback":false},{"name":"anchored50","depth":4,"gap":206,"move":"P*2d","fallback":false}]} null 0
+{"stage":"test","task":3,"game":161,"ms":1000,"runs":[{"name":"anchored50","depth":5,"gap":0,"move":"2e2d","fallback":false},{"name":"base","depth":5,"gap":0,"move":"2e2d","fallback":false}]} null 0
+{"stage":"test","task":4,"game":161,"ms":1000,"runs":[{"name":"base","depth":4,"gap":61,"move":"2e2d","fallback":false},{"name":"anchored50","depth":4,"gap":61,"move":"2e2d","fallback":false}]} null 0
+{"stage":"test","task":5,"game":161,"ms":1000,"runs":[{"name":"anchored50","depth":3,"gap":0,"move":"P*4d","fallback":false},{"name":"base","depth":3,"gap":0,"move":"P*4d","fallback":false}]} null 0
+{"stage":"test","task":6,"game":162,"ms":1000,"runs":[{"name":"base","depth":5,"gap":0,"move":"4e6c+","fallback":false},{"name":"anchored50","depth":5,"gap":0,"move":"4e6c+","fallback":false}]} null 0
+{"stage":"test","task":7,"game":162,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":0,"move":"6c5d","fallback":false},{"name":"base","depth":4,"gap":0,"move":"6c5d","fallback":false}]} null 0
+{"stage":"test","task":8,"game":162,"ms":1000,"runs":[{"name":"base","depth":3,"gap":0,"move":"2h2g","fallback":false},{"name":"anchored50","depth":3,"gap":0,"move":"2h2g","fallback":false}]} null 0
+{"stage":"test","task":9,"game":163,"ms":1000,"runs":[{"name":"anchored50","depth":5,"gap":0,"move":"2h2d","fallback":false},{"name":"base","depth":5,"gap":0,"move":"2h2d","fallback":false}]} null 0
+{"stage":"test","task":10,"game":163,"ms":1000,"runs":[{"name":"base","depth":4,"gap":647,"move":"4f4e","fallback":false},{"name":"anchored50","depth":4,"gap":647,"move":"4f4e","fallback":false}]} null 0
+{"stage":"test","task":11,"game":163,"ms":1000,"runs":[{"name":"anchored50","depth":3,"gap":0,"move":"N*3f","fallback":false},{"name":"base","depth":3,"gap":0,"move":"N*3f","fallback":false}]} null 0
+{"stage":"test","task":12,"game":164,"ms":1000,"runs":[{"name":"base","depth":5,"gap":0,"move":"4g4f","fallback":false},{"name":"anchored50","depth":5,"gap":0,"move":"4g4f","fallback":false}]} null 0
+{"stage":"test","task":13,"game":164,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":0,"move":"S*4g","fallback":false},{"name":"base","depth":4,"gap":0,"move":"S*4g","fallback":false}]} null 0
+{"stage":"test","task":14,"game":164,"ms":1000,"runs":[{"name":"base","depth":4,"gap":0,"move":"4f5g","fallback":false},{"name":"anchored50","depth":4,"gap":0,"move":"4f5g","fallback":false}]} null 0
+{"stage":"test","task":15,"game":165,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":345,"move":"3c2e","fallback":false},{"name":"base","depth":4,"gap":345,"move":"3c2e","fallback":false}]} null 0
+{"stage":"test","task":16,"game":165,"ms":1000,"runs":[{"name":"base","depth":2,"gap":0,"move":"P*3d","fallback":false},{"name":"anchored50","depth":2,"gap":0,"move":"P*3d","fallback":false}]} null 0
+{"stage":"test","task":17,"game":165,"ms":1000,"runs":[{"name":"anchored50","depth":3,"gap":173,"move":"G*4i","fallback":false},{"name":"base","depth":3,"gap":173,"move":"G*4i","fallback":false}]} null 0
+{"stage":"test","task":18,"game":166,"ms":1000,"runs":[{"name":"base","depth":5,"gap":35,"move":"6b6c","fallback":false},{"name":"anchored50","depth":5,"gap":0,"move":"5c5d","fallback":false}]} null 0
+{"stage":"test","task":19,"game":166,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":0,"move":"4d4e","fallback":false},{"name":"base","depth":4,"gap":0,"move":"4d4e","fallback":false}]} null 0
+{"stage":"test","task":20,"game":166,"ms":1000,"runs":[{"name":"base","depth":2,"gap":692,"move":"2c3c","fallback":false},{"name":"anchored50","depth":2,"gap":692,"move":"2c3c","fallback":false}]} null 0
+{"stage":"test","task":21,"game":167,"ms":1000,"runs":[{"name":"anchored50","depth":5,"gap":0,"move":"8b8f","fallback":false},{"name":"base","depth":5,"gap":0,"move":"8b8f","fallback":false}]} null 0
+{"stage":"test","task":22,"game":167,"ms":1000,"runs":[{"name":"base","depth":4,"gap":0,"move":"8g8h+","fallback":false},{"name":"anchored50","depth":4,"gap":0,"move":"8g8h+","fallback":false}]} null 0
+{"stage":"test","task":23,"game":167,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":0,"move":"3c3d","fallback":false},{"name":"base","depth":4,"gap":0,"move":"3c3d","fallback":false}]} null 0
+{"stage":"test","task":24,"game":168,"ms":1000,"runs":[{"name":"base","depth":4,"gap":0,"move":"9f9e","fallback":false},{"name":"anchored50","depth":4,"gap":0,"move":"9f9e","fallback":false}]} null 0
+{"stage":"test","task":25,"game":168,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":0,"move":"5g4g","fallback":false},{"name":"base","depth":4,"gap":0,"move":"5g4g","fallback":false}]} null 0
+{"stage":"test","task":26,"game":168,"ms":1000,"runs":[{"name":"base","depth":3,"gap":0,"move":"N*8d","fallback":false},{"name":"anchored50","depth":3,"gap":0,"move":"N*8d","fallback":false}]} null 0
+{"stage":"test","task":27,"game":169,"ms":1000,"runs":[{"name":"anchored50","depth":4,"gap":436,"move":"4i5h","fallback":false},{"name":"base","depth":4,"gap":436,"move":"4i5h","fallback":false}]} null 0
+{"stage":"test","task":28,"game":169,"ms":1000,"runs":[{"name":"base","depth":3,"gap":0,"move":"3d3c+","fallback":false},{"name":"anchored50","depth":3,"gap":0,"move":"3d3c+","fallback":false}]} null 0
+/workspace/scratch/791cf228e1b0/opponent/yaneuraou.js:20
+if(H){K=F?require("path").dirname(K)+"/":__dirname+"/";ra=function(a,b){ta||(ta=require("fs"));ua||(ua=require("path"));a=ua.normalize(a);return ta.readFileSync(a,b?null:"utf8")};sa=function(a){a=ra(a,!0);a.buffer||(a=new Uint8Array(a));assert(a.buffer);return a};1<process.argv.length&&(ma=process.argv[1].replace(/\\/g,"/"));la=process.argv.slice(2);process.on("uncaughtException",function(a){if(!(a instanceof va))throw a;});process.on("unhandledRejection",L);oa=function(a){process.exit(a)};A.inspect=
+                                                                                                                                                                                                                                                                                                                                                                                                                                 ^
+
+Error: Incomplete teacher candidate set
+    at file:///workspace/scratch/791cf228e1b0/work/shogi-search-lab/scripts/evaluate_ml.mjs:43:38
+
+Node.js v24.19.0

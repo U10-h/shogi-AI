@@ -1,0 +1,14 @@
+{"name": "naive", "epoch": 1, "trainingLoss": 1.1739866394830898, "validation": {"n": 8576, "maeCp": 674.0533271144278, "rmseCp": 992.2671135693273, "p95AbsCp": 2161.916666666667}, "changedParameters": 733}
+{"name": "naive", "epoch": 5, "trainingLoss": 1.0530260926779864, "validation": {"n": 8576, "maeCp": 665.5701440713102, "rmseCp": 987.6304674308799, "p95AbsCp": 2148.6944444444443}, "changedParameters": 882}
+{"name": "naive", "epoch": 10, "trainingLoss": 1.0385991887700001, "validation": {"n": 8576, "maeCp": 664.7540682006634, "rmseCp": 985.1719219647351, "p95AbsCp": 2143.3333333333335}, "changedParameters": 929}
+{"name": "naive", "epoch": 15, "trainingLoss": 1.0295751105102513, "validation": {"n": 8576, "maeCp": 664.7602871061359, "rmseCp": 984.6519919178725, "p95AbsCp": 2143.305555555555}, "changedParameters": 956}
+{"name": "naive", "epoch": 20, "trainingLoss": 1.0236511644037165, "validation": {"n": 8576, "maeCp": 667.1752694859039, "rmseCp": 984.1228780523165, "p95AbsCp": 2137.083333333333}, "changedParameters": 950}
+{"name": "naive", "epoch": 25, "trainingLoss": 1.0183534973968507, "validation": {"n": 8576, "maeCp": 664.5428067993366, "rmseCp": 985.4715762183118, "p95AbsCp": 2155.5277777777774}, "changedParameters": 967}
+{"name": "naive", "epoch": 30, "trainingLoss": 1.0146854674151906, "validation": {"n": 8576, "maeCp": 667.2323020315091, "rmseCp": 986.435586800088, "p95AbsCp": 2152.6944444444443}, "changedParameters": 976}
+{"name": "naive", "epoch": 35, "trainingLoss": 1.0108054882475943, "validation": {"n": 8576, "maeCp": 669.7506478026535, "rmseCp": 985.2941003861179, "p95AbsCp": 2139.3055555555557}, "changedParameters": 980}
+{"name": "naive", "epoch": 40, "trainingLoss": 1.007811667057534, "validation": {"n": 8576, "maeCp": 670.1814883913765, "rmseCp": 987.402458663686, "p95AbsCp": 2154.6111111111113}, "changedParameters": 990}
+{"name": "naive", "epoch": 45, "trainingLoss": 1.004530786641535, "validation": {"n": 8576, "maeCp": 674.6537883499172, "rmseCp": 986.7537099533326, "p95AbsCp": 2141.3888888888887}, "changedParameters": 997}
+{"name": "naive", "epoch": 50, "trainingLoss": 1.0020320294575598, "validation": {"n": 8576, "maeCp": 668.3094423714759, "rmseCp": 986.0383631911598, "p95AbsCp": 2143.0555555555557}, "changedParameters": 1011}
+{"name": "naive", "epoch": 55, "trainingLoss": 0.9992296778074033, "validation": {"n": 8576, "maeCp": 671.9522180762852, "rmseCp": 986.7552480267642, "p95AbsCp": 2140.333333333334}, "changedParameters": 1011}
+{"name": "naive", "epoch": 60, "trainingLoss": 0.9969982230883057, "validation": {"n": 8576, "maeCp": 675.2272232587064, "rmseCp": 988.2990255769053, "p95AbsCp": 2149.222222222222}, "changedParameters": 1015}
+{"stage": "naive", "gradientCheckMaxError": 1.4620388233410608e-12, "baselineValidation": {"n": 8576, "maeCp": 731.0616189883914, "rmseCp": 1126.9906893442976, "p95AbsCp": 2581.333333333333}, "testMetricsOpened": false}

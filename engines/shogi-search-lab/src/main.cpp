@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         lab::Options options;
         lab::AdvancedOptions advanced_options;
         bool advanced = false, advanced_tests = false, usi_mode = false;
-        bool eval_batch=false;
+        bool eval_batch=false,nnue_features=false;
         std::string sfen = SFEN_HIRATE, moves;
         bool legal = false, tests = false;
         bool session = false, session_tests = false;
@@ -44,7 +44,9 @@ int main(int argc, char** argv) {
                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
                     "  --eval material|positional|learned|nnue|nnue-full|nnue-verify [--eval-model PATH] (advanced/USI)\n"
                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
+                    "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
+                    "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
                 return 0;
             } else if (arg == "--sfen") sfen = value();
@@ -78,7 +80,11 @@ int main(int argc, char** argv) {
             else if (arg == "--eval") advanced_options.evaluation=value();
             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
+            else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
+            else if (arg == "--full-qmoves") advanced_options.direct_qmoves=false;
+            else if (arg == "--eager-qmoves") advanced_options.defer_qmoves=false;
             else if (arg == "--eval-batch") eval_batch=true;
+            else if (arg == "--nnue-features") nnue_features=true;
             else if (arg == "--preset") {advanced = true;lab::set_advanced_preset(advanced_options,value());}
             else if (arg == "--features") {advanced = true;lab::set_advanced_features(advanced_options,value());}
             else if (arg == "--driver") {advanced = true;advanced_options.driver=value();}
@@ -108,6 +114,7 @@ int main(int argc, char** argv) {
         Bitboards::init();
         Position::init();
         advanced_options.limits=options;
+        if(nnue_features&&(!eval_batch||advanced_options.evaluation.rfind("nnue",0)!=0))throw std::invalid_argument("--nnue-features requires --eval-batch --eval nnue");
         if(eval_batch){
             std::cout<<std::setprecision(17);
             lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
@@ -116,7 +123,10 @@ int main(int argc, char** argv) {
                 lab::Board b(input);
                 if(advanced_options.evaluation.rfind("nnue",0)==0){
                     std::cout<<"{\"sfen\":"<<lab::quote(b.pos.sfen())<<",\"score\":"<<evaluator(b)
-                        <<",\"score_unit\":\"yaneuraou_raw_pawn90\",\"evaluation\":"<<lab::quote(advanced_options.evaluation)<<"}"<<std::endl;
+                        <<",\"score_unit\":\"yaneuraou_raw_pawn90\",\"evaluation\":"<<lab::quote(advanced_options.evaluation);
+                    if(nnue_features){auto h=evaluator.nnue_features(b);std::cout<<",\"in_check\":"<<(b.pos.in_check()?"true":"false")<<",\"h1\":[";
+                        for(size_t i=0;i<h.size();++i){if(i)std::cout<<',';std::cout<<int(h[i]);}std::cout<<']';}
+                    std::cout<<"}"<<std::endl;
                     continue;
                 }
                 auto x=lab::positional_features(b);

@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-21T14:40:21.392702+00:00",
+  "selected": "anchored50",
+  "modelSha256": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+  "testRetuning": false,
+  "disposition": "Retain as opt-in improved candidate:25W7L in fixed12000-node paired matches and static MAE -2.45%; timed-search gain sparse and uncertain. Keep original model available and collect new unseen openings before further tuning.",
+  "dataAudit": {
+    "finishedTeacherGames": 192,
+    "distinctTestRoots": 96,
+    "timedComparisons": 120,
+    "finishedMatchGames": 32,
+    "kifFiles": 32
+  }
+}

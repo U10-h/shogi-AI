@@ -1,0 +1,8 @@
+{"stage":"naive","task":3,"game":131,"ms":null,"runs":[{"name":"naive","depth":3,"gap":0,"move":"6b5b","fallback":false},{"name":"base","depth":3,"gap":0,"move":"6b5b","fallback":false}]} null 0
+{"stage":"naive","task":7,"game":135,"ms":null,"runs":[{"name":"naive","depth":4,"gap":0,"move":"2b5e","fallback":false},{"name":"base","depth":3,"gap":788,"move":"2b4d","fallback":false}]} null 0
+{"stage":"naive","task":11,"game":139,"ms":null,"runs":[{"name":"naive","depth":3,"gap":0,"move":"4a3b","fallback":false},{"name":"base","depth":1,"gap":0,"move":"4a3b","fallback":false}]} null 0
+{"stage":"naive","task":15,"game":143,"ms":null,"runs":[{"name":"naive","depth":3,"gap":0,"move":"4d2f","fallback":false},{"name":"base","depth":3,"gap":0,"move":"4d2f","fallback":false}]} null 0
+{"stage":"naive","task":19,"game":147,"ms":null,"runs":[{"name":"naive","depth":4,"gap":114,"move":"6i7h","fallback":false},{"name":"base","depth":4,"gap":0,"move":"2f2e","fallback":false}]} null 0
+{"stage":"naive","task":23,"game":151,"ms":null,"runs":[{"name":"naive","depth":3,"gap":0,"move":"1g2e","fallback":false},{"name":"base","depth":2,"gap":0,"move":"1g2e","fallback":false}]} null 0
+{"stage":"naive","task":27,"game":155,"ms":null,"runs":[{"name":"naive","depth":3,"gap":0,"move":"5c5b","fallback":false},{"name":"base","depth":2,"gap":0,"move":"5c5b","fallback":false}]} null 0
+{"stage":"naive","task":31,"game":159,"ms":null,"runs":[{"name":"naive","depth":4,"gap":0,"move":"1e3g+","fallback":false},{"name":"base","depth":3,"gap":819,"move":"7f7e","fallback":false}]} null 0

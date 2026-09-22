@@ -1,0 +1,181 @@
+{
+  "models": {
+    "naive": {
+      "sha256": "dad59bba0e8f49453a9255f0e53e7e429ac82f401be276f26ae8ecbfcc6d9354",
+      "staticExactMatches": {
+        "nnue": 1024,
+        "nnue-full": 1024,
+        "nnue-verify": 1024
+      },
+      "searchComparisons": [
+        {
+          "sfen": "lnsgkg1nl/1r7/ppppppsp1/4b1p1p/9/P1P5P/1P1PPPPP1/L2R5/1NSGKGSNL b B 1",
+          "nodes": 6541,
+          "complete": true,
+          "verifiedUpdates": 5849
+        },
+        {
+          "sfen": "l1s2gsnl/1r2g1kb1/p1n1pp1p1/2pp2p1p/1p2P4/2P3P2/PPBP1P1PP/1SG1RKG2/LN4SNL w - 1",
+          "nodes": 2936,
+          "complete": true,
+          "verifiedUpdates": 2553
+        },
+        {
+          "sfen": "ln1S3nl/1r4gk1/2p2p1pp/3p1sP2/pp4+r1P/2PP1P3/PPS+BP2P1/1K1G5/LNg2G2+b b 2Psnl 1",
+          "nodes": 3008,
+          "complete": true,
+          "verifiedUpdates": 2488
+        },
+        {
+          "sfen": "ln3gknl/rsg6/p2pps1p1/1pP2ppbp/2S6/P1R1P1P1P/1P1P1PBP1/4G1S2/LN2KG1NL b p 1",
+          "nodes": 8915,
+          "complete": true,
+          "verifiedUpdates": 8067
+        },
+        {
+          "sfen": "ln3k1p1/2r3s1+B/3p1g3/p2sp1p2/2P2N1Pb/PP1LPP1g1/3P1LP1+p/L1SKGS3/1N1G4+r b 2Pn2p 1",
+          "nodes": 4651,
+          "complete": true,
+          "verifiedUpdates": 4040
+        },
+        {
+          "sfen": "ln1gk1sn1/1rs3g1l/p1pppp1p1/6p1p/9/PPP1P4/2BP1PPPP/1S3S3/LN1GKG1NL b BPr 1",
+          "nodes": 9040,
+          "complete": true,
+          "verifiedUpdates": 7547
+        },
+        {
+          "sfen": "ln5n1/r2gk1g2/1+L1ppppsb/p2s3p1/1N5P1/P1pBPPP2/1P1P2N+s1/2G1KG3/L1S2R3 b l4p 1",
+          "nodes": 3117,
+          "complete": true,
+          "verifiedUpdates": 2904
+        },
+        {
+          "sfen": "ln3g1nl/3rgk3/4ps1p1/p2P1ppbp/2psP4/PBP3PPP/1P3P3/2G2GSK1/LN1R3NL w Psp 1",
+          "nodes": 16000,
+          "complete": false,
+          "verifiedUpdates": 14760
+        }
+      ]
+    },
+    "anchored25": {
+      "sha256": "4544d816559e9c470c1cc682b7928501424c8bbe53da9f853c3bf82a340b1dc0",
+      "staticExactMatches": {
+        "nnue": 1024,
+        "nnue-full": 1024,
+        "nnue-verify": 1024
+      },
+      "searchComparisons": [
+        {
+          "sfen": "lnsgkg1nl/1r7/ppppppsp1/4b1p1p/9/P1P5P/1P1PPPPP1/L2R5/1NSGKGSNL b B 1",
+          "nodes": 8192,
+          "complete": true,
+          "verifiedUpdates": 7287
+        },
+        {
+          "sfen": "l1s2gsnl/1r2g1kb1/p1n1pp1p1/2pp2p1p/1p2P4/2P3P2/PPBP1P1PP/1SG1RKG2/LN4SNL w - 1",
+          "nodes": 2863,
+          "complete": true,
+          "verifiedUpdates": 2482
+        },
+        {
+          "sfen": "ln1S3nl/1r4gk1/2p2p1pp/3p1sP2/pp4+r1P/2PP1P3/PPS+BP2P1/1K1G5/LNg2G2+b b 2Psnl 1",
+          "nodes": 4425,
+          "complete": true,
+          "verifiedUpdates": 3647
+        },
+        {
+          "sfen": "ln3gknl/rsg6/p2pps1p1/1pP2ppbp/2S6/P1R1P1P1P/1P1P1PBP1/4G1S2/LN2KG1NL b p 1",
+          "nodes": 16000,
+          "complete": false,
+          "verifiedUpdates": 14921
+        },
+        {
+          "sfen": "ln3k1p1/2r3s1+B/3p1g3/p2sp1p2/2P2N1Pb/PP1LPP1g1/3P1LP1+p/L1SKGS3/1N1G4+r b 2Pn2p 1",
+          "nodes": 5170,
+          "complete": true,
+          "verifiedUpdates": 4500
+        },
+        {
+          "sfen": "ln1gk1sn1/1rs3g1l/p1pppp1p1/6p1p/9/PPP1P4/2BP1PPPP/1S3S3/LN1GKG1NL b BPr 1",
+          "nodes": 10470,
+          "complete": true,
+          "verifiedUpdates": 8703
+        },
+        {
+          "sfen": "ln5n1/r2gk1g2/1+L1ppppsb/p2s3p1/1N5P1/P1pBPPP2/1P1P2N+s1/2G1KG3/L1S2R3 b l4p 1",
+          "nodes": 5077,
+          "complete": true,
+          "verifiedUpdates": 4689
+        },
+        {
+          "sfen": "ln3g1nl/3rgk3/4ps1p1/p2P1ppbp/2psP4/PBP3PPP/1P3P3/2G2GSK1/LN1R3NL w Psp 1",
+          "nodes": 16000,
+          "complete": false,
+          "verifiedUpdates": 14739
+        }
+      ]
+    },
+    "anchored50": {
+      "sha256": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+      "staticExactMatches": {
+        "nnue": 1024,
+        "nnue-full": 1024,
+        "nnue-verify": 1024
+      },
+      "searchComparisons": [
+        {
+          "sfen": "lnsgkg1nl/1r7/ppppppsp1/4b1p1p/9/P1P5P/1P1PPPPP1/L2R5/1NSGKGSNL b B 1",
+          "nodes": 6993,
+          "complete": true,
+          "verifiedUpdates": 6217
+        },
+        {
+          "sfen": "l1s2gsnl/1r2g1kb1/p1n1pp1p1/2pp2p1p/1p2P4/2P3P2/PPBP1P1PP/1SG1RKG2/LN4SNL w - 1",
+          "nodes": 3137,
+          "complete": true,
+          "verifiedUpdates": 2746
+        },
+        {
+          "sfen": "ln1S3nl/1r4gk1/2p2p1pp/3p1sP2/pp4+r1P/2PP1P3/PPS+BP2P1/1K1G5/LNg2G2+b b 2Psnl 1",
+          "nodes": 4110,
+          "complete": true,
+          "verifiedUpdates": 3396
+        },
+        {
+          "sfen": "ln3gknl/rsg6/p2pps1p1/1pP2ppbp/2S6/P1R1P1P1P/1P1P1PBP1/4G1S2/LN2KG1NL b p 1",
+          "nodes": 15999,
+          "complete": true,
+          "verifiedUpdates": 14893
+        },
+        {
+          "sfen": "ln3k1p1/2r3s1+B/3p1g3/p2sp1p2/2P2N1Pb/PP1LPP1g1/3P1LP1+p/L1SKGS3/1N1G4+r b 2Pn2p 1",
+          "nodes": 5035,
+          "complete": true,
+          "verifiedUpdates": 4399
+        },
+        {
+          "sfen": "ln1gk1sn1/1rs3g1l/p1pppp1p1/6p1p/9/PPP1P4/2BP1PPPP/1S3S3/LN1GKG1NL b BPr 1",
+          "nodes": 12801,
+          "complete": true,
+          "verifiedUpdates": 10452
+        },
+        {
+          "sfen": "ln5n1/r2gk1g2/1+L1ppppsb/p2s3p1/1N5P1/P1pBPPP2/1P1P2N+s1/2G1KG3/L1S2R3 b l4p 1",
+          "nodes": 5041,
+          "complete": true,
+          "verifiedUpdates": 4655
+        },
+        {
+          "sfen": "ln3g1nl/3rgk3/4ps1p1/p2P1ppbp/2psP4/PBP3PPP/1P3P3/2G2GSK1/LN1R3NL w Psp 1",
+          "nodes": 16000,
+          "complete": false,
+          "verifiedUpdates": 14770
+        }
+      ]
+    }
+  },
+  "binarySha256": "1e7691b5ec234744ffa49914e79032dd865a96be6a26f07c7737c95825a6709b",
+  "legacyComparisons": 8,
+  "passed": true
+}

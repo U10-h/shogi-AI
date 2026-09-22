@@ -91,4 +91,8 @@ int Evaluator::operator()(const Board& b) const{
     const int correction=int(std::lround(std::clamp(positional,-1500.0,1500.0)));
     return std::clamp(material+(b.pos.side_to_move()==BLACK?correction:-correction),-80000,80000);
 }
+std::array<uint8_t,32> Evaluator::nnue_features(const Board& b) const {
+    if(!nnue_)throw std::invalid_argument("NNUE feature export requires an NNUE evaluator");
+    return nnue_->first_hidden(b);
+}
 }

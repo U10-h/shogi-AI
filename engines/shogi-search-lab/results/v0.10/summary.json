@@ -1,0 +1,1808 @@
+{
+  "frozen": {
+    "selected": "anchored50",
+    "head": "models/v0.10/anchored50.npz",
+    "headSha256": "672448a8497d026b9ee5fa34ffbced395bb837089e1ec9fed2aa2aaab30eb6a7",
+    "modelSha256": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+    "binarySha256": "1e7691b5ec234744ffa49914e79032dd865a96be6a26f07c7737c95825a6709b",
+    "frozenAt": "2026-09-21T14:18:44.472155+00:00",
+    "validation": {
+      "base": {
+        "meanGapCp": 139.5,
+        "fallbacks": 0
+      },
+      "anchored50": {
+        "meanGapCp": 89.9375,
+        "fallbacks": 0
+      },
+      "tempo40": {
+        "meanGapCp": 114.875,
+        "fallbacks": 0
+      }
+    },
+    "selection": "Lowest mean teacher candidate-gap among rebuilt heads, also compared with +40cp bias control. Against base: 2 improved,29 equal,1 worse; worst regression21cp. Low evidence count acknowledged.",
+    "testMetricsOpened": false,
+    "testPlan": "96 roots x1000ms +24 roots x3000ms, both base/selected. 32 fixed12000-node games,16 distinct holdout starts x colors."
+  },
+  "data": {
+    "games": 192,
+    "teacherSearchRoots": 21889,
+    "rawLabelsAfterEarlyFilter": 80471,
+    "kept": 56805,
+    "removed": {
+      "mate_or_extreme": 4800,
+      "early": 1596,
+      "overlap": 18866
+    },
+    "splits": {
+      "train": {
+        "labels": 37887,
+        "quietLabels": 34774,
+        "games": 128
+      },
+      "validation": {
+        "labels": 9275,
+        "quietLabels": 8576,
+        "games": 32
+      },
+      "test": {
+        "labels": 9643,
+        "quietLabels": 8827,
+        "games": 32
+      }
+    },
+    "crossSplitOverlapAfterSymmetryDedup": 0,
+    "independentFeatureChecks": 1024,
+    "headScoreMatches": 56805,
+    "datasetSha256": "0cdab05043ce77b7015c966cae45ae78012dd11ef8040dcbda6d13970425d46b",
+    "roots": {
+      "validation": 32,
+      "test": 96
+    },
+    "gamesWithTerminal": 59
+  },
+  "staticTest": {
+    "frozenModelSha256": "1a0a562dc32a9062143d0b4c850e7adc62a0f9ed1a67c8f1c19889ac99bf6b87",
+    "base": {
+      "n": 8827,
+      "maeCp": 726.9577684629231,
+      "rmseCp": 1104.8081059732883,
+      "p95AbsCp": 2518.388888888887
+    },
+    "candidate": {
+      "n": 8827,
+      "maeCp": 709.1267449617965,
+      "rmseCp": 1083.7391871670916,
+      "p95AbsCp": 2478.8777777777773
+    },
+    "byPly": {
+      "0_39": {
+        "n": 2577,
+        "baseMAE": 424.36657612210587,
+        "candidateMAE": 415.2874574224981
+      },
+      "40_79": {
+        "n": 3521,
+        "baseMAE": 744.0208274164538,
+        "candidateMAE": 723.1211461390388
+      },
+      "80_plus": {
+        "n": 2729,
+        "baseMAE": 990.6801840315949,
+        "candidateMAE": 968.5439517934936
+      }
+    }
+  },
+  "validation": {
+    "naive": {
+      "roots": 32,
+      "games": 32,
+      "models": {
+        "base": {
+          "cpRoots": 32,
+          "meanGapCp": 131.59375,
+          "p95GapCp": 860.4,
+          "meanDepth": 2.875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 149.3833125
+        },
+        "naive": {
+          "cpRoots": 32,
+          "meanGapCp": 158.46875,
+          "p95GapCp": 881.3,
+          "meanDepth": 3.1875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 160.15534375,
+          "better": 6,
+          "equal": 20,
+          "worse": 6,
+          "meanPairedDeltaCp": 26.875,
+          "pairedGameBootstrap95": [
+            -98.76640624999999,
+            169.75468749999993
+          ],
+          "mostImproved": [
+            {
+              "task": 31,
+              "game": 159,
+              "ply": 31,
+              "baseMove": "7f7e",
+              "candidateMove": "1e3g+",
+              "baseGapCp": 819,
+              "candidateGapCp": 0,
+              "deltaCp": -819,
+              "baseDepth": 3,
+              "candidateDepth": 4,
+              "sfen": "ln2kg2l/3sg1s2/p2pp1npp/2p3p2/4Bp1Pb/2r3P2/P1SPPPS1P/1PG4R1/LN1K1G1NL w 2p 1"
+            },
+            {
+              "task": 7,
+              "game": 135,
+              "ply": 23,
+              "baseMove": "2b4d",
+              "candidateMove": "2b5e",
+              "baseGapCp": 788,
+              "candidateGapCp": 0,
+              "deltaCp": -788,
+              "baseDepth": 3,
+              "candidateDepth": 4,
+              "sfen": "lnsgk1s1l/4rg1b1/pPpp1p1+Pn/4p1p1p/8P/Pp3R3/1+pPPPPP2/1B4S2/LNSGKG1NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "4b3a",
+              "baseGapCp": 942,
+              "candidateGapCp": 539,
+              "deltaCp": -403,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 16,
+              "game": 144,
+              "ply": 19,
+              "baseMove": "1d1e",
+              "candidateMove": "2b3c",
+              "baseGapCp": 246,
+              "candidateGapCp": 0,
+              "deltaCp": -246,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "lnsg3nl/3kg1rs1/1+Bpp3p1/p3ppp1p/9/2P5P/PP1PPPPP1/3RG1K2/LNS2GSNL w Pb 1"
+            },
+            {
+              "task": 5,
+              "game": 133,
+              "ply": 30,
+              "baseMove": "4i3i",
+              "candidateMove": "6h7g",
+              "baseGapCp": 69,
+              "candidateGapCp": 0,
+              "deltaCp": -69,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln1g2knl/1r1s2g2/p2ppps2/1pp1b2pp/6p2/2P2P1PP/PP1PP1PS1/1R1S1GB2/LN1G1K1NL b - 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 12,
+              "game": 140,
+              "ply": 58,
+              "baseMove": "G*5c",
+              "candidateMove": "4h3h",
+              "baseGapCp": 0,
+              "candidateGapCp": 1560,
+              "deltaCp": 1560,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l6nl/2R2skb1/p1+PP1p1p1/1p2p1p1p/9/P2p4P/1P2PPPP1/2+s2K3/L4GSNL b 2GPrbgs2n 1"
+            },
+            {
+              "task": 30,
+              "game": 158,
+              "ply": 101,
+              "baseMove": "5d5f",
+              "candidateMove": "9e9f",
+              "baseGapCp": 0,
+              "candidateGapCp": 857,
+              "deltaCp": 857,
+              "baseDepth": 2,
+              "candidateDepth": 3,
+              "sfen": "l7+L/4k2P1/1rbNgsg2/P1pplp1p1/pp4P1N/L1PPGP2R/1PNS5/2GB5/2K6 w S4Psnp 1"
+            },
+            {
+              "task": 6,
+              "game": 134,
+              "ply": 77,
+              "baseMove": "7f7g+",
+              "candidateMove": "P*2c",
+              "baseGapCp": 0,
+              "candidateGapCp": 603,
+              "deltaCp": 603,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln3k1nl/9/p1+rp1g2p/2s1pspR1/5N3/P1p1P1P1P/3S5/1B2G4/LNSK1+b2L w GPg7p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "1a1e",
+              "baseGapCp": 0,
+              "candidateGapCp": 116,
+              "deltaCp": 116,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 19,
+              "game": 147,
+              "ply": 20,
+              "baseMove": "2f2e",
+              "candidateMove": "6i7h",
+              "baseGapCp": 0,
+              "candidateGapCp": 114,
+              "deltaCp": 114,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln2kg1nl/1r1sg1s2/3p1pbpp/p1p1p1p2/1p6P/2P2PPP1/PPBPP4/1S2GS1R1/LN1GK2NL b - 1"
+            }
+          ]
+        }
+      },
+      "ordinaryScoreDiagnostic": {
+        "criterion": "All candidate scores are cp with abs(score)<8000. Supplementary range diagnostic; primary rankings retain all roots.",
+        "roots": 32,
+        "excludedTasks": [],
+        "models": {
+          "base": {
+            "meanGapCp": 131.59375
+          },
+          "naive": {
+            "meanGapCp": 158.46875,
+            "meanPairedDeltaCp": 26.875,
+            "pairedGameBootstrap95": [
+              -98.76640624999999,
+              169.75468749999993
+            ]
+          }
+        }
+      }
+    },
+    "rebuild": {
+      "roots": 32,
+      "games": 32,
+      "models": {
+        "base": {
+          "cpRoots": 32,
+          "meanGapCp": 131.59375,
+          "p95GapCp": 860.4,
+          "meanDepth": 2.875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 182.76171875
+        },
+        "naive": {
+          "cpRoots": 32,
+          "meanGapCp": 161.5625,
+          "p95GapCp": 881.3,
+          "meanDepth": 3.1875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 193.6453125,
+          "better": 6,
+          "equal": 20,
+          "worse": 6,
+          "meanPairedDeltaCp": 29.96875,
+          "pairedGameBootstrap95": [
+            -97.2859375,
+            173.40937499999995
+          ],
+          "mostImproved": [
+            {
+              "task": 31,
+              "game": 159,
+              "ply": 31,
+              "baseMove": "7f7e",
+              "candidateMove": "1e3g+",
+              "baseGapCp": 819,
+              "candidateGapCp": 0,
+              "deltaCp": -819,
+              "baseDepth": 3,
+              "candidateDepth": 4,
+              "sfen": "ln2kg2l/3sg1s2/p2pp1npp/2p3p2/4Bp1Pb/2r3P2/P1SPPPS1P/1PG4R1/LN1K1G1NL w 2p 1"
+            },
+            {
+              "task": 7,
+              "game": 135,
+              "ply": 23,
+              "baseMove": "2b4d",
+              "candidateMove": "2b5e",
+              "baseGapCp": 788,
+              "candidateGapCp": 0,
+              "deltaCp": -788,
+              "baseDepth": 3,
+              "candidateDepth": 4,
+              "sfen": "lnsgk1s1l/4rg1b1/pPpp1p1+Pn/4p1p1p/8P/Pp3R3/1+pPPPPP2/1B4S2/LNSGKG1NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "4b3a",
+              "baseGapCp": 942,
+              "candidateGapCp": 539,
+              "deltaCp": -403,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 16,
+              "game": 144,
+              "ply": 19,
+              "baseMove": "1d1e",
+              "candidateMove": "2b3c",
+              "baseGapCp": 246,
+              "candidateGapCp": 0,
+              "deltaCp": -246,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "lnsg3nl/3kg1rs1/1+Bpp3p1/p3ppp1p/9/2P5P/PP1PPPPP1/3RG1K2/LNS2GSNL w Pb 1"
+            },
+            {
+              "task": 5,
+              "game": 133,
+              "ply": 30,
+              "baseMove": "4i3i",
+              "candidateMove": "6h7g",
+              "baseGapCp": 69,
+              "candidateGapCp": 0,
+              "deltaCp": -69,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln1g2knl/1r1s2g2/p2ppps2/1pp1b2pp/6p2/2P2P1PP/PP1PP1PS1/1R1S1GB2/LN1G1K1NL b - 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 12,
+              "game": 140,
+              "ply": 58,
+              "baseMove": "G*5c",
+              "candidateMove": "4h3h",
+              "baseGapCp": 0,
+              "candidateGapCp": 1560,
+              "deltaCp": 1560,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l6nl/2R2skb1/p1+PP1p1p1/1p2p1p1p/9/P2p4P/1P2PPPP1/2+s2K3/L4GSNL b 2GPrbgs2n 1"
+            },
+            {
+              "task": 30,
+              "game": 158,
+              "ply": 101,
+              "baseMove": "5d5f",
+              "candidateMove": "9e9f",
+              "baseGapCp": 0,
+              "candidateGapCp": 857,
+              "deltaCp": 857,
+              "baseDepth": 2,
+              "candidateDepth": 3,
+              "sfen": "l7+L/4k2P1/1rbNgsg2/P1pplp1p1/pp4P1N/L1PPGP2R/1PNS5/2GB5/2K6 w S4Psnp 1"
+            },
+            {
+              "task": 6,
+              "game": 134,
+              "ply": 77,
+              "baseMove": "7f7g+",
+              "candidateMove": "P*2c",
+              "baseGapCp": 0,
+              "candidateGapCp": 603,
+              "deltaCp": 603,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln3k1nl/9/p1+rp1g2p/2s1pspR1/5N3/P1p1P1P1P/3S5/1B2G4/LNSK1+b2L w GPg7p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "1a1e",
+              "baseGapCp": 0,
+              "candidateGapCp": 116,
+              "deltaCp": 116,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 19,
+              "game": 147,
+              "ply": 20,
+              "baseMove": "2f2e",
+              "candidateMove": "6i7h",
+              "baseGapCp": 0,
+              "candidateGapCp": 114,
+              "deltaCp": 114,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln2kg1nl/1r1sg1s2/3p1pbpp/p1p1p1p2/1p6P/2P2PPP1/PPBPP4/1S2GS1R1/LN1GK2NL b - 1"
+            }
+          ]
+        },
+        "anchored25": {
+          "cpRoots": 32,
+          "meanGapCp": 131.71875,
+          "p95GapCp": 860.4,
+          "meanDepth": 2.875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 186.54428125,
+          "better": 0,
+          "equal": 31,
+          "worse": 1,
+          "meanPairedDeltaCp": 0.125,
+          "pairedGameBootstrap95": [
+            0.0,
+            0.375
+          ],
+          "mostImproved": [
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 942,
+              "candidateGapCp": 942,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            },
+            {
+              "task": 5,
+              "game": 133,
+              "ply": 30,
+              "baseMove": "4i3i",
+              "candidateMove": "4i3i",
+              "baseGapCp": 69,
+              "candidateGapCp": 69,
+              "deltaCp": 0,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln1g2knl/1r1s2g2/p2ppps2/1pp1b2pp/6p2/2P2P1PP/PP1PP1PS1/1R1S1GB2/LN1G1K1NL b - 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 4,
+              "game": 132,
+              "ply": 27,
+              "baseMove": "3c2d",
+              "candidateMove": "7c7d",
+              "baseGapCp": 0,
+              "candidateGapCp": 4,
+              "deltaCp": 4,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1g1g1nl/3sks3/2ppppbp1/p5p2/1r6p/P1PPP1P2/1PB1SP1PP/2G1RKG2/LNS4NL w p 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 942,
+              "candidateGapCp": 942,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            }
+          ]
+        },
+        "anchored50": {
+          "cpRoots": 32,
+          "meanGapCp": 81.5,
+          "p95GapCp": 577.6999999999996,
+          "meanDepth": 2.90625,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 178.818,
+          "better": 2,
+          "equal": 29,
+          "worse": 1,
+          "meanPairedDeltaCp": -50.09375,
+          "pairedGameBootstrap95": [
+            -125.90625,
+            0.25
+          ],
+          "mostImproved": [
+            {
+              "task": 31,
+              "game": 159,
+              "ply": 31,
+              "baseMove": "7f7e",
+              "candidateMove": "1e3g+",
+              "baseGapCp": 819,
+              "candidateGapCp": 0,
+              "deltaCp": -819,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln2kg2l/3sg1s2/p2pp1npp/2p3p2/4Bp1Pb/2r3P2/P1SPPPS1P/1PG4R1/LN1K1G1NL w 2p 1"
+            },
+            {
+              "task": 7,
+              "game": 135,
+              "ply": 23,
+              "baseMove": "2b4d",
+              "candidateMove": "2b5e",
+              "baseGapCp": 788,
+              "candidateGapCp": 0,
+              "deltaCp": -788,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "lnsgk1s1l/4rg1b1/pPpp1p1+Pn/4p1p1p/8P/Pp3R3/1+pPPPPP2/1B4S2/LNSGKG1NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 942,
+              "candidateGapCp": 942,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 4,
+              "game": 132,
+              "ply": 27,
+              "baseMove": "3c2d",
+              "candidateMove": "7c7d",
+              "baseGapCp": 0,
+              "candidateGapCp": 4,
+              "deltaCp": 4,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1g1g1nl/3sks3/2ppppbp1/p5p2/1r6p/P1PPP1P2/1PB1SP1PP/2G1RKG2/LNS4NL w p 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 942,
+              "candidateGapCp": 942,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            }
+          ]
+        }
+      },
+      "ordinaryScoreDiagnostic": {
+        "criterion": "All candidate scores are cp with abs(score)<8000. Supplementary range diagnostic; primary rankings retain all roots.",
+        "roots": 32,
+        "excludedTasks": [],
+        "models": {
+          "base": {
+            "meanGapCp": 131.59375
+          },
+          "naive": {
+            "meanGapCp": 161.5625,
+            "meanPairedDeltaCp": 29.96875,
+            "pairedGameBootstrap95": [
+              -97.2859375,
+              173.40937499999995
+            ]
+          },
+          "anchored25": {
+            "meanGapCp": 131.71875,
+            "meanPairedDeltaCp": 0.125,
+            "pairedGameBootstrap95": [
+              0.0,
+              0.375
+            ]
+          },
+          "anchored50": {
+            "meanGapCp": 81.5,
+            "meanPairedDeltaCp": -50.09375,
+            "pairedGameBootstrap95": [
+              -125.90625,
+              0.25
+            ]
+          }
+        }
+      }
+    },
+    "biascontrol": {
+      "roots": 32,
+      "games": 32,
+      "models": {
+        "base": {
+          "cpRoots": 32,
+          "meanGapCp": 139.5,
+          "p95GapCp": 860.4,
+          "meanDepth": 2.875,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 169.64171875
+        },
+        "anchored50": {
+          "cpRoots": 32,
+          "meanGapCp": 89.9375,
+          "p95GapCp": 545.2499999999995,
+          "meanDepth": 2.90625,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 175.77803125,
+          "better": 2,
+          "equal": 29,
+          "worse": 1,
+          "meanPairedDeltaCp": -49.5625,
+          "pairedGameBootstrap95": [
+            -125.375,
+            1.3125
+          ],
+          "mostImproved": [
+            {
+              "task": 31,
+              "game": 159,
+              "ply": 31,
+              "baseMove": "7f7e",
+              "candidateMove": "1e3g+",
+              "baseGapCp": 819,
+              "candidateGapCp": 0,
+              "deltaCp": -819,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln2kg2l/3sg1s2/p2pp1npp/2p3p2/4Bp1Pb/2r3P2/P1SPPPS1P/1PG4R1/LN1K1G1NL w 2p 1"
+            },
+            {
+              "task": 7,
+              "game": 135,
+              "ply": 23,
+              "baseMove": "2b4d",
+              "candidateMove": "2b5e",
+              "baseGapCp": 788,
+              "candidateGapCp": 0,
+              "deltaCp": -788,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "lnsgk1s1l/4rg1b1/pPpp1p1+Pn/4p1p1p/8P/Pp3R3/1+pPPPPP2/1B4S2/LNSGKG1NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 1319,
+              "candidateGapCp": 1319,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 4,
+              "game": 132,
+              "ply": 27,
+              "baseMove": "3c2d",
+              "candidateMove": "7c7d",
+              "baseGapCp": 0,
+              "candidateGapCp": 21,
+              "deltaCp": 21,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1g1g1nl/3sks3/2ppppbp1/p5p2/1r6p/P1PPP1P2/1PB1SP1PP/2G1RKG2/LNS4NL w p 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 1319,
+              "candidateGapCp": 1319,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            }
+          ]
+        },
+        "tempo40": {
+          "cpRoots": 32,
+          "meanGapCp": 114.875,
+          "p95GapCp": 860.4,
+          "meanDepth": 2.90625,
+          "nodes": 640000,
+          "fallbacks": 0,
+          "meanElapsedMs": 169.58446874999998,
+          "better": 1,
+          "equal": 31,
+          "worse": 0,
+          "meanPairedDeltaCp": -24.625,
+          "pairedGameBootstrap95": [
+            -73.875,
+            0.0
+          ],
+          "mostImproved": [
+            {
+              "task": 7,
+              "game": 135,
+              "ply": 23,
+              "baseMove": "2b4d",
+              "candidateMove": "2b5e",
+              "baseGapCp": 788,
+              "candidateGapCp": 0,
+              "deltaCp": -788,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "lnsgk1s1l/4rg1b1/pPpp1p1+Pn/4p1p1p/8P/Pp3R3/1+pPPPPP2/1B4S2/LNSGKG1NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 1319,
+              "candidateGapCp": 1319,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 0,
+              "game": 128,
+              "ply": 79,
+              "baseMove": "1i6i",
+              "candidateMove": "1i6i",
+              "baseGapCp": 1319,
+              "candidateGapCp": 1319,
+              "deltaCp": 0,
+              "baseDepth": 2,
+              "candidateDepth": 2,
+              "sfen": "ln1+L3n1/1s3kr2/1p1Bpg1p1/p1pp1ps2/1N2P1P2/P1PG1P3/1P3SpP1/1K2G4/L7+r w BGL2Psnp 1"
+            },
+            {
+              "task": 1,
+              "game": 129,
+              "ply": 25,
+              "baseMove": "3a2b",
+              "candidateMove": "3a2b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1gkgsnl/2s4+P1/p1ppppp1p/1R7/2B6/1P5p1/P1P+b1PP1P/1S7/LN1GKGSNL w RP2p 1"
+            },
+            {
+              "task": 2,
+              "game": 130,
+              "ply": 49,
+              "baseMove": "P*1f",
+              "candidateMove": "P*1f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l4k1nl/3sgsg2/2nppp1p1/1r5b1/P1P5P/1P1P2P2/1SBGPPS2/2G2KpR1/LN5NL w 4Pp 1"
+            },
+            {
+              "task": 3,
+              "game": 131,
+              "ply": 96,
+              "baseMove": "6b5b",
+              "candidateMove": "6b5b",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "+PR2nk2l/3+Bgg1s1/2p4pp/4p4/3p1ppP1/PpPPP4/L2S1PN1P/4GS1+n1/2SLK3L b GPrbnp 1"
+            },
+            {
+              "task": 4,
+              "game": 132,
+              "ply": 27,
+              "baseMove": "3c2d",
+              "candidateMove": "3c2d",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln1g1g1nl/3sks3/2ppppbp1/p5p2/1r6p/P1PPP1P2/1PB1SP1PP/2G1RKG2/LNS4NL w p 1"
+            }
+          ]
+        }
+      },
+      "ordinaryScoreDiagnostic": {
+        "criterion": "All candidate scores are cp with abs(score)<8000. Supplementary range diagnostic; primary rankings retain all roots.",
+        "roots": 32,
+        "excludedTasks": [],
+        "models": {
+          "base": {
+            "meanGapCp": 139.5
+          },
+          "anchored50": {
+            "meanGapCp": 89.9375,
+            "meanPairedDeltaCp": -49.5625,
+            "pairedGameBootstrap95": [
+              -125.375,
+              1.3125
+            ]
+          },
+          "tempo40": {
+            "meanGapCp": 114.875,
+            "meanPairedDeltaCp": -24.625,
+            "pairedGameBootstrap95": [
+              -73.875,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "test": {
+    "1000": {
+      "roots": 96,
+      "games": 32,
+      "models": {
+        "base": {
+          "cpRoots": 96,
+          "meanGapCp": 455.75,
+          "p95GapCp": 1045.25,
+          "meanDepth": 3.9479166666666665,
+          "nodes": 13492071,
+          "fallbacks": 0,
+          "meanElapsedMs": 1000.89390625
+        },
+        "anchored50": {
+          "cpRoots": 96,
+          "meanGapCp": 447.1875,
+          "p95GapCp": 964.5,
+          "meanDepth": 3.9583333333333335,
+          "nodes": 13536825,
+          "fallbacks": 0,
+          "meanElapsedMs": 1000.8978020833333,
+          "better": 5,
+          "equal": 87,
+          "worse": 4,
+          "meanPairedDeltaCp": -8.5625,
+          "pairedGameBootstrap95": [
+            -54.479166666666664,
+            30.77239583333331
+          ],
+          "mostImproved": [
+            {
+              "task": 60,
+              "game": 180,
+              "ply": 24,
+              "baseMove": "7g7f",
+              "candidateMove": "3f3e",
+              "baseGapCp": 1614,
+              "candidateGapCp": 0,
+              "deltaCp": -1614,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "ln3gsnl/3sg1kb1/pr2pp1pp/2pp2p2/8P/P2SP1P2/1PPP1P1P1/1BS1R4/LN1GKG1NL b p 1"
+            },
+            {
+              "task": 92,
+              "game": 190,
+              "ply": 85,
+              "baseMove": "P*7e",
+              "candidateMove": "6h6i+",
+              "baseGapCp": 655,
+              "candidateGapCp": 0,
+              "deltaCp": -655,
+              "baseDepth": 3,
+              "candidateDepth": 4,
+              "sfen": "l5k1l/4g1g2/2r2snp1/p2s2p1p/1p2pp3/P1GPn1S1P/1PBG1PS2/3pK2R1/L6NL w BNP4p 1"
+            },
+            {
+              "task": 88,
+              "game": 189,
+              "ply": 71,
+              "baseMove": "4d4e",
+              "candidateMove": "B*3h",
+              "baseGapCp": 245,
+              "candidateGapCp": 0,
+              "deltaCp": -245,
+              "baseDepth": 4,
+              "candidateDepth": 3,
+              "sfen": "l4g1nl/1p3gk2/p3p1s2/2p2ppp1/1r1ps3p/2P3PP1/P1SPKG3/2G4SL/L4R1N1 w B2Nb4p 1"
+            },
+            {
+              "task": 51,
+              "game": 177,
+              "ply": 32,
+              "baseMove": "5g5f",
+              "candidateMove": "3g3f",
+              "baseGapCp": 150,
+              "candidateGapCp": 0,
+              "deltaCp": -150,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "lns1kg1nl/1r2g4/3pppbs1/p1p3ppp/1p7/P8/1PPPPPPRP/2S1K1S2/LNBG1G1NL b P 1"
+            },
+            {
+              "task": 37,
+              "game": 172,
+              "ply": 43,
+              "baseMove": "B*4d",
+              "candidateMove": "B*3c",
+              "baseGapCp": 21,
+              "candidateGapCp": 0,
+              "deltaCp": -21,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "l4gknl/3rg1s2/p3pp1pp/1pp3s2/1n2B1p2/PPPSP2SP/5P1P1/2GKRG3/LN5NL w Pb2p 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 32,
+              "game": 170,
+              "ply": 98,
+              "baseMove": "3i3h",
+              "candidateMove": "3i2h",
+              "baseGapCp": 0,
+              "candidateGapCp": 941,
+              "deltaCp": 941,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "l2G2+S1l/6+R2/p1pSppnp1/3s3kp/2N2+bP2/P1+b5P/1+p3PSP1/3GPL3/2rPgNKNL b g4p 1"
+            },
+            {
+              "task": 36,
+              "game": 172,
+              "ply": 25,
+              "baseMove": "5d4e",
+              "candidateMove": "8d8e",
+              "baseGapCp": 17,
+              "candidateGapCp": 495,
+              "deltaCp": 478,
+              "baseDepth": 5,
+              "candidateDepth": 4,
+              "sfen": "l4gsnl/1r2gk3/p1n1ppbpp/1ppps4/6p2/P1PPP3P/1PB2PSP1/2GSR4/LN2KG1NL w p 1"
+            },
+            {
+              "task": 48,
+              "game": 176,
+              "ply": 30,
+              "baseMove": "4h4g",
+              "candidateMove": "6e5d",
+              "baseGapCp": 0,
+              "candidateGapCp": 376,
+              "deltaCp": 376,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln3g1nl/2g1s1k2/pppp1psp1/4p1p1p/2PS2b2/3P1P2P/PPN1P1PP1/2GR1K3/L4GSNL b Rb 1"
+            },
+            {
+              "task": 18,
+              "game": 166,
+              "ply": 29,
+              "baseMove": "6b6c",
+              "candidateMove": "5c5d",
+              "baseGapCp": 0,
+              "candidateGapCp": 68,
+              "deltaCp": 68,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "ln3k1nl/2rsgsg2/4p1bp1/pppp1pp1p/9/P1PPSP1PP/1PBSP1P2/2GKG2R1/LN5NL w - 1"
+            },
+            {
+              "task": 0,
+              "game": 160,
+              "ply": 21,
+              "baseMove": "6b6c",
+              "candidateMove": "6b6c",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln3g1nl/1r1sgk1s1/1pp1p3p/p2p1ppp1/9/P1PP1PP2/1PS1P2PP/3RG1K2/LN1G2SNL w Bb 1"
+            }
+          ]
+        }
+      },
+      "ordinaryScoreDiagnostic": {
+        "criterion": "All candidate scores are cp with abs(score)<8000. Supplementary range diagnostic; primary rankings retain all roots.",
+        "roots": 95,
+        "excludedTasks": [
+          46
+        ],
+        "models": {
+          "base": {
+            "meanGapCp": 135
+          },
+          "anchored50": {
+            "meanGapCp": 126.34736842105264,
+            "meanPairedDeltaCp": -8.652631578947368,
+            "pairedGameBootstrap95": [
+              -55.295279255319144,
+              31.344833669354824
+            ]
+          }
+        }
+      }
+    },
+    "3000": {
+      "roots": 24,
+      "games": 24,
+      "models": {
+        "base": {
+          "cpRoots": 24,
+          "meanGapCp": 180.83333333333334,
+          "p95GapCp": 1418.699999999999,
+          "meanDepth": 4.416666666666667,
+          "nodes": 10227948,
+          "fallbacks": 0,
+          "meanElapsedMs": 3000.714625
+        },
+        "anchored50": {
+          "cpRoots": 24,
+          "meanGapCp": 113.58333333333333,
+          "p95GapCp": 841.8499999999985,
+          "meanDepth": 4.5,
+          "nodes": 10441732,
+          "fallbacks": 0,
+          "meanElapsedMs": 3000.8,
+          "better": 1,
+          "equal": 23,
+          "worse": 0,
+          "meanPairedDeltaCp": -67.25,
+          "pairedGameBootstrap95": [
+            -201.75,
+            0.0
+          ],
+          "mostImproved": [
+            {
+              "task": 111,
+              "game": 180,
+              "ply": 24,
+              "baseMove": "7g7f",
+              "candidateMove": "3f3e",
+              "baseGapCp": 1614,
+              "candidateGapCp": 0,
+              "deltaCp": -1614,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "ln3gsnl/3sg1kb1/pr2pp1pp/2pp2p2/8P/P2SP1P2/1PPP1P1P1/1BS1R4/LN1GKG1NL b p 1"
+            },
+            {
+              "task": 96,
+              "game": 160,
+              "ply": 21,
+              "baseMove": "6b6c",
+              "candidateMove": "6b6c",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "ln3g1nl/1r1sgk1s1/1pp1p3p/p2p1ppp1/9/P1PP1PP2/1PS1P2PP/3RG1K2/LN1G2SNL w Bb 1"
+            },
+            {
+              "task": 97,
+              "game": 161,
+              "ply": 36,
+              "baseMove": "7a4d+",
+              "candidateMove": "7a4d+",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "lnB1kg1nl/6s2/2pp1g1p1/pr2psp2/1p3N1Pp/P1P3P2/1PNPPS2P/2SK2G2/L2G3RL b Pbp 1"
+            },
+            {
+              "task": 98,
+              "game": 162,
+              "ply": 73,
+              "baseMove": "2h2g",
+              "candidateMove": "2h2g",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln2k2n1/2sggls2/1pp1p2p1/p3n1+B1L/2G1N4/2BPPP3/PP1S1S1P1/3KG2+p1/2R6 w L5Prp 1"
+            },
+            {
+              "task": 99,
+              "game": 164,
+              "ply": 28,
+              "baseMove": "4g4f",
+              "candidateMove": "4g4f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 6,
+              "sfen": "ln3g1nl/1rs1g1kb1/4pp1p1/p1pp1sp1p/1p2P4/P1PSS4/1PBP1PPPP/2G1R4/LN1K1G1NL b - 1"
+            }
+          ],
+          "mostRegressed": [
+            {
+              "task": 96,
+              "game": 160,
+              "ply": 21,
+              "baseMove": "6b6c",
+              "candidateMove": "6b6c",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "ln3g1nl/1r1sgk1s1/1pp1p3p/p2p1ppp1/9/P1PP1PP2/1PS1P2PP/3RG1K2/LN1G2SNL w Bb 1"
+            },
+            {
+              "task": 97,
+              "game": 161,
+              "ply": 36,
+              "baseMove": "7a4d+",
+              "candidateMove": "7a4d+",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 5,
+              "sfen": "lnB1kg1nl/6s2/2pp1g1p1/pr2psp2/1p3N1Pp/P1P3P2/1PNPPS2P/2SK2G2/L2G3RL b Pbp 1"
+            },
+            {
+              "task": 98,
+              "game": 162,
+              "ply": 73,
+              "baseMove": "2h2g",
+              "candidateMove": "2h2g",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 4,
+              "candidateDepth": 4,
+              "sfen": "ln2k2n1/2sggls2/1pp1p2p1/p3n1+B1L/2G1N4/2BPPP3/PP1S1S1P1/3KG2+p1/2R6 w L5Prp 1"
+            },
+            {
+              "task": 99,
+              "game": 164,
+              "ply": 28,
+              "baseMove": "4g4f",
+              "candidateMove": "4g4f",
+              "baseGapCp": 0,
+              "candidateGapCp": 0,
+              "deltaCp": 0,
+              "baseDepth": 5,
+              "candidateDepth": 6,
+              "sfen": "ln3g1nl/1rs1g1kb1/4pp1p1/p1pp1sp1p/1p2P4/P1PSS4/1PBP1PPPP/2G1R4/LN1K1G1NL b - 1"
+            },
+            {
+              "task": 100,
+              "game": 165,
+              "ply": 62,
+              "baseMove": "S*2b",
+              "candidateMove": "S*2b",
+              "baseGapCp": 1503,
+              "candidateGapCp": 1503,
+              "deltaCp": 0,
+              "baseDepth": 3,
+              "candidateDepth": 3,
+              "sfen": "ln3ksR1/4gs3/p2p2gpl/5p1bp/2PB5/1P4p1P/P2P1P1P1/2R1pK1S1/LN1G3NL b SNPg3p 1"
+            }
+          ]
+        }
+      },
+      "ordinaryScoreDiagnostic": {
+        "criterion": "All candidate scores are cp with abs(score)<8000. Supplementary range diagnostic; primary rankings retain all roots.",
+        "roots": 24,
+        "excludedTasks": [],
+        "models": {
+          "base": {
+            "meanGapCp": 180.83333333333334
+          },
+          "anchored50": {
+            "meanGapCp": 113.58333333333333,
+            "meanPairedDeltaCp": -67.25,
+            "pairedGameBootstrap95": [
+              -201.75,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "matches": {
+    "games": 32,
+    "openingPairs": 16,
+    "wins": 25,
+    "losses": 7,
+    "draws": 0,
+    "unresolved": 0,
+    "plies": 2839,
+    "pvMoves": 9329,
+    "fallbacks": {
+      "base": 17,
+      "anchored50": 6
+    },
+    "rows": [
+      {
+        "id": "0-black",
+        "candidateSide": "black",
+        "plies": 102,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "0-white",
+        "candidateSide": "white",
+        "plies": 109,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "1-black",
+        "candidateSide": "black",
+        "plies": 83,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "1-white",
+        "candidateSide": "white",
+        "plies": 117,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "10-black",
+        "candidateSide": "black",
+        "plies": 13,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "10-white",
+        "candidateSide": "white",
+        "plies": 113,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "11-black",
+        "candidateSide": "black",
+        "plies": 121,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "11-white",
+        "candidateSide": "white",
+        "plies": 103,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "12-black",
+        "candidateSide": "black",
+        "plies": 57,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "12-white",
+        "candidateSide": "white",
+        "plies": 63,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "13-black",
+        "candidateSide": "black",
+        "plies": 133,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "13-white",
+        "candidateSide": "white",
+        "plies": 78,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "14-black",
+        "candidateSide": "black",
+        "plies": 129,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "14-white",
+        "candidateSide": "white",
+        "plies": 112,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "15-black",
+        "candidateSide": "black",
+        "plies": 102,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "15-white",
+        "candidateSide": "white",
+        "plies": 101,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "2-black",
+        "candidateSide": "black",
+        "plies": 76,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "2-white",
+        "candidateSide": "white",
+        "plies": 133,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "3-black",
+        "candidateSide": "black",
+        "plies": 69,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "3-white",
+        "candidateSide": "white",
+        "plies": 60,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "4-black",
+        "candidateSide": "black",
+        "plies": 77,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "4-white",
+        "candidateSide": "white",
+        "plies": 88,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "5-black",
+        "candidateSide": "black",
+        "plies": 88,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "5-white",
+        "candidateSide": "white",
+        "plies": 101,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "6-black",
+        "candidateSide": "black",
+        "plies": 76,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "6-white",
+        "candidateSide": "white",
+        "plies": 56,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "7-black",
+        "candidateSide": "black",
+        "plies": 106,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "7-white",
+        "candidateSide": "white",
+        "plies": 69,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "8-black",
+        "candidateSide": "black",
+        "plies": 61,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "8-white",
+        "candidateSide": "white",
+        "plies": 80,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      },
+      {
+        "id": "9-black",
+        "candidateSide": "black",
+        "plies": 87,
+        "result": {
+          "reason": "checkmate",
+          "winner": "black"
+        }
+      },
+      {
+        "id": "9-white",
+        "candidateSide": "white",
+        "plies": 76,
+        "result": {
+          "reason": "checkmate",
+          "winner": "white"
+        }
+      }
+    ],
+    "scoreRate": 0.78125,
+    "pairedOpeningBootstrap95": [
+      0.625,
+      0.90625
+    ]
+  }
+}
