@@ -9,6 +9,16 @@
       "manifest_verified": true,
       "previous_commit": "5f6e8ba2056e08fae826cc72f5c40370a13eb931",
       "note": "Imported an actual saved snapshot; commit date is the import date, not the original experiment date."
+    },
+    {
+      "version": "v0.8",
+      "source_archive": "shogi-search-lab.zip",
+      "source_sha256": "d3f571bc0b7df0ec0b0c6ce36663585a8f13b332d13da690b0e36fb1b197da2d",
+      "source_bytes": 2537681,
+      "file_count": 549,
+      "manifest_verified": true,
+      "previous_commit": "e4586f2cfcad423b8137c8eb8caa94e7efa9a58c",
+      "note": "Imported an actual saved snapshot; commit date is the import date, not the original experiment date."
     }
   ]
 }

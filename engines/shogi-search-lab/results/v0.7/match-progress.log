@@ -1,0 +1,8 @@
+{"game":"self-test-0-black","ply":5,"move":"B*4e","variant":"positional"}
+{"game":"self-test-0-black","ply":15,"move":"2g2f","variant":"positional"}
+{"game":"self-test-0-black","ply":25,"move":"1i1g","variant":"positional"}
+{"game":"self-test-0-black","ply":35,"move":"2h2b+","variant":"positional"}
+{"game":"self-test-0-black","ply":45,"move":"2e1d","variant":"positional"}
+{"game":"self-test-0-black","ply":55,"move":"3i2h","variant":"positional"}
+{"game":"self-test-0-black","ply":65,"move":"L*5f","variant":"positional"}
+{"game":"self-test-0-black","plies":69,"result":{"reason":"checkmate","winner":"black"}}

@@ -1,4 +1,5 @@
 #include "advanced.hpp"
+#include "positional.hpp"
 #include <atomic>
 #include <condition_variable>
 #include <iostream>
@@ -26,7 +27,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
                     AdvancedOptions candidate;set_advanced_preset(candidate,name);
                     if(candidate.driver==configured.driver&&candidate.features==configured.features)preset=name;
                 }
-                send("id name Shogi Search Lab v0.5\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name USI_Ponder type check default false\nusiok");
+                send("id name Shogi Search Lab v0.8\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify\noption name USI_Ponder type check default false\nusiok");
             }
             else if(command=="isready")send("readyok");
             else if(command=="quit"){join();break;}
@@ -40,6 +41,11 @@ int advanced_usi(const AdvancedOptions& defaults) {
                     else set_advanced_preset(configured,value);
                 }
                 else if(name=="MultiPV"){int n=std::stoi(value);if(n<1||n>5)throw std::invalid_argument("Invalid MultiPV");configured.multipv=n;}
+                else if(name=="Evaluation"){
+                    Evaluator check(value,(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"");
+                    configured.evaluation=value;
+                    configured.evaluation_model=(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"";
+                }
                 else if(name=="USI_Ponder") {if(value!="false")send("info string ponder is not supported; disable USI_Ponder");}
                 else if(name=="USI_Hash")send("info string fixed entry cap; use --tt-entries for memory control");
                 else throw std::invalid_argument("Unknown USI option");
@@ -83,7 +89,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
                                 info<<" score mate ";
                                 int distance=mate-std::abs(score);
                                 if(distance==0)info<<(score>0?"+":"-");else info<<(score>0?distance:-distance);
-                            }else info<<" score cp "<<score;
+                            }else info<<" score cp "<<(options.evaluation.rfind("nnue",0)==0?score*100/90:score);
                             info<<" pv";for(Move m:pv)info<<' '<<usi(m);send(info.str());
                         };
                         if(r.base.has_result) {

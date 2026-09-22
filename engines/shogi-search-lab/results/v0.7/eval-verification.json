@@ -1,0 +1,20 @@
+{
+  "symmetryPositions": 62,
+  "modes": {
+    "material": {
+      "featureAndScoreSymmetry": true,
+      "independentDotProduct": true
+    },
+    "positional": {
+      "featureAndScoreSymmetry": true,
+      "independentDotProduct": true
+    },
+    "learned": {
+      "featureAndScoreSymmetry": true,
+      "independentDotProduct": true
+    }
+  },
+  "baselineComparisons": 9,
+  "searchComparisons": 18,
+  "passed": true
+}

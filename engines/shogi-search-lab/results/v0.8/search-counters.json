@@ -1,0 +1,24 @@
+{
+  "positional": {
+    "nodes": 6707060,
+    "qnodes": 5827857,
+    "qnodePercent": 86.89138012780563,
+    "ttCutoffs": 22004,
+    "ttCutoffPercent": 0.3280722104767215,
+    "nnueCalls": 0,
+    "nnueUpdates": 0,
+    "nnueRefreshes": 0,
+    "nnueCacheHits": 0
+  },
+  "nnue": {
+    "nodes": 4041331,
+    "qnodes": 3418933,
+    "qnodePercent": 84.59918279398545,
+    "ttCutoffs": 7298,
+    "ttCutoffPercent": 0.18058406995121162,
+    "nnueCalls": 3331940,
+    "nnueUpdates": 3288850,
+    "nnueRefreshes": 18,
+    "nnueCacheHits": 43072
+  }
+}

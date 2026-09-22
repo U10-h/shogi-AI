@@ -1,8 +1,10 @@
 #include "lab.hpp"
 #include "session.hpp"
 #include "advanced.hpp"
+#include "positional.hpp"
 #include <algorithm>
 #include <iostream>
+#include <iomanip>
 #include <stdexcept>
 
 int main(int argc, char** argv) {
@@ -10,6 +12,7 @@ int main(int argc, char** argv) {
         lab::Options options;
         lab::AdvancedOptions advanced_options;
         bool advanced = false, advanced_tests = false, usi_mode = false;
+        bool eval_batch=false;
         std::string sfen = SFEN_HIRATE, moves;
         bool legal = false, tests = false;
         bool session = false, session_tests = false;
@@ -39,6 +42,9 @@ int main(int argc, char** argv) {
                     "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
+                    "  --eval material|positional|learned|nnue|nnue-full|nnue-verify [--eval-model PATH] (advanced/USI)\n"
+                    "  --eager-eval (ablation: restore redundant static evaluation)\n"
+                    "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
                     "JSON output. Exit 3: search incomplete. Exit 2: invalid input.\n";
                 return 0;
             } else if (arg == "--sfen") sfen = value();
@@ -69,6 +75,10 @@ int main(int argc, char** argv) {
             else if (arg == "--advanced") advanced = true;
             else if (arg == "--advanced-selftest") advanced_tests = true;
             else if (arg == "--usi") usi_mode = true;
+            else if (arg == "--eval") advanced_options.evaluation=value();
+            else if (arg == "--eval-model") advanced_options.evaluation_model=value();
+            else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
+            else if (arg == "--eval-batch") eval_batch=true;
             else if (arg == "--preset") {advanced = true;lab::set_advanced_preset(advanced_options,value());}
             else if (arg == "--features") {advanced = true;lab::set_advanced_features(advanced_options,value());}
             else if (arg == "--driver") {advanced = true;advanced_options.driver=value();}
@@ -98,6 +108,31 @@ int main(int argc, char** argv) {
         Bitboards::init();
         Position::init();
         advanced_options.limits=options;
+        if(eval_batch){
+            std::cout<<std::setprecision(17);
+            lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
+            std::string input;
+            while(std::getline(std::cin,input)){
+                lab::Board b(input);
+                if(advanced_options.evaluation.rfind("nnue",0)==0){
+                    std::cout<<"{\"sfen\":"<<lab::quote(b.pos.sfen())<<",\"score\":"<<evaluator(b)
+                        <<",\"score_unit\":\"yaneuraou_raw_pawn90\",\"evaluation\":"<<lab::quote(advanced_options.evaluation)<<"}"<<std::endl;
+                    continue;
+                }
+                auto x=lab::positional_features(b);
+                std::cout<<"{\"sfen\":"<<lab::quote(b.pos.sfen())<<",\"score\":"<<evaluator(b)
+                    <<",\"material\":"<<lab::evaluate(b)<<",\"names\":[";
+                for(size_t i=0;i<x.size();++i){if(i)std::cout<<',';std::cout<<lab::quote(lab::positional_names()[i]);}
+                std::cout<<"],\"features\":[";
+                for(size_t i=0;i<x.size();++i){if(i)std::cout<<',';std::cout<<x[i];}
+                std::cout<<"],\"weights\":[";
+                for(size_t i=0;i<x.size();++i){if(i)std::cout<<',';std::cout<<evaluator.weights()[i];}
+                std::cout<<"]}"<<std::endl;
+            }
+            return 0;
+        }
+        if((!advanced&&!usi_mode)&&advanced_options.evaluation!="material")throw std::invalid_argument("Positional evaluation requires --advanced, --usi, or --eval-batch");
+        lab::Evaluator validate_evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
         if(advanced_tests)return lab::advanced_selftest();
         if(usi_mode)return lab::advanced_usi(advanced_options);
         if(session&&advanced)throw std::invalid_argument("Legacy retained-tree session cannot mix advanced policies; use --advanced or --usi");

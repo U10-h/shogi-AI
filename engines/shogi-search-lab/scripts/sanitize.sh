@@ -5,7 +5,7 @@ mkdir -p build results/v0.5
 g++ -std=c++17 -O1 -g -fsanitize=address,undefined -fno-omit-frame-pointer \
     -ffunction-sections -fdata-sections -Ivendor/yaneuraou -DLAB_RULES_ONLY \
     -DUSE_GENERATE_ALL_LEGAL_MOVES -DNO_SSE -DASSERT_LV=1 \
-    src/main.cpp src/board.cpp src/evaluate.cpp src/search.cpp src/tests.cpp \
+    src/main.cpp src/board.cpp src/evaluate.cpp src/positional.cpp src/search.cpp src/tests.cpp \
     src/session.cpp src/session_cli.cpp src/session_tests.cpp \
     src/advanced.cpp src/advanced_usi.cpp src/advanced_tests.cpp \
     vendor/yaneuraou/bitboard.cpp vendor/yaneuraou/position.cpp \

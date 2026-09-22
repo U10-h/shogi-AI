@@ -1,4 +1,5 @@
 #include "advanced.hpp"
+#include "positional.hpp"
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -54,6 +55,7 @@ int local_score(int s,int ply) {return s>90000?s+ply:s< -90000?s-ply:s;}
 int root_score(int s,int ply) {return s>90000?s-ply:s< -90000?s+ply:s;}
 class Worker {
     Board& b; const AdvancedOptions& o;
+    Evaluator eval;
     struct Flags {
         bool tt = false;
         bool history = false;
@@ -173,7 +175,7 @@ class Worker {
         if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
         const bool checked=b.pos.in_check();
         if(ply>=max_ply-1)throw Stop{"ply_limit"}; // Never publish static evaluation in unresolved check.
-        const int stand=evaluate(b); Value best{checked?-infinity:stand,{}};
+        const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
         if(!checked) {
             if(left<=0){++r.base.leaves;return best;}
             if(stand>=beta){++r.stats["qstand_cutoffs"];return best;}
@@ -206,7 +208,7 @@ class Worker {
         if(!null_level)if(auto rep=b.repetition_score(ply)){++r.base.terminals;return {*rep,{}};}
         auto moves=b.legal_moves();
         if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
-        if(d<=0){++r.base.leaves;return {evaluate(b),{}};}
+        if(d<=0){++r.base.leaves;return {eval(b),{}};}
         const int original_a=a,original_beta=beta;
         const bool checked=b.pos.in_check(),pvnode=beta-a>1;
         Key key{path,d,ext};
@@ -238,8 +240,9 @@ class Worker {
             a=std::max(a,-mate+ply);beta=std::min(beta,mate-ply-1);
             if(a>=beta){++r.stats["mate_distance_cutoffs"];return {a,{}};}
         }
-        const int stand=evaluate(b);
         const bool eligible=!isolated&&!pvnode&&!checked&&ply>0&&std::abs(a)<90000&&std::abs(beta)<90000;
+        const bool needs_static=eligible&&(f.reverse_futility||f.razoring||f.null||f.adaptive_null||f.verified_null||f.futility);
+        const int stand=(needs_static||o.eager_evaluation)?eval(b):0;
         if(eligible&&f.reverse_futility&&d<=2&&stand-300*d>=beta) {
             ++r.stats["reverse_futility_prunes"];event("reverse_futility",d,ply,a,beta,stand,true);return finish({stand,{}});
         }
@@ -362,7 +365,7 @@ class Worker {
         if(ply>=max_ply-1)throw Stop{"ply_limit"};
         if(auto rep=b.repetition_score(ply))return {*rep,{}};
         auto moves=b.legal_moves();if(moves.empty())return {-mate+ply,{}};
-        if(budget<=0){++r.base.leaves;return {evaluate(b),{}};}
+        if(budget<=0){++r.base.leaves;return {eval(b),{}};}
         moves=order(std::move(moves),ply,MOVE_NONE,prev);
         Value best{-infinity,{}};size_t index=0;
         for(Move m:moves) {
@@ -443,7 +446,7 @@ class Worker {
     }
 public:
     AdvancedResult r;
-    Worker(Board& board,const AdvancedOptions& options):b(board),o(options) {
+    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model) {
         f.tt=o.features.count("tt")!=0;
         f.history=o.features.count("history")!=0;
         f.killer=o.features.count("killer")!=0;
@@ -479,7 +482,7 @@ public:
             r.selective=true;
             for(auto& f:o.features)if(f!="qsearch"&&f!="see-order")throw std::invalid_argument("RPS/ERPS use only qsearch and see-order features; pass --features explicitly");
         }
-        r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_material";
+        r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
         if((o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual")&&(!f.tt||r.selective||r.leaf_policy.find("extensions")!=std::string::npos))throw std::invalid_argument("MTD drivers require tt and a nonselective fixed leaf policy");
@@ -487,6 +490,7 @@ public:
         if(f.etc&&(!f.tt||r.leaf_policy.find("extensions")!=std::string::npos))throw std::invalid_argument("ETC requires tt and no extensions");
         if(o.multipv>1&&o.driver!="ab"&&o.driver!="pvs")throw std::invalid_argument("MultiPV supports ab or pvs driver");
         if(f.probcut||f.multiprobcut) {
+            if(o.evaluation!="material")throw std::invalid_argument("ProbCut coefficients require material evaluation");
             if(o.probcut_model.empty())throw std::invalid_argument("ProbCut needs a calibrated model file");
             std::ifstream input(o.probcut_model);std::string header;
             if(!std::getline(input,header)||header!="shogi-lab-probcut-v1 fixed_material")throw std::invalid_argument("Invalid ProbCut model header");
@@ -506,7 +510,7 @@ public:
             for(int d=first;d<=o.limits.depth;++d) {
                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
-                else {v=root(d,r.base.has_result?r.base.score:evaluate(b));if(!v.pv.empty())lines.push_back({v.score,v.pv});}
+                else {v=root(d,r.base.has_result?r.base.score:eval(b));if(!v.pv.empty())lines.push_back({v.score,v.pv});}
                 r.base.score=v.score;r.base.pv=v.pv;r.candidates=std::move(lines);
                 r.base.has_result=true;r.base.completed_depth=d;
                 r.base.iterations.push_back({d,v.score,r.base.nodes-before,0,now()-t,v.pv});
@@ -514,6 +518,7 @@ public:
                 if(d>0&&v.pv.empty()&&(b.repetition_score(0).has_value()||b.legal_moves().empty())){r.base.complete=true;r.base.stop_reason="terminal";break;}
             }
         }catch(const Stop& stop){r.base.stop_reason=stop.reason;}
+        for(const auto& item:eval.stats())r.stats[item.first]=item.second;
         r.base.elapsed_ms=now()-start;r.stats["tt_entries"]=tt.size();r.stats["history_paths"]=paths.size();
         return r;
     }
@@ -527,7 +532,7 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     std::string base=result_json(r.base,o.limits);base.pop_back();
     const auto first_comma=base.find(',');
     base="{\"algorithm\":\"advanced\""+base.substr(first_comma);
-    std::ostringstream out;out<<base<<",\"engine\":\"research-v0.5\",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
+    std::ostringstream out;out<<base<<",\"engine\":\"research-v0.8\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
         <<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
     out<<"],\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}

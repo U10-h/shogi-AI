@@ -1,6 +1,47 @@
 # Shogi Search Lab — 探索研究と対やねうら王の実験
 
-## 最新の対局実験（v0.6）
+<!-- V08_START -->
+## やねうら王とのコード比較とNNUE導入（v0.8）
+
+固定対戦版6.03のK+P型NNUEを自作探索に組み込み、差分計算と不要な評価の省略を追加しました。重みは既存の配布物を利用しています。本家ソースと2,246局面で評価値が一致し、同じ探索結果のままNNUE全再計算版より処理時間を34.6%短縮しました。
+
+手動位置評価版には4勝0敗・引分0・未決着0（双方300ms）、固定やねうら王には0勝2敗・引分0・未決着0（双方3000ms）。小規模な検証であり、Eloや一般的な勝率の推定ではありません。
+
+- [コードの差・改善判断・全検証結果・再現方法](REPORT-v0.8.md)
+- `results/v0.8/`：条件、未加工の結果、全6局の棋譜。
+- `checkpoints/v0.7/`：変更前のソース。`scripts/build_checkpoint.py v0.7` で再ビルド可能。
+
+```bash
+make -j2
+python scripts/fetch_opponent.py "$PWD/../opponent"
+export YANEURAOU_ASSETS="$PWD/../opponent"
+./build/shogi-lab --advanced --preset tactical --eval nnue \
+  --eval-model "$YANEURAOU_ASSETS/yaneuraou.data" \
+  --depth 16 --iterative --time-ms 3000 --max-nodes 1000000000
+```
+
+推奨は `--eval nnue`。NNUE重みは外部取得です。過去実験との互換性のため既定値materialは維持し、手動位置評価は `--eval positional` で使用できます。
+
+<!-- V08_END -->
+## 位置評価の改善（v0.7）
+
+駒得に玉の安全・金銀との距離・飛角の可動範囲など38特徴を追加しました。未知16局面を各3秒で比較すると、手動設定版は従来より8局面で改善、6局面で同等、2局面で悪化し、教師の候補評価との差は平均127.81から93.75へ減りました。勝率や棋力が27%上がったという意味ではありません。
+
+先後交換の実対局では、従来版に6勝2敗（双方1手300ms）。固定版やねうら王には従来版・改善版とも0勝2敗（双方1手3000ms）でした。全12局の棋譜と1138着手の独立検証記録を同梱しています。
+
+学習版も実装しましたが、3秒探索で手の質が悪化したため推奨しません。従来実験の既定値は維持し、改善版は `--eval positional` で選びます。
+
+- [改善方針・学習・同条件比較・実対局・限界・再現方法](REPORT-v0.7.md)
+- `results/v0.7/`：事前条件、全教師データ、候補比較、対局棋譜、検証ログ。
+- `checkpoints/v0.6/`：変更前の自作ソース。
+
+```bash
+make -j2
+./build/shogi-lab --advanced --preset tactical --eval positional --depth 16 --iterative --time-ms 3000 --max-nodes 1000000000
+./build/shogi-lab --usi --preset tactical --eval positional
+```
+
+## 前回の対局実験（v0.6）
 
 やねうら王NNUE KP256 6.03と双方1手3秒で4局を対戦し、0勝4敗でした。12件の局面で4設定も比較しましたが、枝刈り追加による手の質の改善は確認できませんでした。
 

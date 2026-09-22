@@ -1,0 +1,583 @@
+{"at":"2026-09-21T12:10:18.373Z","engine":"yaneuraou","direction":"in","line":"usi"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"id name id name YaneuraOu NNUE KP256 6.03 32SSE42 TOURNAMENT"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"id author by yaneurao"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":""}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name Threads type spin default 1 min 1 max 32"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name USI_Hash type spin default 16 min 1 max 1024"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name USI_Ponder type check default false"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name Stochastic_Ponder type check default false"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name MultiPV type spin default 1 min 1 max 800"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name NetworkDelay type spin default 120 min 0 max 10000"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name NetworkDelay2 type spin default 1120 min 0 max 10000"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name MinimumThinkingTime type spin default 2000 min 1000 max 100000"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name SlowMover type spin default 100 min 1 max 1000"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name MaxMovesToDraw type spin default 0 min 0 max 100000"}
+{"at":"2026-09-21T12:10:18.383Z","engine":"yaneuraou","direction":"out","line":"option name DepthLimit type spin default 0 min 0 max 2147483647"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name NodesLimit type spin default 0 min 0 max 9223372036854775807"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name EvalDir type string default eval"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name WriteDebugLog type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name EnteringKingRule type combo default CSARule27 var NoEnteringKing var CSARule24 var CSARule27 var TryRule"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name GenerateAllLegalMoves type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name USI_OwnBook type check default true"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name NarrowBook type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookMoves type spin default 16 min 0 max 10000"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookIgnoreRate type spin default 0 min 0 max 100"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookFile type combo default standard_book.db var no_book var standard_book.db var yaneura_book1.db var yaneura_book2.db var yaneura_book3.db var yaneura_book4.db var user_book1.db var user_book2.db var user_book3.db var book.bin"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookDir type string default book"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalDiff type spin default 30 min 0 max 99999"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalBlackLimit type spin default 0 min -99999 max 99999"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookEvalWhiteLimit type spin default -140 min -99999 max 99999"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookDepthLimit type spin default 16 min 0 max 99999"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookOnTheFly type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name ConsiderBookMoveCount type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name BookPvMoves type spin default 8 min 1 max 246"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name IgnoreBookPly type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name SkillLevel type spin default 20 min 0 max 20"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name DrawValueBlack type spin default -2 min -30000 max 30000"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name DrawValueWhite type spin default -2 min -30000 max 30000"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name PvInterval type spin default 300 min 0 max 100000"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name ResignValue type spin default 99999 min 0 max 99999"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name ConsiderationMode type check default false"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"option name OutputFailLHPV type check default true"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":""}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"out","line":"usiok"}
+{"at":"2026-09-21T12:10:18.384Z","engine":"yaneuraou","direction":"in","line":"setoption name Threads value 1"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_Hash value 32"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_Ponder value false"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name Stochastic_Ponder value false"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name USI_OwnBook value false"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name BookFile value no_book"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name PvInterval value 100"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name ResignValue value 99999"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name EnteringKingRule value NoEnteringKing"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name NetworkDelay value 0"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name NetworkDelay2 value 0"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name MinimumThinkingTime value 1000"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name SkillLevel value 20"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name DrawValueBlack value 0"}
+{"at":"2026-09-21T12:10:18.385Z","engine":"yaneuraou","direction":"in","line":"setoption name DrawValueWhite value 0"}
+{"at":"2026-09-21T12:10:18.386Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:18.630Z","engine":"yaneuraou","direction":"out","line":"info string Hash table allocation: Large Pages not used."}
+{"at":"2026-09-21T12:10:18.630Z","engine":"yaneuraou","direction":"out","line":"info string EvalDirectory = /eval"}
+{"at":"2026-09-21T12:10:18.630Z","engine":"yaneuraou","direction":"out","line":"info string loading eval file : eval/nn.bin"}
+{"at":"2026-09-21T12:10:18.630Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:28.970Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:28.972Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:28.995Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:28.997Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:10:28.997Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d"}
+{"at":"2026-09-21T12:10:29.000Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:10:29.038Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -10 nodes 86 nps 2529 time 34 pv 6i7h"}
+{"at":"2026-09-21T12:10:29.039Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 165 nodes 164 nps 4432 time 37 pv 6i7h 1d1e"}
+{"at":"2026-09-21T12:10:29.196Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -8 nodes 29361 nps 151345 time 194 pv 8h7g 2b3c 3g3f 6a5b 4h3g 7c7d 3g4f 7a6b 6i7h 4a3b 4i5h 4c4d 5i6h"}
+{"at":"2026-09-21T12:10:29.196Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -8 nodes 29361 nps 149801 time 196 pv 8h7g 2b3c 3g3f 6a5b 4h3g 7c7d 3g4f 7a6b 6i7h 4a3b 4i5h 4c4d 5i6h"}
+{"at":"2026-09-21T12:10:29.197Z","engine":"yaneuraou","direction":"out","line":"bestmove 8h7g ponder 2b3c"}
+{"at":"2026-09-21T12:10:29.197Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:29.197Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:29.209Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:29.209Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 5"}
+{"at":"2026-09-21T12:10:29.209Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d"}
+{"at":"2026-09-21T12:10:29.210Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 8h7g 1g1f 5i5h 8i7g B*4e"}
+{"at":"2026-09-21T12:10:29.212Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -12 multipv 1 nodes 21 nps 21000 time 1 pv 8h7g"}
+{"at":"2026-09-21T12:10:29.212Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -66 multipv 2 nodes 21 nps 21000 time 1 pv 1g1f"}
+{"at":"2026-09-21T12:10:29.213Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -122 multipv 3 nodes 21 nps 21000 time 1 pv 5i5h"}
+{"at":"2026-09-21T12:10:29.213Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -167 multipv 4 nodes 21 nps 21000 time 1 pv 8i7g"}
+{"at":"2026-09-21T12:10:29.213Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -380 multipv 5 nodes 21 nps 21000 time 1 pv B*4e"}
+{"at":"2026-09-21T12:10:29.214Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 178 multipv 1 nodes 60 nps 20000 time 3 pv 8h7g 1d1e"}
+{"at":"2026-09-21T12:10:29.214Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 50 multipv 2 nodes 60 nps 20000 time 3 pv 1g1f 6c6d"}
+{"at":"2026-09-21T12:10:29.214Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -17 multipv 3 nodes 60 nps 20000 time 3 pv B*4e 6c6d 4e3d"}
+{"at":"2026-09-21T12:10:29.214Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -74 multipv 4 nodes 60 nps 20000 time 3 pv 5i5h 8d8e"}
+{"at":"2026-09-21T12:10:29.215Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -95 multipv 5 nodes 60 nps 20000 time 3 pv 8i7g 6c6d"}
+{"at":"2026-09-21T12:10:29.390Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -1 multipv 1 nodes 63564 nps 353133 time 180 pv 8h7g 7a6b 4g4f 6c6d 4i5h 2b3c 4h4g 6b6c 5i6h 6a5b 2g2f 8d8e"}
+{"at":"2026-09-21T12:10:29.391Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -3 multipv 2 nodes 63564 nps 353133 time 180 pv 1g1f 7a6b 4g4f 6c6d 6i7h 5a4b 4h4g 7c7d 4i5h 6a5b 3g3f 2b3c"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -57 multipv 3 nodes 63564 nps 353133 time 180 pv 5i5h 7a6b 4g4f 6c6d 4h4g 6a5b 6i7h 2b3c 2g2f 7c7d 8h7g 6b6c"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -106 multipv 4 nodes 63564 nps 353133 time 180 pv B*4e 7a6b 4e3d 4a3b 3d5f 2b3c 4g4f 6c6d 4h4g 6a5b 4i5h 5a4a"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 12 score cp -230 multipv 5 nodes 63564 nps 353133 time 180 pv 8i7g 7a6b 4i5h 2b3c 2g2f 6c6d 2f2e 7c7d B*5e 6b6c 3g3f"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -1 multipv 1 nodes 63564 nps 351182 time 181 pv 8h7g 7a6b 4g4f 6c6d 4i5h 2b3c 4h4g 6b6c 5i6h 6a5b 2g2f 8d8e"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -3 multipv 2 nodes 63564 nps 351182 time 181 pv 1g1f 7a6b 4g4f 6c6d 6i7h 5a4b 4h4g 7c7d 4i5h 6a5b 3g3f 2b3c"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -57 multipv 3 nodes 63564 nps 351182 time 181 pv 5i5h 7a6b 4g4f 6c6d 4h4g 6a5b 6i7h 2b3c 2g2f 7c7d 8h7g 6b6c"}
+{"at":"2026-09-21T12:10:29.392Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -106 multipv 4 nodes 63564 nps 351182 time 181 pv B*4e 7a6b 4e3d 4a3b 3d5f 2b3c 4g4f 6c6d 4h4g 6a5b 4i5h 5a4a"}
+{"at":"2026-09-21T12:10:29.393Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 12 score cp -230 multipv 5 nodes 63564 nps 351182 time 181 pv 8i7g 7a6b 4i5h 2b3c 2g2f 6c6d 2f2e 7c7d B*5e 6b6c 3g3f"}
+{"at":"2026-09-21T12:10:29.393Z","engine":"yaneuraou","direction":"out","line":"bestmove 8h7g ponder 7a6b"}
+{"at":"2026-09-21T12:10:39.893Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:39.893Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:39.916Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:39.917Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:10:39.917Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b"}
+{"at":"2026-09-21T12:10:39.918Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:10:39.922Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -41 nodes 74 nps 37000 time 2 pv 4g4f"}
+{"at":"2026-09-21T12:10:39.923Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 108 nodes 151 nps 37750 time 4 pv 4g4f 4c4d"}
+{"at":"2026-09-21T12:10:40.099Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -27 nodes 28816 nps 160983 time 179 pv 6i7h 5a4b 3g3f 6a5b 2i3g 8d8e 5i6h 7b7c 6g6f 7c6d 2h2i"}
+{"at":"2026-09-21T12:10:40.100Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -27 nodes 28816 nps 160088 time 180 pv 6i7h 5a4b 3g3f 6a5b 2i3g 8d8e 5i6h 7b7c 6g6f 7c6d 2h2i"}
+{"at":"2026-09-21T12:10:40.100Z","engine":"yaneuraou","direction":"out","line":"bestmove 6i7h ponder 5a4b"}
+{"at":"2026-09-21T12:10:40.100Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:40.100Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:40.113Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:40.113Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 6"}
+{"at":"2026-09-21T12:10:40.113Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b"}
+{"at":"2026-09-21T12:10:40.114Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 6i7h B*4f 7g6h 1g1f 5i6h 3g3f"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -53 multipv 1 nodes 21 nps 21000 time 1 pv 6i7h"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -72 multipv 2 nodes 21 nps 21000 time 1 pv 1g1f"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -75 multipv 3 nodes 21 nps 21000 time 1 pv 5i6h"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -106 multipv 4 nodes 21 nps 21000 time 1 pv 3g3f"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -287 multipv 5 nodes 21 nps 21000 time 1 pv B*4f"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -294 multipv 6 nodes 21 nps 21000 time 1 pv 7g6h"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 5172 multipv 1 nodes 68 nps 68000 time 1 pv B*4f 8d8e 4f8b+"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 90 multipv 2 nodes 68 nps 68000 time 1 pv 6i7h 4c4d"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -1 multipv 3 nodes 68 nps 68000 time 1 pv 1g1f 6c6d"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -3 multipv 4 nodes 68 nps 68000 time 1 pv 5i6h 6c6d"}
+{"at":"2026-09-21T12:10:40.116Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -32 multipv 5 nodes 68 nps 68000 time 1 pv 3g3f 8d8e"}
+{"at":"2026-09-21T12:10:40.118Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -322 multipv 6 nodes 68 nps 68000 time 1 pv 7g6h 8d8e"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -21 multipv 1 nodes 49868 nps 372149 time 134 pv 6i7h 5a4b 4g4f 6c6d 4h4g 7b6c 5i6h 8a7c 3g3f 6a6b 6g6f 6d6e"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -22 multipv 2 nodes 49868 nps 372149 time 134 pv 3g3f 5a4b 4g4f 6c6d 4h4g 8a7c 6i7h 7b6c 2i3g 6a5b 5i6h 8d8e 4g5f 1d1e"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 12 score cp -36 multipv 3 nodes 49868 nps 372149 time 134 pv 5i6h 6c6d 4g4f 7b6c 4h4g 8a7c 3g3f 6a6b 6i7h 1d1e 2i3g 8d8e"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -36 multipv 4 nodes 49868 nps 372149 time 134 pv 1g1f 8d8e 4g4f 8a7c 4h4g 6a6b 3g3f 6c6d 6i7h 5a4b 5i6h 8b8a 2i3g 7b6c"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -228 multipv 5 nodes 49868 nps 372149 time 134 pv 7g6h 5a4a 6i7h 8d8e 6h7g 7b7c 4g4f 7c6d 4h4g 4a3a 6g6f 6a5b 5i6h 7d7e 4g5f 7e7f"}
+{"at":"2026-09-21T12:10:40.251Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -274 multipv 6 nodes 49868 nps 372149 time 134 pv B*4f 7b7c 3g3f 5a4b 2i3g 6a5b 6g6f 4c4d 2f2e 5b4c 5g5f 4b3a 1g1f 8d8e 6i7h"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -21 multipv 1 nodes 49868 nps 364000 time 137 pv 6i7h 5a4b 4g4f 6c6d 4h4g 7b6c 5i6h 8a7c 3g3f 6a6b 6g6f 6d6e"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -22 multipv 2 nodes 49868 nps 364000 time 137 pv 3g3f 5a4b 4g4f 6c6d 4h4g 8a7c 6i7h 7b6c 2i3g 6a5b 5i6h 8d8e 4g5f 1d1e"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 12 score cp -36 multipv 3 nodes 49868 nps 364000 time 137 pv 5i6h 6c6d 4g4f 7b6c 4h4g 8a7c 3g3f 6a6b 6i7h 1d1e 2i3g 8d8e"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -36 multipv 4 nodes 49868 nps 364000 time 137 pv 1g1f 8d8e 4g4f 8a7c 4h4g 6a6b 3g3f 6c6d 6i7h 5a4b 5i6h 8b8a 2i3g 7b6c"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -228 multipv 5 nodes 49868 nps 364000 time 137 pv 7g6h 5a4a 6i7h 8d8e 6h7g 7b7c 4g4f 7c6d 4h4g 4a3a 6g6f 6a5b 5i6h 7d7e 4g5f 7e7f"}
+{"at":"2026-09-21T12:10:40.253Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -274 multipv 6 nodes 49868 nps 364000 time 137 pv B*4f 7b7c 3g3f 5a4b 2i3g 6a5b 6g6f 4c4d 2f2e 5b4c 5g5f 4b3a 1g1f 8d8e 6i7h"}
+{"at":"2026-09-21T12:10:40.254Z","engine":"yaneuraou","direction":"out","line":"bestmove 6i7h ponder 5a4b"}
+{"at":"2026-09-21T12:10:50.652Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:50.652Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:50.666Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:50.666Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:10:50.666Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b 6g6f 5a4b 6i7h 1d1e 3g3f 9c9d 2f2e 6c6d"}
+{"at":"2026-09-21T12:10:50.667Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:10:50.672Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -51 nodes 82 nps 41000 time 2 pv 2i3g"}
+{"at":"2026-09-21T12:10:50.673Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 25 nodes 163 nps 32600 time 5 pv 2i3g 4c4d"}
+{"at":"2026-09-21T12:10:50.793Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -150 nodes 27598 nps 219031 time 126 pv 4g4f 7b6c 4h4g 6c5d 2i3g 4c4d 5i6h 6a6b 7h6g 8a7c 5g5f 4b3a 6h7h"}
+{"at":"2026-09-21T12:10:50.794Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -150 nodes 27598 nps 219031 time 126 pv 4g4f 7b6c 4h4g 6c5d 2i3g 4c4d 5i6h 6a6b 7h6g 8a7c 5g5f 4b3a 6h7h"}
+{"at":"2026-09-21T12:10:50.794Z","engine":"yaneuraou","direction":"out","line":"bestmove 4g4f ponder 7b6c"}
+{"at":"2026-09-21T12:10:50.794Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:10:50.794Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:10:50.805Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:10:50.805Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 5"}
+{"at":"2026-09-21T12:10:50.805Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b 6g6f 5a4b 6i7h 1d1e 3g3f 9c9d 2f2e 6c6d"}
+{"at":"2026-09-21T12:10:50.805Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 4g4f 2i3g 2h2f B*5e 5i6h"}
+{"at":"2026-09-21T12:10:50.806Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -51 multipv 1 nodes 15 nps 15000 time 1 pv 2i3g"}
+{"at":"2026-09-21T12:10:50.806Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -63 multipv 2 nodes 15 nps 15000 time 1 pv 5i6h"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -123 multipv 3 nodes 15 nps 15000 time 1 pv 4g4f"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -252 multipv 4 nodes 15 nps 15000 time 1 pv B*5e"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -254 multipv 5 nodes 15 nps 15000 time 1 pv 2h2f"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 54 multipv 1 nodes 38 nps 38000 time 1 pv B*5e 4c4d 5e6d"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 25 multipv 2 nodes 38 nps 38000 time 1 pv 2i3g 4c4d"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 4 multipv 3 nodes 38 nps 38000 time 1 pv 5i6h 4c4d"}
+{"at":"2026-09-21T12:10:50.807Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -2 multipv 4 nodes 38 nps 38000 time 1 pv 4g4f 4c4d"}
+{"at":"2026-09-21T12:10:50.808Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -134 multipv 5 nodes 38 nps 38000 time 1 pv 2h2f 4c4d"}
+{"at":"2026-09-21T12:10:50.911Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -82 multipv 1 nodes 38277 nps 361103 time 106 pv 4g4f 7b6c 2i3g 6c5d 5i6h 8d8e 4h4g 6a6b 2h2i 8a7c"}
+{"at":"2026-09-21T12:10:50.913Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp -85 multipv 2 nodes 38277 nps 361103 time 106 pv 5i6h 7b6c 4g4f 8a7c 2i3g 8b8a 4f4e 6a6b"}
+{"at":"2026-09-21T12:10:50.913Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -100 multipv 3 nodes 38277 nps 361103 time 106 pv 2i3g 7b6c 4g4f 6c5d 5i6h 4c4d 7h6g 6a5b 4h4g 8a7c 6h7h"}
+{"at":"2026-09-21T12:10:50.913Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 15 score cp -186 multipv 4 nodes 38277 nps 361103 time 106 pv 2h2f 7b6c 4h3g 4c4d 3g4f 8a7c 2i3g 6a5b 5i6h 8b8a 7h6g"}
+{"at":"2026-09-21T12:10:50.913Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -460 multipv 5 nodes 38277 nps 361103 time 106 pv B*5e 7b6c 5g5f 6a5b 5e4f 8d8e 4h5g 8a7c 5i6h 4c4d"}
+{"at":"2026-09-21T12:10:51.039Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -126 multipv 1 nodes 84650 nps 363304 time 233 pv 2i3g 7b6c 4g4f 6c5d 5i6h 4c4d 7h6g 4b3a 4h4g 8a7c 2h2i 6a5b 5g5f 8b6b"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -154 multipv 2 nodes 84650 nps 363304 time 233 pv 5i6h 7b6c 7h6g 8a7c 4h3g 6a6b 3g4f 4c4d 2i3g 8b8a"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -172 multipv 3 nodes 84650 nps 363304 time 233 pv 2h2f 7b6c 4h3g 8a7c 3g4f 8b6b 5i6h 6c5d 2i3g 4c4d 3f3e 3d3e 4f3e P*3d"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 20 score cp -212 multipv 4 nodes 84650 nps 363304 time 233 pv 4g4f 7b6c 2i3g 6c5d 5i6h 4c4d 7h6g 8a7c 4h4g 8d8e 6g5f 6d6e 6f6e 5d6e 5f6e 7c6e 7g6f"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -424 multipv 5 nodes 84650 nps 363304 time 233 pv B*5e 7b6c 5i6i 6a5b 5g5f 8a7c 6i7i 4c4d 4h5g 4b3a 5g4f"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -126 multipv 1 nodes 84650 nps 361752 time 234 pv 2i3g 7b6c 4g4f 6c5d 5i6h 4c4d 7h6g 4b3a 4h4g 8a7c 2h2i 6a5b 5g5f 8b6b"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -154 multipv 2 nodes 84650 nps 361752 time 234 pv 5i6h 7b6c 7h6g 8a7c 4h3g 6a6b 3g4f 4c4d 2i3g 8b8a"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -172 multipv 3 nodes 84650 nps 361752 time 234 pv 2h2f 7b6c 4h3g 8a7c 3g4f 8b6b 5i6h 6c5d 2i3g 4c4d 3f3e 3d3e 4f3e P*3d"}
+{"at":"2026-09-21T12:10:51.040Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 20 score cp -212 multipv 4 nodes 84650 nps 361752 time 234 pv 4g4f 7b6c 2i3g 6c5d 5i6h 4c4d 7h6g 8a7c 4h4g 8d8e 6g5f 6d6e 6f6e 5d6e 5f6e 7c6e 7g6f"}
+{"at":"2026-09-21T12:10:51.041Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -424 multipv 5 nodes 84650 nps 361752 time 234 pv B*5e 7b6c 5i6i 6a5b 5g5f 8a7c 6i7i 4c4d 4h5g 4b3a 5g4f"}
+{"at":"2026-09-21T12:10:51.042Z","engine":"yaneuraou","direction":"out","line":"bestmove 2i3g ponder 7b6c"}
+{"at":"2026-09-21T12:11:01.282Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:01.284Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:01.302Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:01.302Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:01.303Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b 6g6f 5a4b 6i7h 1d1e 3g3f 9c9d 2f2e 6c6d 4g4f 4b3a 4f4e 8a7c 2i3g 8d8e 5i6h 6a6b"}
+{"at":"2026-09-21T12:11:01.303Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:01.305Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 117 nodes 83 nps 41500 time 2 pv B*7a"}
+{"at":"2026-09-21T12:11:01.307Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 2333 nodes 165 nps 55000 time 3 pv B*7a 1e1f 7a8b+ 1f1g+"}
+{"at":"2026-09-21T12:11:01.550Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp 425 nodes 62378 nps 253569 time 246 pv B*7a 7b8a 7a8b+ 8a8b R*5a 3a2b 5a4a+ B*7a 2e2d 3c2d 4a5a 5c5d 5a5d 3d3e 3f3e 2d3e"}
+{"at":"2026-09-21T12:11:01.552Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp 425 nodes 62378 nps 253569 time 246 pv B*7a 7b8a 7a8b+ 8a8b R*5a 3a2b 5a4a+ B*7a 2e2d 3c2d 4a5a 5c5d 5a5d 3d3e 3f3e 2d3e"}
+{"at":"2026-09-21T12:11:01.554Z","engine":"yaneuraou","direction":"out","line":"bestmove B*7a ponder 7b8a"}
+{"at":"2026-09-21T12:11:01.554Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:01.554Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:01.565Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:01.565Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:01.566Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 8h2b+ 3a2b 7i8h 1c1d 3i4h 8c8d 2g2f 2b3c 4i5h 4a3b 9g9f 7c7d 8h7g 7a7b 6g6f 5a4b 6i7h 1d1e 3g3f 9c9d 2f2e 6c6d 4g4f 4b3a 4f4e 8a7c 2i3g 8d8e 5i6h 6a6b"}
+{"at":"2026-09-21T12:11:01.566Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves B*7a"}
+{"at":"2026-09-21T12:11:01.568Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 117 nodes 1 nps 1000 time 1 pv B*7a"}
+{"at":"2026-09-21T12:11:01.568Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 2333 nodes 5 nps 5000 time 1 pv B*7a 1e1f 7a8b+ 1f1g+"}
+{"at":"2026-09-21T12:11:01.693Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp 633 nodes 24755 nps 196468 time 126 pv B*7a 7b8a 7a8b+ 8a8b 7h6g 8e8f R*5a 3a2b 8g8f 6d6e 6f6e B*4i 5a8a+ 7c6e 8a8b 6e7g+ 6g7g"}
+{"at":"2026-09-21T12:11:01.693Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp 633 nodes 24755 nps 196468 time 126 pv B*7a 7b8a 7a8b+ 8a8b 7h6g 8e8f R*5a 3a2b 8g8f 6d6e 6f6e B*4i 5a8a+ 7c6e 8a8b 6e7g+ 6g7g"}
+{"at":"2026-09-21T12:11:01.694Z","engine":"yaneuraou","direction":"out","line":"bestmove B*7a ponder 7b8a"}
+{"at":"2026-09-21T12:11:11.939Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:11.941Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:11.967Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:11.967Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:11.967Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b"}
+{"at":"2026-09-21T12:11:11.967Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:11.970Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -42 nodes 57 nps 57000 time 1 pv 6h7h"}
+{"at":"2026-09-21T12:11:11.971Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 3 score cp 101 nodes 107 nps 107000 time 1 pv 6h7h 2b8h+ 7i8h"}
+{"at":"2026-09-21T12:11:12.069Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -21 nodes 34227 nps 345727 time 99 pv 2f2e 4a3b 4g4f 2b3c 8h3c+ 3b3c 4i5h 8d8e 7i8h 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:11:12.069Z","engine":"yaneuraou","direction":"out","line":"bestmove 2f2e ponder 4a3b"}
+{"at":"2026-09-21T12:11:12.070Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:12.070Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:12.081Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:12.081Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T12:11:12.081Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b"}
+{"at":"2026-09-21T12:11:12.081Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 2f2e 8h2b+"}
+{"at":"2026-09-21T12:11:12.083Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 86 multipv 1 nodes 7 nps 7000 time 1 pv 2f2e"}
+{"at":"2026-09-21T12:11:12.083Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -92 multipv 2 nodes 7 nps 7000 time 1 pv 8h2b+"}
+{"at":"2026-09-21T12:11:12.083Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 240 multipv 1 nodes 17 nps 17000 time 1 pv 2f2e 2b8h+"}
+{"at":"2026-09-21T12:11:12.083Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -92 multipv 2 nodes 17 nps 17000 time 1 pv 8h2b+ 3a2b"}
+{"at":"2026-09-21T12:11:12.327Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 19 score cp 22 multipv 1 nodes 60176 nps 245616 time 245 pv 2f2e 8d8e 6i7h 4a3b 2e2d 2c2d 2h2d 6a5b 8h2b+ 3a2b 7i8h 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:11:12.328Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -190 multipv 2 nodes 60176 nps 245616 time 245 pv 8h2b+ 3a2b 7i8h 8d8e 8h7g 2b3c 3i3h 7c7d 6i7h 8a7c 6g6f 6c6d B*5e 4a3b 5e6d 8e8f"}
+{"at":"2026-09-21T12:11:12.328Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 19 score cp 22 multipv 1 nodes 60176 nps 245616 time 245 pv 2f2e 8d8e 6i7h 4a3b 2e2d 2c2d 2h2d 6a5b 8h2b+ 3a2b 7i8h 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:11:12.329Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -190 multipv 2 nodes 60176 nps 245616 time 245 pv 8h2b+ 3a2b 7i8h 8d8e 8h7g 2b3c 3i3h 7c7d 6i7h 8a7c 6g6f 6c6d B*5e 4a3b 5e6d 8e8f"}
+{"at":"2026-09-21T12:11:12.329Z","engine":"yaneuraou","direction":"out","line":"bestmove 2f2e ponder 8d8e"}
+{"at":"2026-09-21T12:11:22.597Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:22.598Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:22.757Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:22.757Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:22.757Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d"}
+{"at":"2026-09-21T12:11:22.757Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:22.761Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 116 nodes 36 nps 36000 time 1 pv 3g3f"}
+{"at":"2026-09-21T12:11:22.763Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 266 nodes 71 nps 23666 time 3 pv 3g3f 1c1d"}
+{"at":"2026-09-21T12:11:22.845Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp 123 nodes 27939 nps 321137 time 87 pv 4g4f 3a3b 3h4g 8e8f 8g8f 8b8f 4g5f 8f7f 8h7g 7c7d P*2b 3c2b 2h2d"}
+{"at":"2026-09-21T12:11:22.845Z","engine":"yaneuraou","direction":"out","line":"bestmove 4g4f ponder 3a3b"}
+{"at":"2026-09-21T12:11:22.846Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:22.846Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:22.856Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:22.857Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 4"}
+{"at":"2026-09-21T12:11:22.857Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d"}
+{"at":"2026-09-21T12:11:22.857Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 4g4f 8h9g 1g1f 8h7g"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 80 multipv 1 nodes 10 nps 10000 time 1 pv 4g4f"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 58 multipv 2 nodes 10 nps 10000 time 1 pv 8h7g"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -53 multipv 3 nodes 10 nps 10000 time 1 pv 1g1f"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -225 multipv 4 nodes 10 nps 10000 time 1 pv 8h9g"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 252 multipv 1 nodes 27 nps 27000 time 1 pv 4g4f 1c1d"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 167 multipv 2 nodes 27 nps 27000 time 1 pv 8h7g 1c1d"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 108 multipv 3 nodes 27 nps 27000 time 1 pv 1g1f 1c1d"}
+{"at":"2026-09-21T12:11:22.859Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -127 multipv 4 nodes 27 nps 27000 time 1 pv 8h9g 1c1d"}
+{"at":"2026-09-21T12:11:23.024Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 105 multipv 1 nodes 64631 nps 387011 time 167 pv 4g4f 8e8f 8g8f 8b8f 8h7g 8f8b P*8g 6a5b 3h4g 3a3b 4g5f 3b2c"}
+{"at":"2026-09-21T12:11:23.025Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 11 multipv 2 nodes 64631 nps 387011 time 167 pv 8h7g 3a3b 3g3f 3b2c 3h3g 4a3b 7i8h 7c7d 3g4f 7b7c 3f3e 7c6d"}
+{"at":"2026-09-21T12:11:23.025Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -128 multipv 3 nodes 64631 nps 387011 time 167 pv 1g1f 3a3b 3g3f 3b2c 3f3e 3d3e 4g4f 4a3b 3h4g 7c7d 4g5f 8e8f"}
+{"at":"2026-09-21T12:11:23.026Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -312 multipv 4 nodes 64631 nps 387011 time 167 pv 8h9g 4a3b 4g4f 4d4e 9g8h 8e8f 8g8f 8b8f 8h3c+ 3b3c 7i8h 4e4f"}
+{"at":"2026-09-21T12:11:23.027Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 105 multipv 1 nodes 64631 nps 384708 time 168 pv 4g4f 8e8f 8g8f 8b8f 8h7g 8f8b P*8g 6a5b 3h4g 3a3b 4g5f 3b2c"}
+{"at":"2026-09-21T12:11:23.027Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 11 multipv 2 nodes 64631 nps 384708 time 168 pv 8h7g 3a3b 3g3f 3b2c 3h3g 4a3b 7i8h 7c7d 3g4f 7b7c 3f3e 7c6d"}
+{"at":"2026-09-21T12:11:23.027Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -128 multipv 3 nodes 64631 nps 384708 time 168 pv 1g1f 3a3b 3g3f 3b2c 3f3e 3d3e 4g4f 4a3b 3h4g 7c7d 4g5f 8e8f"}
+{"at":"2026-09-21T12:11:23.027Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -312 multipv 4 nodes 64631 nps 384708 time 168 pv 8h9g 4a3b 4g4f 4d4e 9g8h 8e8f 8g8f 8b8f 8h3c+ 3b3c 7i8h 4e4f"}
+{"at":"2026-09-21T12:11:23.027Z","engine":"yaneuraou","direction":"out","line":"bestmove 4g4f ponder 8e8f"}
+{"at":"2026-09-21T12:11:33.150Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:33.151Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:33.224Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:33.224Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:33.225Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d 7i6h 3a2b 4g4f 8e8f 8g8f 8b8f 6h7g 8f8d"}
+{"at":"2026-09-21T12:11:33.225Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:33.229Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 10 nodes 45 nps 45000 time 1 pv P*8g"}
+{"at":"2026-09-21T12:11:33.230Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 86 nodes 88 nps 29333 time 3 pv P*8g 1c1d"}
+{"at":"2026-09-21T12:11:33.357Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -100 nodes 37578 nps 286854 time 131 pv P*8g 7c7d 3g3f 8a7c 3h4g 2b2c 2i3g 4a3b 4g5f 8d8a 4f4e 4d4e 5f4e"}
+{"at":"2026-09-21T12:11:33.357Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -100 nodes 37578 nps 284681 time 132 pv P*8g 7c7d 3g3f 8a7c 3h4g 2b2c 2i3g 4a3b 4g5f 8d8a 4f4e 4d4e 5f4e"}
+{"at":"2026-09-21T12:11:33.359Z","engine":"yaneuraou","direction":"out","line":"bestmove P*8g ponder 7c7d"}
+{"at":"2026-09-21T12:11:33.359Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:33.359Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:33.369Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:33.369Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T12:11:33.369Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d 7i6h 3a2b 4g4f 8e8f 8g8f 8b8f 6h7g 8f8d"}
+{"at":"2026-09-21T12:11:33.369Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves P*8g 7f7e"}
+{"at":"2026-09-21T12:11:33.371Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 10 multipv 1 nodes 3 nps 3000 time 1 pv P*8g"}
+{"at":"2026-09-21T12:11:33.371Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -722 multipv 2 nodes 3 nps 3000 time 1 pv 7f7e"}
+{"at":"2026-09-21T12:11:33.371Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 86 multipv 1 nodes 12 nps 12000 time 1 pv P*8g 1c1d"}
+{"at":"2026-09-21T12:11:33.371Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -364 multipv 2 nodes 12 nps 12000 time 1 pv 7f7e 1c1d"}
+{"at":"2026-09-21T12:11:33.437Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp 15 multipv 1 nodes 27184 nps 411878 time 66 pv P*8g 4a3b 3g3f 2b2c 2i3g 6a5b 3h4g 7c7d 4g5f 8a7c 4f4e 4d4e"}
+{"at":"2026-09-21T12:11:33.437Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -395 multipv 2 nodes 27184 nps 411878 time 66 pv 7f7e P*8g 8h7i 7c7d P*8f 7d7e 7h8g"}
+{"at":"2026-09-21T12:11:33.437Z","engine":"yaneuraou","direction":"out","line":"bestmove P*8g ponder 4a3b"}
+{"at":"2026-09-21T12:11:43.582Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:43.582Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:43.597Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:43.597Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:43.597Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d 7i6h 3a2b 4g4f 8e8f 8g8f 8b8f 6h7g 8f8d P*8f 2b2c 3g3f 9c9d 4i4h 8a9c 8i9g 9d9e"}
+{"at":"2026-09-21T12:11:43.597Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:43.600Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -228 nodes 37 nps 37000 time 1 pv 9f9e"}
+{"at":"2026-09-21T12:11:43.600Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -228 nodes 74 nps 37000 time 2 pv 9f9e 1c1d"}
+{"at":"2026-09-21T12:11:43.717Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 15 score cp -1146 nodes 30021 nps 254415 time 118 pv 9f9e P*9f 9g8e 9c8e 8f8e 8d8e P*8g 8e9e 7g8f 9e9d 6i6h 1c1d 2i3g 4a3b"}
+{"at":"2026-09-21T12:11:43.727Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -1124 nodes 31914 nps 247395 time 129 pv 9f9e P*9f 9g8e 9c8e 8f8e 8d8e P*8g 8e9e 7g8f"}
+{"at":"2026-09-21T12:11:43.728Z","engine":"yaneuraou","direction":"out","line":"bestmove 9f9e ponder P*9f"}
+{"at":"2026-09-21T12:11:43.729Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:43.729Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:43.754Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:43.755Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:43.755Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 2g2f 3c3d 7g7f 8c8d 5i6h 7a7b 9g9f 5a4b 6h7h 4c4d 2f2e 2b3c 3i3h 8d8e 2e2d 2c2d 7i6h 3a2b 4g4f 8e8f 8g8f 8b8f 6h7g 8f8d P*8f 2b2c 3g3f 9c9d 4i4h 8a9c 8i9g 9d9e"}
+{"at":"2026-09-21T12:11:43.755Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 9f9e"}
+{"at":"2026-09-21T12:11:43.765Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -228 nodes 1 nps 1000 time 1 pv 9f9e"}
+{"at":"2026-09-21T12:11:43.765Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -228 nodes 3 nps 500 time 6 pv 9f9e 1c1d"}
+{"at":"2026-09-21T12:11:43.870Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 16 score cp -1134 nodes 23324 nps 204596 time 114 pv 9f9e P*9f 2i3g 4a3b 4f4e 9f9g+ 8h9g P*8e 6i6h 8e8f 9g8f"}
+{"at":"2026-09-21T12:11:43.884Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -973 nodes 28415 nps 220271 time 129 pv 9f9e P*9f 2i3g 4a3b 4f4e 9f9g+ 8h9g P*8e P*2e 8e8f 9g8f"}
+{"at":"2026-09-21T12:11:43.886Z","engine":"yaneuraou","direction":"out","line":"bestmove 9f9e ponder P*9f"}
+{"at":"2026-09-21T12:11:54.250Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:54.250Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:54.267Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:54.267Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:11:54.267Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h"}
+{"at":"2026-09-21T12:11:54.268Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:11:54.274Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 135 nodes 43 nps 43000 time 1 pv 4b3b"}
+{"at":"2026-09-21T12:11:54.274Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 105 nodes 107 nps 17833 time 6 pv 1d1e 3g3f"}
+{"at":"2026-09-21T12:11:54.378Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp 55 nodes 39821 nps 362009 time 110 pv 1d1e 7i6h 7a6b 6h6g 7c7d 6g5f 8b7b 7g8h 3a3b 4h3h 6b7c 5f4e"}
+{"at":"2026-09-21T12:11:54.380Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp 55 nodes 39821 nps 362009 time 110 pv 1d1e 7i6h 7a6b 6h6g 7c7d 6g5f 8b7b 7g8h 3a3b 4h3h 6b7c 5f4e"}
+{"at":"2026-09-21T12:11:54.380Z","engine":"yaneuraou","direction":"out","line":"bestmove 1d1e ponder 7i6h"}
+{"at":"2026-09-21T12:11:54.381Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:11:54.381Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:11:54.399Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:11:54.399Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 5"}
+{"at":"2026-09-21T12:11:54.401Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h"}
+{"at":"2026-09-21T12:11:54.401Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 1d1e 2a3c 1a1b 6a5a 4b5b"}
+{"at":"2026-09-21T12:11:54.402Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 11 multipv 1 nodes 15 nps 15000 time 1 pv 1d1e"}
+{"at":"2026-09-21T12:11:54.403Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -10 multipv 2 nodes 15 nps 15000 time 1 pv 6a5a"}
+{"at":"2026-09-21T12:11:54.403Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -88 multipv 3 nodes 15 nps 15000 time 1 pv 4b5b"}
+{"at":"2026-09-21T12:11:54.403Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -180 multipv 4 nodes 15 nps 15000 time 1 pv 1a1b"}
+{"at":"2026-09-21T12:11:54.403Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -307 multipv 5 nodes 15 nps 15000 time 1 pv 2a3c"}
+{"at":"2026-09-21T12:11:54.404Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 144 multipv 1 nodes 49 nps 49000 time 1 pv 1d1e 2g2f"}
+{"at":"2026-09-21T12:11:54.404Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -63 multipv 2 nodes 49 nps 49000 time 1 pv 6a5a 1g1f"}
+{"at":"2026-09-21T12:11:54.404Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -94 multipv 3 nodes 49 nps 49000 time 1 pv 4b5b 1g1f"}
+{"at":"2026-09-21T12:11:54.404Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -185 multipv 4 nodes 49 nps 49000 time 1 pv 1a1b 1g1f"}
+{"at":"2026-09-21T12:11:54.404Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -330 multipv 5 nodes 49 nps 49000 time 1 pv 2a3c 1g1f"}
+{"at":"2026-09-21T12:11:54.591Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 63 multipv 1 nodes 72124 nps 379600 time 190 pv 1d1e 7i6h 7c7d 6h6g 7a6b 6g5f 8b7b 5f4e 7d7e 7f7e 3a3b 7g8h"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -3 multipv 2 nodes 72124 nps 379600 time 190 pv 6a5a 1g1f 7a6b 3i3h 7c7d 7i6h 4b3b 6h6g 5c5d 4h3i 6c6d 4g4f"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -140 multipv 3 nodes 72124 nps 379600 time 190 pv 4b5b 1g1f 7c7d 3i3h 8d8e 7i6h 6a7b 7h8h 7a6b 4h3i 5c5d 6h6g"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -154 multipv 4 nodes 72124 nps 379600 time 190 pv 2a3c 7i6h 3a3b 6f6e 2c2d 1g1f 7a6b 6h6g 3b2c 6g5f"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -164 multipv 5 nodes 72124 nps 379600 time 190 pv 1a1b 7i6h 7a6b 6h6g 7c7d 3i3h 6c6d 6g5f 8b7b 4h3i 4b3b 5f4e 7d7e 7f7e 7b7e"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 63 multipv 1 nodes 72124 nps 377612 time 191 pv 1d1e 7i6h 7c7d 6h6g 7a6b 6g5f 8b7b 5f4e 7d7e 7f7e 3a3b 7g8h"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -3 multipv 2 nodes 72124 nps 377612 time 191 pv 6a5a 1g1f 7a6b 3i3h 7c7d 7i6h 4b3b 6h6g 5c5d 4h3i 6c6d 4g4f"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -140 multipv 3 nodes 72124 nps 377612 time 191 pv 4b5b 1g1f 7c7d 3i3h 8d8e 7i6h 6a7b 7h8h 7a6b 4h3i 5c5d 6h6g"}
+{"at":"2026-09-21T12:11:54.593Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -154 multipv 4 nodes 72124 nps 377612 time 191 pv 2a3c 7i6h 3a3b 6f6e 2c2d 1g1f 7a6b 6h6g 3b2c 6g5f"}
+{"at":"2026-09-21T12:11:54.594Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -164 multipv 5 nodes 72124 nps 377612 time 191 pv 1a1b 7i6h 7a6b 6h6g 7c7d 3i3h 6c6d 6g5f 8b7b 4h3i 4b3b 5f4e 7d7e 7f7e 7b7e"}
+{"at":"2026-09-21T12:11:54.594Z","engine":"yaneuraou","direction":"out","line":"bestmove 1d1e ponder 7i6h"}
+{"at":"2026-09-21T12:12:04.792Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:04.792Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:04.802Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:04.803Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:04.803Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h"}
+{"at":"2026-09-21T12:12:04.803Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:04.805Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 61 nodes 45 nps 45000 time 1 pv 4b3b"}
+{"at":"2026-09-21T12:12:04.806Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 212 nodes 84 nps 84000 time 1 pv 4b3b 2g2f"}
+{"at":"2026-09-21T12:12:05.007Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 110 nodes 63067 nps 310674 time 203 pv 4b3b 3h2h 6c6d 9g9f 8b7b 3i3h 7d7e 7f7e 7b7e 6i5h"}
+{"at":"2026-09-21T12:12:05.007Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp 110 nodes 63067 nps 310674 time 203 pv 4b3b 3h2h 6c6d 9g9f 8b7b 3i3h 7d7e 7f7e 7b7e 6i5h"}
+{"at":"2026-09-21T12:12:05.008Z","engine":"yaneuraou","direction":"out","line":"bestmove 4b3b ponder 3h2h"}
+{"at":"2026-09-21T12:12:05.008Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:05.008Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:05.018Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:05.018Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 4"}
+{"at":"2026-09-21T12:12:05.018Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h"}
+{"at":"2026-09-21T12:12:05.018Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 4b3b 1a1b 6b5c 2a3c"}
+{"at":"2026-09-21T12:12:05.020Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 61 multipv 1 nodes 16 nps 16000 time 1 pv 4b3b"}
+{"at":"2026-09-21T12:12:05.020Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -10 multipv 2 nodes 16 nps 16000 time 1 pv 6b5c"}
+{"at":"2026-09-21T12:12:05.020Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -241 multipv 3 nodes 16 nps 16000 time 1 pv 1a1b"}
+{"at":"2026-09-21T12:12:05.020Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -302 multipv 4 nodes 16 nps 16000 time 1 pv 2a3c"}
+{"at":"2026-09-21T12:12:05.020Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 212 multipv 1 nodes 36 nps 36000 time 1 pv 4b3b 2g2f"}
+{"at":"2026-09-21T12:12:05.021Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 46 multipv 2 nodes 36 nps 36000 time 1 pv 6b5c 3g3f"}
+{"at":"2026-09-21T12:12:05.021Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -145 multipv 3 nodes 36 nps 36000 time 1 pv 1a1b 3g3f"}
+{"at":"2026-09-21T12:12:05.022Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -304 multipv 4 nodes 36 nps 36000 time 1 pv 2a3c 3g3f"}
+{"at":"2026-09-21T12:12:05.179Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp 64 multipv 1 nodes 58316 nps 362211 time 161 pv 6b5c 6i5h 3a3b 6h6g 8d8e 3h2h 4b3a 3i3h 4c4d"}
+{"at":"2026-09-21T12:12:05.179Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp 13 multipv 2 nodes 58316 nps 362211 time 161 pv 4b3b 6h6g 8d8e 3g3f 6b7c 3h2h 7c6d 3i3h 7d7e 6i5h 7e7f 6g7f"}
+{"at":"2026-09-21T12:12:05.179Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -124 multipv 3 nodes 58316 nps 362211 time 161 pv 1a1b 3h2h 8d8e 4i3h 4b3b 6h6g 6c6d 7g6h 5b6c 7f7e 7d7e 7h7e"}
+{"at":"2026-09-21T12:12:05.181Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -171 multipv 4 nodes 58316 nps 362211 time 161 pv 2a3c 3g3f 4c4d 6h6g 3a3b 7g6h 2b3a 6h4f 6b7c 3f3e 3d3e"}
+{"at":"2026-09-21T12:12:05.386Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 26 multipv 1 nodes 130516 nps 355629 time 367 pv 4b3b 6h6g 8d8e 3h2h 6c6d 3i3h 8a7c 6i6h 6b5c 6h5g 5b6c 4g4f"}
+{"at":"2026-09-21T12:12:05.387Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp 5 multipv 2 nodes 130516 nps 355629 time 367 pv 6b5c 6i5h 3a3b 6h6g 4b3a 3h2h 2b3c 3i3h 4c4d 3g3f 8d8e 7g6h"}
+{"at":"2026-09-21T12:12:05.387Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -90 multipv 3 nodes 130516 nps 355629 time 367 pv 1a1b 3h2h 4b3b 6h6g 6c6d 3i3h 8a7c 3g3f 8b8a 7h8h 8d8e 3h3g 6d6e"}
+{"at":"2026-09-21T12:12:05.388Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -135 multipv 4 nodes 130516 nps 355629 time 367 pv 2a3c 6h6g 2b1c 7g6h 1c6h+ 6i6h 4c4d 7f7e 7d7e"}
+{"at":"2026-09-21T12:12:05.388Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 26 multipv 1 nodes 130516 nps 353701 time 369 pv 4b3b 6h6g 8d8e 3h2h 6c6d 3i3h 8a7c 6i6h 6b5c 6h5g 5b6c 4g4f"}
+{"at":"2026-09-21T12:12:05.389Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp 5 multipv 2 nodes 130516 nps 353701 time 369 pv 6b5c 6i5h 3a3b 6h6g 4b3a 3h2h 2b3c 3i3h 4c4d 3g3f 8d8e 7g6h"}
+{"at":"2026-09-21T12:12:05.389Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -90 multipv 3 nodes 130516 nps 353701 time 369 pv 1a1b 3h2h 4b3b 6h6g 6c6d 3i3h 8a7c 3g3f 8b8a 7h8h 8d8e 3h3g 6d6e"}
+{"at":"2026-09-21T12:12:05.389Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -135 multipv 4 nodes 130516 nps 353701 time 369 pv 2a3c 6h6g 2b1c 7g6h 1c6h+ 6i6h 4c4d 7f7e 7d7e"}
+{"at":"2026-09-21T12:12:05.389Z","engine":"yaneuraou","direction":"out","line":"bestmove 4b3b ponder 6h6g"}
+{"at":"2026-09-21T12:12:15.558Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:15.559Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:15.638Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:15.638Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:15.639Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h 6c6d 3g3f 4b3b 3h2h 8b7b 6i5h 6b6c 5h4h"}
+{"at":"2026-09-21T12:12:15.639Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:15.644Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 220 nodes 49 nps 16333 time 3 pv 7d7e 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:15.646Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 306 nodes 105 nps 21000 time 5 pv 2b4d 2g2f"}
+{"at":"2026-09-21T12:12:15.804Z","engine":"yaneuraou","direction":"out","line":"info depth 10 seldepth 15 score cp 126 nodes 38340 nps 233780 time 164 pv 5d5e 6h6g 7d7e 7f7e 7b7e 4h3h P*7f 7g5i 5e5f 6g7f 2b5e 3h3g"}
+{"at":"2026-09-21T12:12:15.988Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 16 score cp 18 nodes 78076 nps 225002 time 347 pv 4c4d 4g4f 3a4b 2i3g 7d7e 7f7e 7b7e 6h6g"}
+{"at":"2026-09-21T12:12:16.027Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp 83 nodes 89526 nps 231932 time 386 pv 4c4d 4g4f 3a4b 2i3g 4b4c 6h6g 8d8e 4h4g 9c9d 3i3h 2b3a"}
+{"at":"2026-09-21T12:12:16.028Z","engine":"yaneuraou","direction":"out","line":"bestmove 4c4d ponder 4g4f"}
+{"at":"2026-09-21T12:12:16.028Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:16.028Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:16.043Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:16.043Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 3"}
+{"at":"2026-09-21T12:12:16.044Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h 6c6d 3g3f 4b3b 3h2h 8b7b 6i5h 6b6c 5h4h"}
+{"at":"2026-09-21T12:12:16.044Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 4c4d 7d7e 1a1b"}
+{"at":"2026-09-21T12:12:16.048Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 220 multipv 1 nodes 8 nps 8000 time 1 pv 7d7e 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:16.048Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 54 multipv 2 nodes 8 nps 8000 time 1 pv 4c4d"}
+{"at":"2026-09-21T12:12:16.049Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -28 multipv 3 nodes 8 nps 8000 time 1 pv 1a1b"}
+{"at":"2026-09-21T12:12:16.049Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 220 multipv 1 nodes 21 nps 4200 time 5 pv 7d7e 7f7e"}
+{"at":"2026-09-21T12:12:16.049Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 126 multipv 2 nodes 21 nps 4200 time 5 pv 4c4d 2g2f"}
+{"at":"2026-09-21T12:12:16.051Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -45 multipv 3 nodes 21 nps 4200 time 5 pv 1a1b 4g4f"}
+{"at":"2026-09-21T12:12:16.163Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp 327 multipv 1 nodes 39410 nps 336837 time 117 pv 7d7e 7f7e 7b7e 3f3e 5d5e P*7f 7e7f 6h6g"}
+{"at":"2026-09-21T12:12:16.163Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp 76 multipv 2 nodes 39410 nps 336837 time 117 pv 4c4d 6h6g 3a4b 4h3g 4b4c 4g4f 8d8e 3i3h 2b3a 3g2f 9c9d"}
+{"at":"2026-09-21T12:12:16.163Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -40 multipv 3 nodes 39410 nps 336837 time 117 pv 1a1b 3i3h 7d7e 7f7e 7b7e 4g4f 8d8e 6h6g P*7f"}
+{"at":"2026-09-21T12:12:16.395Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp 186 multipv 1 nodes 93309 nps 267361 time 349 pv 7d7e 7f7e 7b7e 6h6g 6d6e 6f6e P*6f 7g8f 7e6e 6g7f 6f6g+ 7f6e 6g7h"}
+{"at":"2026-09-21T12:12:16.396Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp 82 multipv 2 nodes 93309 nps 267361 time 349 pv 4c4d 6h6g 3a4b 4h3g 4b4c 4g4f 8d8e 3i3h 2b3a 3g2f 9c9d 4i4h"}
+{"at":"2026-09-21T12:12:16.396Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -48 multipv 3 nodes 93309 nps 267361 time 349 pv 1a1b 6h6g 3a4b 2g2f 4c4d 3i3h 4b4c 3h2g 8d8e 4i3h 2b3a 7g6h 9c9d"}
+{"at":"2026-09-21T12:12:16.396Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp 186 multipv 1 nodes 93309 nps 265837 time 351 pv 7d7e 7f7e 7b7e 6h6g 6d6e 6f6e P*6f 7g8f 7e6e 6g7f 6f6g+ 7f6e 6g7h"}
+{"at":"2026-09-21T12:12:16.396Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp 82 multipv 2 nodes 93309 nps 265837 time 351 pv 4c4d 6h6g 3a4b 4h3g 4b4c 4g4f 8d8e 3i3h 2b3a 3g2f 9c9d 4i4h"}
+{"at":"2026-09-21T12:12:16.397Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -48 multipv 3 nodes 93309 nps 265837 time 351 pv 1a1b 6h6g 3a4b 2g2f 4c4d 3i3h 4b4c 3h2g 8d8e 4i3h 2b3a 7g6h 9c9d"}
+{"at":"2026-09-21T12:12:16.397Z","engine":"yaneuraou","direction":"out","line":"bestmove 7d7e ponder 7f7e"}
+{"at":"2026-09-21T12:12:26.634Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:26.635Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:26.786Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:26.786Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:26.786Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h 6c6d 3g3f 4b3b 3h2h 8b7b 6i5h 6b6c 5h4h 3a4b 4g4f 4c4d 6h6g 4b4c 7g5i 8d8e 3i3h"}
+{"at":"2026-09-21T12:12:26.787Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:26.791Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 155 nodes 40 nps 40000 time 1 pv 2b3c"}
+{"at":"2026-09-21T12:12:26.792Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 176 nodes 97 nps 32333 time 3 pv 2b3a 2g2f"}
+{"at":"2026-09-21T12:12:26.976Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -23 nodes 62492 nps 335978 time 186 pv 5b4b 4h4g 2c2d 1i1h 2b3a 2h1i 3b2b 5i4h 4b3b 8i7g 7b8b"}
+{"at":"2026-09-21T12:12:27.217Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -54 nodes 146692 nps 341939 time 429 pv 9c9d 2g2f 2b3a 3h2g 3b2b 2i3g 5b4b 4i3h 4a3b 4h4g 7b8b 7h8h"}
+{"at":"2026-09-21T12:12:27.218Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -54 nodes 146692 nps 341939 time 429 pv 9c9d 2g2f 2b3a 3h2g 3b2b 2i3g 5b4b 4i3h 4a3b 4h4g 7b8b 7h8h"}
+{"at":"2026-09-21T12:12:27.218Z","engine":"yaneuraou","direction":"out","line":"bestmove 9c9d ponder 2g2f"}
+{"at":"2026-09-21T12:12:27.218Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:27.218Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:27.228Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:27.228Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 4"}
+{"at":"2026-09-21T12:12:27.228Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 7g7f 3c3d 6g6f 8c8d 2h7h 5a4b 8h7g 1c1d 5i4h 7c7d 4h3h 7a6b 1g1f 5c5d 5g5f 6a5b 7i6h 6c6d 3g3f 4b3b 3h2h 8b7b 6i5h 6b6c 5h4h 3a4b 4g4f 4c4d 6h6g 4b4c 7g5i 8d8e 3i3h"}
+{"at":"2026-09-21T12:12:27.229Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 9c9d 3b4b 1a1b 2a3c"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 137 multipv 1 nodes 10 nps 10000 time 1 pv 9c9d"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 77 multipv 2 nodes 10 nps 10000 time 1 pv 1a1b"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 63 multipv 3 nodes 10 nps 10000 time 1 pv 2a3c"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 25 multipv 4 nodes 10 nps 10000 time 1 pv 3b4b"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 114 multipv 1 nodes 31 nps 31000 time 1 pv 9c9d 2g2f"}
+{"at":"2026-09-21T12:12:27.231Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 52 multipv 2 nodes 31 nps 31000 time 1 pv 3b4b 2g2f"}
+{"at":"2026-09-21T12:12:27.233Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 41 multipv 3 nodes 31 nps 31000 time 1 pv 1a1b 2g2f"}
+{"at":"2026-09-21T12:12:27.233Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 32 multipv 4 nodes 31 nps 31000 time 1 pv 2a3c 2g2f"}
+{"at":"2026-09-21T12:12:27.580Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp 7 multipv 1 nodes 77971 nps 224054 time 348 pv 9c9d 8i7g 7b8b 7h8h 2b3a 2g2f 3b2b 3h2g 4a3b 4h3h 9d9e 5i4h 8a7c"}
+{"at":"2026-09-21T12:12:27.580Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 15 score cp -73 multipv 2 nodes 77971 nps 224054 time 348 pv 2a3c 7h8h 7b8b 2g2f 2b3a 3h2g 9c9d 2i3g 3b2b 4h3h 4a3b 5i4h 9d9e"}
+{"at":"2026-09-21T12:12:27.580Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 15 score cp -104 multipv 3 nodes 77971 nps 224054 time 348 pv 1a1b 7h8h 7b8b 1i1h 2b3c 4h4g 9c9d 2h1i 8a7c 5i4h"}
+{"at":"2026-09-21T12:12:27.580Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp -131 multipv 4 nodes 77971 nps 224054 time 348 pv 3b4b 7h8h 7b8b 2g2f 9c9d 3h2g 4b3a 2i3g 4a3b 4i3h 2b3c 4h4g"}
+{"at":"2026-09-21T12:12:27.896Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -66 multipv 1 nodes 179759 nps 270314 time 665 pv 9c9d 2g2f 2b3c 3h2g 6d6e 5i7g 6e6f 6g6f 3c4b 5f5e 5d5e 6f5e"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -131 multipv 2 nodes 179759 nps 270314 time 665 pv 3b4b 7h8h 7b8b 2g2f 9c9d 3h2g 4b3a 2i3g 4a3b 4i3h 2b3c 4h4g"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -144 multipv 3 nodes 179759 nps 270314 time 665 pv 1a1b 2g2f 7b8b 3h2g 2b3c 4i3h 3b2b 1i1h 3c2d 4h4g 4a3b 2h1i 2d5a"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -160 multipv 4 nodes 179759 nps 270314 time 665 pv 2a3c 2g2f 4a4b 3h2g 2c2d 1i1h 6d6e 2h1i 6e6f 6g6f 2b3a 4i3h 6c6d"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -66 multipv 1 nodes 179759 nps 269908 time 666 pv 9c9d 2g2f 2b3c 3h2g 6d6e 5i7g 6e6f 6g6f 3c4b 5f5e 5d5e 6f5e"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp -131 multipv 2 nodes 179759 nps 269908 time 666 pv 3b4b 7h8h 7b8b 2g2f 9c9d 3h2g 4b3a 2i3g 4a3b 4i3h 2b3c 4h4g"}
+{"at":"2026-09-21T12:12:27.897Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -144 multipv 3 nodes 179759 nps 269908 time 666 pv 1a1b 2g2f 7b8b 3h2g 2b3c 4i3h 3b2b 1i1h 3c2d 4h4g 4a3b 2h1i 2d5a"}
+{"at":"2026-09-21T12:12:27.898Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 13 score cp -160 multipv 4 nodes 179759 nps 269908 time 666 pv 2a3c 2g2f 4a4b 3h2g 2c2d 1i1h 6d6e 2h1i 6e6f 6g6f 2b3a 4i3h 6c6d"}
+{"at":"2026-09-21T12:12:27.898Z","engine":"yaneuraou","direction":"out","line":"bestmove 9c9d ponder 2g2f"}
+{"at":"2026-09-21T12:12:38.091Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:38.092Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:38.108Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:38.108Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:38.108Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d"}
+{"at":"2026-09-21T12:12:38.109Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:38.111Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 41 nodes 33 nps 33000 time 1 pv 7g7f"}
+{"at":"2026-09-21T12:12:38.112Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 18 nodes 68 nps 68000 time 1 pv 7g7f 1c1d"}
+{"at":"2026-09-21T12:12:38.225Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -112 nodes 43452 nps 374586 time 116 pv 7g7f 4b3b 5i4h 8d8e 8h7g 7a6b 4h3h 6b7c 3h2h 7c6d"}
+{"at":"2026-09-21T12:12:38.226Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -112 nodes 43452 nps 374586 time 116 pv 7g7f 4b3b 5i4h 8d8e 8h7g 7a6b 4h3h 6b7c 3h2h 7c6d"}
+{"at":"2026-09-21T12:12:38.227Z","engine":"yaneuraou","direction":"out","line":"bestmove 7g7f ponder 4b3b"}
+{"at":"2026-09-21T12:12:38.227Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:38.227Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:38.236Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:38.236Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 5"}
+{"at":"2026-09-21T12:12:38.236Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d"}
+{"at":"2026-09-21T12:12:38.237Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 7g7f 1f1e 5i6h 5e5d 5h5f"}
+{"at":"2026-09-21T12:12:38.237Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 41 multipv 1 nodes 19 nps 19000 time 1 pv 7g7f"}
+{"at":"2026-09-21T12:12:38.237Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -102 multipv 2 nodes 19 nps 19000 time 1 pv 1f1e"}
+{"at":"2026-09-21T12:12:38.237Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -193 multipv 3 nodes 19 nps 19000 time 1 pv 5i6h"}
+{"at":"2026-09-21T12:12:38.237Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -201 multipv 4 nodes 19 nps 19000 time 1 pv 5h5f"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -505 multipv 5 nodes 19 nps 19000 time 1 pv 5e5d"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 120 multipv 1 nodes 48 nps 48000 time 1 pv 1f1e 4c4d"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp 18 multipv 2 nodes 48 nps 48000 time 1 pv 7g7f 1c1d"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -134 multipv 3 nodes 48 nps 48000 time 1 pv 5h5f 1c1d"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -152 multipv 4 nodes 48 nps 48000 time 1 pv 5i6h 1c1d"}
+{"at":"2026-09-21T12:12:38.239Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -505 multipv 5 nodes 48 nps 48000 time 1 pv 5e5d 5c5d"}
+{"at":"2026-09-21T12:12:38.378Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -84 multipv 1 nodes 57558 nps 414086 time 139 pv 7g7f 7a6b 5i4h 8d8e 5e5d 2b8h+ 5d5c+ 6b5c 7i8h"}
+{"at":"2026-09-21T12:12:38.378Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 12 score cp -215 multipv 2 nodes 57558 nps 414086 time 139 pv 5e5d 5c5d 7g7f 2b8h+ 7i8h 4b3b 5h5d 8b5b 5d5b+ 6a5b B*4f"}
+{"at":"2026-09-21T12:12:38.378Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -367 multipv 3 nodes 57558 nps 414086 time 139 pv 1f1e 8d8e 7g7f 8e8f 5e5d 5c5d 8h2b+ 3a2b B*4f 8f8g+ 4f8b+ 7a8b"}
+{"at":"2026-09-21T12:12:38.378Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 13 score cp -402 multipv 4 nodes 57558 nps 414086 time 139 pv 5h5f 7a6b 5i4h 6b7c 4h3h 4b3b 6i7h 7c6d 7g7f 8d8e 1f1e 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:12:38.378Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -558 multipv 5 nodes 57558 nps 414086 time 139 pv 5i6h 8d8e 6i7h 7a6b 3i4h 6b7c 1f1e 7c6d 7g7f 8e8f 8g8f"}
+{"at":"2026-09-21T12:12:38.523Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -91 multipv 1 nodes 110547 nps 386527 time 286 pv 5e5d 5c5d 5h5d 8b5b 5d5b+ 4a5b 7g7f 2b8h+ 7i8h"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -94 multipv 2 nodes 110547 nps 386527 time 286 pv 7g7f 8d8e 5e5d 5c5d 8h2b+ 3a2b B*4f B*4d 7i8h 4b3b 4f8b+ 7a8b 8h7g"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -227 multipv 3 nodes 110547 nps 386527 time 286 pv 1f1e 8d8e 6i7h 7a6b 5i4h 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -407 multipv 4 nodes 110547 nps 386527 time 286 pv 5h5f 7a6b 5i4h 6b7c 7g7f 8d8e 5e5d 5c5d 5f5d 7c6d 8h2b+ 3a2b"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -483 multipv 5 nodes 110547 nps 386527 time 286 pv 5i6h 7a6b 7g7f 8d8e 3i4h 6b7c 5e5d 5c5d"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 17 score cp -91 multipv 1 nodes 110547 nps 386527 time 286 pv 5e5d 5c5d 5h5d 8b5b 5d5b+ 4a5b 7g7f 2b8h+ 7i8h"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp -94 multipv 2 nodes 110547 nps 386527 time 286 pv 7g7f 8d8e 5e5d 5c5d 8h2b+ 3a2b B*4f B*4d 7i8h 4b3b 4f8b+ 7a8b 8h7g"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -227 multipv 3 nodes 110547 nps 386527 time 286 pv 1f1e 8d8e 6i7h 7a6b 5i4h 8e8f 8g8f 8b8f"}
+{"at":"2026-09-21T12:12:38.524Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -407 multipv 4 nodes 110547 nps 386527 time 286 pv 5h5f 7a6b 5i4h 6b7c 7g7f 8d8e 5e5d 5c5d 5f5d 7c6d 8h2b+ 3a2b"}
+{"at":"2026-09-21T12:12:38.526Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -483 multipv 5 nodes 110547 nps 386527 time 286 pv 5i6h 7a6b 7g7f 8d8e 3i4h 6b7c 5e5d 5c5d"}
+{"at":"2026-09-21T12:12:38.527Z","engine":"yaneuraou","direction":"out","line":"bestmove 5e5d ponder 5c5d"}
+{"at":"2026-09-21T12:12:48.583Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:48.583Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:48.595Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:48.595Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:48.595Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b"}
+{"at":"2026-09-21T12:12:48.596Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:48.598Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -70 nodes 57 nps 57000 time 1 pv 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:48.602Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -70 nodes 97 nps 19400 time 5 pv 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:48.810Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 16 score cp -110 nodes 48324 nps 230114 time 210 pv 5e5d 5c5d 5h5d 2b8h+ 7i8h B*7c 2i3g 3d3e 5d3d 3b2b 3d3e 7e7f"}
+{"at":"2026-09-21T12:12:48.825Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp 16 nodes 53474 nps 234535 time 228 pv 5e5d 5c5d 5h5d 2b8h+ 7i8h B*7c 2i3g 1c1d"}
+{"at":"2026-09-21T12:12:48.825Z","engine":"yaneuraou","direction":"out","line":"bestmove 5e5d ponder 5c5d"}
+{"at":"2026-09-21T12:12:48.825Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:48.825Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:48.836Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:48.836Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T12:12:48.836Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b"}
+{"at":"2026-09-21T12:12:48.836Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 5e5d 7f7e"}
+{"at":"2026-09-21T12:12:48.838Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -70 multipv 1 nodes 12 nps 12000 time 1 pv 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:48.838Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -415 multipv 2 nodes 12 nps 12000 time 1 pv 5e5d"}
+{"at":"2026-09-21T12:12:48.838Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -70 multipv 1 nodes 37 nps 37000 time 1 pv 7f7e 7b7e"}
+{"at":"2026-09-21T12:12:48.838Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -415 multipv 2 nodes 37 nps 37000 time 1 pv 5e5d 2b8h+"}
+{"at":"2026-09-21T12:12:49.131Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -38 multipv 1 nodes 106208 nps 360027 time 295 pv 7f7e 6a5a 7i6h 6b7c 6h5g 7c6d 5g6f 6d7e 6f6e"}
+{"at":"2026-09-21T12:12:49.131Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -57 multipv 2 nodes 106208 nps 360027 time 295 pv 5e5d 2b8h+ 7i8h B*6d B*2h 5c5d 7f7e 6d2h+ 3i2h B*6d 4h3h 7b7e 8h7g"}
+{"at":"2026-09-21T12:12:49.132Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -38 multipv 1 nodes 106208 nps 360027 time 295 pv 7f7e 6a5a 7i6h 6b7c 6h5g 7c6d 5g6f 6d7e 6f6e"}
+{"at":"2026-09-21T12:12:49.133Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 18 score cp -57 multipv 2 nodes 106208 nps 360027 time 295 pv 5e5d 2b8h+ 7i8h B*6d B*2h 5c5d 7f7e 6d2h+ 3i2h B*6d 4h3h 7b7e 8h7g"}
+{"at":"2026-09-21T12:12:49.133Z","engine":"yaneuraou","direction":"out","line":"bestmove 7f7e ponder 6a5a"}
+{"at":"2026-09-21T12:12:59.328Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:59.329Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:59.357Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:59.358Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:12:59.358Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b 7f7e 7b7e 3i3h 5c5d 3f3e 7e5e 8h5e 2b5e"}
+{"at":"2026-09-21T12:12:59.358Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:12:59.361Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -201 nodes 104 nps 104000 time 1 pv 5h5e 5d5e 3e3d"}
+{"at":"2026-09-21T12:12:59.361Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -201 nodes 198 nps 99000 time 2 pv 5h5e 5d5e"}
+{"at":"2026-09-21T12:12:59.468Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 14 score cp -97 nodes 32411 nps 300101 time 108 pv 5h5e 5d5e R*8c 6a5a 8c8a+ 5e5f P*5h B*2h B*3g 5f5g+ 5h5g"}
+{"at":"2026-09-21T12:12:59.532Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -158 nodes 54350 nps 315988 time 172 pv 5h5e 5d5e 3e3d B*2h B*3g 2h3g+ 3h3g 5e5f B*8c P*3f 3g3f 5f5g+ 4h5g"}
+{"at":"2026-09-21T12:12:59.532Z","engine":"yaneuraou","direction":"out","line":"bestmove 5h5e ponder 5d5e"}
+{"at":"2026-09-21T12:12:59.532Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:12:59.532Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:12:59.543Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:12:59.543Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T12:12:59.543Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b 7f7e 7b7e 3i3h 5c5d 3f3e 7e5e 8h5e 2b5e"}
+{"at":"2026-09-21T12:12:59.544Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves 5h5e R*8c"}
+{"at":"2026-09-21T12:12:59.546Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -201 multipv 1 nodes 27 nps 27000 time 1 pv 5h5e 5d5e 3e3d"}
+{"at":"2026-09-21T12:12:59.546Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -863 multipv 2 nodes 27 nps 27000 time 1 pv R*8c B*7e P*5g 5e9i+ 8c8a+ 9i8i"}
+{"at":"2026-09-21T12:12:59.546Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -201 multipv 1 nodes 40 nps 40000 time 1 pv 5h5e 5d5e"}
+{"at":"2026-09-21T12:12:59.546Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 3 score cp -863 multipv 2 nodes 40 nps 40000 time 1 pv R*8c B*7e P*5g"}
+{"at":"2026-09-21T12:12:59.662Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 19 score cp -263 multipv 1 nodes 44060 nps 376581 time 117 pv 5h5e 5d5e 3e3d B*2h B*3g 2h3g+ 3h3g 5e5f P*5h"}
+{"at":"2026-09-21T12:12:59.663Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -681 multipv 2 nodes 44060 nps 376581 time 117 pv R*8c 5e1i+ 8c8a+ 4a5a 3e3d P*3f 4h5i B*2h 3d3c+ 2a3c 5h5d"}
+{"at":"2026-09-21T12:12:59.664Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 19 score cp -263 multipv 1 nodes 44060 nps 373389 time 118 pv 5h5e 5d5e 3e3d B*2h B*3g 2h3g+ 3h3g 5e5f P*5h"}
+{"at":"2026-09-21T12:12:59.664Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 16 score cp -681 multipv 2 nodes 44060 nps 373389 time 118 pv R*8c 5e1i+ 8c8a+ 4a5a 3e3d P*3f 4h5i B*2h 3d3c+ 2a3c 5h5d"}
+{"at":"2026-09-21T12:12:59.664Z","engine":"yaneuraou","direction":"out","line":"bestmove 5h5e ponder 5d5e"}
+{"at":"2026-09-21T12:13:10.288Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:13:10.296Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:13:10.493Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:13:10.493Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 1"}
+{"at":"2026-09-21T12:13:10.493Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b 7f7e 7b7e 3i3h 5c5d 3f3e 7e5e 8h5e 2b5e 5h5e 5d5e B*4f B*2b 3e3d 3a4b P*5h 4a5a"}
+{"at":"2026-09-21T12:13:10.494Z","engine":"yaneuraou","direction":"in","line":"go depth 12"}
+{"at":"2026-09-21T12:13:10.500Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp 32 nodes 95 nps 47500 time 2 pv 7i6h"}
+{"at":"2026-09-21T12:13:10.502Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -41 nodes 186 nps 46500 time 4 pv 7i6h 1c1d"}
+{"at":"2026-09-21T12:13:10.607Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 577 nodes 35834 nps 319946 time 112 pv R*8c 5e5f 8c8a+ 2b9i+ 4f9a+ L*3f 9a4f 3f3h+ 4h3h 9i8i L*3e"}
+{"at":"2026-09-21T12:13:10.609Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 577 nodes 35834 nps 317115 time 113 pv R*8c 5e5f 8c8a+ 2b9i+ 4f9a+ L*3f 9a4f 3f3h+ 4h3h 9i8i L*3e"}
+{"at":"2026-09-21T12:13:10.609Z","engine":"yaneuraou","direction":"out","line":"bestmove R*8c ponder 5e5f"}
+{"at":"2026-09-21T12:13:10.610Z","engine":"yaneuraou","direction":"in","line":"usinewgame"}
+{"at":"2026-09-21T12:13:10.610Z","engine":"yaneuraou","direction":"in","line":"isready"}
+{"at":"2026-09-21T12:13:10.619Z","engine":"yaneuraou","direction":"out","line":"readyok"}
+{"at":"2026-09-21T12:13:10.620Z","engine":"yaneuraou","direction":"in","line":"setoption name MultiPV value 2"}
+{"at":"2026-09-21T12:13:10.620Z","engine":"yaneuraou","direction":"in","line":"position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1 moves 5g5f 8c8d 2h5h 3c3d 5f5e 5a4b 1g1f 7c7d 3g3f 7a6b 6i7h 4b3b 5i4h 7d7e 7g7f 8b7b 7f7e 7b7e 3i3h 5c5d 3f3e 7e5e 8h5e 2b5e 5h5e 5d5e B*4f B*2b 3e3d 3a4b P*5h 4a5a"}
+{"at":"2026-09-21T12:13:10.620Z","engine":"yaneuraou","direction":"in","line":"go depth 12 searchmoves R*8c R*8b"}
+{"at":"2026-09-21T12:13:10.621Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -165 multipv 1 nodes 3 nps 3000 time 1 pv R*8c"}
+{"at":"2026-09-21T12:13:10.622Z","engine":"yaneuraou","direction":"out","line":"info depth 1 seldepth 1 score cp -173 multipv 2 nodes 3 nps 3000 time 1 pv R*8b"}
+{"at":"2026-09-21T12:13:10.622Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -108 multipv 1 nodes 32 nps 32000 time 1 pv R*8c 5e5f 8c8a+ 2b9i+"}
+{"at":"2026-09-21T12:13:10.624Z","engine":"yaneuraou","direction":"out","line":"info depth 2 seldepth 2 score cp -108 multipv 2 nodes 32 nps 32000 time 1 pv R*8b 5e5f 8b8a+"}
+{"at":"2026-09-21T12:13:10.728Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 18 score cp 437 multipv 1 nodes 34203 nps 322669 time 106 pv R*8c 5e5f 8c8a+ 2b9i+ N*5d 9i8i 5d4b+ 3b4b 8a9a N*3f 4h3g"}
+{"at":"2026-09-21T12:13:10.728Z","engine":"yaneuraou","direction":"out","line":"info depth 11 seldepth 11 score cp 267 multipv 2 nodes 34203 nps 322669 time 106 pv R*8b 8a7c P*7d 7c6e 7i6h 5e5f 7d7c+ 6b7c 4f7c+"}
+{"at":"2026-09-21T12:13:10.787Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 14 score cp 558 multipv 1 nodes 51776 nps 315707 time 164 pv R*8c 5e5f 8c8a+ 2b9i+ N*5d 6b5c 5d4b+ 5c4b 4f9a+ N*3f 4h3g"}
+{"at":"2026-09-21T12:13:10.787Z","engine":"yaneuraou","direction":"out","line":"info depth 12 seldepth 15 score cp 222 multipv 2 nodes 51776 nps 315707 time 164 pv R*8b 6a7a 8b8d+ 6b7c 8d8e 7c6b 7i6h 1c1d 6h5g 5e5f"}
+{"at":"2026-09-21T12:13:10.787Z","engine":"yaneuraou","direction":"out","line":"bestmove R*8c ponder 5e5f"}

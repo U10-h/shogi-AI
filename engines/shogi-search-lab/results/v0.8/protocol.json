@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "frozenBeforeNewQualityOutcomes": true,
+  "candidate": "nnue",
+  "baseline": "positional",
+  "weights": "Fixed opponent's 2019-01-15 KP256; reused pretrained, no learning or weight tuning in v0.8",
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "openings": [
+    ["9g9f","3c3d","7g7f","8c8d"],
+    ["2g2f","4c4d","7g7f","3c3d"],
+    ["7g7f","3c3d","2h4h","8c8d"],
+    ["7g7f","3c3d","9g9f","9c9d","6g6f","4c4d"]
+  ],
+  "rootGeneration": "Fixed YaneuraOu depth 8 MultiPV 3; fixed seed 20260922; choose randomly among cp candidates within 120 cp of top; otherwise best. 25 plies each; take pre-move offsets 8,16,24 (12 roots).",
+  "speed": "First 8 prior v0.7 comparison roots, tactical fixed depth 3; 4 factorial modes NNUE full/incremental x eager/lazy, plus positional eager/lazy; three repetitions in rotating order. No timing concurrency. Require score, PV, move and node equality within each evaluator family.",
+  "quality": "12 newly generated roots; positional and nnue, same tactical search, 3000 ms per move, iterative, cold search, alternating execution order. Fixed YaneuraOu depth 12 MultiPV over union of chosen moves plus unrestricted teacher choice. Candidate-set gap in teacher cp. Teacher shares NNUE weights; this metric is diagnostic, not independent proof of strength.",
+  "match": "NNUE vs positional: first two openings, colors swapped, 300 ms/move, 200 ply cap (4 games). NNUE vs fixed YaneuraOu: first opening, colors swapped, 3000 ms/move, 160 ply cap (2 games). No book, ponder, resignation adjudication, or entering-king declaration. Terminal rules independently checked with tsshogi. No Elo claim.",
+  "decision": "Keep pretrained NNUE as explicit opt-in. Recommend only if paired quality improves and selfplay is positive. Never alter weights or search heuristics based on these test results. Speed changes must preserve deterministic search results."
+}

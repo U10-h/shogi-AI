@@ -1,0 +1,40 @@
+root 0
+root 1
+root 2
+root 3
+root 4
+root 5
+root 6
+root 7
+{
+  "nnue-full-eager": {
+    "meanMs": 59.428958333333334,
+    "totalNodes": 128043,
+    "totalMs": 1426.295
+  },
+  "nnue-full-lazy": {
+    "meanMs": 50.161833333333334,
+    "totalNodes": 128043,
+    "totalMs": 1203.884
+  },
+  "nnue-eager": {
+    "meanMs": 39.533166666666666,
+    "totalNodes": 128043,
+    "totalMs": 948.796
+  },
+  "nnue-lazy": {
+    "meanMs": 38.849875,
+    "totalNodes": 128043,
+    "totalMs": 932.3969999999999
+  },
+  "positional-eager": {
+    "meanMs": 37.84675,
+    "totalNodes": 175458,
+    "totalMs": 908.322
+  },
+  "positional-lazy": {
+    "meanMs": 34.451166666666666,
+    "totalNodes": 175458,
+    "totalMs": 826.828
+  }
+}

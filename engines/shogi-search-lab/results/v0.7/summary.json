@@ -1,0 +1,148 @@
+{
+  "positions": 16,
+  "groups": 4,
+  "comparison": {
+    "depth3": {
+      "material": {
+        "scored": 16,
+        "mean_gap": 127.8125,
+        "median_gap": 97.0,
+        "better_equal_worse": [
+          0,
+          16,
+          0
+        ],
+        "mean_depth": 3,
+        "mean_nodes": 4967.3125,
+        "mean_ms": 14.287625,
+        "group_gaps": {
+          "test-0": 15.75,
+          "test-2": 163.75,
+          "test-1": 213.75,
+          "test-3": 118
+        }
+      },
+      "positional": {
+        "scored": 16,
+        "mean_gap": 113.25,
+        "median_gap": 60.5,
+        "better_equal_worse": [
+          6,
+          5,
+          5
+        ],
+        "mean_depth": 3,
+        "mean_nodes": 10336.125,
+        "mean_ms": 44.2425,
+        "group_gaps": {
+          "test-0": 151.75,
+          "test-2": 38,
+          "test-1": 76.5,
+          "test-3": 186.75
+        }
+      },
+      "learned": {
+        "scored": 16,
+        "mean_gap": 133.8125,
+        "median_gap": 43.0,
+        "better_equal_worse": [
+          7,
+          4,
+          5
+        ],
+        "mean_depth": 3,
+        "mean_nodes": 9741.3125,
+        "mean_ms": 42.5288125,
+        "group_gaps": {
+          "test-0": 109,
+          "test-2": 75.75,
+          "test-1": 157.25,
+          "test-3": 193.25
+        }
+      }
+    },
+    "time3000": {
+      "material": {
+        "scored": 16,
+        "mean_gap": 127.8125,
+        "median_gap": 97.0,
+        "better_equal_worse": [
+          0,
+          16,
+          0
+        ],
+        "mean_depth": 5.625,
+        "mean_nodes": 709322.6875,
+        "mean_ms": 3001.947125,
+        "group_gaps": {
+          "test-0": 15.75,
+          "test-2": 163.75,
+          "test-1": 213.75,
+          "test-3": 118
+        }
+      },
+      "positional": {
+        "scored": 16,
+        "mean_gap": 93.75,
+        "median_gap": 24.5,
+        "better_equal_worse": [
+          8,
+          6,
+          2
+        ],
+        "mean_depth": 5.5,
+        "mean_nodes": 520401.9375,
+        "mean_ms": 3000.4685625,
+        "group_gaps": {
+          "test-0": 37,
+          "test-2": 72.25,
+          "test-1": 76.5,
+          "test-3": 189.25
+        }
+      },
+      "learned": {
+        "scored": 16,
+        "mean_gap": 151.25,
+        "median_gap": 127.5,
+        "better_equal_worse": [
+          5,
+          4,
+          7
+        ],
+        "mean_depth": 5.5,
+        "mean_nodes": 518351,
+        "mean_ms": 3004.5113125,
+        "group_gaps": {
+          "test-0": 57.5,
+          "test-2": 118,
+          "test-1": 157.25,
+          "test-3": 272.25
+        }
+      }
+    }
+  },
+  "matches": {
+    "positional_vs_material": {
+      "games": 8,
+      "wins": 6,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0
+    },
+    "material_vs_yaneuraou": {
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0
+    },
+    "positional_vs_yaneuraou": {
+      "games": 2,
+      "wins": 0,
+      "losses": 2,
+      "draws": 0,
+      "unresolved": 0
+    }
+  },
+  "matchStatus": "finished"
+}

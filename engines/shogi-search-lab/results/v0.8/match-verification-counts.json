@@ -1,0 +1,7 @@
+{
+  "games": 6,
+  "moves": 631,
+  "selectedPvMoves": 3157,
+  "kifRoundtrips": 6,
+  "method": "Assertions in match_nnue.mjs; independent tsshogi legality and KIF USI-move roundtrip"
+}

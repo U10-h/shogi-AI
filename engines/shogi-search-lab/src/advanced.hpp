@@ -15,6 +15,9 @@ struct AdvancedOptions {
     int extension_budget = 2;
     int aspiration = 80;
     std::string probcut_model;
+    std::string evaluation = "material";
+    std::string evaluation_model;
+    bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
 };
 struct AdvancedLine {int score = 0; std::vector<Move> pv;};
 struct AdvancedResult {

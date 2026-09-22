@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "status": "running",
+  "binarySha256": "c4e4ae0a19822a2c8a4896ed13c265020295b1038df10e2127b38b3b480fccbf",
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "protocolSha256": "806caed065cf48e93baf50cc0af800f6f9867158bf625a98692c970e50a1c0fa",
+  "plans": [
+    {
+      "id": "self-0-black",
+      "opening": [
+        "9g9f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "black",
+      "opponent": "positional",
+      "candidate": "nnue",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-0-white",
+      "opening": [
+        "9g9f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "white",
+      "opponent": "positional",
+      "candidate": "nnue",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-1-black",
+      "opening": [
+        "2g2f",
+        "4c4d",
+        "7g7f",
+        "3c3d"
+      ],
+      "candidateSide": "black",
+      "opponent": "positional",
+      "candidate": "nnue",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "self-1-white",
+      "opening": [
+        "2g2f",
+        "4c4d",
+        "7g7f",
+        "3c3d"
+      ],
+      "candidateSide": "white",
+      "opponent": "positional",
+      "candidate": "nnue",
+      "ms": 300,
+      "maxPlies": 200
+    },
+    {
+      "id": "yaneura-nnue-black",
+      "opening": [
+        "9g9f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "black",
+      "opponent": "yaneuraou",
+      "candidate": "nnue",
+      "ms": 3000,
+      "maxPlies": 160
+    },
+    {
+      "id": "yaneura-nnue-white",
+      "opening": [
+        "9g9f",
+        "3c3d",
+        "7g7f",
+        "8c8d"
+      ],
+      "candidateSide": "white",
+      "opponent": "yaneuraou",
+      "candidate": "nnue",
+      "ms": 3000,
+      "maxPlies": 160
+    }
+  ],
+  "settings": {
+    "ponder": false,
+    "book": false,
+    "preset": "tactical",
+    "threads": 1,
+    "multiPV": 1,
+    "reuseBetweenMoves": false
+  }
+}
