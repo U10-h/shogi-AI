@@ -81,8 +81,6 @@ int main(int argc, char** argv) {
             else if (arg == "--leaf-trace") advanced_options.leaf_trace_path = value();
             else if (arg == "--policy-model") advanced_options.policy_model = value();
             else if (arg == "--policy-scale") advanced_options.policy_scale = int(number(value()));
-            else if (arg == "--policy-mode") advanced_options.policy_mode = value();
-            else if (arg == "--root-scheduler") advanced_options.root_scheduler = value();
             else if (arg == "--policy-dump") policy_dump = true;
             else if (arg == "--prune-policy") advanced_options.prune_policy = value();
             else if (arg == "--prune-model") advanced_options.prune_model = value();

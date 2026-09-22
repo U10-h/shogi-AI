@@ -161,20 +161,6 @@ int advanced_selftest() {
         double t=0;a.limits.clock_ms=[&](){return t++;};a.limits.time_ms=20;
         require(advanced_search(start,a).base.stop_reason=="time_limit","adaptive time deadline");
     }
-    for(auto scheduler:{"roundrobin","puct","halving","reliability"}) {
-        AdvancedOptions a;set_advanced_preset(a,"tactical");a.driver="adaptive";a.root_scheduler=scheduler;a.limits.max_nodes=12000;
-        auto result=advanced_search(start,a);
-        require(result.base.nodes==12000&&result.base.stop_reason=="node_limit",std::string("root slices enforce global budget ")+scheduler);
-        require(start.pos.sfen()==SFEN_HIRATE&&start.history.size()==1,"root slice interrupts restore board");
-        require(result.stats["root_slice_interrupted"]>0,"slice interrupt path exercised");
-        require(result.stats["root_covered"]==start.legal_moves().size(),"initial root coverage complete");
-        Board replay;auto pv=result.base.has_result?result.base.pv:result.fallback_pv;
-        require(!pv.empty(),"root scheduler returns move");
-        for(auto m:pv){auto legal=replay.legal_moves();require(std::find(legal.begin(),legal.end(),m)!=legal.end(),"root scheduler legal PV");replay.play_input(usi(m));}
-        require(advanced_search(repeat,a).base.score==0,"root scheduler repetition");
-        require(advanced_search(perpetual,a).base.score==-mate,"root scheduler perpetual check");
-        require(advanced_search(matepos,a).base.score==-mate,"root scheduler terminal mate");
-    }
     std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
 }
 }

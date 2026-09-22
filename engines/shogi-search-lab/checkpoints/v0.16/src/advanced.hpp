@@ -25,8 +25,6 @@ struct AdvancedOptions {
     bool defer_qmoves = true;
     std::string policy_model; // Quiet move ordering only; no evaluation/pruning.
     int policy_scale = 1; // 0 is an exact disabled control, 1..16 mixes with history.
-    std::string policy_mode = "quiet"; // quiet (v0.14), all, cost (learned edge effort)
-    std::string root_scheduler = "off"; // off, roundrobin, puct, halving, reliability
     // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
     std::string leaf_trace_path;
     // Experimental learned q-move pruning. Labels are alpha-threshold outcomes,

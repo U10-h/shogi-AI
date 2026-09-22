@@ -148,7 +148,6 @@ class Worker {
     uint64_t prune_events=0;
     uint64_t leaf_events=0;
     int iteration_depth=0;
-    uint64_t slice_limit=0;
     Move current_root_move=MOVE_NONE;
     uint64_t events=0;
     bool on(const std::string& f) const {return o.features.count(f)!=0;}
@@ -160,7 +159,6 @@ class Worker {
         if(o.limits.stop_requested&&o.limits.stop_requested())throw Stop{"external_stop"};
         if(r.base.nodes>=o.limits.max_nodes)throw Stop{"node_limit"};
         if(o.limits.time_ms&&now()-start>=o.limits.time_ms)throw Stop{"time_limit"};
-        if(slice_limit&&r.base.nodes>=slice_limit)throw Stop{"slice_limit"};
     }
     void tick() {check(); ++r.base.nodes;}
     void event(const char* method,int d,int ply,int a,int beta,int score,bool heuristic) {
@@ -252,12 +250,12 @@ class Worker {
         for(Move m:moves) {
             check();
             int64_t score=ordering_score(b,m);
-            if(tactical(m)&&(o.policy_mode=="quiet"||(o.policy_mode=="root"&&ply>0)))score+=10000000;
+            if(tactical(m))score+=10000000;
             if(f.see_order&&tactical(m))score+=int64_t(see(m))*10000;
             if(f.history&&!tactical(m))score+=history[side][pack(m)];
             if(f.capture_history&&tactical(m))score+=4*capture_history[side][capture_key(m)];
-            if(!o.policy_model.empty()&&o.policy_scale&&(o.policy_mode!="quiet"||!tactical(m))&&(o.policy_mode!="root"||ply==0)) {
-                score+=int64_t(o.policy_scale)*policy.score(b,m)*(o.policy_mode=="quiet"?1:1024);
+            if(!o.policy_model.empty()&&o.policy_scale&&!tactical(m)) {
+                score+=int64_t(o.policy_scale)*policy.score(b,m);
                 ++r.stats["policy_moves_scored"];
             }
             if(f.killer&&ply<max_ply&&!tactical(m)) {
@@ -590,13 +588,6 @@ class Worker {
             }
         }
         const bool checked=b.pos.in_check();const Color side=b.pos.side_to_move();
-        std::unordered_map<int,double> priors;
-        if(o.policy_mode=="cost") {
-            double maximum=-1e100,sum=0;
-            for(Move m:moves){double x=policy.score(b,m)/1024.0;priors[pack(m)]=x;maximum=std::max(maximum,x);}
-            for(auto& x:priors){x.second=std::exp(x.second-maximum);sum+=x.second;}
-            for(auto& x:priors)x.second=.9*x.second/sum+.1/moves.size();
-        }
         auto ordered=order(std::move(moves),ply,preferred,prev);
         r.stats["max_legal_width"]=std::max(r.stats["max_legal_width"],uint64_t(ordered.size()));
         Value best{-infinity,{}};size_t index=0;std::vector<Move> captures,quiets;
@@ -613,13 +604,6 @@ class Worker {
                 else {
                     cost=std::clamp(4+int(std::log2(double(index)+1.0)*2)-history[side][pack(m)]/1024,3,12);
                 }
-                if(o.policy_mode=="cost"&&ordered.size()>1) {
-                    // Relative surprise around a uniform branch; not a literal RPS reproduction.
-                    cost=std::clamp(4+int(std::lround(-2*std::log2(priors[pack(m)]*ordered.size()))),2,12);
-                    if(checked||gives||(noise&&prev!=MOVE_NONE&&to_sq(m)==to_sq(prev)))cost=std::min(cost,3);
-                    if(protected_move)cost=std::min(cost,3);
-                    if(index==0)cost=std::min(cost,4);
-                }
             }
             ++r.stats["edge_cost_"+std::to_string(cost)];
             Value c;const auto id=child_path(path,m);const auto before=r.base.nodes;
@@ -629,9 +613,6 @@ class Worker {
                 if(cost>4){
                     ++r.stats["adaptive_reductions"];
                     c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
-                    if(-c.score>a&&o.policy_mode=="cost"&&cost>=8){
-                        ++r.stats["intermediate_researches"];c=adaptive(effort-(cost+4)/2,-a-1,-a,ply+1,id,m);
-                    }
                     if(-c.score>a){++r.stats["adaptive_researches"];c=adaptive(effort-4,-beta,-a,ply+1,id,m);}
                 }else if(index>0&&beta-a>1){
                     ++r.stats["pvs_probes"];c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
@@ -754,91 +735,10 @@ class Worker {
         }
         return lines;
     }
-    void allocated_root() {
-        if(auto rep=b.repetition_score(0)){r.base.has_result=true;r.base.score=*rep;r.base.complete=true;r.base.stop_reason="terminal";return;}
-        auto legal=b.legal_moves();
-        if(legal.empty()){r.base.has_result=true;r.base.score=-mate;r.base.complete=true;r.base.stop_reason="terminal";return;}
-        struct Arm {Move move;double prior=0,change=200;int score=0,effort=0,completed=-1;uint64_t attempts=0,nodes=0,quantum=256;std::vector<Move> pv;};
-        std::vector<Arm> arms;double maximum=-1e100,total_prior=0;
-        for(Move m:legal){
-            check();Arm x;x.move=m;x.prior=o.policy_model.empty()?0:policy.score(b,m)/1024.0;maximum=std::max(maximum,x.prior);
-            {PlayedMove played(b,m);x.score=-eval(b);} // Priority only, never published as a completed qsearch.
-            arms.push_back(x);
-        }
-        for(auto& x:arms){x.prior=std::exp(x.prior-maximum);total_prior+=x.prior;}
-        for(auto& x:arms)x.prior=.9*x.prior/total_prior+.1/arms.size();
-        std::stable_sort(arms.begin(),arms.end(),[](const Arm&a,const Arm&c){return a.prior>c.prior;});
-        std::vector<size_t> active;for(size_t i=0;i<arms.size();i++)active.push_back(i);
-        uint64_t steps=0,round=0;size_t cursor=0;int stage=0;
-        auto publish=[&](){
-            r.candidates.clear();r.completed_root_moves=0;int minimum=1000000;
-            for(auto& x:arms)if(x.completed>=0){++r.completed_root_moves;minimum=std::min(minimum,x.completed);r.candidates.push_back({x.score,x.pv});}
-            std::sort(r.candidates.begin(),r.candidates.end(),[](const auto&a,const auto&c){return a.score!=c.score?a.score>c.score:usi(a.pv[0])<usi(c.pv[0]);});
-            if(!r.candidates.empty()){
-                partial_root={r.candidates.front().score,r.candidates.front().pv};
-                // Complete coverage is distinct from heterogeneous per-arm effort.
-                r.base.has_result=r.completed_root_moves==arms.size();
-                if(r.base.has_result){r.base.score=partial_root.score;r.base.pv=partial_root.pv;r.base.completed_depth=minimum/4+1;}
-            }
-        };
-        try{while(true){
-            check();size_t pick=0;
-            if(steps<arms.size())pick=steps;
-            else if(o.root_scheduler=="roundrobin")pick=steps%arms.size();
-            else if(o.root_scheduler=="halving"){
-                if(cursor>=active.size()){
-                    cursor=0;++round;
-                    if(round%2==0&&active.size()>1){
-                        std::stable_sort(active.begin(),active.end(),[&](size_t i,size_t j){
-                            const double a=arms[i].score+(arms[i].completed<0?400:0),c=arms[j].score+(arms[j].completed<0?400:0);return a>c;
-                        });active.resize((active.size()+1)/2);++stage;
-                    }
-                    if(active.size()==1&&round%4==0){active.clear();for(size_t i=0;i<arms.size();i++)active.push_back(i);++r.stats["halving_reentries"];}
-                }
-                pick=active[cursor++];
-            }else{
-                double best=-1e100;int leader=-infinity;for(auto& x:arms)if(x.completed>=0)leader=std::max(leader,x.score);
-                for(size_t i=0;i<arms.size();i++){
-                    const auto& x=arms[i];double priority;
-                    if(o.root_scheduler=="reliability"){
-                        const double gap=leader==-infinity?0:std::max(0,leader-x.score);
-                        priority=(x.change+200/(1+x.completed/4.0)+1000*x.prior)/(std::sqrt(double(x.quantum))*(1+gap/200.0));
-                        if(x.completed<0)priority+=1000/(1+x.attempts);
-                    }else priority=std::tanh(x.score/600.0)+3*x.prior*std::sqrt(double(steps))/(1+x.attempts);
-                    // Periodic probes revisit every arm; no permanent learned exclusion.
-                    if(steps%(arms.size()*4)==i*4)priority+=10;
-                    if(priority>best){best=priority;pick=i;}
-                }
-            }
-            Arm& x=arms[pick];++steps;++x.attempts;const uint64_t before=r.base.nodes;
-            slice_limit=before+x.quantum;current_root_move=x.move;iteration_depth=x.effort/4+1;
-            const auto path=child_path(1,x.move);
-            try{
-                Value v;{PlayedMove played(b,x.move);v=adaptive(x.effort,-infinity,infinity,1,path,x.move);}
-                const int score=-v.score;x.change=.5*x.change+.5*std::min(2000,std::abs(score-x.score));x.score=score;
-                x.completed=x.effort;x.effort+=4;x.pv={x.move};x.pv.insert(x.pv.end(),v.pv.begin(),v.pv.end());
-                x.quantum=std::max<uint64_t>(256,2*(r.base.nodes-before));++r.stats["root_slice_completed"];
-            }catch(const Stop& stop){
-                if(std::string(stop.reason)!="slice_limit")throw;
-                x.quantum=std::min<uint64_t>(1000000000,x.quantum*2);++r.stats["root_slice_interrupted"];
-            }
-            slice_limit=0;x.nodes+=r.base.nodes-before;
-            r.stats["root_nodes_"+usi(x.move)]=x.nodes;r.stats["root_attempts_"+usi(x.move)]=x.attempts;
-            r.stats["root_effort_"+usi(x.move)]=x.completed<0?0:x.completed+4;
-            publish();
-        }}catch(const Stop& stop){slice_limit=0;publish();r.base.stop_reason=stop.reason;}
-        r.stats["root_arms"]=arms.size();r.stats["root_covered"]=r.completed_root_moves;r.stats["halving_stages"]=stage;
-        // TT entries and ordering history survive slices. Recursive stacks do not.
-    }
 public:
     AdvancedResult r;
     Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model,o.evaluation_head),policy(o.policy_model) {
         if(o.policy_scale<0||o.policy_scale>16)throw std::invalid_argument("Policy scale must be 0..16");
-        if(o.policy_mode!="quiet"&&o.policy_mode!="root"&&o.policy_mode!="all"&&o.policy_mode!="cost")throw std::invalid_argument("Unknown policy mode");
-        if(o.policy_mode!="quiet"&&o.policy_model.empty())throw std::invalid_argument("All-move/cost policy requires model");
-        if(o.policy_mode=="cost"&&o.driver!="adaptive")throw std::invalid_argument("Policy cost requires adaptive driver");
-        const std::set<std::string> schedulers={"off","roundrobin","puct","halving","reliability"};
-        if(!schedulers.count(o.root_scheduler)||(o.root_scheduler!="off"&&o.driver!="adaptive"))throw std::invalid_argument("Invalid root scheduler");
         f.tt=o.features.count("tt")!=0;
         f.history=o.features.count("history")!=0;
         f.capture_history=o.features.count("capture-history")!=0;
@@ -909,7 +809,6 @@ public:
         }
         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
         if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
-        if(o.root_scheduler!="off")r.leaf_policy+="+root_slices_"+o.root_scheduler;
         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
         if((o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual")&&(!f.tt||r.selective||r.leaf_policy.find("extensions")!=std::string::npos))throw std::invalid_argument("MTD drivers require tt and a nonselective fixed leaf policy");
@@ -938,8 +837,7 @@ public:
         int first=adaptive_mode?1:o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
         const int last=adaptive_mode?1000000:o.limits.depth;
         try {
-            if(o.root_scheduler!="off")allocated_root();
-            else for(int d=first;d<=last;++d) {
+            for(int d=first;d<=last;++d) {
                 iteration_depth=d;current_root_move=MOVE_NONE;
                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
@@ -980,7 +878,6 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
     out<<"],\"iteration_unit\":"<<quote(o.driver=="adaptive"?"effort_steps_4":"plies")<<",\"evaluation_head\":"<<quote(o.evaluation_head);
     out<<",\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
-       <<",\"policy_mode\":"<<quote(o.policy_mode)<<",\"root_scheduler\":"<<quote(o.root_scheduler)
        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
        <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
        <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
