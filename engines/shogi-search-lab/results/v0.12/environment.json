@@ -1,0 +1,16 @@
+{
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "node": "v24.19.0",
+  "sourceSha256": {
+    "src/advanced.cpp": "c84bf799ea392c148347c7c19883548743c0760e9c1e7fecdf609b3c2d2f7a2b",
+    "src/advanced.hpp": "ddb32e9827ffcf2f6eeb3cfd5f096a086f00a6efb8f8dcaa5b978cc2d16b274b",
+    "src/main.cpp": "3af9c4d880a64f9d85124abdd68e59405058276b01560468517892c0cf875a6c",
+    "scripts/train_pairs_v12.py": "2080fe70aefe78e2c572239a1477d584bcbf365de996d78ec1a8a1e56c12eee1",
+    "checkpoints/v0.12/train_rank_projection_initial.py": "0451cf66cb68876801b83bdb5562ba4f27e31dc1b882a7fff4a64e6c1924d51c",
+    "scripts/train_rank_v12.py": "5a4079265aeae8027529397cdb5bde08bf5582d0ad273623c081a1f4ea4f818b",
+    "scripts/continue_v12.mjs": "c8750b5e9f397f9e37e788c896f23909ac81d367ecdfb1763c8a0b129eb7c4ca"
+  },
+  "rankTrainingSafetyFix": "Initial projected-rank training kept no learned checkpoint and later saturated. Original code and full logs retained; current script stops on projection distortion before saturation. No test outcomes used to select replacement weights."
+}

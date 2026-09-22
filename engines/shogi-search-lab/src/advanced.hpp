@@ -21,6 +21,8 @@ struct AdvancedOptions {
     bool compact_ordering = true;
     bool direct_qmoves = true;
     bool defer_qmoves = true;
+    // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
+    std::string leaf_trace_path;
 };
 struct AdvancedLine {int score = 0; std::vector<Move> pv;};
 struct AdvancedResult {

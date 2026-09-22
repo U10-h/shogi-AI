@@ -1,0 +1,436 @@
+{
+  "protocol": {
+    "seed": 2026092112,
+    "epochs": 60,
+    "batchSize": 256,
+    "learningRate": 0.00015,
+    "parameterAnchor": 0.02,
+    "valueAnchor": 0.05,
+    "gapResidualClipRaw": 324,
+    "loss": "Huber raw scale 300; each root has equal total weight",
+    "configs": [
+      {
+        "name": "pair50",
+        "alpha": 0.5
+      },
+      {
+        "name": "pair100",
+        "alpha": 1.0
+      }
+    ],
+    "selection": "minimum root-weighted validation gap MAE over checkpoints and configs; base included",
+    "calibration": "b3 is not trained; recalibrated to zero mean correction on training quiet positions only",
+    "oldTestUsed": false,
+    "pairsSha256": "c0c45c7bb3657f2afdf8e87fe22e7e4d790fbab8d6e1be5ce0e047787b783d7b",
+    "baseSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+    "datasetSha256": "0cdab05043ce77b7015c966cae45ae78012dd11ef8040dcbda6d13970425d46b",
+    "gradientMaxError": 5.890704590783002e-13
+  },
+  "baseline": {
+    "train": {
+      "pairs": 31904,
+      "roots": 11934,
+      "gapMaeCp": 628.6711853465666,
+      "gapRmseCp": 1016.9849429198016,
+      "rankAgreement20cp": 0.5857008760951189,
+      "rankPairs20cp": 28278
+    },
+    "validation": {
+      "pairs": 7920,
+      "roots": 2924,
+      "gapMaeCp": 643.5706921011299,
+      "gapRmseCp": 1043.29667593593,
+      "rankAgreement20cp": 0.5788463997953703,
+      "rankPairs20cp": 7029
+    }
+  },
+  "configs": [
+    {
+      "config": {
+        "name": "pair50",
+        "alpha": 0.5
+      },
+      "selected": {
+        "epoch": 35,
+        "validation": {
+          "pairs": 7920,
+          "roots": 2924,
+          "gapMaeCp": 626.124753001976,
+          "gapRmseCp": 1016.2750510025157,
+          "rankAgreement20cp": 0.5785906126103083,
+          "rankPairs20cp": 7029
+        },
+        "meanCorrectionTrainCp": -0.02124831451339762,
+        "rmsCorrectionTrainCp": 116.88233240419625
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 628.9892207529008,
+            "gapRmseCp": 1019.8024144445221,
+            "rankAgreement20cp": 0.5779511446476532,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.03335825616840168,
+          "rmsCorrectionTrainCp": 101.68327189112978
+        },
+        {
+          "epoch": 5,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.6659446724428,
+            "gapRmseCp": 1016.5671458141826,
+            "rankAgreement20cp": 0.5785906126103083,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.02846954621268764,
+          "rmsCorrectionTrainCp": 114.57548001346481
+        },
+        {
+          "epoch": 10,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 627.2686958504333,
+            "gapRmseCp": 1018.1383806853778,
+            "rankAgreement20cp": 0.577311676684998,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.028277832096777283,
+          "rmsCorrectionTrainCp": 112.20799793660161
+        },
+        {
+          "epoch": 15,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.5299310938848,
+            "gapRmseCp": 1015.7139054085295,
+            "rankAgreement20cp": 0.5779511446476532,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.03086597266156707,
+          "rmsCorrectionTrainCp": 115.62409668163264
+        },
+        {
+          "epoch": 20,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.3665577342049,
+            "gapRmseCp": 1016.5107673666987,
+            "rankAgreement20cp": 0.5792300805729633,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.01706255631602155,
+          "rmsCorrectionTrainCp": 116.68453822668188
+        },
+        {
+          "epoch": 25,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.3417565992806,
+            "gapRmseCp": 1016.5335523574802,
+            "rankAgreement20cp": 0.5776953574625912,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.011087466370148832,
+          "rmsCorrectionTrainCp": 118.18871554633245
+        },
+        {
+          "epoch": 30,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.3104448497747,
+            "gapRmseCp": 1015.6676503328645,
+            "rankAgreement20cp": 0.5785906126103083,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.0070614699360313895,
+          "rmsCorrectionTrainCp": 114.6485878945473
+        },
+        {
+          "epoch": 35,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.124753001976,
+            "gapRmseCp": 1016.2750510025157,
+            "rankAgreement20cp": 0.5785906126103083,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.02124831451339762,
+          "rmsCorrectionTrainCp": 116.88233240419625
+        },
+        {
+          "epoch": 40,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 627.2116709732991,
+            "gapRmseCp": 1017.3929564356145,
+            "rankAgreement20cp": 0.5778232510551222,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.010576228727721222,
+          "rmsCorrectionTrainCp": 111.99540162604903
+        },
+        {
+          "epoch": 45,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.9572756751281,
+            "gapRmseCp": 1016.9844485805841,
+            "rankAgreement20cp": 0.5774395702775291,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.035850539675236284,
+          "rmsCorrectionTrainCp": 111.57732465711469
+        },
+        {
+          "epoch": 50,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.6325809393526,
+            "gapRmseCp": 1016.4743815006716,
+            "rankAgreement20cp": 0.57628852794475,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.017733555721707792,
+          "rmsCorrectionTrainCp": 114.51068871263146
+        },
+        {
+          "epoch": 55,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 627.0591908598066,
+            "gapRmseCp": 1018.0644767045801,
+            "rankAgreement20cp": 0.577311676684998,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.0010863799901586755,
+          "rmsCorrectionTrainCp": 110.4532627102903
+        },
+        {
+          "epoch": 60,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 626.7242108729798,
+            "gapRmseCp": 1016.4945629836111,
+            "rankAgreement20cp": 0.5794858677580254,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.020769029223621737,
+          "rmsCorrectionTrainCp": 114.00050073524318
+        }
+      ],
+      "modelSha256": "0a8177a6bfe141f98ef7d4e378a0b831c6a881b663ad6962be2890d877bce539"
+    },
+    {
+      "config": {
+        "name": "pair100",
+        "alpha": 1.0
+      },
+      "selected": {
+        "epoch": 20,
+        "validation": {
+          "pairs": 7920,
+          "roots": 2924,
+          "gapMaeCp": 606.4842807924205,
+          "gapRmseCp": 985.9224540568416,
+          "rankAgreement20cp": 0.5794858677580255,
+          "rankPairs20cp": 7029
+        },
+        "meanCorrectionTrainCp": -0.026935833285404803,
+        "rmsCorrectionTrainCp": 256.22748338495285
+      },
+      "history": [
+        {
+          "epoch": 1,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 614.0186325176066,
+            "gapRmseCp": 995.0686842511174,
+            "rankAgreement20cp": 0.5783348254252463,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.025817500942594405,
+          "rmsCorrectionTrainCp": 210.07708586442035
+        },
+        {
+          "epoch": 5,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 607.6719486244111,
+            "gapRmseCp": 986.95744977343,
+            "rankAgreement20cp": 0.5789742933879013,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.03217601912028783,
+          "rmsCorrectionTrainCp": 251.83441615732718
+        },
+        {
+          "epoch": 10,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 608.706705679688,
+            "gapRmseCp": 989.0233486349651,
+            "rankAgreement20cp": 0.5785906126103083,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.005016519366320943,
+          "rmsCorrectionTrainCp": 241.88165587623868
+        },
+        {
+          "epoch": 15,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 606.4989486750774,
+            "gapRmseCp": 986.1241765010659,
+            "rankAgreement20cp": 0.5788463997953702,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.021280266866049346,
+          "rmsCorrectionTrainCp": 253.2568120081167
+        },
+        {
+          "epoch": 20,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 606.4842807924205,
+            "gapRmseCp": 985.9224540568416,
+            "rankAgreement20cp": 0.5794858677580255,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.026935833285404803,
+          "rmsCorrectionTrainCp": 256.22748338495285
+        },
+        {
+          "epoch": 25,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 606.6164944013783,
+            "gapRmseCp": 986.9143274058955,
+            "rankAgreement20cp": 0.5797416549430874,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.03297482793658097,
+          "rmsCorrectionTrainCp": 254.37003914007028
+        },
+        {
+          "epoch": 30,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 607.3045928965903,
+            "gapRmseCp": 987.8780580350093,
+            "rankAgreement20cp": 0.577311676684998,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.013260226350466184,
+          "rmsCorrectionTrainCp": 244.1410987657091
+        },
+        {
+          "epoch": 35,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 607.6132770937834,
+            "gapRmseCp": 987.4534711140263,
+            "rankAgreement20cp": 0.5778232510551222,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.015688605151997343,
+          "rmsCorrectionTrainCp": 247.81439225370383
+        },
+        {
+          "epoch": 40,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 607.8640244211381,
+            "gapRmseCp": 987.719242523471,
+            "rankAgreement20cp": 0.5785906126103083,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.03144111500929813,
+          "rmsCorrectionTrainCp": 246.86862087810832
+        },
+        {
+          "epoch": 45,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 606.9368825049402,
+            "gapRmseCp": 986.4669934244786,
+            "rankAgreement20cp": 0.5779511446476532,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.033230446757794775,
+          "rmsCorrectionTrainCp": 249.03178087151264
+        },
+        {
+          "epoch": 50,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 608.7142296194965,
+            "gapRmseCp": 990.0907906195213,
+            "rankAgreement20cp": 0.5779511446476532,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.0007029517583379664,
+          "rmsCorrectionTrainCp": 238.3929638970947
+        },
+        {
+          "epoch": 55,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 606.8331686679842,
+            "gapRmseCp": 986.5995670815689,
+            "rankAgreement20cp": 0.5783348254252463,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": 0.005080424071624394,
+          "rmsCorrectionTrainCp": 254.48538795065946
+        },
+        {
+          "epoch": 60,
+          "validation": {
+            "pairs": 7920,
+            "roots": 2924,
+            "gapMaeCp": 607.1646780159093,
+            "gapRmseCp": 987.8188410065001,
+            "rankAgreement20cp": 0.5788463997953702,
+            "rankPairs20cp": 7029
+          },
+          "meanCorrectionTrainCp": -0.031377210303994686,
+          "rmsCorrectionTrainCp": 248.47556509853837
+        }
+      ],
+      "modelSha256": "920eb161c5cc7aba9d9763ad839d0d8ea28a94408d20ddc347cca12194507e68"
+    }
+  ],
+  "selected": {
+    "name": "pair100",
+    "gapMaeCp": 606.4842807924205,
+    "modelSha256": "920eb161c5cc7aba9d9763ad839d0d8ea28a94408d20ddc347cca12194507e68"
+  }
+}

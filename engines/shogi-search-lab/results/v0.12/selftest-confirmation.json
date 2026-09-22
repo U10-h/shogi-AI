@@ -1,0 +1,18 @@
+{
+  "basic": {
+    "passed": true,
+    "checks": 115
+  },
+  "session": {
+    "passed": true,
+    "checks": 1274
+  },
+  "advanced": {
+    "passed": true,
+    "checks": 5155,
+    "move_positions": 1471,
+    "moves_compared": 28939,
+    "random_seed": 20260921
+  },
+  "total": 6544
+}

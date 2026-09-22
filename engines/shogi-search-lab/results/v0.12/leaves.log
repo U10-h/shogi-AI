@@ -1,0 +1,163 @@
+{
+  "visits": 84137,
+  "uniqueSfens": 58179,
+  "independentFeatureChecks": 128,
+  "integerBaseParity": 58179,
+  "variants": {
+    "base": {
+      "all": {
+        "n": 84137,
+        "meanCorrectionCp": 0.0,
+        "rmsCorrectionCp": 0.0,
+        "medianCorrectionCp": 0.0
+      },
+      "evenPly": {
+        "n": 44286,
+        "meanCorrectionCp": 0.0,
+        "rmsCorrectionCp": 0.0,
+        "medianCorrectionCp": 0.0
+      },
+      "oddPly": {
+        "n": 39851,
+        "meanCorrectionCp": 0.0,
+        "rmsCorrectionCp": 0.0,
+        "medianCorrectionCp": 0.0
+      },
+      "qdepthLimit": {
+        "n": 1550,
+        "meanCorrectionCp": 0.0,
+        "rmsCorrectionCp": 0.0,
+        "medianCorrectionCp": 0.0
+      },
+      "frozenWindowStandPat": {
+        "eligible": 82520,
+        "toCutoff": 0,
+        "awayFromCutoff": 0
+      }
+    },
+    "pair": {
+      "all": {
+        "n": 84137,
+        "meanCorrectionCp": -103.70399863714337,
+        "rmsCorrectionCp": 276.55707721579745,
+        "medianCorrectionCp": -157.77777777777777
+      },
+      "evenPly": {
+        "n": 44286,
+        "meanCorrectionCp": -110.30998007898155,
+        "rmsCorrectionCp": 276.8624642734295,
+        "medianCorrectionCp": -156.66666666666666
+      },
+      "oddPly": {
+        "n": 39851,
+        "meanCorrectionCp": -96.36284046963829,
+        "rmsCorrectionCp": 276.2173076777438,
+        "medianCorrectionCp": -160.0
+      },
+      "qdepthLimit": {
+        "n": 1550,
+        "meanCorrectionCp": -4.087455197132618,
+        "rmsCorrectionCp": 290.2243052393316,
+        "medianCorrectionCp": -41.11111111111111
+      },
+      "frozenWindowStandPat": {
+        "eligible": 82520,
+        "toCutoff": 39,
+        "awayFromCutoff": 1640
+      }
+    },
+    "affine": {
+      "all": {
+        "n": 84137,
+        "meanCorrectionCp": -68.30124941728636,
+        "rmsCorrectionCp": 237.08808395485772,
+        "medianCorrectionCp": -64.44444444444444
+      },
+      "evenPly": {
+        "n": 44286,
+        "meanCorrectionCp": -79.25343850828203,
+        "rmsCorrectionCp": 241.8882870100146,
+        "medianCorrectionCp": -63.33333333333333
+      },
+      "oddPly": {
+        "n": 39851,
+        "meanCorrectionCp": -56.13019609155213,
+        "rmsCorrectionCp": 231.63700173125818,
+        "medianCorrectionCp": -64.44444444444444
+      },
+      "qdepthLimit": {
+        "n": 1550,
+        "meanCorrectionCp": -23.25089605734767,
+        "rmsCorrectionCp": 268.0672285608138,
+        "medianCorrectionCp": -34.44444444444444
+      },
+      "frozenWindowStandPat": {
+        "eligible": 82520,
+        "toCutoff": 42,
+        "awayFromCutoff": 324
+      }
+    },
+    "anchored50": {
+      "all": {
+        "n": 84137,
+        "meanCorrectionCp": 46.3989419372901,
+        "rmsCorrectionCp": 49.71169940500366,
+        "medianCorrectionCp": 45.55555555555556
+      },
+      "evenPly": {
+        "n": 44286,
+        "meanCorrectionCp": 46.4691625645426,
+        "rmsCorrectionCp": 49.83247087693646,
+        "medianCorrectionCp": 46.666666666666664
+      },
+      "oddPly": {
+        "n": 39851,
+        "meanCorrectionCp": 46.32090648777809,
+        "rmsCorrectionCp": 49.57714219348248,
+        "medianCorrectionCp": 44.44444444444444
+      },
+      "qdepthLimit": {
+        "n": 1550,
+        "meanCorrectionCp": 53.90824372759856,
+        "rmsCorrectionCp": 55.3433653873115,
+        "medianCorrectionCp": 56.666666666666664
+      },
+      "frozenWindowStandPat": {
+        "eligible": 82520,
+        "toCutoff": 528,
+        "awayFromCutoff": 0
+      }
+    },
+    "tempo40": {
+      "all": {
+        "n": 84137,
+        "meanCorrectionCp": 39.99012193076636,
+        "rmsCorrectionCp": 39.990257939825675,
+        "medianCorrectionCp": 40.0
+      },
+      "evenPly": {
+        "n": 44286,
+        "meanCorrectionCp": 39.99008966967238,
+        "rmsCorrectionCp": 39.9902261190398,
+        "medianCorrectionCp": 40.0
+      },
+      "oddPly": {
+        "n": 39851,
+        "meanCorrectionCp": 39.990157782183076,
+        "rmsCorrectionCp": 39.9902933019029,
+        "medianCorrectionCp": 40.0
+      },
+      "qdepthLimit": {
+        "n": 1550,
+        "meanCorrectionCp": 39.991397849462366,
+        "rmsCorrectionCp": 39.991516424137146,
+        "medianCorrectionCp": 40.0
+      },
+      "frozenWindowStandPat": {
+        "eligible": 82520,
+        "toCutoff": 627,
+        "awayFromCutoff": 0
+      }
+    }
+  }
+}

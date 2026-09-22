@@ -68,6 +68,7 @@ int main(int argc, char** argv) {
                 if (!options.time_ms || options.time_ms > 3600000) throw std::invalid_argument("Time budget must be 1..3600000 ms");
             } else if (arg == "--max-nodes") options.max_nodes = number(value());
             else if (arg == "--trace") options.trace_path = value();
+            else if (arg == "--leaf-trace") advanced_options.leaf_trace_path = value();
             else if (arg == "--trace-root-only") options.trace_search = false;
             else if (arg == "--trace-limit") options.trace_limit = number(value());
             else if (arg == "--legal") legal = true;

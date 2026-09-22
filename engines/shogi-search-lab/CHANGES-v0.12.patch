@@ -1,0 +1,155 @@
+--- a/src/advanced.cpp
++++ b/src/advanced.cpp
+@@ -95,6 +95,10 @@
+     Value partial_root{-infinity,{}};
+     std::vector<ProbModel> models;
+     std::ofstream trace;
++    std::ofstream leaf_trace;
++    uint64_t leaf_events=0;
++    int iteration_depth=0;
++    Move current_root_move=MOVE_NONE;
+     uint64_t events=0;
+     bool on(const std::string& f) const {return o.features.count(f)!=0;}
+     double now() const {
+@@ -171,9 +175,27 @@
+         std::sort(items.begin(),items.end(),[&](const Item&a,const Item&b){return a.priority!=b.priority?a.priority>b.priority:o.compact_ordering?a.key<b.key:a.text<b.text;});
+         moves.clear();for(auto& i:items)moves.push_back(i.move);return moves;
+     }
+-    Value qsearch(int a,int beta,int ply,int left) {
++    void leaf_event(const char* phase,uint64_t node,uint64_t parent,Move incoming,
++                    int ply,int left,int a,int beta,const char* reason,
++                    bool has_score,int score,const std::vector<Move>& pv={}) {
++        if(!leaf_trace.is_open())return;
++        if(leaf_events++>=o.limits.trace_limit){++r.stats["leaf_trace_omitted"];return;}
++        leaf_trace<<"{\"event\":"<<quote(phase)<<",\"node\":"<<node<<",\"parent_qnode\":"<<parent
++          <<",\"iteration_depth\":"<<iteration_depth<<",\"root_move\":"<<(current_root_move==MOVE_NONE?"null":quote(usi(current_root_move)))
++          <<",\"incoming\":"<<(incoming==MOVE_NONE?"null":quote(usi(incoming)))
++          <<",\"ply\":"<<ply<<",\"qleft\":"<<left<<",\"alpha\":"<<a<<",\"beta\":"<<beta
++          <<",\"checked\":"<<(b.pos.in_check()?"true":"false")<<",\"null_level\":"<<null_level
++          <<",\"isolated\":"<<isolated<<",\"reason\":"<<quote(reason)<<",\"score\":"<<(has_score?std::to_string(score):"null")
++          <<",\"pv\":"<<line_json(pv)<<",\"sfen\":"<<quote(b.pos.sfen())<<"}\n";
++    }
++    Value qsearch(int a,int beta,int ply,int left,uint64_t parent=0,Move incoming=MOVE_NONE) {
+         tick();++r.stats["qnodes"];
+-        if(!null_level)if(auto rep=b.repetition_score(ply))return {*rep,{}};
++        const uint64_t node=r.base.nodes;
++        const int original_a=a;
++        auto finish=[&](Value v,const char* reason) {
++            leaf_event("qreturn",node,parent,incoming,ply,left,original_a,beta,reason,true,v.score,v.pv);return v;
++        };
++        if(!null_level)if(auto rep=b.repetition_score(ply))return finish({*rep,{}},"repetition");
+         const bool checked=b.pos.in_check();
+         // A legal king move certifies non-terminal status without materializing
+         // the move list. If the witness fails, keep the exact eager fallback.
+@@ -187,13 +209,14 @@
+         if(deferred)++r.stats["q_deferred_nodes"];
+         else {
+             generate();
+-            if(moves.empty()&&(!o.direct_qmoves||checked||!b.has_legal_move())){++r.base.terminals;return {-mate+ply,{}};}
++            if(moves.empty()&&(!o.direct_qmoves||checked||!b.has_legal_move())){++r.base.terminals;return finish({-mate+ply,{}},"terminal");}
+         }
+         if(ply>=max_ply-1)throw Stop{"ply_limit"}; // Never publish static evaluation in unresolved check.
+         const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
++        leaf_event("qeval",node,parent,incoming,ply,left,a,beta,checked?"check_evasion":"stand_pat",!checked,stand);
+         if(!checked) {
+-            if(left<=0){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return best;}
+-            if(stand>=beta){++r.stats["qstand_cutoffs"];if(deferred)++r.stats["q_avoided_generations"];return best;}
++            if(left<=0){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
++            if(stand>=beta){++r.stats["qstand_cutoffs"];if(deferred)++r.stats["q_avoided_generations"];return finish(best,"stand_pat_cutoff");}
+             a=std::max(a,stand);
+             if(deferred)generate();
+             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
+@@ -205,11 +228,11 @@
+                 if(f.delta&&stand+gain(m)+200<a){++r.stats["delta_prunes"];continue;}
+                 if(f.see_prune&&see(m)<0){++r.stats["see_prunes"];continue;}
+             }
+-            Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1);}
++            Value c;{PlayedMove move(b,m);c=qsearch(-beta,-a,ply+1,left-1,node,m);}
+             if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
+-            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;break;}
+-        }
+-        return best;
++            a=std::max(a,best.score);if(a>=beta){++r.base.cutoffs;return finish(best,"child_beta_cutoff");}
++        }
++        return finish(best,best.pv.empty()?"stand_pat_selected":"child_selected");
+     }
+     // Probes use the same leaf policy, but no selective pruning, extensions,
+     // bound-table access or writes. This prevents speculative cache poisoning.
+@@ -218,7 +241,7 @@
+         return visit(d,a,beta,ply,0,0,false,prev);
+     }
+     Value visit(int d,int a,int beta,int ply,uint64_t path,int ext,bool allow_null,Move prev) {
+-        if(d<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth);
++        if(d<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth,0,prev);
+         tick();
+         if(ply>=max_ply-1)throw Stop{"ply_limit"};
+         if(!null_level)if(auto rep=b.repetition_score(ply)){++r.base.terminals;return {*rep,{}};}
+@@ -344,6 +367,7 @@
+             int nd=d-1+extension;
+             bool reduce=!isolated&&f.lmr&&d>=3&&index>=4&&!checked&&!noise&&!gives&&!is_drop(m)&&extension==0;
+             Value c;auto id=child_path(path,m);
++            if(ply==0)current_root_move=m;
+             {
+                 PlayedMove move(b,m);
+                 if(reduce) {
+@@ -380,7 +404,7 @@
+         return finish(best);
+     }
+     Value rps(int budget,int a,int beta,int ply,Move prev) {
+-        if(budget<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth);
++        if(budget<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth,0,prev);
+         tick();++r.stats["rps_nodes"];
+         if(ply>=max_ply-1)throw Stop{"ply_limit"};
+         if(auto rep=b.repetition_score(ply))return {*rep,{}};
+@@ -402,6 +426,7 @@
+             int cost=moves.size()==1?0:int(std::lround(-std::log2(p)*1000));
+             if(o.driver=="erps"&&index<5&&cost>1000){cost=1000;++r.stats["erps_early_caps"];}
+             Value c;
++            if(ply==0)current_root_move=m;
+             {PlayedMove move(b,m);
+                 if(cost>1000){++r.stats["rps_probes"];c=rps(budget-cost,-a-1,-a,ply+1,m);
+                     if(-c.score>a&&o.driver=="erps"&&(cost+1000)/2>1500){++r.stats["erps_intermediate"];c=rps(budget-(cost+1000)/2,-a-1,-a,ply+1,m);}
+@@ -448,6 +473,7 @@
+         std::vector<AdvancedLine> lines;
+         for(Move m:moves) {
+             Value c;auto path=child_path(1,m);bool reject=false;
++            current_root_move=m;
+             {PlayedMove move(b,m);
+                 if(int(lines.size())>=o.multipv) {
+                     // Inclusive tie screening: equal values may improve USI tie order.
+@@ -523,12 +549,14 @@
+             if(!input.eof()||models.empty())throw std::invalid_argument("Missing or malformed ProbCut rows");
+         }
+         if(!o.limits.trace_path.empty()){trace.open(o.limits.trace_path);if(!trace)throw std::runtime_error("Cannot open advanced trace");}
++        if(!o.leaf_trace_path.empty()){leaf_trace.open(o.leaf_trace_path);if(!leaf_trace)throw std::runtime_error("Cannot open leaf trace");}
+     }
+     AdvancedResult run() {
+         start=now();
+         int first=o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
+         try {
+             for(int d=first;d<=o.limits.depth;++d) {
++                iteration_depth=d;current_root_move=MOVE_NONE;
+                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
+                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
+                 else {v=root(d,r.base.has_result?r.base.score:eval(b));if(!v.pv.empty())lines.push_back({v.score,v.pv});}
+--- a/src/advanced.hpp
++++ b/src/advanced.hpp
+@@ -21,6 +21,8 @@
+     bool compact_ordering = true;
+     bool direct_qmoves = true;
+     bool defer_qmoves = true;
++    // Opt-in qsearch observation. Does not alter ordering, scores or node budgets.
++    std::string leaf_trace_path;
+ };
+ struct AdvancedLine {int score = 0; std::vector<Move> pv;};
+ struct AdvancedResult {
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -68,6 +68,7 @@
+                 if (!options.time_ms || options.time_ms > 3600000) throw std::invalid_argument("Time budget must be 1..3600000 ms");
+             } else if (arg == "--max-nodes") options.max_nodes = number(value());
+             else if (arg == "--trace") options.trace_path = value();
++            else if (arg == "--leaf-trace") advanced_options.leaf_trace_path = value();
+             else if (arg == "--trace-root-only") options.trace_search = false;
+             else if (arg == "--trace-limit") options.trace_limit = number(value());
+             else if (arg == "--legal") legal = true;

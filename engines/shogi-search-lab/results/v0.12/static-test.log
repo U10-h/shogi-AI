@@ -1,0 +1,98 @@
+{"rows":1290}
+{
+  "games": 24,
+  "pairs": 3676,
+  "roots": 1290,
+  "uniqueChildSfens": 3770,
+  "overlapExcludedCandidates": 0,
+  "testUsedForSelection": false,
+  "variants": {
+    "base": {
+      "gapMaeCp": 586.9745334481769,
+      "rankAgreement20cp": 0.6027679623085983
+    },
+    "pair": {
+      "gapMaeCp": 555.1140683318978,
+      "rankAgreement20cp": 0.604829210836278
+    },
+    "affine": {
+      "gapMaeCp": 564.0386161355153,
+      "rankAgreement20cp": 0.6030624263839811
+    },
+    "anchored50": {
+      "gapMaeCp": 585.6173700832617,
+      "rankAgreement20cp": 0.6004122497055359
+    },
+    "tempo40": {
+      "gapMaeCp": 586.9811943726673,
+      "rankAgreement20cp": 0.6027679623085983
+    },
+    "zeroGapDiagnostic": {
+      "gapMaeCp": 476.4881136950905,
+      "rankAgreement20cp": 0.0
+    }
+  },
+  "comparisons": {
+    "pair-base": {
+      "mae": {
+        "mean": -31.83583402110951,
+        "ci95": [
+          -36.41913879260196,
+          -27.282991075218522
+        ],
+        "clusters": 24,
+        "n": 24
+      },
+      "rank": {
+        "mean": 0.0017563499696834582,
+        "ci95": [
+          -0.0024222993264312407,
+          0.005547657774429483
+        ],
+        "clusters": 24,
+        "n": 24
+      }
+    },
+    "pair-affine": {
+      "mae": {
+        "mean": -8.840796908076237,
+        "ci95": [
+          -11.120053697954903,
+          -6.5140400339481275
+        ],
+        "clusters": 24,
+        "n": 24
+      },
+      "rank": {
+        "mean": 0.0015099991927065755,
+        "ci95": [
+          -0.0026669716463957184,
+          0.0052533815971154705
+        ],
+        "clusters": 24,
+        "n": 24
+      }
+    },
+    "affine-base": {
+      "mae": {
+        "mean": -22.995037113033277,
+        "ci95": [
+          -26.88823751515075,
+          -19.186416080641717
+        ],
+        "clusters": 24,
+        "n": 24
+      },
+      "rank": {
+        "mean": 0.0002463507769768826,
+        "ci95": [
+          -0.0005901411710252195,
+          0.0011185682326622093
+        ],
+        "clusters": 24,
+        "n": 24
+      }
+    }
+  },
+  "uncertainty": "Comparisons weight each game equally; point metrics weight each root equally. Ties in predicted rank count as nonagreement; teacher gaps <20cp excluded only from rank."
+}

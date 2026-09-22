@@ -1,0 +1,15 @@
+{
+  "collectedGames": 24,
+  "roots": 22,
+  "skippedGames": [
+    0,
+    21
+  ],
+  "overlapExclusions": 0,
+  "scoreRangeCp": [
+    -211,
+    201
+  ],
+  "selectionBeforeOutcomes": true,
+  "rootsSha256": "298f59a6cd9c38b1a2ada31b46a96e6479374fcb0657b1085ee5c2d1d48ba07b"
+}
