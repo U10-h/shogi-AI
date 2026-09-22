@@ -65,7 +65,7 @@ PositionalFeatures positional_features(const Board& b){
     return x;
 }
 Evaluator::Evaluator(const std::string& mode,const std::string& model):mode_(mode){
-    if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"){
+    if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
         nnue_=std::make_unique<Nnue>(model,mode);return;
     }
     if(mode!="material"&&mode!="positional"&&mode!="learned")throw std::invalid_argument("Eval must be material|positional|learned|nnue|nnue-full|nnue-verify");

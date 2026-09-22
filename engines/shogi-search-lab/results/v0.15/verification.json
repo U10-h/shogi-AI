@@ -1,0 +1,276 @@
+{
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "staticPositions": 1136,
+  "staticModes": {
+    "nnue": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-scalar": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-full": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-verify": {
+      "matches": 1136,
+      "maxError": 0
+    }
+  },
+  "searchComparisons": 87,
+  "rows": [
+    {
+      "id": 0,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "6b6c",
+        "6h7h",
+        "5a4a",
+        "2h2i"
+      ]
+    },
+    {
+      "id": 1,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "2b1c",
+        "3g4f",
+        "5c5d",
+        "1g1f",
+        "3a4b"
+      ]
+    },
+    {
+      "id": 2,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "2f2e",
+        "2a3c",
+        "5i6h",
+        "7c7d"
+      ]
+    },
+    {
+      "id": 3,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "3c2b",
+        "3f3e",
+        "3d3e",
+        "B*6c"
+      ]
+    },
+    {
+      "id": 4,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "5h5i",
+        "7a6b",
+        "3h4g",
+        "7c7d",
+        "2i3g"
+      ]
+    },
+    {
+      "id": 5,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "3c2b",
+        "P*3d",
+        "6a5b",
+        "6i5h"
+      ]
+    },
+    {
+      "id": 6,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "7g6h",
+        "7e7f",
+        "2e2d",
+        "3c2d",
+        "6h2d",
+        "2c2d",
+        "2h2d"
+      ]
+    },
+    {
+      "id": 7,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "1c1d",
+        "8g8f",
+        "5c5d",
+        "6i5h"
+      ]
+    },
+    {
+      "id": 8,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "7c7d",
+        "3h4g",
+        "7a7b",
+        "4i4h"
+      ]
+    },
+    {
+      "id": 9,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "7c6e",
+        "7g1a+",
+        "6e5g+",
+        "6h6f",
+        "4f3e"
+      ]
+    },
+    {
+      "id": 10,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "7b6c",
+        "7g7h",
+        "4d8h+",
+        "7i8h",
+        "4b3c"
+      ]
+    },
+    {
+      "id": 11,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "7h7g",
+        "7c7d",
+        "6i7h",
+        "8d8e"
+      ]
+    },
+    {
+      "id": 12,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "2f2e",
+        "8d8e",
+        "2e2d",
+        "2c2d",
+        "6h2d",
+        "4b2d",
+        "2i2d"
+      ]
+    },
+    {
+      "id": 13,
+      "nodes": 100000,
+      "depth": 5,
+      "pv": [
+        "6f6e",
+        "5d6e",
+        "7h6g",
+        "8b6b",
+        "P*6f"
+      ]
+    },
+    {
+      "id": 14,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "2h3g",
+        "7b6c",
+        "6h7g",
+        "7c7d"
+      ]
+    },
+    {
+      "id": 15,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "4i5h",
+        "3c5e",
+        "2e2d",
+        "2c2d"
+      ]
+    },
+    {
+      "id": 16,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "4a5b",
+        "5g5f",
+        "1c1d",
+        "5f5e",
+        "1d1e",
+        "5e5d",
+        "7b7e",
+        "5d5c+",
+        "5b5c",
+        "1i1e"
+      ]
+    },
+    {
+      "id": 17,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "2h2f",
+        "3f5d",
+        "8f7g",
+        "6a5b",
+        "7g4d"
+      ]
+    },
+    {
+      "id": 18,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "4b3b",
+        "5d5c+",
+        "P*5g",
+        "5h5g",
+        "8f7f"
+      ]
+    },
+    {
+      "id": 19,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "6h6g",
+        "7e7f",
+        "2h2d",
+        "6d7e"
+      ]
+    },
+    {
+      "id": 20,
+      "nodes": 100000,
+      "depth": 4,
+      "pv": [
+        "3a2b",
+        "8g8f",
+        "8c8f",
+        "6i7h"
+      ]
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,45 @@
+search parity 0
+search parity 1
+search parity 2
+search parity 3
+search parity 4
+search parity 5
+search parity 6
+search parity 7
+search parity 8
+search parity 9
+search parity 10
+search parity 11
+search parity 12
+search parity 13
+search parity 14
+search parity 15
+search parity 16
+search parity 17
+search parity 18
+search parity 19
+search parity 20
+{
+  "modelSha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+  "staticPositions": 1136,
+  "staticModes": {
+    "nnue": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-scalar": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-full": {
+      "matches": 1136,
+      "maxError": 0
+    },
+    "nnue-verify": {
+      "matches": 1136,
+      "maxError": 0
+    }
+  },
+  "searchComparisons": 87,
+  "passed": true
+}

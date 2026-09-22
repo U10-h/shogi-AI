@@ -44,9 +44,10 @@ int main(int argc, char** argv) {
                     "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
-                    "  --eval material|positional|learned|nnue|nnue-full|nnue-verify [--eval-model PATH] (advanced/USI)\n"
+                    "  --eval material|positional|learned|nnue|nnue-full|nnue-verify|nnue-scalar [--eval-model PATH] (advanced/USI)\n"
                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
                     "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
+                    "  --eager-order (v0.15: fully sort moves instead of lazy extraction)\n"
                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
                     "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
                     "  --leaf-trace PATH (opt-in qsearch entry/return observations)\n"
@@ -97,6 +98,7 @@ int main(int argc, char** argv) {
             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
             else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
+            else if (arg == "--eager-order") advanced_options.lazy_ordering=false;
             else if (arg == "--full-qmoves") advanced_options.direct_qmoves=false;
             else if (arg == "--eager-qmoves") advanced_options.defer_qmoves=false;
             else if (arg == "--eval-batch") eval_batch=true;

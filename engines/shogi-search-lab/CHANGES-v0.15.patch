@@ -1,0 +1,857 @@
+--- /dev/null
++++ b/scripts/build_baseline_v15.py
+@@ -0,0 +1,15 @@
++#!/usr/bin/env python3
++"""Rebuild the attached v0.14 source in isolation; no git access needed."""
++from pathlib import Path
++import shutil,subprocess,tempfile
++R=Path(__file__).resolve().parents[1]
++with tempfile.TemporaryDirectory(prefix='shogi-v14-') as td:
++    work=Path(td)
++    shutil.copytree(R/'src',work/'src')
++    for p in (R/'checkpoints/v0.14/src').glob('*'):shutil.copy2(p,work/'src'/p.name)
++    shutil.copy2(R/'checkpoints/v0.14/Makefile',work/'Makefile')
++    (work/'vendor').symlink_to(R/'vendor',target_is_directory=True)
++    subprocess.run(['make','-j4'],cwd=work,check=True)
++    (R/'build').mkdir(exist_ok=True)
++    shutil.copy2(work/'build/shogi-lab',R/'build/shogi-lab-v0.14')
++print(R/'build/shogi-lab-v0.14')
+--- /dev/null
++++ b/scripts/experiment_v15.mjs
+@@ -0,0 +1,108 @@
++// All timed searches run serially. Use no simultaneous build/training jobs.
++import {readFileSync,writeFileSync,mkdirSync,existsSync,renameSync} from 'node:fs';
++import {ROOT,START,ASSETS,BIN,lab,yaneura,hash} from './arena_lib.mjs';
++import {recordAt,checkedPV,hasLegalMove} from './record_helpers.mjs';
++const D=process.env.V15_RESULTS||ROOT+'/results/v0.15',mode=process.argv[2];
++mkdirSync(D,{recursive:true});
++const read=p=>JSON.parse(readFileSync(p));
++const save=(p,x)=>{writeFileSync(p+'.tmp',JSON.stringify(x));renameSync(p+'.tmp',p);};
++const features='tt,history,killer,counter,mate-distance,qsearch,capture-history';
++const signatures=()=>({baseline:hash(ROOT+'/build/shogi-lab-v0.14'),candidate:hash(BIN),evaluation:hash(ASSETS+'/yaneuraou.data')});
++function args(name){
++ let flags=features,extra=[];
++ if(name==='lmr')flags+=',lmr';
++ if(name==='history')flags+=',history-lmr';
++ if(name==='aspiration')extra=['--driver','aspiration'];
++ if(name==='eager')extra=['--eager-order'];
++ if(name==='scalar')extra=['--eval','nnue-scalar'];
++ return ['--advanced','--eval','nnue','--eval-model',ASSETS+'/yaneuraou.data','--features',flags,...extra];
++}
++function validate(root,r){
++ const p=recordAt(START,root.prefix).position,pv=r.has_result?r.pv:r.fallback_pv;
++ if(!pv.length||checkedPV(p,pv).length!==pv.length)throw Error('Illegal/incomplete PV');
++ return r.has_result?r.bestmove:r.fallback_move;
++}
++async function run(root,name,limits){
++ const r=await lab(root.prefix,[...args(name),...limits.map(String)],START,name==='baseline'?ROOT+'/build/shogi-lab-v0.14':BIN);
++ return {...r,variant:name,chosenMove:validate(root,r)};
++}
++if(mode==='freeze'){
++ if(existsSync(D+'/protocol.json'))throw Error('Already frozen');
++ save(D+'/protocol.json',{seed:2026092215,signatures:signatures(),names:['baseline','fast','lmr','history'],roots:16,
++  generation:'Advance first 16 v0.14 roots 12 plies; historical teacher depth6 MultiPV3, random within120cp; final roots compared against all v0.13/v0.14 trajectories.',
++  fixed:{depth:4,repeats:3,nodes:10000000},quality:{ms:[1000,3000],repeats:2,teacherDepth:12},
++  limitations:'Same opening families as earlier work; independent continuations, no new training. No Elo claim. Timing excludes model load/process startup.'});
++ console.log('Frozen');process.exit(0);
++}
++const protocol=read(D+'/protocol.json');
++if(JSON.stringify(signatures())!==JSON.stringify(protocol.signatures))throw Error('Frozen binary/model mismatch');
++if(mode==='collect'){
++ const teacher=await yaneura(undefined,{allLegalMoves:true});
++ try{
++  const starts=read(ROOT+'/results/v0.14/roots.json').slice(0,protocol.roots),roots=[],rows=[];
++  const norm=s=>s.split(' ').slice(0,3).join(' '),seen=new Set();
++  for(const version of ['v0.13','v0.14'])for(let id=0;id<24;id++){
++   const p=ROOT+'/results/'+version+'/games/'+String(id).padStart(2,'0')+'.json';
++   if(existsSync(p))for(const r of read(p).rows)seen.add(norm(r.sfen));
++  }
++  for(let id=0;id<starts.length;id++){
++   let seed=(protocol.seed+id*7919)>>>0;const random=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/4294967296;};
++   const prefix=[...starts[id].prefix],record=recordAt(START,prefix);await teacher.reset();
++   let terminal=false;
++   for(let ply=0;ply<12;ply++){
++    if(record.repetition||!hasLegalMove(record.position)){terminal=true;break;}
++    const a=await teacher.search(prefix,{depth:6,multipv:3}),ranks=new Map();
++    for(const i of a.infos)if(!i.bound)ranks.set(i.rank,i);
++    const cs=[...ranks.values()].sort((a,b)=>a.rank-b.rank);
++    const eligible=cs.filter(c=>c.type==='cp'&&cs[0].type==='cp'&&c.score>=cs[0].score-120);
++    const move=eligible.length?eligible[Math.floor(random()*eligible.length)].pv[0]:a.move;
++    rows.push({id,ply,prefix:[...prefix],sfen:record.position.sfen,analysis:a,selected:move});
++    const m=record.position.createMoveByUSI(move);if(!m||!record.position.isValidMove(m)||!record.append(m))throw Error('Bad teacher move');
++    prefix.push(move);
++   }
++   const sfen=record.position.sfen;
++   if(terminal||record.repetition||!hasLegalMove(record.position))throw Error('Predefined continuation became terminal; retain failure, do not substitute');
++   if(seen.has(norm(sfen)))throw Error('Known test root; retain failure, do not resample');
++   seen.add(norm(sfen));roots.push({id,sourceGame:starts[id].game,prefix,sfen});
++   console.log(JSON.stringify({mode,id,plies:prefix.length}));
++  }
++  save(D+'/roots.json',roots);save(D+'/generation.json',{roots:roots.length,oldPositionsCompared:seen.size-roots.length,rows});
++ }finally{teacher.close();}
++}else if(mode==='fixed'||mode==='dev'){
++ const roots=mode==='dev'?read(ROOT+'/results/v0.14/roots.json').slice(0,8):read(D+'/roots.json');
++ const names=mode==='dev'?['baseline','fast','eager','scalar','lmr','history','aspiration']:protocol.names;
++ mkdirSync(D+'/'+mode,{recursive:true});
++ for(let rep=0;rep<(mode==='dev'?1:protocol.fixed.repeats);rep++)for(let id=0;id<roots.length;id++)for(let j=0;j<names.length;j++){
++  const name=names[(id+rep+j)%names.length],path=D+'/'+mode+'/'+id+'-'+name+'-'+rep+'.json';if(existsSync(path))continue;
++  const limits=mode==='dev'?['--depth',16,'--iterative','--max-nodes',200000]:['--depth',protocol.fixed.depth,'--max-nodes',protocol.fixed.nodes];
++  const r=await run(roots[id],name,limits);save(path,{id,rep,root:roots[id],analysis:r});
++  console.log(JSON.stringify({mode,id,rep,name,ms:r.elapsed_ms,nodes:r.nodes,depth:r.completed_depth}));
++ }
++}else if(mode==='quality'){
++ const roots=read(D+'/roots.json');mkdirSync(D+'/quality',{recursive:true});
++ // Finish every timed run before starting teacher work, to avoid cross-load.
++ for(let rep=0;rep<protocol.quality.repeats;rep++)for(let id=0;id<roots.length;id++)for(const ms of protocol.quality.ms){
++  const path=D+'/quality/'+id+'-'+ms+'-'+rep+'.json';if(existsSync(path))continue;
++  const runs=[];
++  for(let j=0;j<protocol.names.length;j++){
++   const name=protocol.names[(id+rep+j)%protocol.names.length];
++   runs.push(await run(roots[id],name,['--depth',16,'--iterative','--max-nodes',1000000000,'--time-ms',ms]));
++  }
++  save(path,{id,rep,ms,root:roots[id],runs});console.log(JSON.stringify({mode,id,rep,ms,depths:runs.map(r=>[r.variant,r.completed_depth])}));
++ }
++}else if(mode==='score'){
++ const roots=read(D+'/roots.json'),teacher=await yaneura(undefined,{allLegalMoves:true});mkdirSync(D+'/teacher',{recursive:true});
++ try{for(let id=0;id<roots.length;id++){
++  const path=D+'/teacher/'+id+'.json';if(existsSync(path))continue;
++  const chosen=[];for(let rep=0;rep<protocol.quality.repeats;rep++)for(const ms of protocol.quality.ms)
++   chosen.push(...read(D+'/quality/'+id+'-'+ms+'-'+rep+'.json').runs.map(r=>r.chosenMove));
++  await teacher.reset();const unrestricted=await teacher.search(roots[id].prefix,{depth:protocol.quality.teacherDepth});
++  const moves=[...new Set([...chosen,unrestricted.move])];await teacher.reset();
++  const scored=await teacher.search(roots[id].prefix,{depth:protocol.quality.teacherDepth,multipv:moves.length,searchmoves:moves});
++  const ranks=new Map();for(const x of scored.infos)if(!x.bound&&moves.includes(x.pv[0]))ranks.set(x.pv[0],x);
++  if(ranks.size!==moves.length)throw Error('Incomplete teacher ranks');
++  const candidates=moves.map(m=>({move:m,...ranks.get(m)}));
++  for(const c of candidates)if(c.depth<protocol.quality.teacherDepth||checkedPV(recordAt(START,roots[id].prefix).position,c.pv).length!==c.pv.length)throw Error('Incomplete/illegal teacher PV');
++  save(path,{id,root:roots[id],unrestricted,scored,candidates});console.log(JSON.stringify({mode,id,candidates:candidates.map(c=>[c.move,c.type,c.score])}));
++ }}finally{teacher.close();}
++}else throw Error('Use freeze|collect|dev|fixed|quality|score');
+--- /dev/null
++++ b/scripts/report_v15.py
+@@ -0,0 +1,94 @@
++#!/usr/bin/env python3
++"""Write the Japanese report from recorded results, no fabricated measurements."""
++import json,statistics
++from pathlib import Path
++R=Path(__file__).resolve().parents[1];D=R/'results/v0.15'
++s=json.loads((D/'summary.json').read_text());verify=json.loads((D/'verification.json').read_text())
++extreme=json.loads((D/'simd-extremes.json').read_text())
++labels={'baseline':'v0.14 駒取り履歴','fast':'v0.15 fast（推奨）','lmr':'fast＋既存LMR','history':'fast＋履歴LMR'}
++fast=s['fixed']['fast'];q1=s['quality']['1000'];q3=s['quality']['3000']
++lines=['# v0.15：探索処理の高速化と、深さ配分の比較','',
++'実験日：2026-09-22（UTC）。ユーザー添付の `shogi-search-lab.zip`（v0.14）を起点に実装・実験した。比較基準は前回推奨の駒取り履歴版。評価モデルの重みは変更していない。','',
++f'**推奨はfast。** 深さ4の16局面・各3反復で、同じノード・評価値・最善手・PVを保ち、探索時間を **{(1-fast["timeRatio"])*100:.1f}%短縮（{1/fast["timeRatio"]:.2f}倍速）** した。新たな選択的枝刈りは加えていない。',
++f'1秒では探索ノード数が{q1["fast"]["nodeRatio"]:.2f}倍、平均完了深さが{q1["baseline"]["meanDepth"]:.2f}→{q1["fast"]["meanDepth"]:.2f}。3秒では{q3["fast"]["nodeRatio"]:.2f}倍、{q3["baseline"]["meanDepth"]:.2f}→{q3["fast"]["meanDepth"]:.2f}となった。','',
++'## 何を変えたか','',
++'- NNUEの整数積和と特徴の差分更新をAVX2化。実行時にCPUを判定し、非対応環境ではスカラー計算を使う。',
++'- 差分計算中に欠落駒数の変化も求め、同じ盤面を追加で再集計する処理を省いた。',
++'- 手の優先順位を節点の入口で固定し、全件ソートの代わりに必要な順番だけヒープから取り出す。子探索中の履歴変化で順序がずれないようにした。',
++'- 別の実験機能としてhistory-lmrを追加。PV・TT手・killer・counter・良い履歴を保護し、後順位の悪い履歴では削減量を増やす。有望なら元の深さで再探索する。','',
++'NNUE公式技術資料、手順序とTTの論文、LMR・手選択の一次実装を参照した。[文献と実装の対応](RESEARCH-v0.15.md)に出典、算術上の根拠、既存ETCの制限をまとめた。','',
++'## 同じ深さでの処理速度','',
++'16根・深さ4・各3反復・順序回転・直列測定。局面ごとの時間中央値を合計した比。1より小さいほど速い。時間はモデル読込とプロセス起動を除く。','',
++'| 方式 | 探索時間比［95%参考区間］ | ノード比 | 評価値変更 | 最善手変更 |',
++'|---|---:|---:|---:|---:|']
++for name in s['protocol']['names']:
++ r=s['fixed'][name];lo,hi=r['timeRatio95']
++ lines.append(f'| {labels[name]} | {r["timeRatio"]:.3f} ［{lo:.3f}, {hi:.3f}］ | {r["nodeRatio"]:.3f} | {r["scoreChanges"]}/16 | {r["moveChanges"]}/16 |')
++lines+=['','fastは全16根でPVも一致した。LMRのノード削減には読む範囲の変更が含まれ、同じ深さの厳密探索を高速化した比とは解釈できない。','',
++'開発用の既知8根・20万ノード・各1回の切り分けでは、旧版に対する時間比は、新スカラー計算0.929、SIMD＋全件ソート0.562、SIMD＋遅延ソート0.531だった。NNUE計算の改善が主な寄与と考えられる。これは反復のない補助測定で、上の新規根での反復測定とは区別する。既存aspiration併用は0.541、平均完了深さ4.50で、fastの4.50を上回らなかった。','',
++'## 同じ持ち時間での深さと指し手','',
++'各局面・各方式・1秒/3秒を2回ずつ測り、計256探索。全方式の選択手と教師自身の手を共通候補集合に入れ、固定YaneuraOu 6.03の深さ12で再採点した。「候補差」はその集合内の最高評価からの差で、小さいほど良い。全合法手の厳密な損失ではない。','',
++'| 時間 | 方式 | 平均完了深さ | ノード比 | 平均候補差cp | 基準との差cp［95%参考区間］ | 改善/同等/悪化の根数 |',
++'|---|---|---:|---:|---:|---:|---:|']
++for ms in ['1000','3000']:
++ for name in s['protocol']['names']:
++  r=s['quality'][ms][name];lo,hi=r['deltaGap95'];counts='/'.join(map(str,r['improvedEqualWorseRoots']))
++  lines.append(f'| {int(ms)//1000}秒 | {labels[name]} | {r["meanDepth"]:.2f} | {r["nodeRatio"]:.2f} | {r["meanGapCp"]:.2f} | {r["meanDeltaGapCp"]:+.2f} ［{lo:+.2f}, {hi:+.2f}］ | {counts} |')
++lines+=['','改善/同等/悪化は、同じ根での2反復を平均してから判定した。反復数を独立な局面数とは数えていない。LMRの深さは選択的な深さであり、fastと同じ範囲を読んだ長さではない。','',
++'## 悪化例も残した','',
++'次は各方式で基準との差が最も悪かった個別測定。正の差は、その測定で基準より教師評価が低かったことを示す。','',
++'| 方式 | 根ID | 時間/反復 | 基準手 → 選択手 | 教師評価の悪化cp |',
++'|---|---:|---|---|---:|']
++for name in ['fast','lmr','history']:
++ cases=[]
++ for p in (D/'quality').glob('*.json'):
++  row=json.loads(p.read_text());teacher=json.loads((D/'teacher'/f'{row["id"]}.json').read_text())
++  if not all(c['type']=='cp' for c in teacher['candidates']):continue
++  scores={c['move']:c['score'] for c in teacher['candidates']}
++  a=next(r for r in row['runs'] if r['variant']=='baseline');b=next(r for r in row['runs'] if r['variant']==name)
++  cases.append((scores[a['chosenMove']]-scores[b['chosenMove']],row,a,b))
++ delta,row,a,b=max(cases,key=lambda x:x[0])
++ lines.append(f'| {labels[name]} | {row["id"]} | {row["ms"]//1000}秒 / {row["rep"]} | `{a["chosenMove"]}` → `{b["chosenMove"]}` | {delta:+} |')
++lines+=['','読む深さが増えても、限られた探索・評価関数で選ぶ手が必ず良くなるわけではない。深さと候補差を別々に残し、悪化例を消して平均だけを報告しない。','',
++'## 採用判断','',
++'**標準はfast。** 元の限定静止探索と手順序を保った処理高速化を採用する。モデルの追加学習や新しい予測枝刈りは必要なかった。',
++'**既存LMR・新規履歴LMRは比較可能な実験設定として残す。** より深く進む効果と、教師評価による品質を上表で確認できる。ただし同系統16局面だけで、どちらが一般的に強いか、全局対局の勝率が上がるかは確定できない。今回は対局勝率やEloを測っていない。','',
++'## 検証と限界','',
++f'- 既存・拡張セルフテスト：基礎115、継続探索1,274、拡張探索5,413、計6,802チェック通過。',
++f'- 独立した固定上流評価器と{verify["staticPositions"]:,}局面を4評価モードで照合し、評価値の最大誤差0。',
++f'- 既知21根の10万ノード探索、全件ソート/スカラー/照合モード、および3根の上位5候補を含む{verify["searchComparisons"]}件の対応比較で、値・PV・ノード・探索統計が一致。',
++f'- 極端な整数重み{extreme["models"]}モデル・{extreme["pairedChecks"]}件の対照で、評価値と32中間活性が一致。符号・16ビット周回も対象。',
++'- 新規16根は既知16根から別seedで12手進めた追加進行。v0.13/v0.14進行との根局面の完全一致を除外したが、過去の全探索子孫・左右反転との非重複を保証する試験ではない。未知戦型でもない。',
++'- 深さ12の歴史的な教師による評価は近似。新しい強豪エンジンに対する棋力向上は未確認。',
++'- 時間区間は根単位の対応付きbootstrap 5,000回。仮想CPU・AVX2環境に依存し、多重比較補正を伴う棋力差の有意性は主張しない。',
++'- 上位5候補や継続探索の機能を削除していない。今回の主比較はMultiPV=1。上位5候補を同じ予算で並行して深掘りする性能は別条件。','',
++'## 起動','',
++'```bash',
++'make -j4',
++'export YANEURAOU_ASSETS="$PWD/../opponent"',
++'python3 scripts/run_v15.py fast --depth 16 --iterative --time-ms 3000 --max-nodes 1000000000',
++'```','',
++'評価資材の取得、旧版の復元、全比較の再実行は [REPRODUCE-v0.15.md](REPRODUCE-v0.15.md)。生JSON・教師応答・CSV・凍結プロトコルは `results/v0.15/`、変更前ソースは `checkpoints/v0.14/`、変更差分は `CHANGES-v0.15.patch`。','']
++(R/'REPORT-v0.15.md').write_text('\n'.join(lines))
++intro=f'''## 探索処理の高速化と深さ配分（v0.15）
++
++ユーザー添付のv0.14を基準に、NNUEのSIMD化・差分更新の整理・遅延した手選択を実装しました。新規16根・深さ4・各3反復では、評価値・最善手・PV・ノードを保ち、探索時間を{(1-fast['timeRatio'])*100:.1f}%短縮（{1/fast['timeRatio']:.2f}倍速）。1秒・3秒の256探索と深さ12の教師評価も保存しています。
++
++推奨は `fast`。既存LMRと新規履歴LMRは実験設定として残しました。完了深さと選択手の品質を分けて比較し、全局対局の勝率向上はまだ主張しません。
++
++- [結果・悪化例・採用判断](REPORT-v0.15.md)
++- [文献と実装の対応](RESEARCH-v0.15.md)
++- [起動・再現手順](REPRODUCE-v0.15.md)
++- `results/v0.15/`：全探索・教師評価・検証・CSV・凍結プロトコル。
++
++```bash
++make -j4
++export YANEURAOU_ASSETS="$PWD/../opponent"
++python3 scripts/run_v15.py fast --depth 16 --iterative --time-ms 3000 --max-nodes 1000000000
++# USI接続: python3 scripts/run_v15.py fast --usi
++```
++
++'''
++p=R/'README.md';text=p.read_text();first,body=text.split('\n',1)
++if '## 探索処理の高速化と深さ配分（v0.15）' not in text:p.write_text(first+'\n\n'+intro+body.lstrip('\n'))
++print(R/'REPORT-v0.15.md')
+--- /dev/null
++++ b/scripts/run_v15.py
+@@ -0,0 +1,16 @@
++#!/usr/bin/env python3
++"""fast: exact speedups; lmr/history: experimental selective alternatives."""
++import os,sys
++from pathlib import Path
++R=Path(__file__).resolve().parents[1]
++args=sys.argv[1:];name=args.pop(0) if args and not args[0].startswith('--') else 'fast'
++if name not in ['fast','lmr','history']:raise SystemExit('Variant: fast|lmr|history')
++model=Path(os.environ.get('YANEURAOU_ASSETS',R.parent/'opponent'))/'yaneuraou.data'
++binary=R/'build/shogi-lab'
++if not binary.is_file():raise SystemExit('Run make -j4 first.')
++if not model.is_file():raise SystemExit('Run scripts/fetch_opponent.py and set YANEURAOU_ASSETS.')
++features='tt,history,killer,counter,mate-distance,qsearch,capture-history'
++if name=='lmr':features+=',lmr'
++if name=='history':features+=',history-lmr'
++cmd=[str(binary),'--usi' if '--usi' in args else '--advanced','--eval','nnue','--eval-model',str(model),'--features',features]
++cmd.extend(a for a in args if a!='--usi');os.execv(str(binary),cmd)
+--- /dev/null
++++ b/scripts/summarize_v15.py
+@@ -0,0 +1,68 @@
++#!/usr/bin/env python3
++"""Paired, root-level summaries. Repeats are not independent positions."""
++import csv,json,statistics,random,os
++from pathlib import Path
++R=Path(__file__).resolve().parents[1];D=Path(os.environ.get('V15_RESULTS',R/'results/v0.15'))
++read=lambda p:json.loads(p.read_text())
++protocol=read(D/'protocol.json');names=protocol['names'];n=protocol['roots']
++def ci(xs,ys=None,ratio=False):
++    rng=random.Random(2026092215);out=[]
++    for _ in range(5000):
++        ids=[rng.randrange(len(xs)) for _ in xs]
++        a=sum(xs[i] for i in ids)
++        out.append(a/sum(ys[i] for i in ids) if ratio else a/len(ids))
++    out.sort();return [out[125],out[4874]]
++summary={'fixed':{},'quality':{},'protocol':protocol,'limitations':['Historical depth12 teacher is an estimate, not a full minimax oracle.','Same opening families. Two time repeats do not increase the independent root count.','CPU timing excludes model loading and process startup.','No match-based strength/Elo claim.']}
++dev={}
++for p in (D/'dev').glob('*.json'):
++    r=read(p)['analysis'];dev.setdefault(r['variant'],[]).append(r)
++if dev:
++    summary['development']={name:{'roots':len(rr),'sumMs':sum(r['elapsed_ms'] for r in rr),
++      'timeRatio':sum(r['elapsed_ms'] for r in rr)/sum(r['elapsed_ms'] for r in dev['baseline']),
++      'meanDepth':statistics.mean(r['completed_depth'] for r in rr)} for name,rr in dev.items()}
++fixed=[];times={};nodes={}
++for name in names:
++    times[name]=[];nodes[name]=[]
++    for i in range(n):
++        rr=[read(D/'fixed'/f'{i}-{name}-{rep}.json')['analysis'] for rep in range(protocol['fixed']['repeats'])]
++        assert all(r['complete'] for r in rr),(name,i,'incomplete fixed depth')
++        assert len({json.dumps([r[k] for k in ['score','pv','nodes','completed_depth']]) for r in rr})==1
++        times[name].append(statistics.median(r['elapsed_ms'] for r in rr));nodes[name].append(rr[0]['nodes'])
++        for rep,r in enumerate(rr):fixed.append({'id':i,'variant':name,'repeat':rep,'ms':r['elapsed_ms'],'nodes':r['nodes'],'score':r['score'],'bestmove':r['bestmove'],'depth':r['completed_depth']})
++    base=[read(D/'fixed'/f'{i}-baseline-0.json')['analysis'] for i in range(n)]
++    new=[read(D/'fixed'/f'{i}-{name}-0.json')['analysis'] for i in range(n)]
++    summary['fixed'][name]={'positions':n,'medianMsSum':sum(times[name]),'timeRatio':sum(times[name])/sum(times['baseline']),
++      'timeRatio95':ci(times[name],times['baseline'],True),'nodeRatio':sum(nodes[name])/sum(nodes['baseline']),
++      'scoreChanges':sum(a['score']!=b['score'] for a,b in zip(base,new)),
++      'moveChanges':sum(a['bestmove']!=b['bestmove'] for a,b in zip(base,new)),
++      'pvChanges':sum(a['pv']!=b['pv'] for a,b in zip(base,new))}
++assert summary['fixed']['fast']['nodeRatio']==1 and all(summary['fixed']['fast'][k]==0 for k in ['scoreChanges','moveChanges','pvChanges'])
++quality=[]
++for ms in protocol['quality']['ms']:
++    grouped={name:[] for name in names}
++    for i in range(n):
++        candidates=read(D/'teacher'/f'{i}.json')['candidates'];cp=all(c['type']=='cp' for c in candidates)
++        scores={c['move']:c['score'] for c in candidates};best=max(scores.values()) if cp else None
++        rows={name:[] for name in names}
++        for rep in range(protocol['quality']['repeats']):
++            runs=read(D/'quality'/f'{i}-{ms}-{rep}.json')['runs'];base=next(r for r in runs if r['variant']=='baseline')
++            for r in runs:
++                row={'id':i,'repeat':rep,'budgetMs':ms,'variant':r['variant'],'elapsedMs':r['elapsed_ms'],'nodes':r['nodes'],'depth':r['completed_depth'],'move':r['chosenMove'],
++                  'gapCp':best-scores[r['chosenMove']] if cp else None,'deltaGapCp':scores[base['chosenMove']]-scores[r['chosenMove']] if cp else None,
++                  'changed':r['chosenMove']!=base['chosenMove'],'pvLength':len(r['pv']),'lmrReductions':r['stats'].get('lmr_reductions',0),'lmrResearches':r['stats'].get('lmr_researches',0)}
++                rows[r['variant']].append(row);quality.append(row)
++        for name in names:
++            rr=rows[name];grouped[name].append({k:statistics.mean(r[k] for r in rr) if rr[0][k] is not None else None for k in ['nodes','depth','gapCp','deltaGapCp','elapsedMs','changed','pvLength']})
++    summary['quality'][str(ms)]={}
++    for name,rr in grouped.items():
++        eligible=[r for r in rr if r['gapCp'] is not None];deltas=[r['deltaGapCp'] for r in eligible]
++        summary['quality'][str(ms)][name]={'positions':n,'cpPositions':len(eligible),'meanDepth':statistics.mean(r['depth'] for r in rr),
++          'meanNodes':statistics.mean(r['nodes'] for r in rr),'nodeRatio':sum(r['nodes'] for r in rr)/sum(r['nodes'] for r in grouped['baseline']),
++          'meanGapCp':statistics.mean(r['gapCp'] for r in eligible) if eligible else None,'meanDeltaGapCp':statistics.mean(deltas) if deltas else None,
++          'deltaGap95':ci(deltas) if deltas else None,'improvedEqualWorseRoots':[sum(x<0 for x in deltas),sum(x==0 for x in deltas),sum(x>0 for x in deltas)],
++          'meanPvLength':statistics.mean(r['pvLength'] for r in rr),'maxElapsedMs':max(r['elapsedMs'] for r in quality if r['variant']==name and r['budgetMs']==ms)}
++for filename,rows in [('fixed.csv',fixed),('quality.csv',quality)]:
++    with (D/filename).open('w') as f:
++        w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
++(D/'summary.json').write_text(json.dumps(summary,indent=2)+'\n')
++print(json.dumps({k:v for k,v in summary.items() if k!='protocol'},indent=2))
+--- /dev/null
++++ b/scripts/verify_nnue_extremes_v15.py
+@@ -0,0 +1,34 @@
++#!/usr/bin/env python3
++"""Adversarial signed/unsigned SIMD and wrapping tests against the old kernel."""
++import json,os,struct,subprocess,tempfile,random
++from pathlib import Path
++R=Path(__file__).resolve().parents[1];D=R/'results/v0.15'
++raw=(Path(os.environ.get('YANEURAOU_ASSETS',R.parent/'opponent'))/'yaneuraou.data').read_bytes()
++ft=12+struct.unpack_from('<I',raw,8)[0]+4
++network=ft+256*2+1710*256*2+4
++w1=network+32*4;b2=w1+512*32;w2=b2+32*4;b3=w2+32*32;w3=b3+4
++roots=json.loads((R/'results/v0.14/roots.json').read_text())
++sfens=[r['sfen'] for r in roots[:8]]+['4k4/9/9/9/9/9/9/9/4K4 b - 1','4k4/9/9/9/9/9/9/9/4K4 b 18P4L4N4S4G2B2R 1']
++rng=random.Random(2026092215);checks=0
++with tempfile.TemporaryDirectory() as td:
++ for case in range(8):
++  data=bytearray(raw)
++  if case<4:
++   data[w1:b2]=bytes([127 if case%2 else 128])*(512*32)
++   data[w2:b3]=bytes([127 if case//2 else 128])*(32*32)
++  else:
++   data[w1:b2]=rng.randbytes(512*32);data[w2:b3]=rng.randbytes(32*32)
++  for start,count in [(network,32),(b2,32),(b3,1)]:
++   for i in range(count):struct.pack_into('<i',data,start+4*i,rng.randint(-5000,5000))
++  if case>=6:
++   # Exercise modular 16-bit feature accumulation and model inventory changes.
++   data[ft:ft+256*2+1710*256*2]=rng.randbytes(256*2+1710*256*2)
++  path=Path(td)/f'{case}.nnue';path.write_bytes(data)
++  outputs=[]
++  for binary,mode in [('shogi-lab-v0.14','nnue'),('shogi-lab','nnue-scalar'),('shogi-lab','nnue-verify')]:
++   p=subprocess.run([str(R/'build'/binary),'--eval-batch','--nnue-features','--eval',mode,'--eval-model',str(path)],input='\n'.join(sfens)+'\n',text=True,capture_output=True,check=True)
++   outputs.append([(x['score'],x['h1']) for x in map(json.loads,p.stdout.splitlines())])
++  assert outputs[0]==outputs[1]==outputs[2],case
++  checks+=len(sfens)*2
++out={'passed':True,'models':8,'positionsPerModel':len(sfens),'pairedChecks':checks,'compared':'score and all32 first-hidden activations; scalar,AVX2,old baseline'}
++(D/'simd-extremes.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out))
+--- /dev/null
++++ b/scripts/verify_v15.py
+@@ -0,0 +1,54 @@
++#!/usr/bin/env python3
++"""Exact search/inference parity for v0.15. Run after make and build_nnue_oracle.py."""
++import json, os, subprocess, hashlib
++from pathlib import Path
++
++R=Path(__file__).resolve().parents[1]
++D=R/'results/v0.15';D.mkdir(exist_ok=True)
++MODEL=Path(os.environ.get('YANEURAOU_ASSETS',R.parent/'opponent'))/'yaneuraou.data'
++FEATURES='tt,history,killer,counter,mate-distance,qsearch,capture-history'
++def run(binary,args,stdin=None):
++    p=subprocess.run([str(R/'build'/binary),*map(str,args)],input=stdin,text=True,capture_output=True)
++    assert p.returncode in (0,3),(binary,p.returncode,p.stderr)
++    return p.stdout
++roots=json.loads((R/'results/v0.14/roots.json').read_text())
++sfens=[]
++for p in sorted((R/'results/v0.14/games').glob('*.json')):
++    sfens.extend(x['sfen'] for x in json.loads(p.read_text())['rows'])
++sfens.extend(['4k4/9/P8/9/9/9/9/9/4K4 b - 1',
++ 'k3r4/9/9/9/9/9/4G4/9/4K4 b P 1',
++ '4k4/9/9/9/9/9/9/9/4K4 b 18P4L4N4S4G2B2R 1',
++ '4k4/9/9/9/9/9/9/9/4K4 w 18p4l4n4s4g2b2r 1'])
++sfens=list(dict.fromkeys(sfens));stdin='\n'.join(sfens)+'\n'
++expected=list(map(int,run('nnue-oracle',[MODEL],stdin).splitlines()))
++summary={'modelSha256':hashlib.sha256(MODEL.read_bytes()).hexdigest(),'staticPositions':len(sfens),'staticModes':{},'searchComparisons':0,'rows':[]}
++for mode in ['nnue','nnue-scalar','nnue-full','nnue-verify']:
++    got=[json.loads(s)['score'] for s in run('shogi-lab',['--eval-batch','--eval',mode,'--eval-model',MODEL],stdin).splitlines()]
++    assert got==expected,(mode,'upstream inference mismatch')
++    summary['staticModes'][mode]={'matches':len(got),'maxError':0}
++keys=['score','bestmove','pv','nodes','leaves','terminals','cutoffs','skipped_siblings','completed_depth','stop_reason','has_result','fallback_move','fallback_pv','fallback_source','fallback_partial_score','completed_root_moves','candidates']
++def equal(a,b):
++    for k in keys:assert a[k]==b[k],(k,a[k],b[k])
++    for key in ['stats','iterations']:
++        aa=json.loads(json.dumps(a[key]));bb=json.loads(json.dumps(b[key]))
++        if key=='stats':
++            for x in [aa,bb]:
++                x.pop('nnue_avx2_enabled',None);x.pop('nnue_verified',None)
++        else:
++            for x in aa+bb:x.pop('elapsed_ms',None)
++        assert aa==bb,(key,aa,bb)
++for i,root in enumerate(roots):
++    args=['--advanced','--features',FEATURES,'--eval','nnue','--eval-model',MODEL,'--moves',' '.join(root['prefix']),'--depth',16,'--iterative','--max-nodes',100000]
++    old=json.loads(run('shogi-lab-v0.14',args))
++    for extra in [[],['--eager-order'],['--eval','nnue-scalar'],['--eval','nnue-verify']]:
++        new=json.loads(run('shogi-lab',args+extra));equal(old,new);summary['searchComparisons']+=1
++    summary['rows'].append({'id':i,'nodes':old['nodes'],'depth':old['completed_depth'],'pv':old['pv']})
++    print('search parity',i,flush=True)
++# Exact MultiPV top five and time/node abort restoration are also covered by selftests.
++for root in roots[:3]:
++    args=['--advanced','--features',FEATURES,'--eval','nnue','--eval-model',MODEL,'--moves',' '.join(root['prefix']),'--depth',2,'--multipv',5,'--max-nodes',1000000]
++    equal(json.loads(run('shogi-lab-v0.14',args)),json.loads(run('shogi-lab',args)))
++    summary['searchComparisons']+=1
++summary['passed']=True
++(D/'verification.json').write_text(json.dumps(summary,indent=2)+'\n')
++print(json.dumps({k:v for k,v in summary.items() if k!='rows'},indent=2))
+--- a/src/advanced.cpp
++++ b/src/advanced.cpp
+@@ -17,7 +17,7 @@
+ std::set<std::string> advanced_features() {
+     return {"tt","history","capture-history","killer","counter","iid","etc","mate-distance",
+         "qsearch","see-order","see-prune","delta","futility","reverse-futility",
+-        "razoring","null","adaptive-null","verified-null","lmr","check-extension",
++        "razoring","null","adaptive-null","verified-null","lmr","history-lmr","check-extension",
+         "recapture-extension","singular","multicut","probcut","multiprobcut"};
+ }
+ void set_advanced_features(AdvancedOptions& o, const std::string& csv) {
+@@ -47,6 +47,43 @@
+ struct PathHash {size_t operator()(const std::pair<uint64_t,int>& p) const {return std::hash<uint64_t>{}(p.first*65537+uint64_t(p.second));}};
+ struct Entry {int score, flag; Move move; std::vector<Move> pv;};
+ struct ProbModel {int deep, shallow; double slope, intercept, sigma, z;};
++// Freeze all priorities at node entry, then emit exactly the eager sort order.
++// Child searches may update histories, but cannot reorder this node's tail.
++struct OrderedMoves {
++    struct Item {Move move;int64_t priority;uint64_t key;};
++    static bool worse(const Item& a,const Item& b) {
++        return a.priority!=b.priority?a.priority<b.priority:a.key>b.key;
++    }
++    std::vector<Item> heap;
++    std::vector<Move> picked;
++    explicit OrderedMoves(std::vector<Move> moves):picked(std::move(moves)){}
++    OrderedMoves(std::vector<Item> items,bool lazy):heap(std::move(items)) {
++        picked.reserve(heap.size());
++        if(lazy&&heap.size()>16)std::make_heap(heap.begin(),heap.end(),worse);
++        else {
++            std::sort(heap.begin(),heap.end(),[](const Item& a,const Item& b){return worse(b,a);});
++            for(auto& i:heap)picked.push_back(i.move);
++            heap.clear();
++        }
++    }
++    size_t size() const {return picked.size()+heap.size();}
++    Move operator[](size_t i) {
++        while(picked.size()<=i) {
++            std::pop_heap(heap.begin(),heap.end(),worse);
++            picked.push_back(heap.back().move);heap.pop_back();
++        }
++        return picked[i];
++    }
++    Move front(){return (*this)[0];}
++    struct Iterator {
++        OrderedMoves* owner;size_t index;
++        Move operator*(){return (*owner)[index];}
++        Iterator& operator++(){++index;return *this;}
++        bool operator!=(const Iterator& other)const{return index!=other.index;}
++    };
++    Iterator begin(){return {this,0};}
++    Iterator end(){return {this,size()};}
++};
+ constexpr int max_ply=96;
+ int pack(Move m) {return int(m)&65535;}
+ std::string line_json(const std::vector<Move>& pv) {
+@@ -78,6 +115,7 @@
+         bool adaptive_null = false;
+         bool verified_null = false;
+         bool lmr = false;
++        bool history_lmr = false;
+         bool check_extension = false;
+         bool recapture_extension = false;
+         bool singular = false;
+@@ -203,10 +241,11 @@
+         {PlayedMove move(b,m);v-=exchange(to_sq(m),4);}
+         return v;
+     }
+-    std::vector<Move> order(std::vector<Move> moves,int ply,Move preferred,Move previous) {
++    OrderedMoves order(std::vector<Move> moves,int ply,Move preferred,Move previous) {
+         struct Item {Move move; int64_t priority; uint64_t key; std::string text;};
+         std::vector<Item> items; auto side=b.pos.side_to_move();
+-        items.reserve(moves.size());
++        std::vector<OrderedMoves::Item> compact;
++        if(o.compact_ordering)compact.reserve(moves.size());else items.reserve(moves.size());
+         r.stats[o.compact_ordering?"integer_order_keys":"string_order_keys"]+=moves.size();
+         for(Move m:moves) {
+             check();
+@@ -225,10 +264,12 @@
+             }
+             if(f.counter&&previous!=MOVE_NONE&&m==counters[side][pack(previous)]&&!tactical(m))score+=1500000;
+             if(m==preferred)score+=1000000000;
+-            items.push_back({m,score,o.compact_ordering?usi_sort_key(m):0,o.compact_ordering?std::string():usi(m)});
+-        }
++            if(o.compact_ordering)compact.push_back({m,score,usi_sort_key(m)});
++            else items.push_back({m,score,0,usi(m)});
++        }
++        if(o.compact_ordering)return OrderedMoves(std::move(compact),o.lazy_ordering);
+         std::sort(items.begin(),items.end(),[&](const Item&a,const Item&b){return a.priority!=b.priority?a.priority>b.priority:o.compact_ordering?a.key<b.key:a.text<b.text;});
+-        moves.clear();for(auto& i:items)moves.push_back(i.move);return moves;
++        moves.clear();for(auto& i:items)moves.push_back(i.move);return OrderedMoves(std::move(moves));
+     }
+     void leaf_event(const char* phase,uint64_t node,uint64_t parent,Move incoming,
+                     int ply,int left,int a,int beta,const char* reason,
+@@ -276,9 +317,9 @@
+             if(deferred)generate();
+             moves.erase(std::remove_if(moves.begin(),moves.end(),[&](Move m){return !tactical(m);}),moves.end());
+         }
+-        moves=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
++        auto ordered=order(std::move(moves),ply,MOVE_NONE,MOVE_NONE);
+         int move_index=0;bool learned_cut=false;std::vector<Move> captures_searched;
+-        for(Move m:moves) {
++        for(Move m:ordered) {
+             const int index=move_index++;
+             const bool checkmove=b.pos.gives_check(m);
+             if(!checked&&!checkmove&&!isolated) {
+@@ -296,7 +337,7 @@
+             std::string parent_sfen;
+             if(consider){
+                 ++r.stats["learned_eligible"];
+-                x=prune_features(m,incoming,a,stand,left,index,int(moves.size()));
++                x=prune_features(m,incoming,a,stand,left,index,int(ordered.size()));
+                 guarded=index>=2&&left>=3&&x[8]==0&&x[9]==0&&x[15]==0&&x[2]>=0&&!learned_cut;
+                 if(prune_log.is_open())parent_sfen=b.pos.sfen();
+                 if(guarded)++r.stats["learned_guard_eligible"];
+@@ -433,9 +474,9 @@
+         if(f.iid&&!isolated&&preferred==MOVE_NONE&&d>=3) {
+             ++r.stats["iid_probes"];auto v=probe(d-2,a,beta,ply,prev);if(!v.pv.empty())preferred=v.pv[0];
+         }
+-        moves=order(std::move(moves),ply,preferred,prev);
++        auto ordered=order(std::move(moves),ply,preferred,prev);
+         if(f.etc&&cacheable(path)&&d>=2) {
+-            for(Move m:moves) {
++            for(Move m:ordered) {
+                 check();++r.stats["etc_probes"];auto id=child_path(path,m);
+                 auto found=tt.find({id,d-1,ext});
+                 if(found!=tt.end()&&found->second.flag<=0) {
+@@ -445,19 +486,19 @@
+             }
+         }
+         if(eligible&&f.multicut&&d>=3) {
+-            int cuts=0;for(size_t i=0;i<std::min<size_t>(6,moves.size());++i){Move m=moves[i];Value v;++r.stats["multicut_probes"];{PlayedMove move(b,m);v=probe(d-3,-beta,-beta+1,ply+1,m);}if(-v.score>=beta)++cuts;if(cuts>=3){++r.stats["multicut_prunes"];event("multicut",d,ply,a,beta,beta,true);return finish({beta,{}});}}
++            int cuts=0;for(size_t i=0;i<std::min<size_t>(6,ordered.size());++i){Move m=ordered[i];Value v;++r.stats["multicut_probes"];{PlayedMove move(b,m);v=probe(d-3,-beta,-beta+1,ply+1,m);}if(-v.score>=beta)++cuts;if(cuts>=3){++r.stats["multicut_prunes"];event("multicut",d,ply,a,beta,beta,true);return finish({beta,{}});}}
+         }
+         Move singular=MOVE_NONE;
+-        if(f.singular&&!isolated&&d>=4&&ext>0&&preferred!=MOVE_NONE&&moves.front()==preferred) {
++        if(f.singular&&!isolated&&d>=4&&ext>0&&preferred!=MOVE_NONE&&ordered.front()==preferred) {
+             ++r.stats["singular_probes"];int candidate;
+             {PlayedMove move(b,preferred);candidate=-probe(d-3,-infinity,infinity,ply+1,preferred).score;}
+             int threshold=candidate-150;bool unique=std::abs(candidate)<90000;
+-            for(Move m:moves)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
++            for(Move m:ordered)if(m!=preferred&&unique){PlayedMove move(b,m);if(-probe(d-3,-threshold,-threshold+1,ply+1,m).score>=threshold)unique=false;}
+             if(unique){singular=preferred;++r.stats["singular_confirmed"];}
+         }
+         Value best{-infinity,{}};size_t index=0;std::vector<Move> quiet_searched,captures_searched;
+         const Color side=b.pos.side_to_move();
+-        for(Move m:moves) {
++        for(Move m:ordered) {
+             const bool noise=tactical(m),gives=b.pos.gives_check(m);
+             // Never prune first move, captures, promotions, checks, drops, evasions.
+             if(eligible&&index>0&&!noise&&!gives&&!is_drop(m)&&f.futility&&d<=2&&stand+300*d<=a) {
+@@ -470,14 +511,25 @@
+                 else if(m==singular){extension=1;++r.stats["singular_extensions"];}
+             }
+             int nd=d-1+extension;
+-            bool reduce=!isolated&&f.lmr&&d>=3&&index>=4&&!checked&&!noise&&!gives&&!is_drop(m)&&extension==0;
++            bool reduce=!isolated&&(f.lmr||f.history_lmr)&&d>=3&&index>=4&&!checked&&!noise&&!gives&&!is_drop(m)&&extension==0;
++            int reduction=(d>=6&&index>=12)?2:1;
++            if(reduce&&f.history_lmr) {
++                // Conservative protection, plus one extra ply only for late
++                // non-PV moves with negative online history. No trained model.
++                const bool protected_move=m==preferred||m==killers[ply][0]||m==killers[ply][1]
++                    ||(prev!=MOVE_NONE&&m==counters[side][pack(prev)])||history[side][pack(m)]>=1024;
++                if(pvnode||protected_move){--reduction;++r.stats["history_lmr_protections"];}
++                else if(d>=5&&index>=8&&history[side][pack(m)]<0){++reduction;++r.stats["history_lmr_extra"];}
++                reduction=std::clamp(reduction,0,std::max(0,nd-1));
++                reduce=reduction>0;
++            }
+             Value c;auto id=child_path(path,m);
+             if(ply==0)current_root_move=m;
+             {
+                 PlayedMove move(b,m);
+                 if(reduce) {
+                     ++r.stats["lmr_reductions"];
+-                    int red=(d>=6&&index>=12)?2:1;
++                    int red=reduction;
+                     c=visit(std::max(0,nd-red),-a-1,-a,ply+1,id,ext-extension,true,m);
+                     if(-c.score>a){++r.stats["lmr_researches"];c=visit(nd,-beta,-a,ply+1,id,ext-extension,true,m);}
+                 } else if(o.driver!="ab"&&index>0&&beta-a>1) {
+@@ -494,7 +546,7 @@
+             if(!noise)quiet_searched.push_back(m);
+             else if(f.capture_history)captures_searched.push_back(m);
+             if(a>=beta) {
+-                ++r.base.cutoffs;r.base.skipped_siblings+=moves.size()-index-1;
++                ++r.base.cutoffs;r.base.skipped_siblings+=ordered.size()-index-1;
+                 learn_captures(m,captures_searched,d);
+                 if(!noise&&!isolated) {
+                     if(f.killer){if(killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}++r.stats["killer_updates"];}
+@@ -517,9 +569,9 @@
+         if(auto rep=b.repetition_score(ply))return {*rep,{}};
+         auto moves=b.legal_moves();if(moves.empty())return {-mate+ply,{}};
+         if(budget<=0){++r.base.leaves;return {eval(b),{}};}
+-        moves=order(std::move(moves),ply,MOVE_NONE,prev);
++        auto ordered=order(std::move(moves),ply,MOVE_NONE,prev);
+         Value best{-infinity,{}};size_t index=0;
+-        for(Move m:moves) {
++        for(Move m:ordered) {
+             // Compact category model adapted from Tsuruoka et al. Table 1.
+             // It is not a re-trained professional-game probability model.
+             double p=.05;
+@@ -530,7 +582,7 @@
+             if(capture&&prev!=MOVE_NONE&&to_sq(m)==to_sq(prev))p=std::max(p,exchange_gain>0?.89:exchange_gain==0?.22:.05);
+             if(is_promote(m))p=std::max(p,exchange_gain>=0?.22:.02);
+             if(b.pos.gives_check(m))p=std::max(p,exchange_gain>0?.43:exchange_gain==0?.25:.04);
+-            int cost=moves.size()==1?0:int(std::lround(-std::log2(p)*1000));
++            int cost=ordered.size()==1?0:int(std::lround(-std::log2(p)*1000));
+             if(o.driver=="erps"&&index<5&&cost>1000){cost=1000;++r.stats["erps_early_caps"];}
+             Value c;
+             if(ply==0)current_root_move=m;
+@@ -576,9 +628,9 @@
+         tick();
+         if(!null_level)if(auto rep=b.repetition_score(0))return {{*rep,{}}};
+         auto moves=b.legal_moves();if(moves.empty())return {{-mate,{}}};
+-        moves=order(std::move(moves),0,MOVE_NONE,MOVE_NONE);
++        auto ordered=order(std::move(moves),0,MOVE_NONE,MOVE_NONE);
+         std::vector<AdvancedLine> lines;
+-        for(Move m:moves) {
++        for(Move m:ordered) {
+             Value c;auto path=child_path(1,m);bool reject=false;
+             current_root_move=m;
+             {PlayedMove move(b,m);
+@@ -621,6 +673,7 @@
+         f.adaptive_null=o.features.count("adaptive-null")!=0;
+         f.verified_null=o.features.count("verified-null")!=0;
+         f.lmr=o.features.count("lmr")!=0;
++        f.history_lmr=o.features.count("history-lmr")!=0;
+         f.check_extension=o.features.count("check-extension")!=0;
+         f.recapture_extension=o.features.count("recapture-extension")!=0;
+         f.singular=o.features.count("singular")!=0;
+@@ -632,7 +685,7 @@
+         const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps"};
+         if(!drivers.count(o.driver))throw std::invalid_argument("Unknown driver");
+         if(o.limits.depth<0||o.limits.depth>16||!o.limits.max_nodes||o.limits.time_ms>3600000||o.multipv<1||o.multipv>5||o.qdepth<0||o.qdepth>16||o.extension_budget<0||o.extension_budget>8||o.tt_capacity<1||o.tt_capacity>1000000||o.aspiration<1||o.aspiration>10000)throw std::invalid_argument("Invalid advanced limits");
+-        const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","multicut","probcut","multiprobcut"};
++        const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","history-lmr","multicut","probcut","multiprobcut"};
+         for(auto& f:selective)if(on(f))r.selective=true;
+         const std::set<std::string> prune_policies={"off","collect","direct","guarded","verified","staticcheck","efficient"};
+         if(!prune_policies.count(o.prune_policy))throw std::invalid_argument("Unknown learned prune policy");
+@@ -727,7 +780,7 @@
+     const auto first_comma=base.find(',');
+     base="{\"algorithm\":\"advanced\""+base.substr(first_comma);
+     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
+-        <<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
++        <<",\"lazy_ordering\":"<<(o.lazy_ordering?"true":"false")<<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
+     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
+     out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
+        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
+--- a/src/advanced.hpp
++++ b/src/advanced.hpp
+@@ -19,6 +19,7 @@
+     std::string evaluation_model;
+     bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
+     bool compact_ordering = true;
++    bool lazy_ordering = true; // Exact same frozen priorities, extract only consumed moves.
+     bool direct_qmoves = true;
+     bool defer_qmoves = true;
+     std::string policy_model; // Quiet move ordering only; no evaluation/pruning.
+--- a/src/advanced_tests.cpp
++++ b/src/advanced_tests.cpp
+@@ -91,8 +91,8 @@
+         ref.limits.depth=3;ref.limits.max_nodes=12000;ref.limits.iterative=true;
+         ref.compact_ordering=false;ref.direct_qmoves=false;ref.defer_qmoves=false;
+         auto expected=advanced_search(board,ref);
+-        for(int variant=1;variant<8;++variant) {
+-            auto opt=ref;opt.compact_ordering=variant&1;opt.direct_qmoves=variant&2;opt.defer_qmoves=variant&4;
++        for(int variant=1;variant<16;++variant) {
++            auto opt=ref;opt.compact_ordering=variant&1;opt.direct_qmoves=variant&2;opt.defer_qmoves=variant&4;opt.lazy_ordering=variant&8;
+             auto actual=advanced_search(board,opt);
+             require(actual.base.score==expected.base.score&&actual.base.pv==expected.base.pv&&actual.base.nodes==expected.base.nodes
+                 &&actual.base.completed_depth==expected.base.completed_depth&&actual.base.stop_reason==expected.base.stop_reason,"exact qsearch/order ablation");
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -44,9 +44,10 @@
+                     "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
+                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
+                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
+-                    "  --eval material|positional|learned|nnue|nnue-full|nnue-verify [--eval-model PATH] (advanced/USI)\n"
++                    "  --eval material|positional|learned|nnue|nnue-full|nnue-verify|nnue-scalar [--eval-model PATH] (advanced/USI)\n"
+                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
+                     "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
++                    "  --eager-order (v0.15: fully sort moves instead of lazy extraction)\n"
+                     "  --eval-batch (stdin: one SFEN per line; output features and evaluation)\n"
+                     "  --nnue-features (with --eval-batch --eval nnue: export frozen 32-unit features)\n"
+                     "  --leaf-trace PATH (opt-in qsearch entry/return observations)\n"
+@@ -97,6 +98,7 @@
+             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
+             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
+             else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
++            else if (arg == "--eager-order") advanced_options.lazy_ordering=false;
+             else if (arg == "--full-qmoves") advanced_options.direct_qmoves=false;
+             else if (arg == "--eager-qmoves") advanced_options.defer_qmoves=false;
+             else if (arg == "--eval-batch") eval_batch=true;
+--- a/src/nnue.cpp
++++ b/src/nnue.cpp
+@@ -3,6 +3,10 @@
+ #include "nnue.hpp"
+ #include <algorithm>
+ #include <stdexcept>
++#if (defined(__x86_64__) || defined(__i386__)) && (defined(__GNUC__) || defined(__clang__))
++#include <immintrin.h>
++#define LAB_AVX2_DISPATCH 1
++#endif
+ 
+ namespace lab {
+ namespace {
+@@ -46,12 +50,64 @@
+     const auto bits=static_cast<uint16_t>(n);
+     return static_cast<int16_t>(bits<32768?int(bits):int(bits)-65536);
+ }
+-template<size_t N,size_t M> std::array<uint8_t,M> hidden(
++template<size_t N,size_t M> std::array<uint8_t,M> hidden_scalar(
+     const std::array<uint8_t,N>& x,const std::array<int32_t,M>& bias,const std::array<int8_t,N*M>& weights) {
+     std::array<uint8_t,M> out{};
+     for(size_t j=0;j<M;++j){int32_t sum=bias[j];for(size_t i=0;i<N;++i)sum+=x[i]*int(weights[j*N+i]);
+         out[j]=uint8_t(sum<=0?0:std::min(127,sum/64));}
+     return out;
++}
++bool has_avx2() {
++#ifdef LAB_AVX2_DISPATCH
++    return __builtin_cpu_supports("avx2");
++#else
++    return false;
++#endif
++}
++#ifdef LAB_AVX2_DISPATCH
++// x is in [0,127], w in [-128,127]. Each adjacent pair is in
++// [-32512,32258], so maddubs' signed saturation never changes the result.
++// Sum in 32 bits before adding the validated bias. No global -march flag.
++template<size_t N,size_t M> __attribute__((target("avx2")))
++std::array<uint8_t,M> hidden_avx2(const std::array<uint8_t,N>& x,
++    const std::array<int32_t,M>& bias,const std::array<int8_t,N*M>& weights) {
++    static_assert(N%32==0,"AVX2 affine inputs must be a multiple of 32");
++    std::array<uint8_t,M> out{};
++    const __m256i ones=_mm256_set1_epi16(1);
++    for(size_t j=0;j<M;++j) {
++        __m256i sum=_mm256_setzero_si256();
++        for(size_t i=0;i<N;i+=32) {
++            const auto a=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(x.data()+i));
++            const auto w=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(weights.data()+j*N+i));
++            sum=_mm256_add_epi32(sum,_mm256_madd_epi16(_mm256_maddubs_epi16(a,w),ones));
++        }
++        __m128i s=_mm_add_epi32(_mm256_castsi256_si128(sum),_mm256_extracti128_si256(sum,1));
++        s=_mm_add_epi32(s,_mm_srli_si128(s,8));s=_mm_add_epi32(s,_mm_srli_si128(s,4));
++        const int32_t v=bias[j]+_mm_cvtsi128_si32(s);
++        out[j]=uint8_t(v<=0?0:std::min(127,v/64));
++    }
++    return out;
++}
++__attribute__((target("avx2"))) void add_avx2(int16_t* a,const int16_t* w,int amount) {
++    const auto factor=_mm256_set1_epi16(int16_t(amount));
++    for(int j=0;j<width;j+=16) {
++        const auto x=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(a+j));
++        const auto y=_mm256_loadu_si256(reinterpret_cast<const __m256i*>(w+j));
++        _mm256_storeu_si256(reinterpret_cast<__m256i*>(a+j),_mm256_add_epi16(x,_mm256_mullo_epi16(y,factor)));
++    }
++}
++#endif
++template<size_t N,size_t M> std::array<uint8_t,M> hidden(
++    const std::array<uint8_t,N>& x,const std::array<int32_t,M>& bias,
++    const std::array<int8_t,N*M>& weights,bool vectorized,bool verify) {
++#ifdef LAB_AVX2_DISPATCH
++    if(vectorized) {
++        auto out=hidden_avx2<N,M>(x,bias,weights);
++        if(verify&&out!=hidden_scalar<N,M>(x,bias,weights))throw std::logic_error("NNUE SIMD affine mismatch");
++        return out;
++    }
++#endif
++    return hidden_scalar<N,M>(x,bias,weights);
+ }
+ }
+ struct Nnue::Impl {
+@@ -65,8 +121,11 @@
+     struct Frame {bool valid=false;Snapshot snapshot{};Acc acc{};int score=0;};
+     std::vector<Frame> frames;
+     std::string policy;
++    bool vectorized=false;
+     std::map<std::string,uint64_t> counts;
+     Impl(const std::string& path,const std::string& mode):weights(inputs*width),policy(mode) {
++        vectorized=mode!="nnue-scalar"&&has_avx2();
++        counts["nnue_avx2_enabled"]=vectorized;
+         Reader r(path);r.expect(0x7af32f16);r.expect(0x5c6464a9);
+         const std::string architecture="Features=K+P[1710->256x2],Network=AffineTransform[1<-32](ClippedReLU[32](AffineTransform[32<-32](ClippedReLU[32](AffineTransform[32<-512](InputSlice[512(0:512)])))))";
+         r.expect(uint32_t(architecture.size()));
+@@ -80,6 +139,9 @@
+     }
+     void add(Acc& a,int perspective,int index,int amount) const {
+         const auto* column=&weights[index*width];
++#ifdef LAB_AVX2_DISPATCH
++        if(vectorized){add_avx2(a[perspective].data(),column,amount);return;}
++#endif
+         for(int j=0;j<width;++j)a[perspective][j]=wrap16(int(a[perspective][j])+amount*int(column[j]));
+     }
+     Acc refresh(const Snapshot& s) const {
+@@ -94,22 +156,29 @@
+     }
+     Acc update(const Frame& from,const Snapshot& to) const {
+         Acc a=from.acc;const auto& old=from.snapshot;
+-        for(int sq=0;sq<81;++sq)if(old.squares[sq]!=to.squares[sq])for(int c=0;c<2;++c){
+-            if(old.squares[sq])add(a,c,feature(Piece(old.squares[sq]),sq,c),-1);
+-            if(to.squares[sq])add(a,c,feature(Piece(to.squares[sq]),sq,c),1);
++        int zero=0;
++        for(int sq=0;sq<81;++sq)if(old.squares[sq]!=to.squares[sq]) {
++            zero+=(old.squares[sq]&&type_of(Piece(old.squares[sq]))!=KING)
++                 -(to.squares[sq]&&type_of(Piece(to.squares[sq]))!=KING);
++            for(int c=0;c<2;++c){
++                if(old.squares[sq])add(a,c,feature(Piece(old.squares[sq]),sq,c),-1);
++                if(to.squares[sq])add(a,c,feature(Piece(to.squares[sq]),sq,c),1);
++            }
+         }
+         for(int side=0;side<2;++side)for(int pt=1;pt<=7;++pt){
+             int before=hand_count(old.hands[side],PieceType(pt)),after=hand_count(to.hands[side],PieceType(pt));
++            zero+=before-after;
+             for(int i=std::min(before,after);i<std::max(before,after);++i)
+                 for(int c=0;c<2;++c)add(a,c,hand_feature(pt,side,c,i),after>before?1:-1);
+         }
+-        int zero=missing(to)-missing(old);if(zero)for(int c=0;c<2;++c)add(a,c,0,zero);
++        if(zero)for(int c=0;c<2;++c)add(a,c,0,zero);
+         return a;
+     }
+     int score(const Acc& a,Color side) const {
+         std::array<uint8_t,512> x;
+         for(int c=0;c<2;++c)for(int j=0;j<width;++j)x[c*width+j]=uint8_t(std::clamp(int(a[int(side)^c][j]),0,127));
+-        const auto h1=hidden<512,32>(x,b1,w1),h2=hidden<32,32>(h1,b2,w2);
++        const auto h1=hidden<512,32>(x,b1,w1,vectorized,policy=="nnue-verify"),
++                   h2=hidden<32,32>(h1,b2,w2,vectorized,policy=="nnue-verify");
+         int32_t out=b3[0];for(int i=0;i<32;++i)out+=int(h2[i])*w3[i];
+         // Preserve the upstream raw unit (PawnValue=90), including truncation.
+         return std::clamp(out/16,-27000,27000);
+@@ -118,7 +187,7 @@
+         const auto& s=b.history.back();const Acc a=refresh(s);
+         std::array<uint8_t,512> x;
+         for(int c=0;c<2;++c)for(int j=0;j<width;++j)x[c*width+j]=uint8_t(std::clamp(int(a[int(s.side)^c][j]),0,127));
+-        return hidden<512,32>(x,b1,w1);
++        return hidden<512,32>(x,b1,w1,vectorized,policy=="nnue-verify");
+     }
+     int evaluate(const Board& b) {
+         ++counts["nnue_calls"];const auto& s=b.history.back();
+--- a/src/positional.cpp
++++ b/src/positional.cpp
+@@ -65,7 +65,7 @@
+     return x;
+ }
+ Evaluator::Evaluator(const std::string& mode,const std::string& model):mode_(mode){
+-    if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"){
++    if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
+         nnue_=std::make_unique<Nnue>(model,mode);return;
+     }
+     if(mode!="material"&&mode!="positional"&&mode!="learned")throw std::invalid_argument("Eval must be material|positional|learned|nnue|nnue-full|nnue-verify");

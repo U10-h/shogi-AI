@@ -119,9 +119,9 @@ npm start
 
 ## GitHubへの保存状況
 
-2026-09-22、ユーザーの書き込み許可に基づき、Webアプリの既存17コミットを維持し、探索研究の保存済みスナップショットをv0.14まで順に取り込みました。実装・学習モデル・棋譜・探索ログ・報告書・再現手順は [engines/shogi-search-lab](engines/shogi-search-lab) にあります。保存版の出所と検証結果は [履歴の取込み記録](docs/history/github-import-20260922.md) にまとめています。
+2026-09-22、ユーザーの書き込み許可に基づき、Webアプリの既存17コミットを維持し、探索研究の保存済みスナップショットをv0.15まで順に取り込みました。実装・学習モデル・棋譜・探索ログ・報告書・再現手順は [engines/shogi-search-lab](engines/shogi-search-lab) にあります。保存版の出所と検証結果は [履歴の取込み記録](docs/history/github-import-20260922.md) にまとめています。
 
-保存先は [U10-h/shogi-AI](https://github.com/U10-h/shogi-AI)。完成済みv0.14までを `main`、取得時点のv0.15を `work/v0.15-checkpoint-20260922` に分けて保存しています。元のコミットのハッシュと親子関係も保持しています。
+保存先は [U10-h/shogi-AI](https://github.com/U10-h/shogi-AI)。`main` の最新完成版は **v0.15** です。[実験結果と採用判断](engines/shogi-search-lab/REPORT-v0.15.md)、[起動・再現手順](engines/shogi-search-lab/REPRODUCE-v0.15.md)、[完成版の反映記録](docs/history/v0.15-promotion-20260922.md)を確認できます。元のコミットのハッシュと親子関係も保持しています。
 
 設計と次の実装順序は [docs/ROADMAP.md](docs/ROADMAP.md)。ライセンスは [GPLv3](LICENSE)。同梱ライブラリには個別のライセンスが適用されます。
 
