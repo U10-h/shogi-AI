@@ -1,0 +1,40 @@
+{
+  "measured_binary_sha256": "ef9eae6e94fdf894dd516d40ecfb2f1b2f6b3f5ff17ac90f3fca90d42943f258",
+  "final_binary_sha256": "5c772451b9b440550d58a52186c40fb9387b74a5b551b006c06fd3092d17954d",
+  "measured_source_commit": "12579147ea718c36ca2a095813da53e0f3d5364c",
+  "postmeasurement_change": "USI option declaration lists the three new evaluator names. Search and evaluation algorithms unchanged. Restore checkpoints/v0.16-measured/src/advanced_usi.cpp for the measured interface.",
+  "checks": [
+    {
+      "mode": "nnue",
+      "move": "2g2f",
+      "transcript": [
+        "info depth 4 nodes 13455 time 30 score cp 72 pv 2g2f 3c3d 6i7h 8b5b 2f2e",
+        "bestmove 2g2f"
+      ]
+    },
+    {
+      "mode": "nnue-blend25",
+      "move": "2g2f",
+      "transcript": [
+        "info depth 4 nodes 14653 time 30 score cp 71 pv 2g2f 3c3d 6i7h 2b3c 3i4h",
+        "bestmove 2g2f"
+      ]
+    },
+    {
+      "mode": "nnue-clipped",
+      "move": "2g2f",
+      "transcript": [
+        "info depth 4 nodes 13378 time 30 score cp 71 pv 2g2f 3c3d 6i7h 2b3c 3i4h",
+        "bestmove 2g2f"
+      ]
+    },
+    {
+      "mode": "nnue-tempo40",
+      "move": "2g2f",
+      "transcript": [
+        "info depth 4 nodes 12558 time 30 score cp 73 pv 2g2f 3c3d 7g7f 2b8h+ 7i8h",
+        "bestmove 2g2f"
+      ]
+    }
+  ]
+}

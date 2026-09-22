@@ -1,0 +1,1 @@
+{"protocol": "post-hoc known v0.15 roots, 8 x 50k nodes x 2 variants x 2 repetitions, serial order rotation", "observed_over_old_time_ratio": 1.0503538880928913, "median_sums_ms": {"old": 684.3265, "observed": 718.785}}

@@ -1,0 +1,11 @@
+file:///workspace/scratch/4f541037fb1b/repo/engines/shogi-search-lab/scripts/audit_v16.mjs:18
+  if(r.position.sfen!==m.beforeSfen)throw Error('Before SFEN mismatch');
+                                          ^
+
+Error: Before SFEN mismatch
+    at file:///workspace/scratch/4f541037fb1b/repo/engines/shogi-search-lab/scripts/audit_v16.mjs:18:43
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.19.0

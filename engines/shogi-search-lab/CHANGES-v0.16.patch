@@ -1,0 +1,397 @@
+diff --git a/engines/shogi-search-lab/src/advanced.cpp b/engines/shogi-search-lab/src/advanced.cpp
+index ab4c261..9462a0f 100644
+--- a/engines/shogi-search-lab/src/advanced.cpp
++++ b/engines/shogi-search-lab/src/advanced.cpp
+@@ -286,9 +286,12 @@ class Worker {
+     }
+     Value qsearch(int a,int beta,int ply,int left,uint64_t parent=0,Move incoming=MOVE_NONE) {
+         tick();++r.stats["qnodes"];
++        r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
+         const uint64_t node=r.base.nodes;
+         const int original_a=a;
+         auto finish=[&](Value v,const char* reason) {
++            ++r.stats["qreturn_count"];r.stats["qreturn_ply_sum"]+=ply;
++            ++r.stats["qreturn_ply_"+std::to_string(ply)];
+             leaf_event("qreturn",node,parent,incoming,ply,left,original_a,beta,reason,true,v.score,v.pv);return v;
+         };
+         if(!null_level)if(auto rep=b.repetition_score(ply))return finish({*rep,{}},"repetition");
+@@ -311,7 +314,7 @@ class Worker {
+         const int stand=(!checked||o.eager_evaluation)?eval(b):0; Value best{checked?-infinity:stand,{}};
+         leaf_event("qeval",node,parent,incoming,ply,left,a,beta,checked?"check_evasion":"stand_pat",!checked,stand);
+         if(!checked) {
+-            if(left<=0){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
++            if(left<=0&&o.driver!="adaptive"){++r.base.leaves;if(deferred)++r.stats["q_avoided_generations"];return finish(best,"qdepth_limit");}
+             if(stand>=beta){++r.stats["qstand_cutoffs"];if(deferred)++r.stats["q_avoided_generations"];return finish(best,"stand_pat_cutoff");}
+             a=std::max(a,stand);
+             if(deferred)generate();
+@@ -562,6 +565,87 @@ class Worker {
+         }
+         return finish(best);
+     }
++    // Fractional effort, not a uniform ply horizon. Edge costs are hand-tuned
++    // priority scores, NOT calibrated probabilities. No fixed top-k exclusion.
++    Value adaptive(int effort,int a,int beta,int ply,uint64_t path,Move prev) {
++        r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
++        if(effort<=0)return qsearch(a,beta,ply,0,0,prev);
++        tick();++r.stats["adaptive_nodes"];
++        if(ply>=max_ply-1)throw Stop{"ply_limit"};
++        if(auto rep=b.repetition_score(ply))return {*rep,{}};
++        auto moves=b.legal_moves();
++        if(moves.empty()){++r.base.terminals;return {-mate+ply,{}};}
++        const int original_a=a;const Key key{path,effort,0};
++        Move preferred=MOVE_NONE;
++        if(f.tt){
++            auto hint=hash_moves.find(uint64_t(b.pos.key()));if(hint!=hash_moves.end())preferred=hint->second;
++            if(cacheable(path)){
++                ++r.stats["tt_probes"];auto it=tt.find(key);
++                if(it!=tt.end()){
++                    ++r.stats["tt_hits"];const auto& e=it->second;int s=root_score(e.score,ply);preferred=e.move;
++                    if(e.flag==0||(e.flag>0&&s>=beta)||(e.flag<0&&s<=a)){++r.stats["tt_cutoffs"];return {s,e.pv};}
++                }
++            }
++        }
++        const bool checked=b.pos.in_check();const Color side=b.pos.side_to_move();
++        auto ordered=order(std::move(moves),ply,preferred,prev);
++        r.stats["max_legal_width"]=std::max(r.stats["max_legal_width"],uint64_t(ordered.size()));
++        Value best{-infinity,{}};size_t index=0;std::vector<Move> captures,quiets;
++        for(Move m:ordered){
++            const bool noise=tactical(m),gives=b.pos.gives_check(m);
++            const bool protected_move=m==preferred||m==killers[ply][0]||m==killers[ply][1]
++                ||(prev!=MOVE_NONE&&m==counters[side][pack(prev)]);
++            int cost=4;
++            if(ply>0){
++                if(ordered.size()==1)cost=1;
++                else if(checked||gives||(noise&&prev!=MOVE_NONE&&to_sq(m)==to_sq(prev)))cost=3;
++                else if(protected_move)cost=3;
++                else if(noise||is_drop(m))cost=4;
++                else {
++                    cost=std::clamp(4+int(std::log2(double(index)+1.0)*2)-history[side][pack(m)]/1024,3,12);
++                }
++            }
++            ++r.stats["edge_cost_"+std::to_string(cost)];
++            Value c;const auto id=child_path(path,m);const auto before=r.base.nodes;
++            if(ply==0)current_root_move=m;
++            {
++                PlayedMove move(b,m);
++                if(cost>4){
++                    ++r.stats["adaptive_reductions"];
++                    c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
++                    if(-c.score>a){++r.stats["adaptive_researches"];c=adaptive(effort-4,-beta,-a,ply+1,id,m);}
++                }else if(index>0&&beta-a>1){
++                    ++r.stats["pvs_probes"];c=adaptive(effort-cost,-a-1,-a,ply+1,id,m);
++                    if(-c.score>a&&-c.score<beta){++r.stats["pvs_researches"];c=adaptive(effort-cost,-beta,-a,ply+1,id,m);}
++                }else c=adaptive(effort-cost,-beta,-a,ply+1,id,m);
++            }
++            if(ply==0)r.stats["root_nodes_"+usi(m)]+=r.base.nodes-before;
++            if(-c.score>best.score){best={-c.score,{m}};best.pv.insert(best.pv.end(),c.pv.begin(),c.pv.end());}
++            if(ply==0&&!r.base.has_result){++r.completed_root_moves;partial_root=best;}
++            a=std::max(a,best.score);
++            if(noise)captures.push_back(m);else quiets.push_back(m);
++            if(a>=beta){
++                ++r.base.cutoffs;r.base.skipped_siblings+=ordered.size()-index-1;
++                learn_captures(m,captures,std::max(1,effort/4));
++                if(!noise){
++                    if(f.killer&&killers[ply][0]!=m){killers[ply][1]=killers[ply][0];killers[ply][0]=m;}
++                    if(f.history){
++                        const int bonus=std::min(2000,32*(1+effort/4)*(1+effort/4));
++                        auto update=[&](Move h,int delta){auto& v=history[side][pack(h)];v+=delta-v*std::abs(delta)/16384;};
++                        update(m,bonus);for(Move h:quiets)if(h!=m)update(h,-bonus/2);
++                    }
++                    if(f.counter&&prev!=MOVE_NONE)counters[side][pack(prev)]=m;
++                }
++                break;
++            }
++            ++index;
++        }
++        if(f.tt&&!best.pv.empty()){
++            if(hash_moves.size()<o.tt_capacity||hash_moves.count(uint64_t(b.pos.key())))hash_moves[uint64_t(b.pos.key())]=best.pv.front();
++            if(cacheable(path)&&(tt.size()<o.tt_capacity||tt.count(key)))tt[key]={local_score(best.score,ply),best.score<=original_a?-1:best.score>=beta?1:0,best.pv.front(),best.pv};
++        }
++        return best;
++    }
+     Value rps(int budget,int a,int beta,int ply,Move prev) {
+         if(budget<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth,0,prev);
+         tick();++r.stats["rps_nodes"];
+@@ -598,6 +682,7 @@ class Worker {
+         return best;
+     }
+     Value root(int d,int guess) {
++        if(o.driver=="adaptive")return adaptive(d*4,-infinity,infinity,0,1,MOVE_NONE);
+         if(o.driver=="rps"||o.driver=="erps")return rps(1000*d,-infinity,infinity,0,MOVE_NONE);
+         if(o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual") {
+             // True game-value limits, not the wider alpha-beta sentinels.
+@@ -652,7 +737,7 @@ class Worker {
+     }
+ public:
+     AdvancedResult r;
+-    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model),policy(o.policy_model) {
++    Worker(Board& board,const AdvancedOptions& options):b(board),o(options),eval(o.evaluation,o.evaluation_model,o.evaluation_head),policy(o.policy_model) {
+         if(o.policy_scale<0||o.policy_scale>16)throw std::invalid_argument("Policy scale must be 0..16");
+         f.tt=o.features.count("tt")!=0;
+         f.history=o.features.count("history")!=0;
+@@ -682,7 +767,7 @@ public:
+         f.multiprobcut=o.features.count("multiprobcut")!=0;
+ 
+         const auto known=advanced_features();for(auto& f:o.features)if(!known.count(f))throw std::invalid_argument("Unknown feature "+f);
+-        const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps"};
++        const std::set<std::string> drivers={"ab","pvs","aspiration","mtdf","sss","dual","rps","erps","adaptive"};
+         if(!drivers.count(o.driver))throw std::invalid_argument("Unknown driver");
+         if(o.limits.depth<0||o.limits.depth>16||!o.limits.max_nodes||o.limits.time_ms>3600000||o.multipv<1||o.multipv>5||o.qdepth<0||o.qdepth>16||o.extension_budget<0||o.extension_budget>8||o.tt_capacity<1||o.tt_capacity>1000000||o.aspiration<1||o.aspiration>10000)throw std::invalid_argument("Invalid advanced limits");
+         const std::set<std::string> selective={"see-prune","delta","futility","reverse-futility","razoring","null","adaptive-null","verified-null","lmr","history-lmr","multicut","probcut","multiprobcut"};
+@@ -716,7 +801,14 @@ public:
+             r.selective=true;
+             for(auto& f:o.features)if(f!="qsearch"&&f!="see-order")throw std::invalid_argument("RPS/ERPS use only qsearch and see-order features; pass --features explicitly");
+         }
++        if(o.driver=="adaptive") {
++            if(o.multipv!=1||!f.qsearch||prune_enabled)throw std::invalid_argument("Adaptive requires MultiPV=1, qsearch, no learned pruning");
++            for(const auto& x:o.features)if(x!="tt"&&x!="history"&&x!="capture-history"&&x!="killer"&&x!="counter"&&x!="mate-distance")
++                if(x!="qsearch")throw std::invalid_argument("Unsupported adaptive feature: "+x);
++            r.selective=true;
++        }
+         r.leaf_policy=f.qsearch?"bounded_quiescence":"fixed_"+o.evaluation;
++        if(o.driver=="adaptive")r.leaf_policy="fractional_effort+quiescence_until_quiet";
+         if(o.driver=="rps"||o.driver=="erps")r.leaf_policy="probability_budget+"+r.leaf_policy;
+         if(f.check_extension||f.recapture_extension||f.singular)r.leaf_policy+="+extensions";
+         if((o.driver=="mtdf"||o.driver=="sss"||o.driver=="dual")&&(!f.tt||r.selective||r.leaf_policy.find("extensions")!=std::string::npos))throw std::invalid_argument("MTD drivers require tt and a nonselective fixed leaf policy");
+@@ -741,9 +833,11 @@ public:
+     }
+     AdvancedResult run() {
+         start=now();
+-        int first=o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
++        const bool adaptive_mode=o.driver=="adaptive";
++        int first=adaptive_mode?1:o.limits.iterative&&o.limits.depth>0?1:o.limits.depth;
++        const int last=adaptive_mode?1000000:o.limits.depth;
+         try {
+-            for(int d=first;d<=o.limits.depth;++d) {
++            for(int d=first;d<=last;++d) {
+                 iteration_depth=d;current_root_move=MOVE_NONE;
+                 uint64_t before=r.base.nodes;double t=now();Value v;std::vector<AdvancedLine> lines;
+                 if(o.multipv>1&&d>0){lines=rank(d);v={lines.front().score,lines.front().pv};}
+@@ -751,7 +845,7 @@ public:
+                 r.base.score=v.score;r.base.pv=v.pv;r.candidates=std::move(lines);
+                 r.base.has_result=true;r.base.completed_depth=d;
+                 r.base.iterations.push_back({d,v.score,r.base.nodes-before,0,now()-t,v.pv});
+-                if(d==o.limits.depth){r.base.complete=true;r.base.stop_reason="depth_limit";}
++                if(!adaptive_mode&&d==o.limits.depth){r.base.complete=true;r.base.stop_reason="depth_limit";}
+                 if(d>0&&v.pv.empty()&&(b.repetition_score(0).has_value()||b.legal_moves().empty())){r.base.complete=true;r.base.stop_reason="terminal";break;}
+             }
+         }catch(const Stop& stop){r.base.stop_reason=stop.reason;}
+@@ -782,7 +876,8 @@ std::string advanced_json(const AdvancedResult& r,const AdvancedOptions& o) {
+     std::ostringstream out;out<<base<<",\"engine\":\"research-v0.9\",\"evaluation\":"<<quote(o.evaluation)<<",\"score_unit\":"<<quote(o.evaluation.rfind("nnue",0)==0?"yaneuraou_raw_pawn90":"lab_pawn100")<<",\"evaluation_model\":"<<quote(o.evaluation_model)<<",\"eager_evaluation\":"<<(o.eager_evaluation?"true":"false")<<",\"compact_ordering\":"<<(o.compact_ordering?"true":"false")<<",\"direct_qmoves\":"<<(o.direct_qmoves?"true":"false")<<",\"driver\":"<<quote(o.driver)<<",\"selective\":"<<(r.selective?"true":"false")
+         <<",\"lazy_ordering\":"<<(o.lazy_ordering?"true":"false")<<",\"defer_qmoves\":"<<(o.defer_qmoves?"true":"false")<<",\"leaf_policy\":"<<quote(r.leaf_policy)<<",\"features\":[";
+     bool comma=false;for(auto& f:o.features){if(comma)out<<',';out<<quote(f);comma=true;}
+-    out<<"],\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
++    out<<"],\"iteration_unit\":"<<quote(o.driver=="adaptive"?"effort_steps_4":"plies")<<",\"evaluation_head\":"<<quote(o.evaluation_head);
++    out<<",\"policy_model\":"<<quote(o.policy_model)<<",\"policy_scale\":"<<o.policy_scale
+        <<",\"prune_policy\":"<<quote(o.prune_policy)<<",\"prune_model\":"<<quote(o.prune_model)
+        <<",\"prune_probability_override\":"<<o.prune_probability<<",\"prune_audit\":"<<(o.prune_audit?"true":"false")
+        <<",\"stats\":{";comma=false;for(auto& [k,v]:r.stats){if(comma)out<<',';out<<quote(k)<<':'<<v;comma=true;}
+diff --git a/engines/shogi-search-lab/src/advanced.hpp b/engines/shogi-search-lab/src/advanced.hpp
+index acb19c3..2016532 100644
+--- a/engines/shogi-search-lab/src/advanced.hpp
++++ b/engines/shogi-search-lab/src/advanced.hpp
+@@ -17,6 +17,7 @@ struct AdvancedOptions {
+     std::string probcut_model;
+     std::string evaluation = "material";
+     std::string evaluation_model;
++    std::string evaluation_head; // Frozen v0.12 learned head for residual hypotheses.
+     bool eager_evaluation = false; // Control for redundant static-evaluation ablation.
+     bool compact_ordering = true;
+     bool lazy_ordering = true; // Exact same frozen priorities, extract only consumed moves.
+diff --git a/engines/shogi-search-lab/src/advanced_tests.cpp b/engines/shogi-search-lab/src/advanced_tests.cpp
+index 52f141c..e7ce152 100644
+--- a/engines/shogi-search-lab/src/advanced_tests.cpp
++++ b/engines/shogi-search-lab/src/advanced_tests.cpp
+@@ -144,6 +144,23 @@ int advanced_selftest() {
+         auto r=advanced_search(start,h);require(r.base.nodes<=3000&&start.history.size()==1&&start.pos.sfen()==SFEN_HIRATE,"heuristic budget and restoration "+f);
+     }
+     for(auto driver:{"rps","erps"}){AdvancedOptions p;p.features={"qsearch"};p.driver=driver;p.limits.depth=4;p.limits.max_nodes=3000;auto r=advanced_search(start,p);require(r.base.nodes<=3000&&start.history.size()==1,std::string("probability search ")+driver);}
++    for(uint64_t n:{uint64_t(1),uint64_t(31),uint64_t(1000),uint64_t(10000)}) {
++        AdvancedOptions a;set_advanced_preset(a,"tactical");a.driver="adaptive";a.limits.max_nodes=n;
++        auto r=advanced_search(start,a);
++        require(r.base.nodes==n&&r.base.stop_reason=="node_limit","adaptive bounded by nodes not target depth");
++        require(start.pos.sfen()==SFEN_HIRATE&&start.history.size()==1,"adaptive abort restores board");
++        auto pv=r.base.has_result?r.base.pv:r.fallback_pv;
++        require(!pv.empty(),"adaptive legal emergency/completed move");
++        Board replay;for(auto m:pv){auto legal=replay.legal_moves();require(std::find(legal.begin(),legal.end(),m)!=legal.end(),"adaptive PV legal");replay.play_input(usi(m));}
++    }
++    {
++        AdvancedOptions a;set_advanced_preset(a,"tactical");a.driver="adaptive";
++        require(advanced_search(repeat,a).base.score==0,"adaptive respects repetition history");
++        require(advanced_search(perpetual,a).base.score==-mate,"adaptive perpetual check");
++        require(advanced_search(matepos,a).base.score==-mate,"adaptive terminal mate");
++        double t=0;a.limits.clock_ms=[&](){return t++;};a.limits.time_ms=20;
++        require(advanced_search(start,a).base.stop_reason=="time_limit","adaptive time deadline");
++    }
+     std::cout<<"{\"advanced_selftest\":\"passed\",\"checks\":"<<checks<<",\"move_positions\":"<<move_positions<<",\"moves_compared\":"<<move_count<<",\"random_seed\":20260921}\n";return 0;
+ }
+ }
+diff --git a/engines/shogi-search-lab/src/advanced_usi.cpp b/engines/shogi-search-lab/src/advanced_usi.cpp
+index 5ae423d..71835bd 100644
+--- a/engines/shogi-search-lab/src/advanced_usi.cpp
++++ b/engines/shogi-search-lab/src/advanced_usi.cpp
+@@ -27,7 +27,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
+                     AdvancedOptions candidate;set_advanced_preset(candidate,name);
+                     if(candidate.driver==configured.driver&&candidate.features==configured.features)preset=name;
+                 }
+-                send("id name Shogi Search Lab v0.9\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify\noption name USI_Ponder type check default false\nusiok");
++                send("id name Shogi Search Lab v0.9\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify var nnue-blend25 var nnue-clipped var nnue-tempo40\noption name USI_Ponder type check default false\nusiok");
+             }
+             else if(command=="isready")send("readyok");
+             else if(command=="quit"){join();break;}
+@@ -42,7 +42,9 @@ int advanced_usi(const AdvancedOptions& defaults) {
+                 }
+                 else if(name=="MultiPV"){int n=std::stoi(value);if(n<1||n>5)throw std::invalid_argument("Invalid MultiPV");configured.multipv=n;}
+                 else if(name=="Evaluation"){
+-                    Evaluator check(value,(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"");
++                    Evaluator check(value,(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"",
++                        (value=="nnue-blend25"||value=="nnue-clipped")?defaults.evaluation_head:"");
++                    configured.evaluation_head=(value=="nnue-blend25"||value=="nnue-clipped")?defaults.evaluation_head:"";
+                     configured.evaluation=value;
+                     configured.evaluation_model=(value=="learned"||value.rfind("nnue",0)==0)?defaults.evaluation_model:"";
+                 }
+diff --git a/engines/shogi-search-lab/src/main.cpp b/engines/shogi-search-lab/src/main.cpp
+index 77da372..043c984 100644
+--- a/engines/shogi-search-lab/src/main.cpp
++++ b/engines/shogi-search-lab/src/main.cpp
+@@ -41,10 +41,12 @@ int main(int argc, char** argv) {
+                     "  --root-policy full|screen|full-probe|probe (session; default screen)\n"
+                     "  --trace-root-only (session root decisions without recursive events)\n"
+                     "  --advanced --preset baseline|exact|tactical|selective\n"
+-                    "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps\n"
++                    "  --features CSV --driver ab|pvs|aspiration|mtdf|sss|dual|rps|erps|adaptive\n"
+                     "  --multipv 1..5 --qdepth 0..16 --extensions 0..8 --tt-entries N\n"
+                     "  --probcut-model PATH --aspiration N --advanced-selftest --usi\n"
+                     "  --eval material|positional|learned|nnue|nnue-full|nnue-verify|nnue-scalar [--eval-model PATH] (advanced/USI)\n"
++                    "  --eval-head PATH (nnue-blend25|nnue-clipped; nnue-tempo40 needs no head)\n"
++                    "  --driver adaptive: time/node budget, no fixed depth/beam; MultiPV=1\n"
+                     "  --eager-eval (ablation: restore redundant static evaluation)\n"
+                     "  --legacy-order --full-qmoves --eager-qmoves (v0.9 exact-optimization ablations)\n"
+                     "  --eager-order (v0.15: fully sort moves instead of lazy extraction)\n"
+@@ -95,6 +97,7 @@ int main(int argc, char** argv) {
+             else if (arg == "--advanced-selftest") advanced_tests = true;
+             else if (arg == "--usi") usi_mode = true;
+             else if (arg == "--eval") advanced_options.evaluation=value();
++            else if (arg == "--eval-head") advanced_options.evaluation_head=value();
+             else if (arg == "--eval-model") advanced_options.evaluation_model=value();
+             else if (arg == "--eager-eval") advanced_options.eager_evaluation=true;
+             else if (arg == "--legacy-order") advanced_options.compact_ordering=false;
+@@ -152,7 +155,7 @@ int main(int argc, char** argv) {
+         if(nnue_features&&(!eval_batch||advanced_options.evaluation.rfind("nnue",0)!=0))throw std::invalid_argument("--nnue-features requires --eval-batch --eval nnue");
+         if(eval_batch){
+             std::cout<<std::setprecision(17);
+-            lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
++            lab::Evaluator evaluator(advanced_options.evaluation,advanced_options.evaluation_model,advanced_options.evaluation_head);
+             std::string input;
+             while(std::getline(std::cin,input)){
+                 lab::Board b(input);
+@@ -177,7 +180,7 @@ int main(int argc, char** argv) {
+             return 0;
+         }
+         if((!advanced&&!usi_mode)&&advanced_options.evaluation!="material")throw std::invalid_argument("Positional evaluation requires --advanced, --usi, or --eval-batch");
+-        lab::Evaluator validate_evaluator(advanced_options.evaluation,advanced_options.evaluation_model);
++        lab::Evaluator validate_evaluator(advanced_options.evaluation,advanced_options.evaluation_model,advanced_options.evaluation_head);
+         if(advanced_tests)return lab::advanced_selftest();
+         if(usi_mode)return lab::advanced_usi(advanced_options);
+         if(session&&advanced)throw std::invalid_argument("Legacy retained-tree session cannot mix advanced policies; use --advanced or --usi");
+diff --git a/engines/shogi-search-lab/src/nnue.cpp b/engines/shogi-search-lab/src/nnue.cpp
+index f62764a..cd4c551 100644
+--- a/engines/shogi-search-lab/src/nnue.cpp
++++ b/engines/shogi-search-lab/src/nnue.cpp
+@@ -118,6 +118,20 @@ struct Nnue::Impl {
+     std::array<int8_t,32*32> w2;
+     std::array<int32_t,1> b3;
+     std::array<int8_t,32> w3;
++    bool residual=false,clipped=false;
++    std::array<int32_t,32> rb2{};
++    std::array<int8_t,1024> rw2{};
++    std::array<int8_t,32> rw3{};
++    int32_t rb3=0;
++    void load_head(const std::string& path,bool cap) {
++        std::ifstream in(path);std::string header;
++        if(!std::getline(in,header)||header!="shogi-lab-residual-v1 raw90 dim32")throw std::invalid_argument("Invalid residual head");
++        auto read=[&](auto& array,int64_t lo,int64_t hi){for(auto& v:array){int64_t n;if(!(in>>n)||n<lo||n>hi)throw std::invalid_argument("Invalid residual coefficient");v=n;}};
++        read(rb2,-1000000000,1000000000);read(rw2,-128,127);
++        std::array<int32_t,1> last{};read(last,-1000000000,1000000000);rb3=last[0];read(rw3,-128,127);
++        std::string extra;if(in>>extra)throw std::invalid_argument("Trailing residual data");
++        residual=true;clipped=cap;frames.clear();
++    }
+     struct Frame {bool valid=false;Snapshot snapshot{};Acc acc{};int score=0;};
+     std::vector<Frame> frames;
+     std::string policy;
+@@ -181,7 +195,13 @@ struct Nnue::Impl {
+                    h2=hidden<32,32>(h1,b2,w2,vectorized,policy=="nnue-verify");
+         int32_t out=b3[0];for(int i=0;i<32;++i)out+=int(h2[i])*w3[i];
+         // Preserve the upstream raw unit (PawnValue=90), including truncation.
+-        return std::clamp(out/16,-27000,27000);
++        const int base=std::clamp(out/16,-27000,27000);
++        if(!residual)return base;
++        const auto rh=hidden<32,32>(h1,rb2,rw2,vectorized,false);
++        int32_t raw=rb3;for(int i=0;i<32;++i)raw+=int(rh[i])*rw3[i];
++        int delta=(std::clamp(raw/16,-27000,27000)-base)/4;
++        if(clipped)delta=std::clamp(delta,-72,72);
++        return std::clamp(base+delta,-27000,27000);
+     }
+     std::array<uint8_t,32> first_hidden(const Board& b) const {
+         const auto& s=b.history.back();const Acc a=refresh(s);
+@@ -209,6 +229,7 @@ struct Nnue::Impl {
+     }
+ };
+ Nnue::Nnue(const std::string& path,const std::string& policy):impl(std::make_shared<Impl>(path,policy)){}
++void Nnue::residual_head(const std::string& path,bool clipped){impl->load_head(path,clipped);}
+ int Nnue::operator()(const Board& b) const{return impl->evaluate(b);}
+ std::array<uint8_t,32> Nnue::first_hidden(const Board& b) const{return impl->first_hidden(b);}
+ std::map<std::string,uint64_t> Nnue::stats() const{return impl->counts;}
+diff --git a/engines/shogi-search-lab/src/nnue.hpp b/engines/shogi-search-lab/src/nnue.hpp
+index d9b9b8b..04746b3 100644
+--- a/engines/shogi-search-lab/src/nnue.hpp
++++ b/engines/shogi-search-lab/src/nnue.hpp
+@@ -12,6 +12,7 @@ class Nnue {
+ public:
+     Nnue(const std::string& path, const std::string& policy);
+     int operator()(const Board& board) const;
++    void residual_head(const std::string& path, bool clipped);
+     std::array<uint8_t,32> first_hidden(const Board& board) const;
+     std::map<std::string,uint64_t> stats() const;
+ };
+diff --git a/engines/shogi-search-lab/src/positional.cpp b/engines/shogi-search-lab/src/positional.cpp
+index 9b656c8..f910709 100644
+--- a/engines/shogi-search-lab/src/positional.cpp
++++ b/engines/shogi-search-lab/src/positional.cpp
+@@ -64,7 +64,13 @@ PositionalFeatures positional_features(const Board& b){
+     }
+     return x;
+ }
+-Evaluator::Evaluator(const std::string& mode,const std::string& model):mode_(mode){
++Evaluator::Evaluator(const std::string& mode,const std::string& model,const std::string& head):mode_(mode){
++    if(mode=="nnue-blend25"||mode=="nnue-clipped") {
++        nnue_=std::make_unique<Nnue>(model,"nnue");
++        nnue_->residual_head(head,mode=="nnue-clipped");return;
++    }
++    if(!head.empty())throw std::invalid_argument("Evaluation head requires nnue-blend25 or nnue-clipped");
++    if(mode=="nnue-tempo40"){nnue_=std::make_unique<Nnue>(model,"nnue");return;}
+     if(mode=="nnue"||mode=="nnue-full"||mode=="nnue-verify"||mode=="nnue-scalar"){
+         nnue_=std::make_unique<Nnue>(model,mode);return;
+     }
+@@ -84,7 +90,7 @@ Evaluator::Evaluator(const std::string& mode,const std::string& model):mode_(mod
+     }
+ }
+ int Evaluator::operator()(const Board& b) const{
+-    if(nnue_)return (*nnue_)(b);
++    if(nnue_)return std::clamp((*nnue_)(b)+(mode_=="nnue-tempo40"?36:0),-27000,27000);
+     const int material=evaluate(b);if(mode_=="material")return material;
+     const auto x=positional_features(b);double positional=0;
+     for(size_t i=0;i<x.size();++i)positional+=x[i]*weights_[i];
+diff --git a/engines/shogi-search-lab/src/positional.hpp b/engines/shogi-search-lab/src/positional.hpp
+index b48cd8f..1fea61f 100644
+--- a/engines/shogi-search-lab/src/positional.hpp
++++ b/engines/shogi-search-lab/src/positional.hpp
+@@ -11,7 +11,7 @@ class Evaluator {
+     std::array<double,positional_size> weights_{};
+     std::unique_ptr<Nnue> nnue_;
+ public:
+-    explicit Evaluator(const std::string& mode="material",const std::string& model="");
++    explicit Evaluator(const std::string& mode="material",const std::string& model="",const std::string& head="");
+     int operator()(const Board& board) const;
+     std::array<uint8_t,32> nnue_features(const Board& board) const;
+     const std::array<double,positional_size>& weights() const {return weights_;}

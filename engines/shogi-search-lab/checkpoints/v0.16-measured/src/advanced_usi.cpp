@@ -27,7 +27,7 @@ int advanced_usi(const AdvancedOptions& defaults) {
                     AdvancedOptions candidate;set_advanced_preset(candidate,name);
                     if(candidate.driver==configured.driver&&candidate.features==configured.features)preset=name;
                 }
-                send("id name Shogi Search Lab v0.9\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify var nnue-blend25 var nnue-clipped var nnue-tempo40\noption name USI_Ponder type check default false\nusiok");
+                send("id name Shogi Search Lab v0.9\nid author Shogi Search Lab\noption name Preset type combo default "+preset+" var baseline var exact var tactical var selective var custom\noption name MultiPV type spin default "+std::to_string(configured.multipv)+" min 1 max 5\noption name Evaluation type combo default "+configured.evaluation+" var material var positional var learned var nnue var nnue-full var nnue-verify\noption name USI_Ponder type check default false\nusiok");
             }
             else if(command=="isready")send("readyok");
             else if(command=="quit"){join();break;}

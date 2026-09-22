@@ -1,5 +1,22 @@
 # Shogi Search Lab — 探索研究と対やねうら王の実験
 
+## 深さ・候補数を固定しない選択的探索（v0.16）
+
+読む費用を枝ごとに変える探索と、過去の学習評価を25%だけ反映する仮説・補正上限を設ける仮説を実装しました。6設定・384探索、双方1手1秒でやねうら王との16対局を保存しています。最大到達手数は伸び、一部の着手指標は改善しましたが、各設定0勝4敗で勝率向上は未確認です。標準はv0.15 fastを維持します。
+
+- [結果・反例・対局記録](REPORT-v0.16.md)
+- [起動・再現手順](REPRODUCE-v0.16.md)
+- [仮説と探索費用の規則](RESEARCH-v0.16.md)
+- [16局の棋譜ZIP](results/v0.16/shogi-v0.16-kifu.zip)
+
+```bash
+make -j4
+export YANEURAOU_ASSETS="$PWD/../../dist/vendor/yaneuraou"
+python3 scripts/run_v16.py adaptive --time-ms 3000
+python3 scripts/run_v16.py blend --time-ms 3000
+python3 scripts/run_v16.py clipped --time-ms 3000
+```
+
 ## 探索処理の高速化と深さ配分（v0.15）
 
 ユーザー添付のv0.14を基準に、NNUEのSIMD化・差分更新の整理・遅延した手選択を実装しました。新規16根・深さ4・各3反復では、評価値・最善手・PV・ノードを保ち、探索時間を49.9%短縮（2.00倍速）。1秒・3秒の256探索と深さ12の教師評価も保存しています。

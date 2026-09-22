@@ -3,6 +3,7 @@ import {readFileSync,writeFileSync,readdirSync} from 'node:fs';
 import {ROOT,START,hash} from './arena_lib.mjs';
 import {recordAt,checkedPV,hasLegalMove,parseRecord} from './record_helpers.mjs';
 const D=process.env.V16_RESULTS||ROOT+'/results/v0.16',read=p=>JSON.parse(readFileSync(p));
+const boardKey=s=>s.split(' ').slice(0,3).join(' ');
 const p=read(D+'/protocol.json'),out={qualitySearches:0,qualityPVPlies:0,games:0,moves:0,matchPVPlies:0,results:[]},other=c=>c==='black'?'white':'black';
 for(const file of readdirSync(D+'/quality').filter(x=>x.endsWith('.json'))){
  const x=read(D+'/quality/'+file),position=recordAt(START,x.root.prefix).position;
@@ -15,7 +16,8 @@ for(const file of readdirSync(D+'/matches').filter(x=>x.endsWith('.json'))){
  const r=recordAt(START,g.opening);
  for(const m of g.moves){
   if(r.repetition||!hasLegalMove(r.position))throw Error('Continued terminal game');
-  if(r.position.sfen!==m.beforeSfen)throw Error('Before SFEN mismatch');
+  // tsshogi formats the SFEN move number as 1; lab retains the actual ply.
+  if(boardKey(r.position.sfen)!==boardKey(m.beforeSfen)||Number(m.beforeSfen.split(' ')[3])!==m.ply)throw Error('Before board/ply mismatch');
   const own=m.variant!=='yaneuraou',pv=own?(m.analysis.has_result?m.analysis.pv:m.analysis.fallback_pv):m.analysis.info?.pv;
   if(pv&&checkedPV(r.position,pv).length!==pv.length)throw Error('Illegal PV');
   if(pv?.[0]!==m.usi)throw Error('Played move and PV differ');out.matchPVPlies+=pv?.length||0;

@@ -23,7 +23,7 @@ for ms in P['quality']['ms']:
   rs=[r for r in rows if r['variant']==name and r['ms']==ms];gs=[r for r in rs if r['gap_cp'] is not None]
   if not rs:continue
   diffs=np.array([np.mean([r['gap_cp'] for r in gs if r['id']==i])-b[i] for i in range(P['roots']) if any(r['id']==i for r in gs)])
-  boots=diffs[rng.integers(0,len(diffs),(5000,len(diffs)))].mean(axis=1) if len(diffs) else []
+  boots=diffs[np.random.default_rng(2026092216+ms).integers(0,len(diffs),(5000,len(diffs)))].mean(axis=1) if len(diffs) else []
   summary.append({'ms':ms,'variant':name,'runs':len(rs),'cp_roots':len(diffs),'mean_gap':np.mean([r['gap_cp'] for r in gs]) if gs else None,'raw_all_cp_mean_gap':np.mean([r['raw_cp_gap'] for r in rs if r['raw_cp_gap'] is not None]),
    'paired_gap_difference':float(diffs.mean()) if len(diffs) else None,'paired_95_interval':np.quantile(boots,[.025,.975]).tolist() if len(boots) else None,
    'better_equal_worse':[int((diffs<0).sum()),int((diffs==0).sum()),int((diffs>0).sum())],

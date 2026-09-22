@@ -51,3 +51,5 @@ python3 scripts/summarize_v16.py
 `models/v0.16/pair100-head.txt` はv0.12 pair100の後段だけのテキスト出力。追加学習は行っていない。第一隠れ層までを共有し、元評価と学習済み後段の両方を計算する。元のNPZと整数推論の対応は `scripts/verify_v16.py`。
 
 照合時の `build/shogi-lab-v0.15` は、変更前のv0.15をビルドして退避したもの。再構築するには、別作業ディレクトリへソースをコピーし、`checkpoints/v0.15/src/` のファイルを `src/` に戻して `make clean && make -j4`。その生成物を `build/shogi-lab-v0.15` に置いてから `python3 scripts/verify_v16.py`。元の実験フォルダに検証結果を書き直したくない場合は作業コピーで実施する。
+
+計測後にUSIの評価名の選択肢表示を修正した。計測時のソースはコミット `12579147ea718c36ca2a095813da53e0f3d5364c`。現行ソースでは `checkpoints/v0.16-measured/src/advanced_usi.cpp` を戻すと計測時のインターフェースになる。探索・評価のアルゴリズムは同じ。計測時と最終ビルドのハッシュは `results/v0.16/final-interface-check.json`。

@@ -1,0 +1,4 @@
+{"name":"baseline","ply":27,"candidates":[["☗４三歩","cp",-770],["☗９六歩","cp",-286]]}
+{"name":"adaptive","ply":57,"candidates":[["☗３五歩","cp",-647],["☗７五歩","cp",-30]]}
+{"name":"blend","ply":29,"candidates":[["☗７七桂","cp",-687],["☗２八角","cp",-496]]}
+{"name":"clipped","ply":29,"candidates":[["☗７七桂","cp",-687],["☗２八角","cp",-496]]}
