@@ -1,0 +1,30 @@
+[
+  {
+    "id": "middle-black",
+    "sfen": "lnsgk2n1/1r2g1+Ps1/ppppp1p2/4lp3/9/2b3B2/PP1PPPP1+p/1S2GK1R1/LN3GS2 b L3Pn 35",
+    "source": "results/v0.7/matches.json games[0].moves[30].beforeSfen",
+    "selection_rule": "All four pre-existing Phase 0a middle/late positions, in original order; no new-result-based filtering.",
+    "role": "prior middle baseline"
+  },
+  {
+    "id": "middle-white",
+    "sfen": "l5rn1/3sgk2+B/4pp1pp/1p1pb1p2/p1pn4P/8+r/PP1PPPPP1/1S2G1KS1/LN1G3N1 w GLslp 46",
+    "source": "results/v0.7/matches.json games[1].moves[41].beforeSfen",
+    "selection_rule": "All four pre-existing Phase 0a middle/late positions, in original order; no new-result-based filtering.",
+    "role": "middle/late stress extension"
+  },
+  {
+    "id": "late-black",
+    "sfen": "l2rk2+S1/3sg1G+N1/1N2pp2p/1p1p+b4/p1p5P/5P3/PPbPG1P2/4PK3/L+r1G2LS1 b Ps2nl3p 95",
+    "source": "results/v0.7/matches.json games[1].moves[90].beforeSfen",
+    "selection_rule": "All four pre-existing Phase 0a middle/late positions, in original order; no new-result-based filtering.",
+    "role": "middle/late stress extension"
+  },
+  {
+    "id": "late-white",
+    "sfen": "l1r5+S/2+b5P/prs1p2+B1/1pp6/4k3G/2G2PN2/PP1P+s1P1+p/2K6/L4G2+p w gs3n2l6p 176",
+    "source": "results/v0.7/matches.json games[2].moves[171].beforeSfen",
+    "selection_rule": "All four pre-existing Phase 0a middle/late positions, in original order; no new-result-based filtering.",
+    "role": "middle/late stress extension"
+  }
+]

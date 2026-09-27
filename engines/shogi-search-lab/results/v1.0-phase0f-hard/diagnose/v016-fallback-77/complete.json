@@ -1,0 +1,6 @@
+{
+  "checked": true,
+  "condition_sha256": "226c2a2d1d8e92d94af1dd9f7e4149bc22509ba9e6c28d408fb41988475131f9",
+  "selected": {},
+  "scope": "Selected moves only; not a full-root minimax optimality certificate."
+}

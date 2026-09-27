@@ -1,0 +1,6 @@
+position,mode,nodes,completed_depth,score_raw,bestmove,seldepth,stop_reason,qnodes,qchecked,qcheck_beyond_budget,cutoffs,main_first_cutoffs,qchild_cutoffs,q_first_cutoffs,main_order_changes,q_order_changes,search_ms
+v016-fallback-77,minimax,372453,2,-6423,6a6b,5,depth_limit,372431,51733,46302,0,0,0,0,0,0,999.705
+v016-fallback-77,lexical,13217,2,-6423,6a6b,5,depth_limit,13195,2148,1294,19,9,3201,2413,0,0,77.2963
+v016-fallback-77,main,4485,2,-6423,6a6b,5,depth_limit,4463,895,632,19,9,1096,926,20,0,23.2532
+v016-fallback-77,q,13207,2,-6423,6a6b,5,depth_limit,13185,2148,1294,19,9,3201,2421,0,38,72.5316
+v016-fallback-77,tactical,4479,2,-6423,6a6b,5,depth_limit,4457,895,632,19,9,1096,930,20,18,22.9966
