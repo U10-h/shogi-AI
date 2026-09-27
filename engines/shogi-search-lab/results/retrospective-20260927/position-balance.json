@@ -1,0 +1,118 @@
+{
+  "post_hoc": true,
+  "criterion": "absolute common-candidate best teacher cp <= 500",
+  "root_values": [
+    {
+      "id": "0-60",
+      "best_cp": -1404
+    },
+    {
+      "id": "2-60",
+      "best_cp": -1606
+    },
+    {
+      "id": "2-28",
+      "best_cp": -3768
+    },
+    {
+      "id": "7-28",
+      "best_cp": 4216
+    },
+    {
+      "id": "4-28",
+      "best_cp": -98
+    },
+    {
+      "id": "6-28",
+      "best_cp": 3511
+    },
+    {
+      "id": "2-44",
+      "best_cp": -1693
+    },
+    {
+      "id": "5-60",
+      "best_cp": 214
+    },
+    {
+      "id": "5-44",
+      "best_cp": -170
+    },
+    {
+      "id": "1-44",
+      "best_cp": 7712
+    },
+    {
+      "id": "1-28",
+      "best_cp": 4163
+    },
+    {
+      "id": "5-28",
+      "best_cp": -1135
+    },
+    {
+      "id": "0-44",
+      "best_cp": -215
+    },
+    {
+      "id": "0-28",
+      "best_cp": 290
+    },
+    {
+      "id": "3-44",
+      "best_cp": 4365
+    },
+    {
+      "id": "7-44",
+      "best_cp": 7696
+    },
+    {
+      "id": "4-44",
+      "best_cp": -296
+    },
+    {
+      "id": "3-28",
+      "best_cp": 1312
+    },
+    {
+      "id": "6-60",
+      "best_cp": 6128
+    },
+    {
+      "id": "1-60",
+      "best_cp": 8163
+    },
+    {
+      "id": "7-60",
+      "best_cp": 8431
+    },
+    {
+      "id": "3-60",
+      "best_cp": 6791
+    },
+    {
+      "id": "6-44",
+      "best_cp": 4226
+    }
+  ],
+  "subgroup": [
+    {
+      "ms": 1000,
+      "n": 6,
+      "latest_gap": 164.5,
+      "capture_gap": 276.3333333333333,
+      "improved": 2,
+      "same": 4,
+      "worse": 0
+    },
+    {
+      "ms": 3000,
+      "n": 6,
+      "latest_gap": 164.5,
+      "capture_gap": 268.1666666666667,
+      "improved": 3,
+      "same": 3,
+      "worse": 0
+    }
+  ]
+}

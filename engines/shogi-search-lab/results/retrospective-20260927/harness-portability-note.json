@@ -1,0 +1,5 @@
+{
+  "measured_script_sha256": "0a3829b404e94d7585227574c4e854c7df951ebe7478d82e33c8b2504f06d1af",
+  "measured_script_copy": "measured-runner.mjs",
+  "changes": "After measurement, freeze selftest-log path made portable and root duplicate audit limited to prior v0.* directories so a reproduction does not reject its own original roots. No changes to search, comparison or match execution."
+}

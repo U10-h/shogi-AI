@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "path": "REPORT-retrospective-20260927.md",
+      "sha256": "60a99270f26d9ddc1eb141b7e1bb1c78b0e9f1dc2f8d6cb921b87297364aa927"
+    },
+    {
+      "path": "REPRODUCE-retrospective-20260927.md",
+      "sha256": "46e2735a701f6354577296c4ad565f8c611080a3272c41d3feee42563d9e576c"
+    },
+    {
+      "path": "scripts/audit_retrospective_v21.mjs",
+      "sha256": "c77f7c379b8fd7f6ea2e24303738f02e64d40973483e31b76b82bc5b7a6cc9e3"
+    },
+    {
+      "path": "scripts/summarize_retrospective_v21.py",
+      "sha256": "ec58868f6727ac8a9bb4109bd122327c8410ea707c0a05cdbf9919c88ca838dd"
+    },
+    {
+      "path": "scripts/matches_startpos_v21.mjs",
+      "sha256": "94dfe4acf283c4301a67ea4593b75f2d2e6e1e0d4e302b16372cb7a81a28eab9"
+    },
+    {
+      "path": "scripts/retrospective_v21.mjs",
+      "sha256": "d66f29636cbe5084b0aa83a4ae07e5939d4a5502490cd7625c44867231a10eac"
+    },
+    {
+      "path": "scripts/report_retrospective_v21.py",
+      "sha256": "8a8918f02359c9cb850f941319740e16c73b1a55c877cc9dfb6be1f8c0a22821"
+    },
+    {
+      "path": "scripts/diagnose_retrospective_v21.mjs",
+      "sha256": "0346bd3a78b6ee568a7cda59d924c0c2e97bbab3c04c491824173c36fac653af"
+    },
+    {
+      "path": "scripts/retrospective_history.py",
+      "sha256": "9d509722a791bb75dc6b9972fbb27cc37d9e475694a8257fc6d29ff0d436478a"
+    }
+  ]
+}

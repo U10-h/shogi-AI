@@ -1,0 +1,15 @@
+id,a,a_ms,a_move,b,b_ms,b_move,depth,a_type,a_score,b_type,b_score,cp_benefit
+0-44,latest,3000,2d2c,capture,3000,8i7g,12,cp,-215,cp,-515,300
+0-44,latest,3000,2d2c,capture,3000,8i7g,16,cp,-262,cp,-300,38
+7-44,latest,3000,7d7c+,capture,3000,7d7c,12,cp,7696,cp,7465,231
+7-44,latest,3000,7d7c+,capture,3000,7d7c,16,cp,7868,cp,7558,310
+4-44,latest,3000,7i8h,capture,3000,8f8e,12,cp,-296,cp,-520,224
+4-44,latest,3000,7i8h,capture,3000,8f8e,16,cp,-472,cp,-785,313
+7-28,latest,3000,5e8b+,capture,3000,5e8b,12,cp,4148,cp,4216,-68
+7-28,latest,3000,5e8b+,capture,3000,5e8b,16,cp,4415,cp,4415,0
+3-60,latest,5000,7b7c,latest,3000,5f4d,12,cp,6773,cp,6491,282
+3-60,latest,5000,7b7c,latest,3000,5f4d,16,cp,6874,cp,6660,214
+3-28,latest,5000,6d9a+,latest,3000,6d9a,12,cp,1246,cp,1312,-66
+3-28,latest,5000,6d9a+,latest,3000,6d9a,16,cp,1418,cp,1051,367
+4-28,latest,1000,4h4g,latest,300,4h3g,12,cp,-306,cp,-98,-208
+4-28,latest,1000,4h4g,latest,300,4h3g,16,cp,35,cp,-71,106

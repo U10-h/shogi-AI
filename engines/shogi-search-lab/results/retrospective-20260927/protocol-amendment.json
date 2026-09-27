@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-27T11:52:29.459098+00:00",
+  "reason": "Opening 1 has +2092cp at teacher depth6, before any YaneuraOu match results. Add startpos controls to avoid mistaking an advantageous-start victory for equal-start strength. Original 44 games retained.",
+  "extra_games": 4,
+  "variants": [
+    "latest",
+    "capture"
+  ],
+  "sides": [
+    "black",
+    "white"
+  ],
+  "opening": "startpos",
+  "ms": 1000,
+  "opponent_ms": 1000,
+  "max_plies": 200,
+  "script_sha256": "94dfe4acf283c4301a67ea4593b75f2d2e6e1e0d4e302b16372cb7a81a28eab9",
+  "analysis_note": "Position bootstrap resamples whole trajectory sums and counts, retaining unequal root counts after excluding one mate position."
+}

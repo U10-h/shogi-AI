@@ -1,0 +1,23 @@
+[
+  {
+    "at": "2026-09-27T12:00:41.386602+00:00",
+    "event": "Paused with Ctrl-C after detecting saved JSON running while completed KIF existed; preserve both and resume from saved full-history prefix. No outcomes discarded or reselected.",
+    "unfinished": [
+      {
+        "id": "capture-traditional-2-0",
+        "saved_moves": 92,
+        "prior_kif_exists": true
+      },
+      {
+        "id": "capture-traditional-3-1",
+        "saved_moves": 82,
+        "prior_kif_exists": false
+      },
+      {
+        "id": "latest-lmr-3-0",
+        "saved_moves": 106,
+        "prior_kif_exists": true
+      }
+    ]
+  }
+]

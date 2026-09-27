@@ -1,0 +1,162 @@
+[
+  {
+    "version": "v0.1",
+    "report": "REPORT.md",
+    "report_exists": true,
+    "report_sha256": "0a1b1da45f9084c372c9e3a43d779b58d479a6bbdbed3510c9e2e0ee3c80c946",
+    "summary": null,
+    "summary_sha256": null
+  },
+  {
+    "version": "v0.2",
+    "report": "REPORT-v0.2.md",
+    "report_exists": true,
+    "report_sha256": "ad01ff0a2958adf802ab0c1a28d71265e29997702bcc14881d5467610e55f3a4",
+    "summary": "results/v0.2/summary.json",
+    "summary_sha256": "7142228210106a3e53066e2d7fe28d19b06a42b2a7907bd30a7f68257306422f"
+  },
+  {
+    "version": "v0.3",
+    "report": "REPORT-v0.3.md",
+    "report_exists": true,
+    "report_sha256": "ea20c40b3d8f47c1f9674fa1215816d3adc442173391f0ecb477270824590b6e",
+    "summary": "results/v0.3/summary.json",
+    "summary_sha256": "b90af816f8b0bb90ea788bfd50629016738b74897f82258555f5f62028bc9c6e"
+  },
+  {
+    "version": "v0.4",
+    "report": "REPORT-v0.4.md",
+    "report_exists": true,
+    "report_sha256": "a70f3975a349822fd52d1634d49904ebe92c89c294eac07aad71169fa85c3f85",
+    "summary": "results/v0.4/summary.json",
+    "summary_sha256": "8872aa4b3b740858ec3672e03636c0e6d8a75a6e8bf31a18c1b50d9a3b8050ad"
+  },
+  {
+    "version": "v0.5",
+    "report": "REPORT-v0.5.md",
+    "report_exists": true,
+    "report_sha256": "dc38f50fcb43d7d10bb52264a506a465893e4eddab0d0d1ba43a5a4b06f40fd8",
+    "summary": null,
+    "summary_sha256": null
+  },
+  {
+    "version": "v0.6",
+    "report": "REPORT-v0.6.md",
+    "report_exists": true,
+    "report_sha256": "95d88f6ae7735dece8bd8c014481a7837280b3f1f9ebf6b2c54756dad65df1fb",
+    "summary": null,
+    "summary_sha256": null
+  },
+  {
+    "version": "v0.7",
+    "report": "REPORT-v0.7.md",
+    "report_exists": true,
+    "report_sha256": "814d23a1311919187a58e820c76cb552c5985fa3fdc2af2ef1314a1c45fa4a0d",
+    "summary": "results/v0.7/summary.json",
+    "summary_sha256": "2e3b603a098e92689dd6b47d6c2072b1022a1fb4c67e918343a1f2dfed0ca0e3"
+  },
+  {
+    "version": "v0.8",
+    "report": "REPORT-v0.8.md",
+    "report_exists": true,
+    "report_sha256": "189a452d98c230d960a7da70e82463b9dea0c47492806f75bce480e967fa70e8",
+    "summary": "results/v0.8/summary.json",
+    "summary_sha256": "b98f4d9f06c2a0c11b80515d9ea476fe739563f00a92b43cb0fc9ac68c79219a"
+  },
+  {
+    "version": "v0.9",
+    "report": "REPORT-v0.9.md",
+    "report_exists": true,
+    "report_sha256": "16e82b580202744b1bf6ae4f7c14fab7e7ce98e62e4cf1bb9482de44169f90c6",
+    "summary": "results/v0.9/summary.json",
+    "summary_sha256": "aa077678b79baa02146935e3bcece5b9d6958d19869d1247496789dab0663092"
+  },
+  {
+    "version": "v0.10",
+    "report": "REPORT-v0.10.md",
+    "report_exists": true,
+    "report_sha256": "894714e45eff4bdadf139ab57e64bde579782102675491492ba96aa20296a9bc",
+    "summary": "results/v0.10/summary.json",
+    "summary_sha256": "2e24c75e446d6e705359eb8bd0fcca45e20f752261289cc03248f9a6dfee475d"
+  },
+  {
+    "version": "v0.11",
+    "report": "REPORT-v0.11.md",
+    "report_exists": true,
+    "report_sha256": "ed3c150b618f25265ac2fd6a74dc97690f38837d850622d3950645f31d49881b",
+    "summary": "results/v0.11/summary.json",
+    "summary_sha256": "736a1b31cf321806f535559b62b1ddae37e6b0102776985e0da618061b1dc205"
+  },
+  {
+    "version": "v0.12",
+    "report": "REPORT-v0.12.md",
+    "report_exists": true,
+    "report_sha256": "5c82980ce39c8a1119e8ca4824ae73c1383549522cfc68c309693591d132ff39",
+    "summary": "results/v0.12/summary.json",
+    "summary_sha256": "9c0a804d6c3095f69b6658e810974486c85ac5560c540b0799c95840efd0aba5"
+  },
+  {
+    "version": "v0.13",
+    "report": "REPORT-v0.13.md",
+    "report_exists": true,
+    "report_sha256": "0e015c362655c8200a6c3db76752c78652bd6df5d1942586fb1f6f014c465eba",
+    "summary": "results/v0.13/summary.json",
+    "summary_sha256": "ffeb898b2e45ad8e25049a0dc838bcb6bcc86e81fab0e827276cd7ca7a2474a9"
+  },
+  {
+    "version": "v0.14",
+    "report": "REPORT-v0.14.md",
+    "report_exists": true,
+    "report_sha256": "3005e82c48f350e6a75f0b2c2fb5f0a0ef71ce330483a6baa7be93d53bde72a2",
+    "summary": "results/v0.14/summary.json",
+    "summary_sha256": "fed50ff2923c22c09e01b8b79387afe099b57586873ad2d56c39320bd259b717"
+  },
+  {
+    "version": "v0.15",
+    "report": "REPORT-v0.15.md",
+    "report_exists": true,
+    "report_sha256": "5b933d418e88580a38a121e0503da7a2c64d486b079ab599a2237bbdda2b1311",
+    "summary": "results/v0.15/summary.json",
+    "summary_sha256": "dd5b43447463c80410b5f392748605a7f0676c653947a9b0c2d2f6c39f3411d9"
+  },
+  {
+    "version": "v0.16",
+    "report": "REPORT-v0.16.md",
+    "report_exists": true,
+    "report_sha256": "37fd85b1c42021191a816773b607f9b53c252530fba6b59744979a2a25b8e6db",
+    "summary": "results/v0.16/summary.json",
+    "summary_sha256": "a09e54914beb88e7b7aefc6ca693e8213b2553f6eb8c7e5e7564c691b2f9a6df"
+  },
+  {
+    "version": "v0.17",
+    "report": "REPORT-v0.17.md",
+    "report_exists": false,
+    "report_sha256": null,
+    "summary": null,
+    "summary_sha256": null
+  },
+  {
+    "version": "v0.18",
+    "report": "REPORT-v0.18.md",
+    "report_exists": true,
+    "report_sha256": "0780a138b094385d29abe90c0a4165041140299ee66945c87825063ff2907082",
+    "summary": "results/v0.18/summary.json",
+    "summary_sha256": "296a0a8566f1ace88846f5622025a094c10b001b6a8bfcfa8eb6dec3a21bfd55"
+  },
+  {
+    "version": "v0.19",
+    "report": "REPORT-v0.19.md",
+    "report_exists": true,
+    "report_sha256": "ed9083b6956a7f124d06e7ad95b721b487e79ddac3ab1e3d5f91ef0d3895c26b",
+    "summary": "results/v0.19/summary.json",
+    "summary_sha256": "b206766bf24755488f2e2681f24968105b1ae4d74d732c9bbf2994d64be6ea1a"
+  },
+  {
+    "version": "v0.20",
+    "report": "REPORT-v0.20.md",
+    "report_exists": true,
+    "report_sha256": "320d28f7a7ec27813000622334d95f55481009cc631ec0ce11e2fc32b0f72a42",
+    "summary": "results/v0.20/summary.json",
+    "summary_sha256": "10c2e62ba171700f974d7eca0bbaceeda6a76c57be1c7ad69e10c1182d680235"
+  }
+]

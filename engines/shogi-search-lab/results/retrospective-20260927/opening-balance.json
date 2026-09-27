@@ -1,0 +1,50 @@
+[
+  {
+    "opening": 0,
+    "depth": 6,
+    "teacher_cp": 217,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 1,
+    "depth": 6,
+    "teacher_cp": 2092,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 2,
+    "depth": 6,
+    "teacher_cp": -333,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 3,
+    "depth": 6,
+    "teacher_cp": 255,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 4,
+    "depth": 6,
+    "teacher_cp": 224,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 5,
+    "depth": 6,
+    "teacher_cp": -127,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 6,
+    "depth": 6,
+    "teacher_cp": 2946,
+    "score_side": "black (side to move after 20 plies)"
+  },
+  {
+    "opening": 7,
+    "depth": 6,
+    "teacher_cp": 1120,
+    "score_side": "black (side to move after 20 plies)"
+  }
+]
