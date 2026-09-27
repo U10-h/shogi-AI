@@ -1,0 +1,105 @@
+{
+  "schema": 1,
+  "source_base_commit": "c2b44c78dd1b680bbafd0e31a1853a245220b703",
+  "build": {
+    "archive_sha256": "15e6ac502d282adec7b9e17609b7e7265adfe56c08cd498be0f3a3351b8ea227",
+    "model_sha256": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+    "upstream_commit": "b2defb6d255ea44b3fead30e13f28b96e0ab0cc7",
+    "binary_sha256": "72485150cdb6f6260c6713ad4d059304afe244c56490c9f14059f91a49bda146",
+    "command": [
+      "make",
+      "-j2",
+      "normal",
+      "COMPILER=g++",
+      "TARGET_CPU=AVX2",
+      "YANEURAOU_EDITION=YANEURAOU_ENGINE_NNUE_KP256",
+      "LTOFLAGS=",
+      "EXTRA_CPPFLAGS=-pthread -I.",
+      "EXTRA_LDFLAGS=-pthread"
+    ],
+    "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+    "patched_sources": {
+      "main.cpp": "815ff6aef507dcdc07698f4347f64e0e6be06199dc2563a4f06b70bf3e870780",
+      "usi.cpp": "71640bce8146ed9f67c03de4a242f3769d89f90dd2459dd85f8fa71362e3431e",
+      "Makefile": "4a86bde6dcd75c7fc943d189885cdbe2961efb883d21d51442acbb219db174fd",
+      "engine/yaneuraou-engine/yaneuraou-search.cpp": "7c1daa68c242d9f7d2ed19310533cd04f9e001305d714eef6168db5dbaa8c8a1",
+      "phase0d_search.cpp": "434784bc6c651d39269f35204c6e59fd139354cc957b3b91443c13753450451f"
+    },
+    "shared": [
+      "Position",
+      "MoveList<LEGAL_ALL>",
+      "Eval::evaluate",
+      "NNUE weights",
+      "USI runtime",
+      "Thread nodes counter"
+    ],
+    "pilot_limits": {
+      "plain_depth": 3,
+      "qsearch_main_depth": 2,
+      "qdepth": 2,
+      "absolute_q_ply_abort": 8,
+      "nodes": 400000,
+      "milliseconds": 3000,
+      "threads": 1
+    },
+    "qsearch_policy": "Non-check: stand-pat and captures/all promotions; check: all evasions even after qdepth; abort at absolute ply 8.",
+    "move_order_policy": "Captures or promotions first, lexical order within classes; same legal moves and leaf rules.",
+    "pilot_omits": [
+      "TT",
+      "LMR",
+      "learned ordering",
+      "SEE/delta/learned pruning"
+    ]
+  },
+  "source_sha256": {
+    "native/phase0d_search.cpp": "434784bc6c651d39269f35204c6e59fd139354cc957b3b91443c13753450451f",
+    "scripts/build_phase0d_shared.py": "e111871626645f43a552504f20c4b694a8abf419305a8fbba9363984519fdab8",
+    "scripts/build_phase0_native.py": "61a7039965e0e58582a083a3a4cdc223b2122e165f6bd3453b20506d43c9eab0",
+    "scripts/run_phase0d_small.py": "5d3ebc9411c7593815408f39dc3e8eff134a872432356e41a0a7a0c8534bcfe9",
+    "scripts/run_phase0b_small.py": "477e35241493935a056f5ad06f8c30bdcf3293854125c97a18d9b040701fa954",
+    "scripts/run_phase0_small.py": "f4735450cf89645dbd4044ca9553aade1106af88777ac62a035787d679abacf2",
+    "experiments/phase0b-positions.json": "62bda17cf62a63abaaea7aae42de36a47260546b10fedc55e3d358bf56373dde"
+  },
+  "previous_binary_sha256": "677500eaa5c78aeba7298ed96a40fca5055a94edc637e345c43bd35f2d5dde01",
+  "legal_reference_sha256": "d79365eefb90ba94fb033c32fd210a139365aa3f7479eb954cbe37aa8764828e",
+  "options": {
+    "Threads": "1",
+    "USI_Hash": "16",
+    "MultiPV": "1",
+    "USI_Ponder": "false",
+    "USI_OwnBook": "false",
+    "BookFile": "no_book",
+    "GenerateAllLegalMoves": "true",
+    "EnteringKingRule": "NoEnteringKing",
+    "DrawValueBlack": "0",
+    "DrawValueWhite": "0",
+    "NetworkDelay": "0",
+    "NetworkDelay2": "0",
+    "PvInterval": "0"
+  },
+  "search_command": "go depth 2 nodes 400000 movetime 3000",
+  "qdepth": 2,
+  "move_order": [
+    "lexical",
+    "tactical"
+  ],
+  "tactical_rule": "capture OR promotion first; lexical ties",
+  "positions": [
+    {
+      "id": "startpos",
+      "sfen": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+      "source": "standard starting position"
+    },
+    {
+      "id": "opening",
+      "sfen": "lnsgkg1nl/1r5s1/pppppp1pp/6p2/9/2P6/PP1PPPPPP/7R1/LNSGKGSNL b Bb 5",
+      "source": "results/v0.7/matches.json games[0].moves[0].beforeSfen"
+    }
+  ],
+  "max_new_positions_per_call": 1,
+  "processes_at_once": 1,
+  "external_timeout_seconds": 8,
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "condition_sha256": "e5f6aa7cf22ad16daef20b48ff854c435deb9ee6fe4bd55cf4e68579550ebf2b"
+}

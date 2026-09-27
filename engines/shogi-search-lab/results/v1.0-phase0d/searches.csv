@@ -1,0 +1,9 @@
+position,mode,bestmove,score_raw,nodes,completed_depth,seldepth,qnodes,eval_checks,eval_mismatches,main_order_changes,q_order_changes,cutoffs,main_first_cutoffs,qchild_cutoffs,q_first_cutoffs,main_skipped_siblings,q_skipped_siblings,search_ms
+startpos,lexical_minimax,2g2f,92,1364,2,4,1334,1366,0,0,0,0,0,0,0,0,0,3.76495
+startpos,tactical_minimax,2g2f,92,1364,2,4,1334,1366,0,0,5,0,0,0,0,0,0,3.78057
+startpos,lexical_alpha,2g2f,92,195,2,4,165,197,0,0,0,28,3,7,7,779,32,1.86371
+startpos,tactical_alpha,2g2f,92,195,2,4,165,197,0,0,0,28,3,7,7,779,32,1.96882
+opening,lexical_minimax,3i4h,29,72437,2,5,72360,71778,0,0,0,0,0,0,0,0,0,153.987
+opening,tactical_minimax,3i4h,29,72437,2,5,72360,71778,0,16,4636,0,0,0,0,0,0,158.317
+opening,lexical_alpha,3i4h,29,1691,2,5,1614,1690,0,0,0,74,21,367,287,4856,763,16.1318
+opening,tactical_alpha,3i4h,29,926,2,5,849,926,0,16,33,74,30,132,124,4921,352,12.6925
