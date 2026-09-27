@@ -1,0 +1,8 @@
+[
+  {
+    "id": "middle-black",
+    "sfen": "lnsgk2n1/1r2g1+Ps1/ppppp1p2/4lp3/9/2b3B2/PP1PPPP1+p/1S2GK1R1/LN3GS2 b L3Pn 35",
+    "source": "results/v0.7/matches.json games[0].moves[30].beforeSfen",
+    "selection_rule": "First middle-game entry in the previously frozen Phase 0a position list; selected before new searches."
+  }
+]

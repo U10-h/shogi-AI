@@ -1,0 +1,272 @@
+{
+  "condition_sha256": "a9f6dae7aa673b699af50c129d72311f5128646d7b388bf139f56e93a0c808d1",
+  "positions": 1,
+  "comparison_searches": 4,
+  "control_searches": 12,
+  "selected_move_searches": 1,
+  "comparison_and_selected_eval_checks": 807859,
+  "all_eval_checks": 2415605,
+  "all_eval_mismatches": 0,
+  "rows": [
+    {
+      "label": "lexical_minimax",
+      "target_completed": false,
+      "nodes": 400000,
+      "completed_depth": 1,
+      "seldepth": 5,
+      "score_raw": 2811,
+      "bestmove": "2h2b+",
+      "stop_reason": "pilot_node_cap",
+      "qnodes": 399938,
+      "eval_checks": 399850,
+      "eval_mismatches": 0,
+      "main_order_changes": 0,
+      "q_order_changes": 0,
+      "cutoffs": 0,
+      "main_first_cutoffs": 0,
+      "qchild_cutoffs": 0,
+      "q_first_cutoffs": 0,
+      "qcheck_beyond_budget": 31215,
+      "search_ms": 999.628,
+      "root_restored": true
+    },
+    {
+      "label": "tactical_minimax",
+      "target_completed": false,
+      "nodes": 400000,
+      "completed_depth": 1,
+      "seldepth": 5,
+      "score_raw": 2811,
+      "bestmove": "2h2b+",
+      "stop_reason": "pilot_node_cap",
+      "qnodes": 399938,
+      "eval_checks": 399850,
+      "eval_mismatches": 0,
+      "main_order_changes": 62,
+      "q_order_changes": 29903,
+      "cutoffs": 0,
+      "main_first_cutoffs": 0,
+      "qchild_cutoffs": 0,
+      "q_first_cutoffs": 0,
+      "qcheck_beyond_budget": 31234,
+      "search_ms": 914.865,
+      "root_restored": true
+    },
+    {
+      "label": "lexical_alpha",
+      "target_completed": true,
+      "nodes": 2549,
+      "completed_depth": 2,
+      "seldepth": 5,
+      "score_raw": 1853,
+      "bestmove": "2h2b+",
+      "stop_reason": "depth_limit",
+      "qnodes": 2448,
+      "eval_checks": 2549,
+      "eval_mismatches": 0,
+      "main_order_changes": 0,
+      "q_order_changes": 0,
+      "cutoffs": 98,
+      "main_first_cutoffs": 92,
+      "qchild_cutoffs": 420,
+      "q_first_cutoffs": 185,
+      "qcheck_beyond_budget": 139,
+      "search_ms": 28.3867,
+      "root_restored": true
+    },
+    {
+      "label": "tactical_alpha",
+      "target_completed": true,
+      "nodes": 1618,
+      "completed_depth": 2,
+      "seldepth": 5,
+      "score_raw": 1853,
+      "bestmove": "2h2b+",
+      "stop_reason": "depth_limit",
+      "qnodes": 1517,
+      "eval_checks": 1620,
+      "eval_mismatches": 0,
+      "main_order_changes": 102,
+      "q_order_changes": 32,
+      "cutoffs": 99,
+      "main_first_cutoffs": 99,
+      "qchild_cutoffs": 147,
+      "q_first_cutoffs": 111,
+      "qcheck_beyond_budget": 43,
+      "search_ms": 25.0911,
+      "root_restored": true
+    }
+  ],
+  "controls": [
+    {
+      "label": "lexical_minimax",
+      "case": "node_abort",
+      "nodes": 2,
+      "completed_depth": 0,
+      "stop_reason": "node_limit",
+      "root_restored": true
+    },
+    {
+      "label": "lexical_minimax",
+      "case": "resume",
+      "nodes": 400000,
+      "completed_depth": 1,
+      "stop_reason": "pilot_node_cap",
+      "root_restored": true
+    },
+    {
+      "label": "lexical_minimax",
+      "case": "repeat_without_position",
+      "nodes": 400000,
+      "completed_depth": 1,
+      "stop_reason": "pilot_node_cap",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_minimax",
+      "case": "node_abort",
+      "nodes": 2,
+      "completed_depth": 0,
+      "stop_reason": "node_limit",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_minimax",
+      "case": "resume",
+      "nodes": 400000,
+      "completed_depth": 1,
+      "stop_reason": "pilot_node_cap",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_minimax",
+      "case": "repeat_without_position",
+      "nodes": 400000,
+      "completed_depth": 1,
+      "stop_reason": "pilot_node_cap",
+      "root_restored": true
+    },
+    {
+      "label": "lexical_alpha",
+      "case": "node_abort",
+      "nodes": 2,
+      "completed_depth": 0,
+      "stop_reason": "node_limit",
+      "root_restored": true
+    },
+    {
+      "label": "lexical_alpha",
+      "case": "resume",
+      "nodes": 2549,
+      "completed_depth": 2,
+      "stop_reason": "depth_limit",
+      "root_restored": true
+    },
+    {
+      "label": "lexical_alpha",
+      "case": "repeat_without_position",
+      "nodes": 2549,
+      "completed_depth": 2,
+      "stop_reason": "depth_limit",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_alpha",
+      "case": "node_abort",
+      "nodes": 2,
+      "completed_depth": 0,
+      "stop_reason": "node_limit",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_alpha",
+      "case": "resume",
+      "nodes": 1618,
+      "completed_depth": 2,
+      "stop_reason": "depth_limit",
+      "root_restored": true
+    },
+    {
+      "label": "tactical_alpha",
+      "case": "repeat_without_position",
+      "nodes": 1618,
+      "completed_depth": 2,
+      "stop_reason": "depth_limit",
+      "root_restored": true
+    }
+  ],
+  "first_iterations": [
+    {
+      "label": "lexical_minimax",
+      "score_usi": [
+        "cp",
+        3123
+      ],
+      "nodes": 6580,
+      "pv": [
+        "2h2b+"
+      ]
+    },
+    {
+      "label": "tactical_minimax",
+      "score_usi": [
+        "cp",
+        3123
+      ],
+      "nodes": 6580,
+      "pv": [
+        "2h2b+"
+      ]
+    },
+    {
+      "label": "lexical_alpha",
+      "score_usi": [
+        "cp",
+        3123
+      ],
+      "nodes": 266,
+      "pv": [
+        "2h2b+"
+      ]
+    },
+    {
+      "label": "tactical_alpha",
+      "score_usi": [
+        "cp",
+        3123
+      ],
+      "nodes": 248,
+      "pv": [
+        "2h2b+"
+      ]
+    }
+  ],
+  "full_width_depth2_verified": false,
+  "alpha_comparison": {
+    "lexical_nodes": 2549,
+    "tactical_nodes": 1618,
+    "saved_nodes": 931,
+    "node_reduction": 0.3652412710867007,
+    "same_score": true,
+    "same_bestmove": true,
+    "same_pv": true,
+    "score_raw": 1853,
+    "bestmove": "2h2b+",
+    "pv": [
+      "2h2b+",
+      "5a6b"
+    ]
+  },
+  "selected_move_check": {
+    "target_completed": true,
+    "agrees_with_alpha": true,
+    "nodes": 3991,
+    "score_raw": 1853,
+    "bestmove": "2h2b+",
+    "pv": [
+      "2h2b+",
+      "5a6b"
+    ],
+    "all_root_moves_verified": false
+  }
+}

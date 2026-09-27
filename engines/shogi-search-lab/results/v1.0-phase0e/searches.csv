@@ -1,0 +1,5 @@
+label,target_completed,nodes,completed_depth,seldepth,score_raw,bestmove,stop_reason,qnodes,eval_checks,eval_mismatches,main_order_changes,q_order_changes,cutoffs,main_first_cutoffs,qchild_cutoffs,q_first_cutoffs,qcheck_beyond_budget,search_ms,root_restored
+lexical_minimax,False,400000,1,5,2811,2h2b+,pilot_node_cap,399938,399850,0,0,0,0,0,0,0,31215,999.628,True
+tactical_minimax,False,400000,1,5,2811,2h2b+,pilot_node_cap,399938,399850,0,62,29903,0,0,0,0,31234,914.865,True
+lexical_alpha,True,2549,2,5,1853,2h2b+,depth_limit,2448,2549,0,0,0,98,92,420,185,139,28.3867,True
+tactical_alpha,True,1618,2,5,1853,2h2b+,depth_limit,1517,1620,0,102,32,99,99,147,111,43,25.0911,True
