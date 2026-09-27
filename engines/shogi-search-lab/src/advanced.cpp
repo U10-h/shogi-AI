@@ -392,6 +392,7 @@ class Worker {
     Value visit(int d,int a,int beta,int ply,uint64_t path,int ext,bool allow_null,Move prev) {
         if(d<=0&&f.qsearch)return qsearch(a,beta,ply,o.qdepth,0,prev);
         tick();
+        r.stats["selective_depth"]=std::max(r.stats["selective_depth"],uint64_t(ply));
         if(ply>=max_ply-1)throw Stop{"ply_limit"};
         if(!null_level)if(auto rep=b.repetition_score(ply)){++r.base.terminals;return {*rep,{}};}
         auto moves=b.legal_moves();

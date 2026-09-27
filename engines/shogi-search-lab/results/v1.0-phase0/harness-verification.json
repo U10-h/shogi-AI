@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "one_node_abort_returns_legal_fallback_and_totals": true,
+    "abort_restores_root_for_eval": true,
+    "next_search_completes_after_abort": true,
+    "resume_skips_completed_pairs_without_overwrite": true,
+    "wrong_checkpoint_condition_is_rejected": true
+  },
+  "usi_log": [
+    "> usi",
+    "< id name Shogi Search Lab v0.9",
+    "< id author Shogi Search Lab",
+    "< option name Preset type combo default custom var baseline var exact var tactical var selective var custom",
+    "< option name MultiPV type spin default 1 min 1 max 5",
+    "< option name Evaluation type combo default nnue var material var positional var learned var nnue var nnue-full var nnue-verify var nnue-blend25 var nnue-clipped var nnue-tempo40",
+    "< option name USI_Ponder type check default false",
+    "< usiok",
+    "> isready",
+    "< readyok",
+    "> usinewgame",
+    "> position sfen lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+    "> go nodes 1",
+    "< info string lab_result {\"algorithm\":\"advanced\",\"depth\":16,\"complete\":false,\"iterative\":true,\"pv_order\":true,\"has_result\":false,\"completed_depth\":-1,\"stop_reason\":\"node_limit\",\"score\":null,\"bestmove\":null,\"nodes\":1,\"leaves\":0,\"terminals\":0,\"cutoffs\":0,\"skipped_siblings\":0,\"elapsed_ms\":0.083,\"pv_priority_nodes\":0,\"pv\":[],\"iterations\":[],\"engine\":\"research-v0.9\",\"evaluation\":\"nnue\",\"score_unit\":\"yaneuraou_raw_pawn90\",\"evaluation_model\":\"/workspace/scratch/72251ca89f74/shogi-AI/engines/shogi-search-lab/build/phase0/upstream/YaneuraOu.wasm-b2defb6d255ea44b3fead30e13f28b96e0ab0cc7/source/eval/nn.bin\",\"eager_evaluation\":false,\"compact_ordering\":true,\"direct_qmoves\":true,\"driver\":\"pvs\",\"selective\":false,\"lazy_ordering\":true,\"defer_qmoves\":true,\"leaf_policy\":\"bounded_quiescence\",\"features\":[\"capture-history\",\"counter\",\"history\",\"killer\",\"mate-distance\",\"qsearch\",\"tt\"],\"iteration_unit\":\"plies\",\"evaluation_head\":\"\",\"policy_model\":\"\",\"policy_scale\":1,\"prune_policy\":\"off\",\"prune_model\":\"\",\"prune_probability_override\":-1,\"prune_audit\":false,\"stats\":{\"history_paths\":0,\"integer_order_keys\":30,\"nnue_avx2_enabled\":1,\"nnue_calls\":1,\"nnue_refreshes\":1,\"selective_depth\":0,\"tt_entries\":0,\"tt_probes\":1},\"candidates\":[],\"fallback_move\":\"1g1f\",\"fallback_pv\":[\"1g1f\"],\"fallback_source\":\"first_legal\",\"fallback_partial_score\":null,\"completed_root_moves\":0}",
+    "< info string no completed iteration; fallback first_legal",
+    "< bestmove 1g1f",
+    "> eval",
+    "< eval = 83",
+    "> go nodes 1000",
+    "< info depth 2 seldepth 5 nodes 1000 time 1 score cp 102 pv 2g2f 3c3d",
+    "< info string lab_result {\"algorithm\":\"advanced\",\"depth\":16,\"complete\":false,\"iterative\":true,\"pv_order\":true,\"has_result\":true,\"completed_depth\":2,\"stop_reason\":\"node_limit\",\"score\":92,\"bestmove\":\"2g2f\",\"nodes\":1000,\"leaves\":0,\"terminals\":0,\"cutoffs\":86,\"skipped_siblings\":2253,\"elapsed_ms\":1.782,\"pv_priority_nodes\":0,\"pv\":[\"2g2f\",\"3c3d\"],\"iterations\":[{\"depth\":1,\"score\":77,\"nodes\":32,\"elapsed_ms\":0.095,\"pv_priority_nodes\":0,\"pv\":[\"2g2f\"]},{\"depth\":2,\"score\":92,\"nodes\":104,\"elapsed_ms\":0.196,\"pv_priority_nodes\":0,\"pv\":[\"2g2f\",\"3c3d\"]}],\"engine\":\"research-v0.9\",\"evaluation\":\"nnue\",\"score_unit\":\"yaneuraou_raw_pawn90\",\"evaluation_model\":\"/workspace/scratch/72251ca89f74/shogi-AI/engines/shogi-search-lab/build/phase0/upstream/YaneuraOu.wasm-b2defb6d255ea44b3fead30e13f28b96e0ab0cc7/source/eval/nn.bin\",\"eager_evaluation\":false,\"compact_ordering\":true,\"direct_qmoves\":true,\"driver\":\"pvs\",\"selective\":false,\"lazy_ordering\":true,\"defer_qmoves\":true,\"leaf_policy\":\"bounded_quiescence\",\"features\":[\"capture-history\",\"counter\",\"history\",\"killer\",\"mate-distance\",\"qsearch\",\"tt\"],\"iteration_unit\":\"plies\",\"evaluation_head\":\"\",\"policy_model\":\"\",\"policy_scale\":1,\"prune_policy\":\"off\",\"prune_model\":\"\",\"prune_probability_override\":-1,\"prune_audit\":false,\"stats\":{\"capture_history_updates\":9,\"counter_updates\":77,\"history_paths\":805,\"history_updates\":77,\"integer_order_keys\":3341,\"killer_updates\":77,\"nnue_avx2_enabled\":1,\"nnue_cache_hits\":10,\"nnue_calls\":884,\"nnue_refreshes\":1,\"nnue_updates\":873,\"pvs_probes\":228,\"pvs_researches\":7,\"q_avoided_generations\":801,\"q_deferred_nodes\":883,\"q_full_generations\":7,\"q_generated_moves\":63,\"q_tactical_generations\":82,\"qnodes\":890,\"qreturn_count\":890,\"qreturn_ply_1\":31,\"qreturn_ply_2\":67,\"qreturn_ply_3\":776,\"qreturn_ply_4\":10,\"qreturn_ply_5\":6,\"qreturn_ply_sum\":2563,\"qstand_cutoffs\":801,\"selective_depth\":5,\"tt_entries\":105,\"tt_hits\":2,\"tt_probes\":110},\"candidates\":[{\"score\":92,\"pv\":[\"2g2f\",\"3c3d\"]}],\"fallback_move\":null,\"fallback_pv\":[],\"fallback_source\":\"\",\"fallback_partial_score\":null,\"completed_root_moves\":30}",
+    "< bestmove 2g2f",
+    "> quit"
+  ]
+}

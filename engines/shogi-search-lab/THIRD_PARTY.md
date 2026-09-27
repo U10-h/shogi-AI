@@ -19,6 +19,10 @@ This permits board use without the upstream search/thread runtime. No legal-move
 The UTF-8 BOM was removed from this file. The textual patch is `vendor/rules-only.patch`.
 Build configuration enables `USE_GENERATE_ALL_LEGAL_MOVES` so optional nonpromotions are preserved.
 
+## Native comparison pilot (v1.0 Phase 0a)
+
+`scripts/build_phase0_native.py` extracts the complete pinned source archive above into ignored `build/phase0/` and builds the standard YaneuraOu 6.03/KP256 search with g++ for AVX2/BMI2. It restores the native USI loop, replaces the Emscripten annotation include, and adds a read-only `phase0stats` command for completed depth/final node totals. The upstream search and NNUE calculations are unchanged. The source archive, model, patched files, compiler command and binary hashes are recorded in `results/v1.0-phase0/manifest.json`. This is a separate native opponent executable; it does not link upstream search into `shogi-lab`. The complete source archive and GPL notices remain in the repository. No new upstream weights are redistributed by this pilot.
+
 ## tsshogi, optional independent validation only
 
 - Author: Ryosuke Kubo / sunfish-shogi contributors.

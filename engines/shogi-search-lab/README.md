@@ -7,6 +7,10 @@ v0.x の延長で局所的な探索改善を積み重ねるだけでは、やね
 同一または可能な限り近い NNUE / 盤面基盤上で探索だけを比較し、やねうら王を教師として **Move Ordering → Learned Reduction → 探索伝搬グラフ → Learned Search Utility** の順に進めます。主要指標は勝敗だけでなく、**同程度の着手品質を得るために必要な探索ノード数**とします。
 
 - [v1.0 研究方針: YaneuraOu-compatible Learned Selective Search](ROADMAP-v1.0.md)
+- [Phase 0a: 同一NNUE・ネイティブ実行の6局面パイロット](REPORT-v1.0-phase0-small.md)
+- [小規模での実行・再開手順](REPRODUCE-v1.0-phase0-small.md)
+
+Phase 0aでは静的評価18件が一致し、6局面・24探索の比較を完了しました。1回最大2局面で保存・再開できます。USER_ENGINEへの移植、置換表とノード計数の統一は次の段階です。
 
 
 ## 深さ・候補数を固定しない選択的探索（v0.16）
