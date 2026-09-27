@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "historical_manifest_files": 354,
+  "historical_manifest_mismatches": [],
+  "prior": {
+    "passed": true,
+    "counts": {
+      "games": 48,
+      "gameMoves": 4707,
+      "gamePvPlies": 23551,
+      "searches": 660,
+      "searchPvPlies": 3998,
+      "teacherRoots": 24,
+      "teacherPvPlies": 504,
+      "diagnosticRoots": 7,
+      "diagnosticPvPlies": 337,
+      "kifRoundTrips": 48
+    },
+    "terminalImplementation": "vendored tsshogi record repetition/perpetualCheck plus independent legal-move existence",
+    "source": "4f94f7baf775c4c3870e5d9863536305b4902deb"
+  },
+  "new_speed_searches": 216,
+  "equivalent_blocks": 72,
+  "historical_equivalent_blocks": 72,
+  "new_teacher_roots": 24,
+  "new_teacher_candidates": 47,
+  "new_games": 0,
+  "scope": "Prior independent rules replay; every new speed/teacher PV checked by tsshogi at measurement; completeness and original candidate membership checked at aggregation."
+}

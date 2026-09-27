@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "counts": {
+    "games": 48,
+    "gameMoves": 4707,
+    "gamePvPlies": 23551,
+    "searches": 660,
+    "searchPvPlies": 3998,
+    "teacherRoots": 24,
+    "teacherPvPlies": 504,
+    "diagnosticRoots": 7,
+    "diagnosticPvPlies": 337,
+    "kifRoundTrips": 48
+  },
+  "terminalImplementation": "vendored tsshogi record repetition/perpetualCheck plus independent legal-move existence",
+  "source": "4f94f7baf775c4c3870e5d9863536305b4902deb"
+}

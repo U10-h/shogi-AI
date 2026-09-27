@@ -1,0 +1,221 @@
+{
+  "at": "2026-09-27T12:55:56.335Z",
+  "source": "31bc03a022c99e771d48f3ca2add98d06ef571fd",
+  "fingerprint": {
+    "binary": "b710773d1600f3e78a7a0393b867c99d4de351702a933d97a02219d9fafd5f62",
+    "model": "cf7645f64bf6baa5c74612799ce562752f7985923b1f0fc2e6092c998ed867f9",
+    "policy": "e9a4ca1834ace10aa663d6a6033b4f046e53ec9fced69caa25838b1adfdeea9b",
+    "wasm": "ba9bd600d048e9b3e43eec8a155883815a5620f4adf61f659faa1b7c0dd65f1b",
+    "script": "79fd31e803afe1df41003002e82d1956c3b5ae6aeafaaf9ef97d3cd5547bf3bd",
+    "roots": "76b6fbc77c4f03258deb73cedd5120ddfc7dad3b60ba074e43e7068f7a194fae",
+    "priorProtocol": "c59ecd4848bf3323703aefdb50dbd7c1c9f9103dee3e8a3674afa9d0624c149c",
+    "candidates": {
+      "0-28": "ed9c8044a088ef3e453c2a95baa041c6ce6d2b13856d95a24d8a6838df8fabcb",
+      "0-44": "4fe8f31a9176b94c6ee47721b98478c84ff7489595310e2ae1a23cdd60026997",
+      "0-60": "c212b15f0553dc3f3dccc264357c580ceeb62b79e5a92917f6c6da2c799eeb08",
+      "1-28": "58de9eedbdb15e11f827a289886b3714524c8c810d8f234dd32b64e6fd6a6e59",
+      "1-44": "e13f24b041dc7650b9ad18caa2bcf70f717cc008245c75bf9225abf82ed5c08a",
+      "1-60": "7073c504105115e25be4e13687d4ab120bea3f265e00234905a8cb4a33191c69",
+      "2-28": "d3467928eb90ba19e3d547824bb464c5d8706b99387879656112157497a51265",
+      "2-44": "80eb5f638ff5c33c46bfc2d2608a309921c36aab54ddfcd4c6c75728593db432",
+      "2-60": "1ef5a9f9510fcf1e432d05a8c465f001d108dc66566298afd33f47cdfb4bf1ad",
+      "3-28": "22910c826932d8162dc56c24ea799e0616586de005f0114ca984220b76b294bb",
+      "3-44": "f44233fa2264179a13b895b237b0f8e26aff53a377056b332d146dcbb80a2645",
+      "3-60": "f1b6a0cf0e30d4048f45b5864b76b1035e5e46f2ab4f73056c5bdb918b5b3afc",
+      "4-28": "526ecd7f7b0f61cc904873a2cdb8c7492ec00ff57b94f69086558895dfea1b13",
+      "4-44": "da06c963522b0c5841fad71c6eb919a842402e14e728e97fa8547f02a8ed18c3",
+      "4-60": "5e5def995f32204b55ac9f56dc38b5d6c61f46e112d906a675cc20f5a9ca3934",
+      "5-28": "4876075b2d8ffcdc9df24028bb8dc9de1c142ffb8d1db220d8f356aa7ba6fe1f",
+      "5-44": "432ffe3b6a37ef739527792119d780b4a3d1c36d2e08f530aa170bcc8a11c75f",
+      "5-60": "0e3f8e4165a2d9c6d779a899628e633baad4dd2f06caf1a0b3682beb6956885a",
+      "6-28": "347bd14b90899f96f6e78d697516d88e75c14531edda7e8d7accd77d5dbadaf8",
+      "6-44": "75c3d0fc1512665b6341025b2c430f5f3218174d27abb20874ef96dc790139ce",
+      "6-60": "8adb4f6124cdad70a021a64bdcdd0b6c363b3f4a522f8728718764f9cf27e59a",
+      "7-28": "4b546dedbf6d267a206423ab94a5f9d5e025a10d7079490950e336521b9c0dbc",
+      "7-44": "a4229176b410c881239e6fcc44201333997a0f0d438aeac761dead59066967ef",
+      "7-60": "c5e63b5721e3293d7c867f82a7cbf357aadf0200b0015e8e0499ed39ed09e8b5"
+    }
+  },
+  "kind": "Continuation verification; exhaustive sensitivity on the existing 24 roots, not new held-out positions",
+  "roots": [
+    {
+      "id": "0-28",
+      "game": 0
+    },
+    {
+      "id": "0-44",
+      "game": 0
+    },
+    {
+      "id": "0-60",
+      "game": 0
+    },
+    {
+      "id": "1-28",
+      "game": 1
+    },
+    {
+      "id": "1-44",
+      "game": 1
+    },
+    {
+      "id": "1-60",
+      "game": 1
+    },
+    {
+      "id": "2-28",
+      "game": 2
+    },
+    {
+      "id": "2-44",
+      "game": 2
+    },
+    {
+      "id": "2-60",
+      "game": 2
+    },
+    {
+      "id": "3-28",
+      "game": 3
+    },
+    {
+      "id": "3-44",
+      "game": 3
+    },
+    {
+      "id": "3-60",
+      "game": 3
+    },
+    {
+      "id": "4-28",
+      "game": 4
+    },
+    {
+      "id": "4-44",
+      "game": 4
+    },
+    {
+      "id": "4-60",
+      "game": 4
+    },
+    {
+      "id": "5-28",
+      "game": 5
+    },
+    {
+      "id": "5-44",
+      "game": 5
+    },
+    {
+      "id": "5-60",
+      "game": 5
+    },
+    {
+      "id": "6-28",
+      "game": 6
+    },
+    {
+      "id": "6-44",
+      "game": 6
+    },
+    {
+      "id": "6-60",
+      "game": 6
+    },
+    {
+      "id": "7-28",
+      "game": 7
+    },
+    {
+      "id": "7-44",
+      "game": 7
+    },
+    {
+      "id": "7-60",
+      "game": 7
+    }
+  ],
+  "teacherDepth": 16,
+  "speedNodes": 100000,
+  "speedRepeats": 3,
+  "args": {
+    "nocache": [
+      "--advanced",
+      "--driver",
+      "adaptive",
+      "--eval",
+      "nnue",
+      "--eval-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/dist/vendor/yaneuraou/yaneuraou.data",
+      "--features",
+      "tt,history,killer,counter,mate-distance,qsearch,capture-history",
+      "--depth",
+      "16",
+      "--iterative",
+      "--policy-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/engines/shogi-search-lab/models/v0.17/all-policy.txt",
+      "--policy-mode",
+      "root",
+      "--max-nodes",
+      "100000"
+    ],
+    "latest": [
+      "--advanced",
+      "--driver",
+      "adaptive",
+      "--eval",
+      "nnue-cache",
+      "--eval-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/dist/vendor/yaneuraou/yaneuraou.data",
+      "--features",
+      "tt,history,killer,counter,mate-distance,qsearch,capture-history",
+      "--depth",
+      "16",
+      "--iterative",
+      "--policy-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/engines/shogi-search-lab/models/v0.17/all-policy.txt",
+      "--policy-mode",
+      "root",
+      "--max-nodes",
+      "100000"
+    ],
+    "scalar": [
+      "--advanced",
+      "--driver",
+      "adaptive",
+      "--eval",
+      "nnue-scalar",
+      "--eval-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/dist/vendor/yaneuraou/yaneuraou.data",
+      "--features",
+      "tt,history,killer,counter,mate-distance,qsearch,capture-history",
+      "--depth",
+      "16",
+      "--iterative",
+      "--policy-model",
+      "/workspace/scratch/950ddc84c680/shogi-AI/engines/shogi-search-lab/models/v0.17/all-policy.txt",
+      "--policy-mode",
+      "root",
+      "--eager-order",
+      "--max-nodes",
+      "100000"
+    ]
+  },
+  "equivalentFields": [
+    "score",
+    "pv",
+    "nodes",
+    "completed_depth",
+    "stop_reason",
+    "has_result",
+    "fallback_pv"
+  ],
+  "notes": [
+    "All 24 original roots retained regardless of earlier outcome. All teacher evaluations rerun, including prior 7.",
+    "Exactly the original common candidate sets; depth-16 unrestricted bestmove is not added.",
+    "Engine, policy and model unchanged. Serial execution. Root/rep rotation fixed in advance.",
+    "No new games. Prior 48 games are independently replayed and reported separately.",
+    "Exclude a complete root from cp means if any candidate is mate/special; also report common eligibility across depths.",
+    "Intervals resample 8 trajectories; descriptive and exploratory, not independent evidence of strength."
+  ]
+}
