@@ -27,6 +27,10 @@ Build configuration enables `USE_GENERATE_ALL_LEGAL_MOVES` so optional nonpromot
 
 `scripts/build_phase0b_shared.py` builds the same pinned complete source archive into a separate ignored directory. In addition to the native-entry and read-only telemetry patches from Phase 0a, it adds two USI options and one branch at the start of `MainThread::search()`. `native/phase0b_search.cpp` provides a GPL-3.0-or-later depth-limited minimax/alpha-beta integration fixture. The standard search and custom fixture share the upstream board, legal-move generator, `Eval::evaluate`, and NNUE weights in one executable. The fixture is not a port of the complete v0.x engine. Its source, patch procedure, build settings and hashes are recorded alongside `results/v1.0-phase0b/`. Upstream copyright notices and the complete corresponding source remain available in the repository.
 
+## Bounded quiescence bridge (v1.0 Phase 0c)
+
+`scripts/build_phase0c_shared.py` builds another copy of the same pinned archive, retaining the Phase 0b bridge design and adding two quiescence-search USI options. `native/phase0c_search.cpp` is a GPL-3.0-or-later integration fixture with stand-pat, captures, all promotions and legal check evasions, adapted from the lab's own search policy. It shares upstream board, move generation and NNUE code; no upstream weights are changed. The patch procedure, source and build hashes are recorded with `results/v1.0-phase0c/`. The standard upstream search remains the default. Complete corresponding source and notices are preserved as above.
+
 ## tsshogi, optional independent validation only
 
 - Author: Ryosuke Kubo / sunfish-shogi contributors.

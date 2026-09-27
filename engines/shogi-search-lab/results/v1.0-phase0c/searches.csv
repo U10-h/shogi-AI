@@ -1,0 +1,7 @@
+position,mode,bestmove,score_raw,nodes,seldepth,qnodes,qcapture_edges,qpromotion_edges,qchecked,qcheck_beyond_budget,qevasion_edges,qstand_cutoffs,qchild_cutoffs,search_ms
+startpos,plain,2g2f,92,181,2,0,0,0,0,0,0,0,0,1.90856
+startpos,q_minimax,2g2f,92,1364,4,1334,189,30,47,0,316,0,0,3.81555
+startpos,q_alphabeta,2g2f,92,195,4,165,13,4,5,0,5,85,7,1.91826
+opening,plain,7i8h,-121,2396,2,0,0,0,0,0,0,0,0,15.5005
+opening,q_minimax,3i4h,29,72437,5,72360,40678,16481,6372,4660,31508,0,0,169.617
+opening,q_alphabeta,3i4h,29,1691,5,1614,757,306,148,56,278,423,367,13.8614

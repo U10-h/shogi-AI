@@ -17,6 +17,11 @@ Phase 0bでは同じ上流NNUE・盤面・合法手・ノードカウンタを�
 - [Phase 0b: 共通NNUEへの探索接続と検証結果](REPORT-v1.0-phase0b-shared.md)
 - [Phase 0b: 1局面ずつ実行する再開手順](REPRODUCE-v1.0-phase0b-shared.md)
 
+Phase 0cでは同じ2局面に限定静止探索を接続しました。主探索深さ2・通常の静止探索予算2で全幅とαβの評価・最善手・PVが一致し、NNUE照合75,031件の不一致は0でした。比較12探索と中断・復元確認10探索を完了しています。棋力改善は未検証です。
+
+- [Phase 0c: 限定静止探索の結果と次の小規模実験](REPORT-v1.0-phase0c-qsearch.md)
+- [Phase 0c: 1局面ずつ実行する再開手順](REPRODUCE-v1.0-phase0c-qsearch.md)
+
 
 ## 深さ・候補数を固定しない選択的探索（v0.16）
 
