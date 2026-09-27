@@ -1,0 +1,57 @@
+{
+  "condition_sha256": "a6b693190f00d598267b811378f7a6f9818829b28a9ac2ddd59e6449388934f2",
+  "positions": 2,
+  "comparison_searches": 8,
+  "control_searches": 10,
+  "static_unique_positions": 6,
+  "static_equal_comparisons_to_reference": 18,
+  "full_depth_eval_checks": 345882,
+  "full_depth_eval_mismatches": 0,
+  "all_saved_checks_passed": true,
+  "rows": [
+    {
+      "position": "startpos",
+      "mode": "minimax",
+      "depth": 3,
+      "bestmove": "7g7f",
+      "score_raw": 317,
+      "nodes": 27360,
+      "cutoffs": 0,
+      "eval_checks": 27363,
+      "search_ms_with_audit": 83.3924
+    },
+    {
+      "position": "startpos",
+      "mode": "alphabeta",
+      "depth": 3,
+      "bestmove": "7g7f",
+      "score_raw": 317,
+      "nodes": 2838,
+      "cutoffs": 130,
+      "eval_checks": 2841,
+      "search_ms_with_audit": 15.2778
+    },
+    {
+      "position": "opening",
+      "mode": "minimax",
+      "depth": 3,
+      "bestmove": "B*5e",
+      "score_raw": 292,
+      "nodes": 291698,
+      "cutoffs": 0,
+      "eval_checks": 291701,
+      "search_ms_with_audit": 987.892
+    },
+    {
+      "position": "opening",
+      "mode": "alphabeta",
+      "depth": 3,
+      "bestmove": "B*5e",
+      "score_raw": 292,
+      "nodes": 23974,
+      "cutoffs": 761,
+      "eval_checks": 23977,
+      "search_ms_with_audit": 142.433
+    }
+  ]
+}

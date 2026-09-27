@@ -23,6 +23,10 @@ Build configuration enables `USE_GENERATE_ALL_LEGAL_MOVES` so optional nonpromot
 
 `scripts/build_phase0_native.py` extracts the complete pinned source archive above into ignored `build/phase0/` and builds the standard YaneuraOu 6.03/KP256 search with g++ for AVX2/BMI2. It restores the native USI loop, replaces the Emscripten annotation include, and adds a read-only `phase0stats` command for completed depth/final node totals. The upstream search and NNUE calculations are unchanged. The source archive, model, patched files, compiler command and binary hashes are recorded in `results/v1.0-phase0/manifest.json`. This is a separate native opponent executable; it does not link upstream search into `shogi-lab`. The complete source archive and GPL notices remain in the repository. No new upstream weights are redistributed by this pilot.
 
+## Shared native search bridge (v1.0 Phase 0b)
+
+`scripts/build_phase0b_shared.py` builds the same pinned complete source archive into a separate ignored directory. In addition to the native-entry and read-only telemetry patches from Phase 0a, it adds two USI options and one branch at the start of `MainThread::search()`. `native/phase0b_search.cpp` provides a GPL-3.0-or-later depth-limited minimax/alpha-beta integration fixture. The standard search and custom fixture share the upstream board, legal-move generator, `Eval::evaluate`, and NNUE weights in one executable. The fixture is not a port of the complete v0.x engine. Its source, patch procedure, build settings and hashes are recorded alongside `results/v1.0-phase0b/`. Upstream copyright notices and the complete corresponding source remain available in the repository.
+
 ## tsshogi, optional independent validation only
 
 - Author: Ryosuke Kubo / sunfish-shogi contributors.

@@ -1,0 +1,5 @@
+position,mode,depth,bestmove,score_raw,nodes,cutoffs,eval_checks,search_ms_with_audit
+startpos,minimax,3,7g7f,317,27360,0,27363,83.3924
+startpos,alphabeta,3,7g7f,317,2838,130,2841,15.2778
+opening,minimax,3,B*5e,292,291698,0,291701,987.892
+opening,alphabeta,3,B*5e,292,23974,761,23977,142.433

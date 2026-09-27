@@ -1,0 +1,12 @@
+[
+  {
+    "id": "startpos",
+    "sfen": "lnsgkgsnl/1r5b1/ppppppppp/9/9/9/PPPPPPPPP/1B5R1/LNSGKGSNL b - 1",
+    "source": "standard starting position"
+  },
+  {
+    "id": "opening",
+    "sfen": "lnsgkg1nl/1r5s1/pppppp1pp/6p2/9/2P6/PP1PPPPPP/7R1/LNSGKGSNL b Bb 5",
+    "source": "results/v0.7/matches.json games[0].moves[0].beforeSfen"
+  }
+]
